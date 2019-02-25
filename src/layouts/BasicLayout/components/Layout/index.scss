@@ -1,0 +1,18 @@
+.basic-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  &--header {
+    background: antiquewhite;
+    flex-grow: 0
+  }
+  &--content {
+    background: aqua;
+    flex-grow: 1;
+  }
+  &--footer {
+    background: aquamarine;
+    min-height: 50px;
+    flex-grow: 0;
+  }
+}

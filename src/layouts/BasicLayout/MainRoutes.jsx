@@ -4,7 +4,6 @@ import {
   Switch
 } from 'react-router-dom'
 import routerData from '../../router';
-import _404 from '../../pages/404';
 export default class MainRoutes extends Component {
   static displayName = 'MainRoutes';
   /**
@@ -59,9 +58,6 @@ export default class MainRoutes extends Component {
         {redirectData.map((item, index) => {
           return <Redirect key={index} exact from={item.from} to={item.to} />;
         })} */}
-
-        {/* 未匹配到的路由重定向到 <Guide> 组件，实际情况应该重定向到 404 */}
-        <Route component={_404} />
       </Switch>
     );
   }

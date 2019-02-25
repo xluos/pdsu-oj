@@ -1,0 +1,14 @@
+.nav {
+  display: flex;
+  background: #aaa;
+  &-item-box {
+    display: flex;
+  }
+  &-item {
+    a {
+      display: block;
+      height: 50px;
+      width: 50px;
+    }
+  }
+}
