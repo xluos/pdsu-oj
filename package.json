@@ -5,9 +5,11 @@
   "dependencies": {
     "@alifd/next": "^1.13.2",
     "@icedesign/container": "^1.0.0",
+    "@icedesign/form-binder": "^0.1.7",
     "@icedesign/theme": "^0.1.0",
     "antd": "^3.13.5",
     "moment": "^2.23.0",
+    "normalize.css": "^8.0.1",
     "prop-types": "^15.5.8",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

@@ -7,6 +7,11 @@ export default class About extends Component {
   }
 
   render() {
-    return <div className="about-page" >About</div>;
+    return <div className="about-page" style={{
+      fontSize: '100px',
+      textAlign: 'center',
+      color: '#333',
+      lineHeight: '300px'
+    }}>About</div>;
   }
 }

@@ -7,6 +7,11 @@ export default class Qa extends Component {
   }
 
   render() {
-    return <div className="qa-page" >QA</div>;
+    return <div className="qa-page" style={{
+      fontSize: '100px',
+      textAlign: 'center',
+      color: '#333',
+      lineHeight: '300px'
+    }}>QA</div>;
   }
 }

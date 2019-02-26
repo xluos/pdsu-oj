@@ -17,7 +17,7 @@ const BasicLayout = () => (
     <Layout>
       <Header><Nav/></Header>
       <Content><MainRouters/></Content>
-      <Footer>footer</Footer>
+      <Footer>Copyright © 2019 CodeDeer</Footer>
     </Layout>
   </Router>
 );

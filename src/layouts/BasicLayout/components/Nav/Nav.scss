@@ -1,14 +1,77 @@
-.nav {
+.nav-bar {
   display: flex;
-  background: #aaa;
+  height: 55px;
+  width: 1140px;
+  margin: 0 auto;
+  transition: width 0.3s ease-in;
+  &-logo {
+    font-size: 30px;
+    line-height: 55px;
+    margin-right: 20px;
+  }
+  &-user {
+    flex-grow: 1;
+    text-align: right;
+    .user-name {
+      display: inline-block;
+      cursor: pointer;
+      height: 55px;
+      line-height: 55px;
+      color: #777;
+      padding-right: 10px;
+      &::after {
+        display: inline-block;
+        content: '';
+        width: 0;
+        height: 0;
+        margin-left: 5px;
+        vertical-align: middle;
+        border-top: 4px dashed;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+      }
+      &:hover {
+        color: #333;
+      } 
+    }
+  }
   &-item-box {
+    margin: 0;
+    padding: 0;
     display: flex;
   }
   &-item {
     a {
       display: block;
-      height: 50px;
-      width: 50px;
+      height: 55px;
+      line-height: 55px;
+      padding: 0 13px;
+      text-align: center;
+      text-decoration:none;
+      color: #777;
+      &:hover {
+        color: #333;
+      } 
     }
+  }
+}
+// banner 导航栏变黑
+.biack {
+  a, .user-name {
+    color: #d9d9d9;
+    &:hover {
+      color: #fff;
+    } 
+  }
+}
+
+@media only screen and (max-width: 1140px) {
+  .nav-bar {
+    width: 940px;
+  }
+}
+@media only screen and (max-width: 940px) {
+  .nav-bar {
+    width: 720px;
   }
 }

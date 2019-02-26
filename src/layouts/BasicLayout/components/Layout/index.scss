@@ -3,16 +3,27 @@
   flex-direction: column;
   min-height: 100%;
   &--header {
-    background: antiquewhite;
-    flex-grow: 0
+    flex-grow: 0;
+    position: fixed;
+    background: #fff;
+    z-index: 100;
+    width: 100%;
+    box-shadow: 0 5px 10px 0 rgba(212,224,242,.3);
+    margin-bottom: 10px;
+    &.biack {
+      background-color: rgba(0,2,13,.8);
+      box-shadow: 0 5px 10px 0 rgba(0,0,0,.12);
+      color: #d9d9d9; 
+    }
   }
   &--content {
-    background: aqua;
     flex-grow: 1;
+    padding-top: 55px;
   }
   &--footer {
-    background: aquamarine;
-    min-height: 50px;
     flex-grow: 0;
+    color: rgba(0,2,13,0.3);
+    text-align: center;
+    margin: 30px auto 10px;
   }
 }

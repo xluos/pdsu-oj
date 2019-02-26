@@ -1,0 +1,26 @@
+.home-page {
+  margin-top: -55px;
+  &--content {
+    max-width: 1140px;
+    margin: 10px auto;
+  }
+  &--btn-group {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    a {
+      flex-grow: 1;
+    }
+    .problem-link
+    , .competition-link {
+      height: 120px;
+      border-radius: 8px;
+      min-width: 350px;
+      margin: 10px 10px;
+      background-color: #2562e9;
+      background: url(./images/bg.png) no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+}

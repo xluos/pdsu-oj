@@ -1,7 +1,9 @@
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import About from './pages/About';
 import Rank from './pages/Rank';
 import Qa from './pages/Qa';
+import Problem from './pages/Problem';
+import Competition from './pages/Competition';
 
 
 // 路由模板
@@ -22,13 +24,25 @@ export default [
     exact: true
   },
   {
-    name: '排行',
+    name: 'Problem',
+    isNav: true,
+    path: '/problem',
+    component: Problem,
+  },
+  {
+    name: 'Rank',
     isNav: true,
     path: '/rank',
     component: Rank,
   },
   {
-    name: '关于',
+    name: 'Competition',
+    isNav: true,
+    path: '/competition',
+    component: Competition,
+  },
+  {
+    name: 'About',
     isNav: true,
     path: '/about',
     component: About,
