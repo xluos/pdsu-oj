@@ -1,0 +1,88 @@
+@import "../../../../style/mixin.scss";
+.problem-item {
+  display: flex;
+  align-items: center;
+  height: 110px;
+  margin-bottom: 15px;
+  background: #fff;
+  border: 1px solid rgba(0,2,13,.1);
+  border-radius: 4px;
+  &:hover {
+    background: rgba(234,235,239,.2);
+  }
+  .submit-info
+  , .ac-info {
+    p {
+      margin-bottom: 0;
+    }
+    flex-shrink: 0;
+    width: 66px;
+    height: 66px;
+    padding: 8px 8px;
+    font-size: 14px;
+    line-height: 24px;
+    min-width: 32px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 3px;
+  }
+  .submit-info {
+    margin-left: 60px;
+    background-color: #f6f7f9;
+    color: #62636b;
+  }
+  .ac-info {
+    margin-left: 25px;
+    background: #5ad38c;
+    color: #fff;
+  }
+  .problem-info {
+    margin-left: 25px;
+    flex-shrink: 1;
+    flex-grow: 1;
+    overflow: hidden;
+    .title {
+      font-size: 16px;
+      color: #444;
+      line-height: 24px;
+      font-weight: bold;
+    }
+    .content {
+      margin: 7px 0;
+      font-size: 14px;
+      color: rgba(0,2,13,.6);
+      line-height: 1;
+      @include fn_ellipsis
+    }
+    .tags span {
+      display: inline-block;
+      user-select: none;
+      cursor: pointer;
+      color: #2c7ee0;
+      background-color: #cce0f8;
+      border: 1px solid #c3daf6;
+      border-radius: 6px;
+      font-size: 12px;
+      padding: 2px 5px;
+      margin-right: 5px;
+    }
+  }
+  button {
+    flex-shrink: 0;
+    color: #fff;
+    background-color: #2c7ee0;
+    border-color: #257adf;
+    border: 1px solid transparent;
+    transition: all .4s cubic-bezier(0, 0, 0.2, 1);
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 20px;
+    margin-right: 25px;
+    &:hover {
+      color: #fff;
+      background-color: #1f71d3;
+      border-color: #1d69c4;
+      box-shadow: 0 3px 5px 0 #bad5f5;
+    }
+  }
+}

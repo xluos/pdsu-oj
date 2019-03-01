@@ -1,0 +1,25 @@
+.problem-page {
+  width: 1140px;
+  margin: 20px auto;
+  .problem-title {
+    font-size: 18px;
+  }
+  .problem-body {
+    padding: 15px;
+    margin: 20px 0;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px #eef2f8;
+  }
+}
+@media only screen and (max-width: 1140px) {
+  .problem-page {
+    width: 940px;
+  }
+}
+@media only screen and (max-width: 940px) {
+  .problem-page {
+    width: 720px;
+  }
+}
