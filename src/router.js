@@ -1,41 +1,21 @@
 import Loadable from 'react-loadable';
 import Loading from './components/Loading';
-const Home = Loadable({
-  loader: () => import('./pages/Home/Home'),
+
+const Component = (Component) => Loadable({
+  loader: Component,
   loading: Loading,
   delay: 300,
   timeout: 10000,
 });
-const About = Loadable({
-  loader: () => import('./pages/About'),
-  loading: Loading,
-  delay: 300,
-  timeout: 10000,
-});
-const Rank = Loadable({
-  loader: () => import('./pages/Rank'),
-  loading: Loading,
-  delay: 300,
-  timeout: 10000,
-});
-const Qa = Loadable({
-  loader: () => import('./pages/Qa'),
-  loading: Loading,
-  delay: 300,
-  timeout: 10000,
-});
-const Problem = Loadable({
-  loader: () => import('./pages/Problem'),
-  loading: Loading,
-  delay: 300,
-  timeout: 10000,
-});
-const Competition = Loadable({
-  loader: () => import('./pages/Competition'),
-  loading: Loading,
-  delay: 300,
-  timeout: 10000,
-});
+
+
+const Home = Component(() => import('./pages/Home'));
+const About = Component(() => import('./pages/About'));
+const Rank = Component(() => import('./pages/Rank'));
+const Qa = Component(() => import('./pages/Qa'));
+const Problem = Component(() => import('./pages/Problem'));
+const ProblemPage = Component(() => import('./pages/ProblemPage'));
+const Competition = Component(() => import('./pages/Competition'));
 
 /* --- 一个有用的分割线 勿删 --- */
 
@@ -65,7 +45,7 @@ export default [
       {
         name: 'Problem',
         path: '/:id',
-        component: Problem,
+        component: ProblemPage,
       }
     ]
   },
