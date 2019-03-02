@@ -11,6 +11,10 @@ module.exports = function override(config) {
     ['import', { libraryName: 'antd', libraryDirectory: 'es', style: 'css' }],
     config
   );
+  config = injectBabelPlugin(
+    ['syntax-dynamic-import'],
+    config
+  );
   config.plugins.push(
     new WebpackPluginImport([
       {
