@@ -36,7 +36,7 @@ export default function Home () { return (
       <div className="home-page--btn-group">
         <Link to="/problem">
           <div className="problem-link">
-            <img src={require('./images/problem-icon.png')} />
+            <img src={require('./images/problem-icon.png')} alt=""/>
             <div className="content">
               <h4>题目</h4>
               <p>挑战别人也是挑战自己</p>
@@ -45,7 +45,7 @@ export default function Home () { return (
         </Link>
         <Link to="/competition">
           <div className="competition-link">
-            <img src={require('./images/contest-icon.png')} />
+            <img src={require('./images/contest-icon.png')} alt=""/>
             <div className="content">
               <h4 className='new'>比赛</h4>
               <p>探讨 0 和 1 的无限可能</p>

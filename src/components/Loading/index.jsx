@@ -26,7 +26,7 @@ export default function Loading (props) {
     return (
       <div style={loadingStyle}>
         <FontAwesomeIcon size="5x" icon={["fas","unlink"]} />
-        <span style={textStyle}>超时！请检查网络是否断开</span>
+        <span style={textStyle}>超时！请检查网络</span>
       </div>
     )
   } else if (props.pastDelay) {

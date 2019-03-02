@@ -12,6 +12,22 @@
     border-radius: 8px;
     box-shadow: 0 5px 20px #eef2f8;
   }
+  .problem-pagination {
+    .ant-pagination-item:hover,
+    .ant-pagination-item-active {
+      background-color: #1890ff;
+      a {
+        color: #fff;
+      }
+    }
+    .ant-pagination-prev,
+    .ant-pagination-next {
+      &:hover a {
+        background-color: #1890ff;
+        color: #fff;
+      }
+    }
+  }
 }
 @media only screen and (max-width: 1140px) {
   .problem-page {

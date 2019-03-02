@@ -1,5 +1,5 @@
 import React from 'react';
-import { Breadcrumb } from 'antd';
+import { Breadcrumb, Pagination } from 'antd';
 import { Link } from 'react-router-dom';
 import ProblemItem from './components/ProblemItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -33,6 +33,19 @@ export default function ProblemPage () { return (
         <ProblemItem/>
         <ProblemItem/>
         <ProblemItem/>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          margin: '40px 0 10px 0'
+        }}>
+          <Pagination
+            className="problem-pagination"
+            showQuickJumper
+            showSizeChanger
+            current={3}
+            total={50}
+          />
+        </div>
       </div>
     </div>
   </div>
