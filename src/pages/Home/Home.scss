@@ -33,19 +33,20 @@
           color: #fff;
           margin-bottom: 5px;
         }
-        new {
-          margin-bottom: 10px;
-          font-size: 1.8em;
+        .new {
           &::after {
             display: inline-block;
-            padding: .34em .6em;
-            font-size: 85%;
+            background: #ff7136;
+            content: '新!';
+            margin-left: 10px;
+            padding: .35em .5em;
+            font-size: 65%;
             font-weight: normal;
             line-height: 1;
             color: #fff;
             text-align: center;
             white-space: nowrap;
-            vertical-align: baseline;
+            vertical-align: text-bottom;
             border-radius: .4em;
           }
         }

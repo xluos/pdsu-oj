@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './ProblemItem.scss';
-import '../../../../style/iconfont.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function ProblemItem (props) { 
   const {
@@ -27,6 +27,6 @@ export default function ProblemItem (props) {
         {tags.map((item, index) => (<span key={index}>{item}</span>))}
       </div>
     </div>
-    <button><i className=""/>挑战</button>
+    <button><FontAwesomeIcon icon="bolt" /> 挑战</button>
   </div>
 );}
