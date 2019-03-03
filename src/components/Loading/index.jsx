@@ -1,5 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Spin } from 'antd';
 
 const loadingStyle = {
   position: 'absolute',
@@ -10,7 +11,7 @@ const loadingStyle = {
   alignItems: 'center',
 }
 const textStyle = {
-  fontSize: 30,
+  fontSize: 20,
   paddingLeft: 15
 }
 export default function Loading (props) { 
@@ -18,21 +19,21 @@ export default function Loading (props) {
   if (props.error) {
     return (
       <div style={loadingStyle}>
-        <FontAwesomeIcon size="5x" icon={["far","frown"]} />
+        <FontAwesomeIcon size="3x" icon={["far","frown"]} />
         <span style={textStyle}>发生错误请重试</span>
       </div>
     )
   } else if (props.timedOut) {
     return (
       <div style={loadingStyle}>
-        <FontAwesomeIcon size="5x" icon={["fas","unlink"]} />
+        <FontAwesomeIcon size="3x" icon={["fas","unlink"]} />
         <span style={textStyle}>超时！请检查网络</span>
       </div>
     )
   } else if (props.pastDelay) {
     return (
       <div style={loadingStyle}>
-        <FontAwesomeIcon size="5x" icon="spinner" spin  />
+         <Spin size="large" />  
       </div>
     )
   } else {

@@ -1,6 +1,4 @@
 .problem-page {
-  width: 1140px;
-  margin: 20px auto;
   .problem-title {
     font-size: 18px;
   }
@@ -27,15 +25,5 @@
         color: #fff;
       }
     }
-  }
-}
-@media only screen and (max-width: 1140px) {
-  .problem-page {
-    width: 940px;
-  }
-}
-@media only screen and (max-width: 940px) {
-  .problem-page {
-    width: 720px;
   }
 }

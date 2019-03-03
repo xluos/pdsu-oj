@@ -1,0 +1,16 @@
+.problem-content-block {
+  margin: 20px 0;
+  &--title {
+    font-size: 16px;
+    color: rgba(0,2,13,.8);
+    letter-spacing: 1.14px;
+    line-height: 24px;
+    border-left: solid 6px #2c7ee0;
+    border-radius: 2px 0 0 2px;
+    padding-left: 14px;
+    font-weight: bold;
+  }
+  &--content {
+    line-height: 1.5;
+  }
+}

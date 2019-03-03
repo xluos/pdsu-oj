@@ -22,12 +22,12 @@ export default class MainRoutes extends Component {
           exact
         />
       )] : [];
-      return page.concat(item.children.map((item, index) => (
+      return page.concat(item.children.map((citem, index) => (
         <Route
           key={`route-childern-${index}`}
-          path={item.path}
-          component={item.component}
-          exact={item.exact}
+          path={item.path + citem.path}
+          component={citem.component}
+          exact={citem.exact}
         />
       )))
     } else {

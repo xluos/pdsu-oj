@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Problem.scss';
 
 export default function ProblemPage () { return (
-  <div className="problem-page">
+  <div className="problem-page page">
     <Breadcrumb>
       <Breadcrumb.Item>Home</Breadcrumb.Item>
       <Breadcrumb.Item><Link to="/problem">Problem</Link></Breadcrumb.Item>

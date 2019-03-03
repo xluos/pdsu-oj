@@ -8,3 +8,19 @@ html, body, #root {
 li {
   list-style: none;
 }
+.page {
+  width: 1140px;
+  margin: 20px auto;
+}
+
+@media only screen and (max-width: 1140px) {
+  .page {
+    width: 940px;
+  }
+}
+
+@media only screen and (max-width: 940px) {
+  .page {
+    width: 720px;
+  }
+}
