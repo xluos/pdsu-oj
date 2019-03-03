@@ -17,6 +17,7 @@ const Qa = Component(() => import('./pages/Qa'));
 const Problem = Component(() => import('./pages/Problem'));
 const ProblemPage = Component(() => import('./pages/ProblemPage'));
 const Competition = Component(() => import('./pages/Competition'));
+const NotFound = Component(() => import('./pages/Error404'));
 
 /* --- 一个有用的分割线 勿删 --- */
 
@@ -79,5 +80,10 @@ export default [
     isNav: true,
     path: '/qa',
     component: Qa,
+  },
+  {
+    name: '404',
+    path: '',
+    component: NotFound,
   },
 ]
