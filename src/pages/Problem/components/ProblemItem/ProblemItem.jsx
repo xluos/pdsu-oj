@@ -21,12 +21,14 @@ export default function ProblemItem (props) {
       <p className="text">通过</p>
     </div>
     <div className="problem-info">
-      <Link className="title" to="">题目一二三四五六七八九十</Link>
+      <Link className="title" to="/problem/4654">题目一二三四五六七八九十</Link>
       <p className="content">{content || '题目内容》》》题目内容》》》题目内容》》》题目内容》》》题目内容》》》题目内容》》》题目内容》》》题目内容》》》题目内容》》》题目内容》》》'}</p>
       <div className="tags">
         {tags.map((item, index) => (<span key={index}>{item}</span>))}
       </div>
     </div>
-    <button><FontAwesomeIcon icon="bolt" /> 挑战</button>
+    <Link to="/problem/4654" style={{flexShrink: 0}}>
+      <button><FontAwesomeIcon icon="bolt" /> 挑战</button>
+    </Link>
   </div>
 );}

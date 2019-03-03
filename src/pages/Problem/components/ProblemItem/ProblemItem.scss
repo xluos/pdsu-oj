@@ -68,7 +68,6 @@
     }
   }
   button {
-    flex-shrink: 0;
     color: #fff;
     background-color: #2c7ee0;
     border-color: #257adf;
@@ -77,7 +76,8 @@
     padding: 6px 12px;
     font-size: 14px;
     border-radius: 20px;
-    margin-right: 25px;
+    margin: 0 25px 0 10px;
+    outline: none;
     &:hover {
       color: #fff;
       background-color: #1f71d3;

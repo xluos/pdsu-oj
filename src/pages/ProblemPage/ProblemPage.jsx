@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Placeholder from '../../components/Placeholder';
 import './ProblemPage.scss';
 import ProblemContent from './components/ProblemContent';
+import SubmitTable from '../../components/SubmitTable';
 
 const TabPane = Tabs.TabPane;
 
@@ -77,9 +78,11 @@ export default class ProblemPage extends Component {
               <ProblemContent {...mockData}/>
             </TabPane>
             <TabPane tab="我的提交" key="2">
+              <SubmitTable/>
               <Placeholder content="我的提交"/>
             </TabPane>
             <TabPane tab="所有提交" key="3">
+              <SubmitTable/>
               <Placeholder content="所有提交"/>
             </TabPane>
           </Tabs>

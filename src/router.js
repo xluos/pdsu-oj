@@ -11,6 +11,7 @@ const Component = (Component) => Loadable({
 
 const Home = Component(() => import('./pages/Home'));
 const About = Component(() => import('./pages/About'));
+const Submit = Component(() => import('./pages/Submit'));
 const Rank = Component(() => import('./pages/Rank'));
 const Qa = Component(() => import('./pages/Qa'));
 const Problem = Component(() => import('./pages/Problem'));
@@ -48,6 +49,12 @@ export default [
         component: ProblemPage,
       }
     ]
+  },
+  {
+    name: 'Submit',
+    isNav: true,
+    path: '/submit',
+    component: Submit,
   },
   {
     name: 'Rank',
