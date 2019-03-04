@@ -8,18 +8,18 @@ const Component = (Component) => Loadable({
   timeout: 10000,
 });
 
+const Block = Component(() => import('./pages/Components'));
 
-const Home = Component(() => import('./pages/Home'));
-const About = Component(() => import('./pages/About'));
-const Submit = Component(() => import('./pages/Submit'));
-const Rank = Component(() => import('./pages/Rank'));
-const Qa = Component(() => import('./pages/Qa'));
-const Problem = Component(() => import('./pages/Problem'));
-const ProblemPage = Component(() => import('./pages/ProblemPage'));
-const Competition = Component(() => import('./pages/Competition'));
-const NotFound = Component(() => import('./pages/Error404'));
+const Home = Component(() => import(/* webpackChunkName: "Home" */ './pages/Home'));
+const About = Component(() => import(/* webpackChunkName: "About" */ './pages/About'));
+const Submit = Component(() => import(/* webpackChunkName: "Submit" */'./pages/Submit'));
+const Rank = Component(() => import(/* webpackChunkName: "Rank" */ './pages/Rank'));
+const Qa = Component(() => import(/* webpackChunkName: "Qa" */ './pages/Qa'));
+const Problem = Component(() => import(/* webpackChunkName: "Problem" */ './pages/Problem'));
+const ProblemPage = Component(() => import(/* webpackChunkName: "ProblemPage" */ './pages/ProblemPage'));
+const Contest = Component(() => import(/* webpackChunkName: "Competition" */ './pages/Contest'));
+const NotFound = Component(() => import(/* webpackChunkName: "Error404" */ './pages/Error404'));
 
-/* --- 一个有用的分割线 勿删 --- */
 
 // 路由模板
 // {
@@ -31,6 +31,12 @@ const NotFound = Component(() => import('./pages/Error404'));
 //   children: [Router!]
 // }
 export default [
+  {
+    name: 'Block',
+    path: '/block',
+    component: Block,
+    exact: true
+  },
   {
     name: 'Home',
     path: '/',
@@ -64,10 +70,10 @@ export default [
     component: Rank,
   },
   {
-    name: 'Competition',
+    name: 'Contest',
     isNav: true,
-    path: '/competition',
-    component: Competition,
+    path: '/contest',
+    component: Contest,
   },
   {
     name: 'About',
@@ -76,9 +82,9 @@ export default [
     component: About,
   },
   {
-    name: 'Q&A',
+    name: 'FAQ',
     isNav: true,
-    path: '/qa',
+    path: '/faq',
     component: Qa,
   },
   {

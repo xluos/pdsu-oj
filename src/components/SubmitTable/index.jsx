@@ -53,15 +53,7 @@ export default class SubmitTable extends Component {
       if (visible) {
         setTimeout(() => this.searchInput.select());
       }
-    },
-    // render: (text) => (
-    //   <Highlighter
-    //     highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-    //     searchWords={[this.state.searchText]}
-    //     autoEscape
-    //     textToHighlight={text.toString()}
-    //   />
-    // ),
+    }
   })
   handleSearch = (selectedKeys, confirm) => {
     console.log('reset');

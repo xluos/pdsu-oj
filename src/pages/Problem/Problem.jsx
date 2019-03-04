@@ -12,7 +12,7 @@ export default function ProblemPage () { return (
       <Breadcrumb.Item><Link to="/problem">Problem</Link></Breadcrumb.Item>
     </Breadcrumb>
     <div className="problem-body">
-      <h3 className="problem-title"><FontAwesomeIcon icon={["far", "lightbulb"]} size="sm" /> 所有题目</h3>
+      <h3 className="problem-title"><FontAwesomeIcon icon={["far", "lightbulb"]} size="1x" /> 所有题目</h3>
       <div className="problem-filter">
 
       </div>

@@ -1,8 +1,7 @@
 import React from 'react';
-import Placeholder from '../../../../components/Placeholder';
-
+import CustomCodemirror from '../../../Components/components/CustomCodemirror';
 export default function SubmitPanel (props) { return (
   <div className="submit-panel">
-    <Placeholder content="Submit panel"/>
+    <CustomCodemirror />
   </div>
 );}

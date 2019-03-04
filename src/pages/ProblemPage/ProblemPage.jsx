@@ -6,6 +6,7 @@ import Placeholder from '../../components/Placeholder';
 import './ProblemPage.scss';
 import ProblemContent from './components/ProblemContent';
 import SubmitTable from '../../components/SubmitTable';
+import SunmitPanel from './components/SubmitPanel';
 
 const TabPane = Tabs.TabPane;
 
@@ -85,6 +86,9 @@ export default class ProblemPage extends Component {
               <SubmitTable/>
               <Placeholder content="所有提交"/>
             </TabPane>
+            <TabPane tab="题目信息" key="4">
+              <Placeholder content="题目信息"/>
+            </TabPane>
           </Tabs>
           <Modal
             title="提交"
@@ -96,7 +100,7 @@ export default class ProblemPage extends Component {
             footer={null}
             onCancel={() => this.showSubmit(false)}
           >
-            <Placeholder content="Submit panel"/>
+            <SunmitPanel/>
           </Modal>
         </div>
       </div>
