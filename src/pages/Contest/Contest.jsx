@@ -13,7 +13,7 @@ function mock() {
     title: id%2 ? '测试题目' : '假装真题',
     type: id%2 ? 'public' : 'password',
     time: '2019-03-03 15:57:29',
-    Status: '进行中'
+    status: '进行中'
   }
 }
 
@@ -23,13 +23,34 @@ export default class Contest extends Component {
   constructor (props) {
     super(props);
   }
-  callback = (index) => {
-    console.log(index)
-  }
-  showSubmit = (id) => {
-    console.log(id);
-  }
+
   render () {
+    const columns = [
+      {
+        title: "ID",
+        dataIndex: 'id',
+      },
+      {
+        title: '比赛',
+        dataIndex: 'title',
+        render: (text, record) => (
+          <Link to={`/contest/${record.id}`}>{text}</Link>
+        )
+      },
+      {
+        title: '状态',
+        dataIndex: 'status',
+      },
+      {
+        title: '比赛时间',
+        dataIndex: 'time',
+      },
+      {
+        title: '类型',
+        width: 100,
+        dataIndex: 'type',
+      },
+    ]
     return (
       <div className="contest-page page" >
         <Breadcrumb>
@@ -38,7 +59,7 @@ export default class Contest extends Component {
         </Breadcrumb>
         <div className="contest-content">
           <h3 className="title"><FontAwesomeIcon icon={["far", "flag"]} size="1x"/> 比赛列表</h3>
-          
+          <Table rowKey="id" columns={columns}  dataSource={allMockData}/>
         </div>
       </div>
     );

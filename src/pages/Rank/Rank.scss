@@ -7,4 +7,12 @@
     border-radius: 8px;
     box-shadow: 0 5px 20px #eef2f8;
   }
+  .group {
+    margin: 15px;
+    display: flex;
+    justify-content: flex-end;
+    button {
+      margin-left: 10px;
+    }
+  }
 }
