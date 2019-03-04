@@ -49,6 +49,7 @@ export default [
     isNav: true,
     path: '/problem',
     component: Problem,
+    exact: true,
     children: [
       {
         name: 'Problem',
@@ -62,30 +63,35 @@ export default [
     isNav: true,
     path: '/submit',
     component: Submit,
+    exact: true,
   },
   {
     name: 'Rank',
     isNav: true,
     path: '/rank',
     component: Rank,
+    exact: true,
   },
   {
     name: 'Contest',
     isNav: true,
     path: '/contest',
     component: Contest,
+    exact: true,
   },
   {
     name: 'About',
     isNav: true,
     path: '/about',
     component: About,
+    exact: true,
   },
   {
     name: 'FAQ',
     isNav: true,
     path: '/faq',
     component: Qa,
+    exact: true,
   },
   {
     name: '404',
