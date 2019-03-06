@@ -1,5 +1,5 @@
 import { provide } from 'midway';
-import { IUserService, IUserOptions, IUserResult } from '../../interface';
+import { IUserService, IUserOptions, IUserResult } from '../../interface/InterfaceUser';
 
 @provide('userService')
 export class UserService implements IUserService {

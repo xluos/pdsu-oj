@@ -60,5 +60,5 @@
     "node": ">=8.0.0"
   },
   "templateType": "react",
-  "title": "OJ"
+  "title": "PDSUOJ_FED"
 }
