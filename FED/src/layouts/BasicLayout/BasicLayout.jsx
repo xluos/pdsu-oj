@@ -4,14 +4,8 @@ import {
   withRouter
 } from 'react-router-dom';
 // import { withRouter } from 'react-router';
-import {
-  Layout,
-  Header,
-  Content,
-  Footer
-} from './components/Layout';
-import MainRouters from './MainRoutes';
-import Nav from './components/Nav';
+
+import RootRouters from './RootRoutes';
 
 class ScrollToTop extends Component {
   componentDidUpdate(prevProps) {
@@ -29,11 +23,7 @@ ScrollToTop = withRouter(ScrollToTop)
 const BasicLayout = () => (
   <Router>
     <ScrollToTop>
-      <Layout>
-        <Header><Nav/></Header>
-        <Content><MainRouters/></Content>
-        <Footer>Copyright © 2019 CodeDeer</Footer>
-      </Layout>
+      <RootRouters/>
     </ScrollToTop>
   </Router>
 );

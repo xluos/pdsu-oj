@@ -4,11 +4,10 @@ const rewireSass = require('./rewire-scss');
 
 module.exports = function override(config) {
   config = injectBabelPlugin(
-    ['import', { libraryName: '@alifd/next' }],
-    config
-  );
-  config = injectBabelPlugin(
-    ['import', { libraryName: 'antd', libraryDirectory: 'es', style: 'css' }],
+    ['import', [
+      { libraryName: '@alifd/next', style: true }, 
+      { libraryName: 'antd', libraryDirectory: 'es', style: 'css' }
+    ]],
     config
   );
   config = injectBabelPlugin(
@@ -27,7 +26,6 @@ module.exports = function override(config) {
       },
     ])
   );
-
   config = rewireSass(config);
 
   return config;

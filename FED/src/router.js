@@ -14,11 +14,13 @@ const Home = Component(() => import(/* webpackChunkName: "Home" */ './pages/Home
 const About = Component(() => import(/* webpackChunkName: "About" */ './pages/About'));
 const Submit = Component(() => import(/* webpackChunkName: "Submit" */'./pages/Submit'));
 const Rank = Component(() => import(/* webpackChunkName: "Rank" */ './pages/Rank'));
-const Qa = Component(() => import(/* webpackChunkName: "Qa" */ './pages/Qa'));
+const FAQ = Component(() => import(/* webpackChunkName: "FAQ" */ './pages/FAQ'));
 const Problem = Component(() => import(/* webpackChunkName: "Problem" */ './pages/Problem'));
 const ProblemPage = Component(() => import(/* webpackChunkName: "ProblemPage" */ './pages/ProblemPage'));
 const Contest = Component(() => import(/* webpackChunkName: "Competition" */ './pages/Contest'));
 const NotFound = Component(() => import(/* webpackChunkName: "Error404" */ './pages/Error404'));
+const LogIn = Component(() => import(/* webpackChunkName: "Login" */ './pages/LogIn'));
+const SignUp = Component(() => import(/* webpackChunkName: "Login" */ './pages/SignUp'));
 
 
 // 路由模板
@@ -90,12 +92,27 @@ export default [
     name: 'FAQ',
     isNav: true,
     path: '/faq',
-    component: Qa,
+    component: FAQ,
     exact: true,
   },
   {
     name: '404',
     path: '',
     component: NotFound,
+  },
+]
+
+export const RootRoute = [
+  {
+    name: 'signup',
+    path: '/signup',
+    component: SignUp,
+    exact: true,
+  },
+  {
+    name: 'login',
+    path: '/login',
+    component: LogIn,
+    exact: true,
   },
 ]
