@@ -1,5 +1,5 @@
 import { controller, get, inject, provide } from 'midway';
-import { IUserService, IUserResult } from '../../interface/InterfaceUser';
+import { IUserService, IUserResult } from '../../interface';
 
 @provide()
 @controller('/user')
@@ -7,7 +7,7 @@ export class UserController {
   @inject('userService')
   service: IUserService;
 
-  @get('/:id')
+  @get('/:id', {middleware: ['jwtMiddleware']})
   async getUser(ctx): Promise<void> {
     const id: number = ctx.params.id;
     const user: IUserResult = await this.service.getUser({id});

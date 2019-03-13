@@ -1,13 +1,14 @@
 {
-  "name": "pdsu-server",
+  "name": "pdsuoj_server",
   "version": "1.0.0",
   "description": "server",
   "private": true,
   "dependencies": {
+    "egg-jwt": "^3.1.6",
     "egg-scripts": "^2.10.0",
-    "graphql": "^14.1.1",
-    "midway": "^1.0.0",
-    "prisma-client-lib": "^1.27.4"
+    "koa-jwt2": "^1.0.3",
+    "midway": "^1.4.10",
+    "prisma-client-lib": "^1.28.3"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.5",
@@ -16,16 +17,17 @@
     "midway-bin": "1",
     "midway-mock": "1",
     "tslib": "^1.8.1",
+    "tslint-midway-contrib": "1",
     "ts-node": "^8.0.2",
-    "tslint": "^5.9.1",
+    "tslint": "^5.11.0",
     "typescript": "^3.2.0"
   },
   "engines": {
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-PDSUOJ_Server --framework=midway",
-    "stop": "egg-scripts stop --title=egg-server-PDSUOJ_Server",
+    "start": "egg-scripts start --daemon --title=egg-server-pdsuoj_server --framework=midway",
+    "stop": "egg-scripts stop --title=egg-server-pdsuoj_server",
     "start_build": "npm run build && NODE_ENV=development midway-bin dev",
     "dev": "set NODE_ENV=local && midway-bin dev --ts",
     "debug": "set NODE_ENV=local && midway-bin debug --ts",
@@ -33,7 +35,8 @@
     "cov": "midway-bin cov --ts",
     "lint": "tslint -c tslint.json --project .",
     "ci": "npm run cov",
-    "build": "midway-bin build -c"
+    "build": "midway-bin build -c",
+    "prisma": "prisma deploy"
   },
   "ci": {
     "version": "8, 10"
