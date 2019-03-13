@@ -1,31 +1,6 @@
 // 记录主要几大类型
 
 /**
- * @description User-Service parameters
- */
-export interface IUserOptions {
-  id?: number;
-}
-
-/**
- * @description User-Service response
- */
-export interface IUserResult {
-  id?: number;
-  username?: string;
-  phone?: string;
-  email?: string;
-}
-
-/**
- * @description User-Service abstractions
- */
-export interface IUserService {
-  getUser(options?: IUserOptions): Promise<IUserResult>;
-}
-
-
-/**
  * 用户接口
  * 
  * @description 记录用户所有属性
@@ -33,9 +8,6 @@ export interface IUserService {
  * @interface IUser
  */
 export interface IUser {
-  id?: string
-  createdAt?: string 
-  updatedAt?: string
   userId?: number 
   password?: string
   level?: number 
@@ -47,16 +19,12 @@ export interface IUser {
   userGroup?: IUserGroup[] 
   createUserGroup?: IUserGroup[] 
   privilegeUserGroup?: IUserGroup[] 
-  problems?: object[]
   submit?: number 
   solved?: number 
   accepted?: number 
 }
 
 export interface IPrivilegeGroup {
-  id?: string  
-  createdAt?: string 
-  updatedAt?: string
   name?: string
   privilege?: number
   users?: IUser[]
@@ -64,9 +32,6 @@ export interface IPrivilegeGroup {
 
 // 用户组
 export interface IUserGroup {
-  id?: string 
-  createdAt?: string
-  updatedAt?: string
   name?: string
   createUser?: IUser 
   privilege?: IUser[] 
@@ -75,9 +40,6 @@ export interface IUserGroup {
 
 // 题目
 export interface IProblem {
-  id?: string 
-  createdAt?: string
-  updatedAt?: string
   status?: number 
   type?: number 
   tags?: object
@@ -95,9 +57,6 @@ export interface IProblem {
 
 // 讨论
 export interface IDiscuss {
-  id?: string  
-  createdAt?: string 
-  updatedAt?: string
   contentRaw?: string
   content?: string
   user?: IUser 
@@ -108,9 +67,6 @@ export interface IDiscuss {
 }
 
 export interface IDiscussChilder {
-  id?: string  
-  createdAt?: string 
-  updatedAt?: string
   contentRaw?: string
   content?: string
   user?: IUser 
@@ -121,9 +77,6 @@ export interface IDiscussChilder {
 }
 
 export interface ISubmit {
-  id?: string  
-  createdAt?: string 
-  updatedAt?: string
   user?: IUser
   userId?: number
   userName?: string
@@ -140,9 +93,6 @@ export interface ISubmit {
 }
 
 export interface IContest {
-  id?: string  
-  createdAt?: string 
-  updatedAt?: string
   name?: string
   type?: number
   createUserName?: string
@@ -154,9 +104,6 @@ export interface IContest {
 }
 
 export interface IContestProblem {
-  id?: string  
-  createdAt?: string 
-  updatedAt?: string
   problem?: IProblem
   problemId?: string
   problemTitle?: string

@@ -12,7 +12,9 @@
     "@icedesign/form-binder": "^0.1.7",
     "@icedesign/theme": "^0.1.0",
     "antd": "^3.13.5",
+    "axios": "^0.18.0",
     "codemirror": "^5.39.0",
+    "js-cookie": "^2.2.0",
     "moment": "^2.23.0",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.5.8",
@@ -59,6 +61,12 @@
   },
   "engines": {
     "node": ">=8.0.0"
+  },
+  "proxy": {
+    "/ojapi": {
+      "target": "https://localhost:7001",
+      "changeOrigin": true
+    }  
   },
   "templateType": "react",
   "title": "PDSUOJ_FED"

@@ -1,15 +1,16 @@
 import { provide } from 'midway';
-import { IUserService, IUserOptions, IUserResult } from '../interface';
-
+import { IUser } from "../interface";
+import { prisma } from '../model/generated/prisma-client';
 @provide('userService')
-export class UserService implements IUserService {
+export class UserService {
 
-  async getUser(options: IUserOptions): Promise<IUserResult> {
-    return {
-      id: options.id,
-      username: 'mockedName',
-      phone: '12345678901',
-      email: 'xxx.xxx@xxx.com',
-    };
+
+
+  async createUser(options: IUser): Promise<IUser> {
+    return prisma.createUser({
+      userId: options.userId,
+      name: options.name,
+      password: options.password
+    })
   }
 }

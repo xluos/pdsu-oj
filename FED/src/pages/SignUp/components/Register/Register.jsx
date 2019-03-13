@@ -1,9 +1,10 @@
 /* eslint react/no-string-refs:0 */
 import React, { Component } from 'react';
-import { Input, Button, Grid, Message, Icon, Form } from '@alifd/next';
+import { Input, Grid, Message, Icon, Form, Button } from '@alifd/next';
+import api from '../../../../api';
 import './Register.scss';
 
-const { Row, Col } = Grid;
+const { Row } = Grid;
 const Item = Form.Item;
 
 export default class Register extends Component {
@@ -40,7 +41,7 @@ export default class Register extends Component {
   checkPasswd2 = (rule, values, callback, stateValues) => {
     if (!values) {
       callback('请输入正确的密码');
-    } else if (values && values !== stateValues.passwd) {
+    } else if (values && values !== stateValues.password) {
       callback('两次输入密码不一致');
     } else {
       callback();
@@ -53,12 +54,14 @@ export default class Register extends Component {
     });
   };
 
-  handleSubmit = (values, errors) => {
+  handleSubmit = async (values, errors) => {
     if (errors) {
       console.log('errors', errors);
       return;
     }
     console.log('values:', values);
+    let user = await api.base.signup(values)
+    // console.log(user);
     Message.success('注册成功');
     // 注册成功后做对应的逻辑处理
   };
@@ -73,9 +76,9 @@ export default class Register extends Component {
               src={require('./images/TB13UQpnYGYBuNjy0FoXXciBFXa-242-134.png')}
               alt="logo"
             />
-            <span style={styles.title}>飞冰</span>
+            <span style={styles.title}>PDSU OJ</span>
           </a>
-          <p style={styles.desc}>飞冰让前端开发简单而友好</p>
+          <p style={styles.desc}>让刷题训练简单而友好</p>
         </div>
         <div style={styles.formContainer}>
           <h4 style={styles.formTitle}>注 册</h4>
@@ -86,9 +89,9 @@ export default class Register extends Component {
           >
               <Item
                 required
-                requiredMessage="请输入正确的用户名"
+                requiredMessage="请输入正确的学号"
               >
-                <Input name="username" size="large" placeholder="用户名"
+                <Input type="number" name="userId" size="large" placeholder="用户名"
                   innerBefore={<Icon
                     type="account"
                     size="small"
@@ -97,11 +100,10 @@ export default class Register extends Component {
                 />
               </Item>
               <Item
-                type="email"
                 required
-                message="请输入正确的邮箱"
+                message="请输入正确的用户名"
               >
-                <Input name="email" size="large" maxLength={20} placeholder="邮箱"
+                <Input name="name" size="large" maxLength={20} placeholder="邮箱"
                   innerBefore={<Icon type="email" size="small" style={styles.inputIcon} />} />
               </Item>
 
@@ -110,7 +112,7 @@ export default class Register extends Component {
                 validator={this.checkPasswd}
               >
                 <Input
-                  name="passwd"
+                  name="password"
                   innerBefore={<Icon type="account" test="lock" size="small" style={styles.inputIcon} />}
                   htmlType="password"
                   size="large"
@@ -149,11 +151,19 @@ export default class Register extends Component {
               </Row>
 
               <Row style={styles.tips}>
-                <a href="/" style={styles.link}>
+                <a href="/login" style={styles.link}>
                   使用已有账户登录
                 </a>
               </Row>
           </Form>
+          <Button onClick={()=>{
+            api.base.testlogin()
+          }}>testlogin</Button>
+
+          
+          <Button onClick={()=>{
+            api.base.gettoken()
+          }}>gettoken</Button>
         </div>
       </div>
     );
