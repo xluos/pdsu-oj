@@ -6,13 +6,16 @@ export = (appInfo: any) => {
 
   // add your config here
   config.middleware = [
-    // 'corsMiddleware'
+    'cors',
+    'options'
   ];
 
   config.jwt = {
     secret: '159789'
   };
-
+  config.cors = {
+    credentials: true
+  }
   config.security = {
     csrf: {
       enable: false,

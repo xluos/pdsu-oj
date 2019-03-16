@@ -11,7 +11,7 @@ const TIMEOUT = 8000;
 const TOKEN_KEY = 'pdoj_token'
 
 const localOptions = {
-  baseURL: 'http://127.0.0.1:7001/',
+  baseURL: 'http://localhost:7001/',
   withCredentials: true
 }
 

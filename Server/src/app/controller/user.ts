@@ -1,8 +1,8 @@
-import { controller, post, inject, provide, plugin, get, options } from 'midway';
+import { controller, post, inject, provide, plugin, get } from 'midway';
 import { IUser } from '../../interface';
 
 @provide()
-@controller('/', {middleware: ['corsMiddleware']})
+@controller('/')
 export class UserController {
   @inject('userService')
   service:{createUser};
@@ -10,7 +10,6 @@ export class UserController {
   @plugin()
   jwt;
 
-  @options('/signup')
   @post('/signup')
   async getUser(ctx): Promise<void> {
     const options: IUser = ctx.request.body
@@ -24,14 +23,12 @@ export class UserController {
     }
   }
 
-  @options('/gettoken')
   @get('/gettoken')
   async gettoken(ctx): Promise<void> {
     ctx.cookies.set('pdoj_token', this.jwt.sign({ok: true}, { expiresIn: 3600 }), {signed: true, httpOnly: false})
     ctx.body = 'ok';
   }
 
-  @options('/testlogin')
   @get('/testlogin', {middleware: ['jwtMiddleware']})
   async testlogin(ctx): Promise<void> {
     ctx.body = 'ok';

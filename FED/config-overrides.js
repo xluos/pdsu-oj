@@ -27,6 +27,11 @@ module.exports = function override(config) {
     ])
   );
   config = rewireSass(config);
-
+  // // 设置无效，先注释掉
+  // config.devServer = {
+  //   disableHostCheck: true,
+  //   host: "0.0.0.0",
+  //   hot: true
+  // }
   return config;
 };
