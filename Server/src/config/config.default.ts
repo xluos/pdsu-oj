@@ -7,7 +7,8 @@ export = (appInfo: any) => {
   // add your config here
   config.middleware = [
     'cors',
-    'options'
+    'options',
+    'error',
   ];
 
   config.jwt = {

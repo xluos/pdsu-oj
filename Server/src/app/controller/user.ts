@@ -17,7 +17,7 @@ export class UserController {
     try {
       const user: IUser = await this.service.createUser(options);
       ctx.cookies.set('pdoj_token', this.jwt.sign(user, { expiresIn: 3600 }), {signed: true, httpOnly: false})
-      ctx.body = {success: true, message: 'OK', data: user};
+      ctx.body = {data: user};
     } catch (error) {
       ctx.body = error.message
     }
