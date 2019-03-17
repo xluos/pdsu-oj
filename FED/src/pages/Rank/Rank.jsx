@@ -1,6 +1,6 @@
 
 import React, { Component }from 'react';
-import { Breadcrumb, Table, Select, Icon, Button } from 'antd';
+import { Breadcrumb, Table, Select, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import './Rank.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -85,7 +85,7 @@ export default class Rank extends Component {
               mode="multiple"
               placeholder="选择排行分组"
               onChange={this.handleChange}
-              style={{width: "200px"}}
+              style={{minWidth: "200px"}}
               defaultValue={['a10', 'c12']}
               size="large"
               suffixIcon={<Button shape="circle" icon="search" />}

@@ -1,13 +1,13 @@
 /* eslint react/no-string-refs:0 */
 import React, { Component } from 'react';
-import { Input, Grid, Message, Icon, Form, Button } from '@alifd/next';
+import { Input, Grid, Message, Form, Button } from '@alifd/next';
 import api from '../../../../api';
 import './Register.scss';
-
+import { withRouter, Link } from 'react-router-dom';
 const { Row } = Grid;
 const Item = Form.Item;
 
-export default class Register extends Component {
+class Register extends Component {
   static displayName = 'Register';
 
   static propTypes = {};
@@ -19,8 +19,8 @@ export default class Register extends Component {
     this.state = {
       value: {
         username: '',
-        email: '',
-        passwd: '',
+        userId: '',
+        password: '',
         rePasswd: '',
       },
     };
@@ -63,6 +63,8 @@ export default class Register extends Component {
     let user = await api.base.signup(values)
     // console.log(user);
     Message.success('注册成功');
+    
+    // this.props.history.push('/');
     // 注册成功后做对应的逻辑处理
   };
 
@@ -89,38 +91,44 @@ export default class Register extends Component {
           >
               <Item
                 required
-                requiredMessage="请输入正确的学号"
+                asterisk
+                requiredMessage="必填"
+                length={9}
+                lengthMessage="请输入9位的学号"
+                format="number"
+                formatMessage="请输入正确的学号"
               >
-                <Input type="number" name="userId" size="large" placeholder="用户名"
-                  innerBefore={<Icon
-                    type="account"
-                    size="small"
-                    style={styles.inputIcon}
-                  />}
+                <Input type="number" name="userId" size="large" placeholder="学号"
+                  trim
                 />
               </Item>
               <Item
                 required
+                requiredMessage="必填"
+                asterisk
                 message="请输入正确的用户名"
               >
-                <Input name="name" size="large" maxLength={20} placeholder="邮箱"
-                  innerBefore={<Icon type="email" size="small" style={styles.inputIcon} />} />
+                <Input name="name" trim size="large" maxLength={20} placeholder="用户名" />
               </Item>
 
               <Item
+                requiredMessage="必填"
                 required
+                asterisk
                 validator={this.checkPasswd}
               >
                 <Input
                   name="password"
-                  innerBefore={<Icon type="account" test="lock" size="small" style={styles.inputIcon} />}
+                  trim
                   htmlType="password"
                   size="large"
                   placeholder="至少8位密码"
                 />
               </Item>
               <Item
+                requiredMessage="必填"
                 required
+                asterisk
                 validator={(rule, values, callback) =>
                   this.checkPasswd2(
                     rule,
@@ -131,13 +139,12 @@ export default class Register extends Component {
                 }
               >
                 <Input name="rePasswd"
-                  innerBefore={<Icon type="email" test="lock" size="small" style={styles.inputIcon} />}
+                  trim
                   htmlType="password"
                   size="large"
                   placeholder="确认密码"
                 />
               </Item>
-
 
               <Row style={styles.formItem}>
                 <Form.Submit
@@ -158,12 +165,15 @@ export default class Register extends Component {
           </Form>
           <Button onClick={()=>{
             api.base.testlogin()
+            console.log(this.props.location)
+            console.log(this.props)
           }}>testlogin</Button>
 
           
           <Button onClick={()=>{
             api.base.gettoken()
           }}>gettoken</Button>
+          <Link to={{pathname: '/login', query: {a: 45, b: 'asd'}}}>凸凹转</Link>
         </div>
       </div>
     );
@@ -260,3 +270,5 @@ const styles = {
     margin: '0 8px',
   },
 };
+
+export default withRouter(Register)
