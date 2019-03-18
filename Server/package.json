@@ -7,6 +7,7 @@
     "@koa/cors": "^3.0.0",
     "egg-jwt": "^3.1.6",
     "egg-scripts": "^2.10.0",
+    "egg-validate": "^2.0.2",
     "koa-jwt2": "^1.0.3",
     "midway": "^1.4.10",
     "prisma-client-lib": "^1.28.3"
@@ -17,10 +18,11 @@
     "egg-ci": "^1.8.0",
     "midway-bin": "1",
     "midway-mock": "1",
-    "tslib": "^1.8.1",
-    "tslint-midway-contrib": "1",
+    "prisma": "^1.28.5",
     "ts-node": "^8.0.2",
+    "tslib": "^1.8.1",
     "tslint": "^5.11.0",
+    "tslint-midway-contrib": "1",
     "typescript": "^3.2.0"
   },
   "engines": {

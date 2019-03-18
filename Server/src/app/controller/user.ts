@@ -5,7 +5,7 @@ import { IUser } from '../../interface';
 @controller('/')
 export class UserController {
   @inject('userService')
-  service:{createUser};
+  service;
 
   @plugin()
   jwt;
