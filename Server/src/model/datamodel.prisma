@@ -3,11 +3,16 @@ type User {
   id: ID! @unique 
   createdAt: DateTime! 
   updatedAt: DateTime!
-  userId: Int! @unique
+  userId: String! @unique
   password: String!
   level: Int! @default(value: "0")
   name: String! 
   email: String
+  desc: String
+  integral: Int! @default(value: "0")
+  coin: Int! @default(value: "0")
+  privilegeBlack: Int! @default(value: "0")
+  privilegeWhite: Int! @default(value: "0")
   privilegeGroup: [PrivilegeGroup!]!
   UserDiscuss: [Discuss!]! @relation(name: "DiscussByUser")
   UserDiscussChilder: [DiscussChilder!]! @relation(name: "DiscussChilderByUser")
@@ -55,8 +60,11 @@ type Problem {
   outDescribe: String!
   inExample: String!
   outExample: String!
+  limitTime: Int!
+  limitMemory: Int!
   hint: String
   source: String
+  sourceId: String
   example: String
   discuss: [Discuss!]! @relation(name: "DiscussByProblem" onDelete: CASCADE)
 }
@@ -105,6 +113,8 @@ type Submit {
   contest: Contest 
   limitTime: Int!
   limitMemory: Int!
+  time: Int!
+  memory: Int!
 }
 
 type Contest {

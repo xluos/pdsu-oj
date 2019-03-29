@@ -1,4 +1,4 @@
-endpoint: http://vm.vm:4466/pdsuoj
+endpoint: http://localhost:4466/pdsuoj
 datamodel: datamodel.prisma
 
 generate:
