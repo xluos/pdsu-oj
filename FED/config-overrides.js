@@ -10,6 +10,12 @@ module.exports = function override(config) {
     ]],
     config
   );
+
+  config = injectBabelPlugin(
+    ['transform-decorators-legacy'], // 装饰器
+    config
+  );
+
   config = injectBabelPlugin(
     ['syntax-dynamic-import'],
     config
