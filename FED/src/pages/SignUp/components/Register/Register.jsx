@@ -4,10 +4,12 @@ import { Input, Grid, Message, Form, Button } from '@alifd/next';
 import api from '../../../../api';
 import './Register.scss';
 import { withRouter, Link } from 'react-router-dom';
+import { setUserInfo } from "../../../../lib/Storage";
+import { get } from "../../../../lib/Utils";
 const { Row } = Grid;
 const Item = Form.Item;
-
-class Register extends Component {
+@withRouter
+export default class Register extends Component {
   static displayName = 'Register';
 
   static propTypes = {};
@@ -18,11 +20,12 @@ class Register extends Component {
     super(props);
     this.state = {
       value: {
-        username: '',
+        name: '',
         userId: '',
         password: '',
-        rePasswd: '',
+        repassword: '',
       },
+      loading: false
     };
   }
 
@@ -56,16 +59,27 @@ class Register extends Component {
 
   handleSubmit = async (values, errors) => {
     if (errors) {
-      console.log('errors', errors);
+      Message.error('提交错误！请检查参数');
       return;
     }
-    console.log('values:', values);
-    let user = await api.base.signup(values)
-    // console.log(user);
-    Message.success('注册成功');
-    
-    // this.props.history.push('/');
-    // 注册成功后做对应的逻辑处理
+    try {
+      this.setState({loading: true})
+      let user = await api.base.signup(values)
+      if (user.code) {
+        throw Error(user.massage)
+      }
+      Message.success('注册成功');
+      setUserInfo(user.data)
+      setTimeout(()=>{
+        this.props.history.replace(get(this.props, 'location.state.backUrl', '/'));
+      }, 1000)
+      
+    } catch (error) {
+      Message.error(error.message || '系统异常');
+      console.error(error);
+    } finally {
+      this.setState({loading: false})
+    }
   };
 
   render() {
@@ -108,7 +122,7 @@ class Register extends Component {
                 asterisk
                 message="请输入正确的用户名"
               >
-                <Input name="name" trim size="large" maxLength={20} placeholder="用户名" />
+                <Input name="name" trim size="large" maxLength={6} placeholder="用户名" />
               </Item>
 
               <Item
@@ -138,7 +152,7 @@ class Register extends Component {
                   )
                 }
               >
-                <Input name="rePasswd"
+                <Input name="repassword"
                   trim
                   htmlType="password"
                   size="large"
@@ -150,6 +164,7 @@ class Register extends Component {
                 <Form.Submit
                   type="primary"
                   validate
+                  loading={this.state.loading}
                   onClick={this.handleSubmit}
                   style={styles.submitBtn}
                 >
@@ -158,22 +173,11 @@ class Register extends Component {
               </Row>
 
               <Row style={styles.tips}>
-                <a href="/login" style={styles.link}>
+                <Link to="/login" style={styles.link}>
                   使用已有账户登录
-                </a>
+                </Link>
               </Row>
           </Form>
-          <Button onClick={()=>{
-            api.base.testlogin()
-            console.log(this.props.location)
-            console.log(this.props)
-          }}>testlogin</Button>
-
-          
-          <Button onClick={()=>{
-            api.base.gettoken()
-          }}>gettoken</Button>
-          <Link to={{pathname: '/login', query: {a: 45, b: 'asd'}}}>凸凹转</Link>
         </div>
       </div>
     );
@@ -270,5 +274,3 @@ const styles = {
     margin: '0 8px',
   },
 };
-
-export default withRouter(Register)

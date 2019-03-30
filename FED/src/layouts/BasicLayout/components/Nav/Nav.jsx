@@ -1,10 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Popover } from 'antd';
 import routerData from '../../../../router';
+import { getUserInfo, setUserInfo } from "../../../../lib/Storage";
+import Cookies from 'js-cookie'
 import './Nav.scss';
 
-export default function Nav () { return (
+function Nav ({history, location}) {
+  let userInfo = getUserInfo() || {}
+  const go = (pathname) => {
+    return {
+      pathname,
+      state: {
+        backUrl: location.pathname
+      }
+    }
+  }
+  return (
   <nav className="nav-bar">
     <div className="nav-bar-logo">LOGO</div>
     <ul className="nav-bar-item-box">
@@ -22,16 +34,29 @@ export default function Nav () { return (
       }
     </ul>
     <div className="nav-bar-user">
-      <Popover content={(
+      <Popover content={userInfo.name ? (
         <div>
-        <p>Content</p>
-        <p>Content</p>
-      </div>
-      )} title="Title">
+          <p>
+            <Link to="/user/profile" style={{color: '#777'}}>个人主页</Link>
+          </p>
+          <p style={{cursor: 'pointer'}} onClick={()=> {
+            Cookies.set('pdoj_token', null)
+            setUserInfo({})
+            history.push('/')
+          }}>退出</p>
+        </div>
+      ) : (
+        <div>
+          <p><Link to={go("/login")} style={{color: '#777'}}>登录</Link></p>
+          <p><Link to={go("/signup")} style={{color: '#777'}}>注册</Link></p>
+        </div>
+      )} title={userInfo.name || '未登录'}>
         <span className="user-name">
-          徐帅武
+          {userInfo.name || '未登录'}
         </span>
       </Popover>
     </div>
   </nav>
 );}
+
+export default withRouter(Nav);

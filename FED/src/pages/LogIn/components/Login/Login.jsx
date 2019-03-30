@@ -4,11 +4,13 @@ import { Input, Grid, Message, Form } from '@alifd/next';
 import './Login.scss';
 import api from '../../../../api';
 import { withRouter, Link } from 'react-router-dom';
+import { setUserInfo } from "../../../../lib/Storage";
+import { get } from "../../../../lib/Utils";
 
 const { Row } = Grid;
 const Item = Form.Item;
-
-class Login extends Component {
+@withRouter
+export default class Login extends Component {
   static displayName = 'Login';
 
   static propTypes = {};
@@ -19,10 +21,10 @@ class Login extends Component {
     super(props);
     this.state = {
       value: {
-        account: '',
-        password: '',
-        checkbox: false,
+        userId: '',
+        password: ''
       },
+      loading: false
     };
   }
 
@@ -34,24 +36,30 @@ class Login extends Component {
 
   handleSubmit = async (values, errors) => {
     if (errors) {
-      console.log('errors', errors);
+      Message.error('提交错误！请检查参数');
       return;
     }
-    console.log('values:', values);
     try {
-      let data = await api.base.login(values)
-      if(data.code) {
-        throw Error(data.message)
+      this.setState({loading: true})
+      let user = await api.base.login(values)
+      if (user.code) {
+        throw Error(user.massage)
       }
       Message.success('登录成功');
-      this.props.history.push('/');
+      setUserInfo(user.data)
+      setTimeout(()=>{
+        this.props.history.replace(get(this.props, 'location.state.backUrl', '/'));
+      }, 1000)
+      
     } catch (error) {
-      Message.success('登陆失败', error.message);
+      Message.error(error.message || '系统异常');
+      console.error(error);
+    } finally {
+      this.setState({loading: false})
     }
   };
 
   render() {
-    const path = {pathname: '/signup', query: {a: 45, b: 'asd'}}
     return (
       <div style={styles.container} className="user-login">
         <div style={styles.header}>
@@ -75,7 +83,7 @@ class Login extends Component {
           >
             <Item required requiredMessage="必填">
               <Input
-                name="account"
+                name="userId"
                 size="large"
                 placeholder="账号"
               />
@@ -95,21 +103,21 @@ class Login extends Component {
                 onClick={this.handleSubmit}
                 style={styles.submitBtn}
                 validate
+                loading={this.state.loading}
               >
                 登 录
-                </Form.Submit>
+              </Form.Submit>
             </Row>
 
             <Row className="tips" style={styles.tips}>
-              <a href="/signup" style={styles.link}>
+              <Link to="/signup" style={styles.link}>
                 立即注册
-                </a>
+              </Link>
               <span style={styles.line}>|</span>
-              <a href="/signup" style={styles.link}>
+              <Link to="/signup" style={styles.link}>
                 忘记密码
-                </a>
+              </Link>
             </Row>
-            <Link to={path}>凸凹转</Link>
           </Form>
         </div>
       </div>
@@ -207,5 +215,3 @@ const styles = {
     margin: '0 8px',
   },
 };
-
-export default withRouter (Login);
