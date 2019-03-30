@@ -1,6 +1,7 @@
 export default function errorMiddleware () {
   return async function errorHandler(ctx, next) {
     try {
+      ctx._body = ctx.request.body
       await next();
       ctx.body = typeof ctx.body === 'object' ? {
         code: 0,
