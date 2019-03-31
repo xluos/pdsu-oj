@@ -1,6 +1,6 @@
 import { provide } from 'midway';
 import { IProblem } from "../interface";
-import { prisma } from '../model/generated/prisma-client';
+// import { prisma } from '../model/generated/prisma-client';
 
 
 @provide('problemService')

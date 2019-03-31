@@ -5,12 +5,16 @@ type User {
   updatedAt: DateTime!
   userId: String! @unique
   password: String!
+  status: Int! @default(value: "0")
   level: Int! @default(value: "0")
   name: String! 
+  photo: String
   email: String
   desc: String
   integral: Int! @default(value: "0")
   coin: Int! @default(value: "0")
+  defaultUserGroup: String
+  defaultUserGroupId: String
   privilegeBlack: Int! @default(value: "0")
   privilegeWhite: Int! @default(value: "0")
   privilegeGroup: [PrivilegeGroup!]!

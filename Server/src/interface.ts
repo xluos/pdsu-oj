@@ -8,7 +8,7 @@
  * @interface IUser
  */
 export interface IUser {
-  userId?: number 
+  userId?: string 
   password?: string
   level?: number 
   name?: string 
