@@ -1,0 +1,22 @@
+.user-page {
+  .user-content {
+    padding: 15px;
+    margin-top: 24px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px #eef2f8;
+  }
+  .user-info {
+    height: 250px;
+    display: flex;
+    .info {
+      padding-left: 16px;
+      flex-grow: 1;
+    }
+    .chart-radar {
+      flex-grow: 0;
+      width: 250px;
+    }
+  }
+}

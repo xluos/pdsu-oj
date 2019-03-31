@@ -4,6 +4,7 @@
   "description": "该模板基于 create-react-app 创建，使用 react-app-rewired 进行自定义配置，支持按需引入 ICE 基础组件，添加区块，主要适用于 0 到 1 开始搭建项目",
   "dependencies": {
     "@alifd/next": "^1.13.2",
+    "@antv/data-set": "^0.8.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-regular-svg-icons": "^5.7.2",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
@@ -13,6 +14,7 @@
     "@icedesign/theme": "^0.1.0",
     "antd": "^3.13.5",
     "axios": "^0.18.0",
+    "bizcharts": "^3.0.5",
     "codemirror": "^5.39.0",
     "js-cookie": "^2.2.0",
     "moment": "^2.23.0",

@@ -21,6 +21,7 @@ const Contest = Component(() => import(/* webpackChunkName: "Competition" */ './
 const NotFound = Component(() => import(/* webpackChunkName: "Error404" */ './pages/Error404'));
 const LogIn = Component(() => import(/* webpackChunkName: "Login" */ './pages/LogIn'));
 const SignUp = Component(() => import(/* webpackChunkName: "Login" */ './pages/SignUp'));
+const User = Component(() => import(/* webpackChunkName: "User" */ './pages/User'));
 
 
 // 路由模板
@@ -79,6 +80,13 @@ export default [
     isNav: true,
     path: '/contest',
     component: Contest,
+    exact: true,
+  },
+  {
+    name: 'User',
+    isNav: false,
+    path: '/user/:id',
+    component: User,
     exact: true,
   },
   {
