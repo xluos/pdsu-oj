@@ -8,7 +8,7 @@ import cx from 'classnames';
 import { Link, withRouter } from 'react-router-dom';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { headerMenuConfig } from '../../../../menuConfig';
-import SelectLang from '../../../../components/SelectLang';
+// import SelectLang from '../../../../components/SelectLang';
 import Logo from '../Logo';
 
 import './index.scss';
@@ -81,7 +81,7 @@ export default class Header extends Component {
           {/* Header 菜单项 end */}
 
           {/* 多语言选择 */}
-          <SelectLang />
+          {/* <SelectLang /> */}
 
           {/* Header 右侧内容块 */}
           <Balloon
