@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect, Switch, Route } from 'react-router-dom';
 
-import NotFound from '../../components/NotFound';
+import Guide from '../../components/Guide';
 import { asideMenuConfig } from '../../menuConfig';
-import { routerData } from '../../routerConfig';
-import Authorized from '../../utils/Authorized';
-
-const { AuthorizedRoute } = Authorized;
+import routerData from '../../routerConfig';
 
 class MainRoutes extends Component {
   static displayName = 'MainRoutes';
@@ -36,17 +33,15 @@ class MainRoutes extends Component {
   };
 
   /**
-   * 渲染权限路由组件
+   * 渲染路由组件
    */
-  renderAuthorizedRoute = (item, index) => {
+  renderNormalRoute = (item, index) => {
     return item.component ? (
-      <AuthorizedRoute
+      <Route
         key={index}
         path={item.path}
         component={item.component}
         exact={item.exact}
-        authority={item.authority}
-        redirectPath="/exception/403"
       />
     ) : null;
   };
@@ -55,9 +50,8 @@ class MainRoutes extends Component {
     const redirectData = this.getRedirectData();
     return (
       <Switch>
-        {/* 渲染权限路由表 */}
-
-        {routerData.map(this.renderAuthorizedRoute)}
+        {/* 渲染路由表 */}
+        {routerData.map(this.renderNormalRoute)}
 
         {/* 路由重定向，嵌套路由默认重定向到当前菜单的第一个路由 */}
         {redirectData.map((item, index) => {
@@ -67,8 +61,8 @@ class MainRoutes extends Component {
         {/* 首页默认重定向到 /dashboard */}
         <Redirect exact from="/" to="/dashboard/monitor" />
 
-        {/* 未匹配到的路由重定向到 404 */}
-        <Route component={NotFound} />
+        {/* 未匹配到的路由重定向到 <Guide> 组件，实际情况应该重定向到 404 */}
+        <Route component={Guide} />
       </Switch>
     );
   }

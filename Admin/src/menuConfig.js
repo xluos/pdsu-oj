@@ -4,18 +4,18 @@
 
 const headerMenuConfig = [
   // {
-  //   name: 'feedback',
+  //   name: '反馈',
   //   path: 'https://github.com/alibaba/ice',
   //   external: true,
   //   newWindow: true,
-  //   icon: 'message',
+  //   icon: 'email',
   // },
   // {
-  //   name: 'help',
+  //   name: '帮助',
   //   path: 'https://alibaba.github.io/ice',
   //   external: true,
   //   newWindow: true,
-  //   icon: 'bangzhu',
+  //   icon: 'help',
   // },
 ];
 
@@ -23,122 +23,37 @@ const asideMenuConfig = [
   {
     name: 'Dashboard',
     path: '/dashboard',
-    icon: 'home2',
+    icon: 'atm',
     children: [
       {
-        name: 'monitor',
+        name: '监控页',
         path: '/dashboard/monitor',
       },
     ],
   },
   {
-    name: 'chart',
+    name: '图表页',
     path: '/chart',
-    icon: 'chart1',
+    icon: 'picture',
     children: [
       {
-        name: 'basic',
-        path: '/chart/basic',
-      },
-      {
-        name: 'general',
-        path: '/chart/general',
+        name: '常用图表',
+        path: '/chart/list',
       },
     ],
   },
   {
     name: '表格页',
     path: '/table',
-    icon: 'table',
+    icon: 'calendar',
     children: [
       {
-        name: 'basic',
+        name: '基础表格',
         path: '/table/basic',
-        // authority: 'admin',
       },
       {
-        name: 'general',
+        name: '通用表格',
         path: '/table/general',
-        // authority: 'user',
-      },
-    ],
-  },
-  {
-    name: '列表页',
-    path: '/list',
-    icon: 'copy',
-    children: [
-      {
-        name: 'basic',
-        path: '/list/basic',
-      },
-      {
-        name: 'general',
-        path: '/list/general',
-      },
-    ],
-  },
-  {
-    name: 'profile',
-    path: '/profile',
-    icon: 'cascades',
-    children: [
-      {
-        name: 'basic',
-        path: '/profile/basic',
-      },
-      {
-        name: 'terms',
-        path: '/profile/general',
-      },
-    ],
-  },
-  {
-    name: 'result',
-    path: '/result',
-    icon: 'edit2',
-    children: [
-      {
-        name: 'success',
-        path: '/result/success',
-      },
-      {
-        name: 'fail',
-        path: '/result/fail',
-      },
-    ],
-  },
-  {
-    name: 'account',
-    path: '/account',
-    icon: 'person',
-    children: [
-      {
-        name: 'setting',
-        path: '/account/setting',
-      },
-    ],
-  },
-  {
-    name: 'exception',
-    path: '/exception',
-    icon: 'gaojingxinxi',
-    children: [
-      {
-        name: '204',
-        path: '/exception/204',
-      },
-      {
-        name: '403',
-        path: '/exception/403',
-      },
-      {
-        name: '404',
-        path: '/exception/404',
-      },
-      {
-        name: '500',
-        path: '/exception/500',
       },
     ],
   },

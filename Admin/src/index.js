@@ -1,22 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
-import { createHashHistory } from 'history';
 
-// 引入默认全局样式
+import { HashRouter } from 'react-router-dom';
+
+// 载入默认全局样式 normalize 、.clearfix 和一些 mixin 方法等
 import '@alifd/next/reset.scss';
 
-// 引入基础配置文件
 import router from './router';
-import configureStore from './configureStore';
-import LanguageProvider from './components/LocaleProvider';
-import { getLocale } from './utils/locale';
 
-const initialState = {};
-const history = createHashHistory();
-const store = configureStore(initialState, history);
-const locale = getLocale();
 const ICE_CONTAINER = document.getElementById('ice-container');
 
 if (!ICE_CONTAINER) {
@@ -24,10 +15,7 @@ if (!ICE_CONTAINER) {
 }
 
 ReactDOM.render(
-  <LanguageProvider locale={locale}>
-    <Provider store={store}>
-      <ConnectedRouter history={history}>{router()}</ConnectedRouter>
-    </Provider>
-  </LanguageProvider>,
+  <HashRouter>{router()}</HashRouter>,
+
   ICE_CONTAINER
 );
