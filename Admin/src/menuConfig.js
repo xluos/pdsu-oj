@@ -5,14 +5,14 @@
 const headerMenuConfig = [
   // {
   //   name: '反馈',
-  //   path: 'https://github.com/alibaba/ice',
+  //   path:  '/adminhttps://github.com/alibaba/ice',
   //   external: true,
   //   newWindow: true,
   //   icon: 'email',
   // },
   // {
   //   name: '帮助',
-  //   path: 'https://alibaba.github.io/ice',
+  //   path:  '/adminhttps://alibaba.github.io/ice',
   //   external: true,
   //   newWindow: true,
   //   icon: 'help',
@@ -22,54 +22,54 @@ const headerMenuConfig = [
 const asideMenuConfig = [
   {
     name: 'Dashboard',
-    path: '/dashboard',
+    path:  '/admin/dashboard',
     icon: 'atm',
     children: [
       {
         name: '数据统计',
-        path: '/dashboard/monitor',
+        path:  '/admin/dashboard/monitor',
       },
     ],
   },
   {
     name: '用户管理',
-    path: '/user',
+    path:  '/admin/user',
     icon: 'account',
     children: [
       {
         name: '用户列表',
-        path: '/user/list',
+        path:  '/admin/user/list',
       },
       {
         name: '添加用户',
-        path: '/user/create',
+        path:  '/admin/user/create',
       },
       {
         name: '用户权限',
-        path: '/user/privilege',
+        path:  '/admin/user/privilege',
       },
       {
         name: '用户组管理',
-        path: '/usergroup/manage',
+        path:  '/admin/usergroup/manage',
       },
       {
         name: '权限组管理',
-        path: '/privilege/manage',
+        path:  '/admin/privilege/manage',
       },
     ],
   },
   {
     name: '表格页',
-    path: '/table',
+    path:  '/admin/table',
     icon: 'calendar',
     children: [
       {
         name: '基础表格',
-        path: '/table/basic',
+        path:  '/admin/table/basic',
       },
       {
         name: '通用表格',
-        path: '/table/general',
+        path:  '/admin/table/general',
       },
     ],
   },

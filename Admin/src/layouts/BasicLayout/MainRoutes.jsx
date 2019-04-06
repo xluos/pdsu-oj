@@ -59,7 +59,7 @@ class MainRoutes extends Component {
         })}
 
         {/* 首页默认重定向到 /dashboard */}
-        <Redirect exact from="/" to="/dashboard/monitor" />
+        <Redirect exact from="/admin" to="/admin/dashboard/monitor" />
 
         {/* 未匹配到的路由重定向到 <Guide> 组件，实际情况应该重定向到 404 */}
         <Route component={NotFound} />

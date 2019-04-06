@@ -11,31 +11,31 @@ import Dashboard from './pages/Dashboard';
 
 const routerConfig = [
   {
-    path: '/dashboard/monitor',
+    path: '/admin/dashboard/monitor',
     component: Dashboard,
   },
   {
-    path: '/user/list',
+    path: '/admin/user/list',
     component: UserList,
   },
   {
-    path: '/user/create',
+    path: '/admin/user/create',
     component: UserCreate,
   },
   {
-    path: '/user/privilege',
+    path: '/admin/user/privilege',
     component: UserPrivilege,
   },
   {
-    path: '/usergroup/manage',
+    path: '/admin/usergroup/manage',
     component: UserGroupManage,
   },
   {
-    path: '/usergroup/create',
+    path: '/admin/usergroup/create',
     component: UserGroupCreate,
   },
   {
-    path: '/privilege/manage',
+    path: '/admin/privilege/manage',
     component: PrivilegeManage,
   },
 ];
