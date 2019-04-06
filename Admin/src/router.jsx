@@ -11,8 +11,8 @@ import FedLayout from './layouts/FedLayout';
 const router = () => {
   return (
     <Switch>
-      <Route path="/" component={FedLayout} />
       <Route path="/admin" component={BasicLayout} />
+      <Route path="/" component={FedLayout} />
     </Switch>
   );
 };

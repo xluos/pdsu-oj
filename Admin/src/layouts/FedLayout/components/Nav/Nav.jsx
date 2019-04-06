@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Popover } from 'antd';
-import routerData from '../../../../router';
+import routerData from '../../../../router.fed';
 import { getUserInfo, setUserInfo } from "../../../../lib/Storage";
 import Cookies from 'js-cookie'
 import './Nav.scss';
@@ -38,6 +38,9 @@ function Nav ({history, location}) {
         <div>
           <p>
             <Link to="/user/profile" style={{color: '#777'}}>个人主页</Link>
+          </p>
+          <p>
+            <Link to="/admin" style={{color: '#777'}}>控制台</Link>
           </p>
           <p style={{cursor: 'pointer'}} onClick={()=> {
             Cookies.set('pdoj_token', null)

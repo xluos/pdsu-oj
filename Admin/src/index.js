@@ -8,6 +8,7 @@ import {
 
 // 载入默认全局样式 normalize 、.clearfix 和一些 mixin 方法等
 import '@alifd/next/reset.scss';
+import './icon.js'
 
 import router from './router';
 @withRouter

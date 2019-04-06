@@ -46,11 +46,11 @@ export default class Login extends Component {
         throw Error(user.massage)
       }
       Message.success('登录成功');
-      setUserInfo(user.data)
+      setUserInfo(get(user, 'data.userInfo', {}))
       setTimeout(()=>{
         this.props.history.replace(get(this.props, 'location.state.backUrl', '/'));
       }, 1000)
-      
+
     } catch (error) {
       Message.error(error.message || '系统异常');
       console.error(error);

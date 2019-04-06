@@ -48,14 +48,17 @@ export default class Aside extends Component {
    * 获取默认展开菜单项
    */
   getDefaultOpenKeys = () => {
-    const { location = {} } = this.props;
+    // 添加默认全部展开 TODO 可以改成用于自定义配置  优先级最低
+    const { location = {}, openAll = true} = this.props;
     const { pathname } = location;
     const menus = this.getNavMenuItems(asideMenuConfig);
-
     let openKeys = [];
     if (Array.isArray(menus)) {
       asideMenuConfig.forEach((item, index) => {
-        if (pathname.startsWith(item.path)) {
+        // 默认全部展开
+        if (openAll) {
+          openKeys.push(`${index}`);
+        }else if (pathname.startsWith(item.path)) {
           openKeys = [`${index}`];
         }
       });
