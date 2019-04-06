@@ -1,0 +1,1 @@
+export const USER_INFO = '{accepted,coin,createdAt,defaultUserGroup,defaultUserGroupId,desc,email,id,integral,level,name,photo,privilegeBlack,privilegeWhite,problems,solved,status,submit,updatedAt,userId}'

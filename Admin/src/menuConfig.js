@@ -26,19 +26,35 @@ const asideMenuConfig = [
     icon: 'atm',
     children: [
       {
-        name: '监控页',
+        name: '数据统计',
         path: '/dashboard/monitor',
       },
     ],
   },
   {
-    name: '图表页',
-    path: '/chart',
-    icon: 'picture',
+    name: '用户管理',
+    path: '/user',
+    icon: 'account',
     children: [
       {
-        name: '常用图表',
-        path: '/chart/list',
+        name: '用户列表',
+        path: '/user/list',
+      },
+      {
+        name: '添加用户',
+        path: '/user/create',
+      },
+      {
+        name: '用户权限',
+        path: '/user/privilege',
+      },
+      {
+        name: '用户组管理',
+        path: '/usergroup/manage',
+      },
+      {
+        name: '权限组管理',
+        path: '/privilege/manage',
       },
     ],
   },

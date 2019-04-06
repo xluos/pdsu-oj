@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-
+import DataOverview from "./components/DataOverview";
+import FlowStatistics from "./components/FlowStatistics";
+import LatestActivity from "./components/LatestActivity";
 import './Dashboard.scss';
 
 export default class Dashboard extends Component {
@@ -13,6 +15,9 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div className="dashboard-page">
+        <DataOverview/>
+        <FlowStatistics/>
+        <LatestActivity />
       </div>
     );
   }

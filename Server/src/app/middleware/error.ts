@@ -3,12 +3,9 @@ export default function errorMiddleware () {
     try {
       ctx._body = ctx.request.body
       await next();
-      ctx.body = typeof ctx.body === 'object' ? {
+      ctx.body = {
         code: 0,
-        message: 'OK',
-        ...ctx.body
-      } : {
-        code: 0,
+        status: "SUCCESS",
         message: 'OK',
         data: ctx.body
       }
@@ -23,7 +20,7 @@ export default function errorMiddleware () {
         : err.message;
 
       // 从 error 对象上读出各个属性，设置到响应中
-      ctx.body = { code: 1, message: error };
+      ctx.body = { code: 1, status: "ERROR", message: error };
       if (status === 422) {
         ctx.body.detail = err.errors;
       }

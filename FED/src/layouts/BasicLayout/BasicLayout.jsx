@@ -7,6 +7,7 @@ import {
 
 import RootRouters from './RootRoutes';
 
+@withRouter
 class ScrollToTop extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
@@ -17,8 +18,6 @@ class ScrollToTop extends Component {
     return this.props.children;
   }
 }
-
-ScrollToTop = withRouter(ScrollToTop)
 
 const BasicLayout = () => (
   <Router>

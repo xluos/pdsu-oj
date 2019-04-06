@@ -4,7 +4,10 @@ import { prisma } from '../model/generated/prisma-client';
 
 @provide('userService')
 export class UserService {
-
+  
+  async UserAll(options: IUser): Promise<IUser[]> {
+    return prisma.users({})
+  }
   async queryUserAll(userId: string): Promise<IUser> {
     return prisma.user({userId})
   }

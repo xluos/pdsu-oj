@@ -8,6 +8,12 @@
  * @interface IUser
  */
 export interface IUser {
+  status?: number
+  photo?: string
+  desc?: string
+  integral?: number
+  coin?: number
+  id?: string
   userId?: string 
   password?: string
   level?: number 
@@ -16,7 +22,7 @@ export interface IUser {
   privilegeGroup?: IPrivilegeGroup[]
   UserDiscuss?: IDiscuss[] 
   UserDiscussChilder?: IDiscussChilder[] 
-  userGroup?: IUserGroup[] 
+  userGroup?: {id: string}[] | {id: string} 
   createUserGroup?: IUserGroup[] 
   privilegeUserGroup?: IUserGroup[] 
   submit?: number 
@@ -32,10 +38,14 @@ export interface IPrivilegeGroup {
 
 // 用户组
 export interface IUserGroup {
-  name?: string
-  createUser?: IUser 
-  privilege?: IUser[] 
-  users?: IUser[] 
+  count: number;
+  name: string
+  id?: string
+  createUserUUID: string,
+  createUserName: string,
+  createUserId: string,
+  privilegeUserUUID: string[],
+  usersUUID: string[],
 }
 
 // 题目

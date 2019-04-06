@@ -8,13 +8,13 @@ type User {
   status: Int! @default(value: "0")
   level: Int! @default(value: "0")
   name: String! 
-  photo: String
-  email: String
-  desc: String
+  photo: String @default(value: "")
+  email: String @default(value: "")
+  desc: String @default(value: "")
   integral: Int! @default(value: "0")
   coin: Int! @default(value: "0")
-  defaultUserGroup: String
-  defaultUserGroupId: String
+  defaultUserGroup: String @default(value: "")
+  defaultUserGroupId: String @default(value: "")
   privilegeBlack: Int! @default(value: "0")
   privilegeWhite: Int! @default(value: "0")
   privilegeGroup: [PrivilegeGroup!]!
@@ -24,6 +24,8 @@ type User {
   createUserGroup: [UserGroup!]! @relation(name: "CreateUserGroupByUser") 
   privilegeUserGroup: [UserGroup!]! @relation(name: "CrivilegeUserGroupByUser") 
   problems: [Json!]!
+  createProblmes: [Problem] @relation(name: "ProblemByUser")
+  submitRecord: [Submit] @relation(name: "SubmitRecordByUser")
   submit: Int! @default(value: "0")
   solved: Int! @default(value: "0")
   accepted: Int! @default(value: "0")
@@ -45,6 +47,10 @@ type UserGroup {
   createdAt: DateTime!
   updatedAt: DateTime!
   name: String!
+  desc: String @default(value: "")
+  count: Int! @default(value: "1")
+  createUserId: String!
+  createUserName: String!
   createUser: User! @relation(name: "CreateUserGroupByUser")
   privilege: [User!]! @relation(name: "PrivilegeUserGroupByUser")
   users: [User!]! @relation(name: "UserGroupByUser")
@@ -66,10 +72,11 @@ type Problem {
   outExample: String!
   limitTime: Int!
   limitMemory: Int!
-  hint: String
-  source: String
-  sourceId: String
-  example: String
+  createUser: User @relation(name: "ProblemByUser")
+  hint: String @default(value: "")
+  source: String @default(value: "")
+  sourceId: String @default(value: "")
+  example: String @default(value: "")
   discuss: [Discuss!]! @relation(name: "DiscussByProblem" onDelete: CASCADE)
 }
 
@@ -104,16 +111,16 @@ type Submit {
   id: ID! @unique 
   createdAt: DateTime! 
   updatedAt: DateTime!
-  user: User
+  user: User @relation(name: "SubmitRecordByUser")
   userId: Int!
   userName: String!
-  problem: Problem
+  problem: Problem!
   problemId: String!
   problemTitle: String!
   language: Int!
   code: String!
   result: String!
-  errorInfo: String
+  errorInfo: String @default(value: "")
   contest: Contest 
   limitTime: Int!
   limitMemory: Int!

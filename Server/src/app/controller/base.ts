@@ -4,7 +4,7 @@ import { handlePassword, excludePassword } from "../../lib/utils";
 
 @provide()
 @controller('/')
-export class UserController {
+export class BaseController {
   @inject('userService')
   service;
 
@@ -15,11 +15,11 @@ export class UserController {
   async signupUser(ctx): Promise<void> {
     const options: IUser = ctx._body;
     ctx.validate({
-      userId: { type: 'string', min: 9, max: 9 },
+      userId: { type: 'string', Pattern: /\d{9}/ },
       name: 'string',
       password: { type: 'password', min: 8, max: 16, compare: 'repassword' }
     }, options);
-    options.password = handlePassword(options.password).toString();
+    options.password = handlePassword(options.password);
     console.log(options.password);
     const user: IUser = await this.service.createUser(options);
     ctx.body = {data: user};
@@ -33,9 +33,9 @@ export class UserController {
       password: { type: 'password', min: 8, max: 16}
     }, options);
     let user: IUser = await this.service.queryUserAll(options.userId);
-    console.log(user, handlePassword(options.password).toString());
+    console.log(user, handlePassword(options.password));
     
-    if (user.password === handlePassword(options.password).toString()){
+    if (user.password === handlePassword(options.password)){
       ctx.cookies.set('pdoj_token', this.jwt.sign(user, { expiresIn: 3600 }), {signed: true, httpOnly: false})
       ctx.body = {data: excludePassword(user)};
     } else {

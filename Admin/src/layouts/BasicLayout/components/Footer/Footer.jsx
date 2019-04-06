@@ -13,14 +13,14 @@ export default class Footer extends PureComponent {
             <Logo />
           </div>
           <div className="copyright">
-            © 2018 Theme designed by{' '}
+            © 2019 PDSUOJ by {' '}
             <a
-              href="https://github.com/alibaba/ice"
+              href="https://github.com/xluos"
               target="_blank"
               className="copyright-link"
               rel="noopener noreferrer"
             >
-              ICE
+              CodeDeer
             </a>
           </div>
         </div>

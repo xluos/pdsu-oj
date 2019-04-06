@@ -129,7 +129,7 @@ export default class Aside extends Component {
       >
         {isMobile && <Logo />}
 
-        {isMobile && !openDrawer && (
+        {isMobile && (
           <a className="menu-btn" onClick={this.toggleMenu}>
             <Icon type="calendar" size="small" />
           </a>
