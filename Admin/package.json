@@ -22,6 +22,7 @@
     "@icedesign/container": "^1.0.3",
     "@icedesign/data-binder": "^1.0.4",
     "@icedesign/form-binder": "^1.0.6",
+    "@icedesign/foundation-symbol": "^1.0.3",
     "@icedesign/img": "^1.x",
     "@icedesign/layout": "^1.x",
     "@icedesign/theme": "^1.x",

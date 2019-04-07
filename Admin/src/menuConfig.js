@@ -1,15 +1,17 @@
+import React from 'react';
+import FoundationSymbol from '@icedesign/foundation-symbol';
 // 菜单配置
 // headerMenuConfig：头部导航配置
 // asideMenuConfig：侧边导航配置
 
 const headerMenuConfig = [
-  // {
-  //   name: '反馈',
-  //   path:  '/adminhttps://github.com/alibaba/ice',
-  //   external: true,
-  //   newWindow: true,
-  //   icon: 'email',
-  // },
+  {
+    name: ' 主页',
+    path:  '/',
+    external: true,
+    newWindow: true,
+    icon: <FoundationSymbol type='home2' />,
+  },
   // {
   //   name: '帮助',
   //   path:  '/adminhttps://alibaba.github.io/ice',
@@ -23,7 +25,7 @@ const asideMenuConfig = [
   {
     name: 'Dashboard',
     path:  '/admin/dashboard',
-    icon: 'atm',
+    icon: 'customize',
     children: [
       {
         name: '数据统计',
@@ -34,7 +36,7 @@ const asideMenuConfig = [
   {
     name: '用户管理',
     path:  '/admin/user',
-    icon: 'account',
+    icon: 'fans',
     children: [
       {
         name: '用户列表',
@@ -61,7 +63,7 @@ const asideMenuConfig = [
   {
     name: '表格页',
     path:  '/admin/table',
-    icon: 'calendar',
+    icon: 'directory',
     children: [
       {
         name: '基础表格',

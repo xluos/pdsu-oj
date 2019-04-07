@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-// TODO 上线换回BrowserRouter
 import {
   BrowserRouter as Router
-  // HashRouter as Router
   , withRouter } from 'react-router-dom';
+import './index.scss';
 
 // 载入默认全局样式 normalize 、.clearfix 和一些 mixin 方法等
 import '@alifd/next/reset.scss';

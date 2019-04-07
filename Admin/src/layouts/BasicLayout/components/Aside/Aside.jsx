@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import FoundationSymbol from '@icedesign/foundation-symbol';
 import cx from 'classnames';
 import { Icon, Nav } from '@alifd/next';
 import Logo from '../Logo';
@@ -48,7 +49,8 @@ export default class Aside extends Component {
    * 获取默认展开菜单项
    */
   getDefaultOpenKeys = () => {
-    // 添加默认全部展开 TODO 可以改成用于自定义配置  优先级最低
+    // 添加默认全部展开
+    // TODO 可以改成用于自定义配置  优先级最低
     const { location = {}, openAll = true} = this.props;
     const { pathname } = location;
     const menus = this.getNavMenuItems(asideMenuConfig);
@@ -103,7 +105,7 @@ export default class Aside extends Component {
         return (
           <SubNav
             key={index}
-            icon={item.icon ? item.icon : null}
+            icon={item.icon ? typeof item.icon !== 'string' ? item.icon : <FoundationSymbol type={item.icon} /> : null}
             label={<span className="ice-menu-collapse-hide">{item.name}</span>}
           >
             {childrenItems}
