@@ -34,10 +34,12 @@
     "enquire-js": "^0.1.2",
     "install": "^0.12.2",
     "js-cookie": "^2.2.0",
+    "lodash": "^4.17.11",
     "moment": "^2.23.0",
     "npm": "^6.9.0",
     "prop-types": "^15.5.8",
     "react": "^16.4.1",
+    "react-codemirror2": "^5.1.0",
     "react-document-title": "^2.0.3",
     "react-dom": "^16.4.1",
     "react-loadable": "^5.5.0",
@@ -54,7 +56,7 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
-    "ice-scripts": "^1.9.3",
+    "ice-scripts": "^1.9.4-3",
     "webpack": "^4.28.4"
   },
   "scripts": {
@@ -68,15 +70,21 @@
   "buildConfig": {
     "theme": "@icedesign/theme",
     "entry": "src/index.js",
-    "localization": false,
+    "localization": true,
     "output": {
       "publicPath": "./"
     },
-    "babelPluginImportConfig": {
-      "libraryName": "antd",
-      "libraryDirectory": "es",
-      "style": true
-    }
+    "babelPluginImportConfig": [
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": true
+      },
+      {
+        "libraryName": "lodash",
+        "libraryDirectory": ""
+      }
+    ]
   },
   "scaffoldConfig": {
     "builder": "ice-scripts",

@@ -629,6 +629,8 @@ export type UserGroupOrderByInput =
   | "updatedAt_DESC"
   | "name_ASC"
   | "name_DESC"
+  | "desc_ASC"
+  | "desc_DESC"
   | "count_ASC"
   | "count_DESC"
   | "createUserId_ASC"
@@ -706,26 +708,121 @@ export type ContestProblemOrderByInput =
   | "wa_ASC"
   | "wa_DESC";
 
-export interface UserGroupUpdateWithoutUsersDataInput {
-  name?: String;
-  count?: Int;
-  createUserId?: String;
-  createUserName?: String;
-  createUser?: UserUpdateOneRequiredWithoutCreateUserGroupInput;
-  privilege?: UserUpdateManyInput;
+export interface UserUpdateWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateDataInput;
 }
 
 export type ContestWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
-export interface DiscussChilderUpdateWithoutUserDataInput {
+export interface DiscussChilderScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   contentRaw?: String;
+  contentRaw_not?: String;
+  contentRaw_in?: String[] | String;
+  contentRaw_not_in?: String[] | String;
+  contentRaw_lt?: String;
+  contentRaw_lte?: String;
+  contentRaw_gt?: String;
+  contentRaw_gte?: String;
+  contentRaw_contains?: String;
+  contentRaw_not_contains?: String;
+  contentRaw_starts_with?: String;
+  contentRaw_not_starts_with?: String;
+  contentRaw_ends_with?: String;
+  contentRaw_not_ends_with?: String;
   content?: String;
+  content_not?: String;
+  content_in?: String[] | String;
+  content_not_in?: String[] | String;
+  content_lt?: String;
+  content_lte?: String;
+  content_gt?: String;
+  content_gte?: String;
+  content_contains?: String;
+  content_not_contains?: String;
+  content_starts_with?: String;
+  content_not_starts_with?: String;
+  content_ends_with?: String;
+  content_not_ends_with?: String;
   userId?: Int;
+  userId_not?: Int;
+  userId_in?: Int[] | Int;
+  userId_not_in?: Int[] | Int;
+  userId_lt?: Int;
+  userId_lte?: Int;
+  userId_gt?: Int;
+  userId_gte?: Int;
   userName?: String;
+  userName_not?: String;
+  userName_in?: String[] | String;
+  userName_not_in?: String[] | String;
+  userName_lt?: String;
+  userName_lte?: String;
+  userName_gt?: String;
+  userName_gte?: String;
+  userName_contains?: String;
+  userName_not_contains?: String;
+  userName_starts_with?: String;
+  userName_not_starts_with?: String;
+  userName_ends_with?: String;
+  userName_not_ends_with?: String;
   replyUserId?: Int;
+  replyUserId_not?: Int;
+  replyUserId_in?: Int[] | Int;
+  replyUserId_not_in?: Int[] | Int;
+  replyUserId_lt?: Int;
+  replyUserId_lte?: Int;
+  replyUserId_gt?: Int;
+  replyUserId_gte?: Int;
   replyUserName?: String;
+  replyUserName_not?: String;
+  replyUserName_in?: String[] | String;
+  replyUserName_not_in?: String[] | String;
+  replyUserName_lt?: String;
+  replyUserName_lte?: String;
+  replyUserName_gt?: String;
+  replyUserName_gte?: String;
+  replyUserName_contains?: String;
+  replyUserName_not_contains?: String;
+  replyUserName_starts_with?: String;
+  replyUserName_not_starts_with?: String;
+  replyUserName_ends_with?: String;
+  replyUserName_not_ends_with?: String;
+  AND?: DiscussChilderScalarWhereInput[] | DiscussChilderScalarWhereInput;
+  OR?: DiscussChilderScalarWhereInput[] | DiscussChilderScalarWhereInput;
+  NOT?: DiscussChilderScalarWhereInput[] | DiscussChilderScalarWhereInput;
 }
 
 export interface UserGroupWhereInput {
@@ -773,6 +870,20 @@ export interface UserGroupWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
+  desc?: String;
+  desc_not?: String;
+  desc_in?: String[] | String;
+  desc_not_in?: String[] | String;
+  desc_lt?: String;
+  desc_lte?: String;
+  desc_gt?: String;
+  desc_gte?: String;
+  desc_contains?: String;
+  desc_not_contains?: String;
+  desc_starts_with?: String;
+  desc_not_starts_with?: String;
+  desc_ends_with?: String;
+  desc_not_ends_with?: String;
   count?: Int;
   count_not?: Int;
   count_in?: Int[] | Int;
@@ -816,15 +927,17 @@ export interface UserGroupWhereInput {
   users_every?: UserWhereInput;
   users_some?: UserWhereInput;
   users_none?: UserWhereInput;
+  applyUsers_every?: UserWhereInput;
+  applyUsers_some?: UserWhereInput;
+  applyUsers_none?: UserWhereInput;
   AND?: UserGroupWhereInput[] | UserGroupWhereInput;
   OR?: UserGroupWhereInput[] | UserGroupWhereInput;
   NOT?: UserGroupWhereInput[] | UserGroupWhereInput;
 }
 
-export interface DiscussChilderUpsertWithWhereUniqueWithoutUserInput {
-  where: DiscussChilderWhereUniqueInput;
-  update: DiscussChilderUpdateWithoutUserDataInput;
-  create: DiscussChilderCreateWithoutUserInput;
+export interface DiscussChilderUpdateManyWithWhereNestedInput {
+  where: DiscussChilderScalarWhereInput;
+  data: DiscussChilderUpdateManyDataInput;
 }
 
 export interface SubmitWhereInput {
@@ -998,112 +1111,13 @@ export interface SubmitWhereInput {
   NOT?: SubmitWhereInput[] | SubmitWhereInput;
 }
 
-export interface DiscussChilderScalarWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  updatedAt?: DateTimeInput;
-  updatedAt_not?: DateTimeInput;
-  updatedAt_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_lt?: DateTimeInput;
-  updatedAt_lte?: DateTimeInput;
-  updatedAt_gt?: DateTimeInput;
-  updatedAt_gte?: DateTimeInput;
+export interface DiscussChilderUpdateManyDataInput {
   contentRaw?: String;
-  contentRaw_not?: String;
-  contentRaw_in?: String[] | String;
-  contentRaw_not_in?: String[] | String;
-  contentRaw_lt?: String;
-  contentRaw_lte?: String;
-  contentRaw_gt?: String;
-  contentRaw_gte?: String;
-  contentRaw_contains?: String;
-  contentRaw_not_contains?: String;
-  contentRaw_starts_with?: String;
-  contentRaw_not_starts_with?: String;
-  contentRaw_ends_with?: String;
-  contentRaw_not_ends_with?: String;
   content?: String;
-  content_not?: String;
-  content_in?: String[] | String;
-  content_not_in?: String[] | String;
-  content_lt?: String;
-  content_lte?: String;
-  content_gt?: String;
-  content_gte?: String;
-  content_contains?: String;
-  content_not_contains?: String;
-  content_starts_with?: String;
-  content_not_starts_with?: String;
-  content_ends_with?: String;
-  content_not_ends_with?: String;
   userId?: Int;
-  userId_not?: Int;
-  userId_in?: Int[] | Int;
-  userId_not_in?: Int[] | Int;
-  userId_lt?: Int;
-  userId_lte?: Int;
-  userId_gt?: Int;
-  userId_gte?: Int;
   userName?: String;
-  userName_not?: String;
-  userName_in?: String[] | String;
-  userName_not_in?: String[] | String;
-  userName_lt?: String;
-  userName_lte?: String;
-  userName_gt?: String;
-  userName_gte?: String;
-  userName_contains?: String;
-  userName_not_contains?: String;
-  userName_starts_with?: String;
-  userName_not_starts_with?: String;
-  userName_ends_with?: String;
-  userName_not_ends_with?: String;
   replyUserId?: Int;
-  replyUserId_not?: Int;
-  replyUserId_in?: Int[] | Int;
-  replyUserId_not_in?: Int[] | Int;
-  replyUserId_lt?: Int;
-  replyUserId_lte?: Int;
-  replyUserId_gt?: Int;
-  replyUserId_gte?: Int;
   replyUserName?: String;
-  replyUserName_not?: String;
-  replyUserName_in?: String[] | String;
-  replyUserName_not_in?: String[] | String;
-  replyUserName_lt?: String;
-  replyUserName_lte?: String;
-  replyUserName_gt?: String;
-  replyUserName_gte?: String;
-  replyUserName_contains?: String;
-  replyUserName_not_contains?: String;
-  replyUserName_starts_with?: String;
-  replyUserName_not_starts_with?: String;
-  replyUserName_ends_with?: String;
-  replyUserName_not_ends_with?: String;
-  AND?: DiscussChilderScalarWhereInput[] | DiscussChilderScalarWhereInput;
-  OR?: DiscussChilderScalarWhereInput[] | DiscussChilderScalarWhereInput;
-  NOT?: DiscussChilderScalarWhereInput[] | DiscussChilderScalarWhereInput;
 }
 
 export interface ContestProblemWhereInput {
@@ -1187,54 +1201,22 @@ export interface ContestProblemWhereInput {
   NOT?: ContestProblemWhereInput[] | ContestProblemWhereInput;
 }
 
-export interface ContestUpdateInput {
-  name?: String;
-  type?: Int;
-  createUserName?: String;
-  createUserId?: Int;
-  startTime?: DateTimeInput;
-  endTime?: DateTimeInput;
-  userGroup?: UserGroupUpdateOneRequiredInput;
-  contestProblem?: ContestProblemUpdateOneRequiredInput;
-}
-
-export interface DiscussUpsertWithWhereUniqueWithoutUserInput {
-  where: DiscussWhereUniqueInput;
-  update: DiscussUpdateWithoutUserDataInput;
-  create: DiscussCreateWithoutUserInput;
-}
-
-export interface UserGroupUpdateOneRequiredInput {
-  create?: UserGroupCreateInput;
-  update?: UserGroupUpdateDataInput;
-  upsert?: UserGroupUpsertNestedInput;
-  connect?: UserGroupWhereUniqueInput;
-}
-
-export interface DiscussChilderUpdateManyWithWhereNestedInput {
-  where: DiscussChilderScalarWhereInput;
-  data: DiscussChilderUpdateManyDataInput;
-}
-
 export interface UserGroupUpdateDataInput {
   name?: String;
+  desc?: String;
   count?: Int;
   createUserId?: String;
   createUserName?: String;
   createUser?: UserUpdateOneRequiredWithoutCreateUserGroupInput;
   privilege?: UserUpdateManyInput;
   users?: UserUpdateManyWithoutUserGroupInput;
+  applyUsers?: UserUpdateManyWithoutApplyUserGroupInput;
 }
 
-export interface UserGroupSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: UserGroupWhereInput;
-  AND?: UserGroupSubscriptionWhereInput[] | UserGroupSubscriptionWhereInput;
-  OR?: UserGroupSubscriptionWhereInput[] | UserGroupSubscriptionWhereInput;
-  NOT?: UserGroupSubscriptionWhereInput[] | UserGroupSubscriptionWhereInput;
+export interface DiscussUpsertWithWhereUniqueWithoutUserInput {
+  where: DiscussWhereUniqueInput;
+  update: DiscussUpdateWithoutUserDataInput;
+  create: DiscussCreateWithoutUserInput;
 }
 
 export interface UserUpdateOneRequiredWithoutCreateUserGroupInput {
@@ -1244,15 +1226,24 @@ export interface UserUpdateOneRequiredWithoutCreateUserGroupInput {
   connect?: UserWhereUniqueInput;
 }
 
-export interface UserSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+export interface UserGroupUpdateManyWithoutCreateUserInput {
+  create?:
+    | UserGroupCreateWithoutCreateUserInput[]
+    | UserGroupCreateWithoutCreateUserInput;
+  delete?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  set?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  disconnect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  update?:
+    | UserGroupUpdateWithWhereUniqueWithoutCreateUserInput[]
+    | UserGroupUpdateWithWhereUniqueWithoutCreateUserInput;
+  upsert?:
+    | UserGroupUpsertWithWhereUniqueWithoutCreateUserInput[]
+    | UserGroupUpsertWithWhereUniqueWithoutCreateUserInput;
+  deleteMany?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
+  updateMany?:
+    | UserGroupUpdateManyWithWhereNestedInput[]
+    | UserGroupUpdateManyWithWhereNestedInput;
 }
 
 export interface UserUpdateWithoutCreateUserGroupDataInput {
@@ -1275,6 +1266,7 @@ export interface UserUpdateWithoutCreateUserGroupDataInput {
   UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
   userGroup?: UserGroupUpdateManyWithoutUsersInput;
   privilegeUserGroup?: UserGroupUpdateManyInput;
+  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
   problems?: UserUpdateproblemsInput;
   createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
   submitRecord?: SubmitUpdateManyWithoutUserInput;
@@ -1283,15 +1275,15 @@ export interface UserUpdateWithoutCreateUserGroupDataInput {
   accepted?: Int;
 }
 
-export interface ProblemSubscriptionWhereInput {
+export interface UserGroupSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: ProblemWhereInput;
-  AND?: ProblemSubscriptionWhereInput[] | ProblemSubscriptionWhereInput;
-  OR?: ProblemSubscriptionWhereInput[] | ProblemSubscriptionWhereInput;
-  NOT?: ProblemSubscriptionWhereInput[] | ProblemSubscriptionWhereInput;
+  node?: UserGroupWhereInput;
+  AND?: UserGroupSubscriptionWhereInput[] | UserGroupSubscriptionWhereInput;
+  OR?: UserGroupSubscriptionWhereInput[] | UserGroupSubscriptionWhereInput;
+  NOT?: UserGroupSubscriptionWhereInput[] | UserGroupSubscriptionWhereInput;
 }
 
 export interface PrivilegeGroupUpdateManyWithoutUsersInput {
@@ -1318,6 +1310,38 @@ export interface PrivilegeGroupUpdateManyWithoutUsersInput {
     | PrivilegeGroupUpdateManyWithWhereNestedInput;
 }
 
+export interface UserSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+}
+
+export interface PrivilegeGroupUpdateWithWhereUniqueWithoutUsersInput {
+  where: PrivilegeGroupWhereUniqueInput;
+  data: PrivilegeGroupUpdateWithoutUsersDataInput;
+}
+
+export interface ProblemSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ProblemWhereInput;
+  AND?: ProblemSubscriptionWhereInput[] | ProblemSubscriptionWhereInput;
+  OR?: ProblemSubscriptionWhereInput[] | ProblemSubscriptionWhereInput;
+  NOT?: ProblemSubscriptionWhereInput[] | ProblemSubscriptionWhereInput;
+}
+
+export interface PrivilegeGroupUpdateWithoutUsersDataInput {
+  name?: String;
+  privilege?: Int;
+}
+
 export interface DiscussChilderSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
@@ -1335,9 +1359,10 @@ export interface DiscussChilderSubscriptionWhereInput {
     | DiscussChilderSubscriptionWhereInput;
 }
 
-export interface PrivilegeGroupUpdateWithWhereUniqueWithoutUsersInput {
+export interface PrivilegeGroupUpsertWithWhereUniqueWithoutUsersInput {
   where: PrivilegeGroupWhereUniqueInput;
-  data: PrivilegeGroupUpdateWithoutUsersDataInput;
+  update: PrivilegeGroupUpdateWithoutUsersDataInput;
+  create: PrivilegeGroupCreateWithoutUsersInput;
 }
 
 export interface ContestProblemSubscriptionWhereInput {
@@ -1355,45 +1380,6 @@ export interface ContestProblemSubscriptionWhereInput {
   NOT?:
     | ContestProblemSubscriptionWhereInput[]
     | ContestProblemSubscriptionWhereInput;
-}
-
-export interface PrivilegeGroupUpdateWithoutUsersDataInput {
-  name?: String;
-  privilege?: Int;
-}
-
-export interface UserGroupUpdateManyMutationInput {
-  name?: String;
-  count?: Int;
-  createUserId?: String;
-  createUserName?: String;
-}
-
-export interface PrivilegeGroupUpsertWithWhereUniqueWithoutUsersInput {
-  where: PrivilegeGroupWhereUniqueInput;
-  update: PrivilegeGroupUpdateWithoutUsersDataInput;
-  create: PrivilegeGroupCreateWithoutUsersInput;
-}
-
-export interface UserUpdateManyMutationInput {
-  userId?: String;
-  password?: String;
-  status?: Int;
-  level?: Int;
-  name?: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral?: Int;
-  coin?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack?: Int;
-  privilegeWhite?: Int;
-  problems?: UserUpdateproblemsInput;
-  submit?: Int;
-  solved?: Int;
-  accepted?: Int;
 }
 
 export interface PrivilegeGroupScalarWhereInput {
@@ -1454,6 +1440,45 @@ export interface PrivilegeGroupScalarWhereInput {
   NOT?: PrivilegeGroupScalarWhereInput[] | PrivilegeGroupScalarWhereInput;
 }
 
+export interface UserGroupUpdateManyMutationInput {
+  name?: String;
+  desc?: String;
+  count?: Int;
+  createUserId?: String;
+  createUserName?: String;
+}
+
+export interface PrivilegeGroupUpdateManyWithWhereNestedInput {
+  where: PrivilegeGroupScalarWhereInput;
+  data: PrivilegeGroupUpdateManyDataInput;
+}
+
+export interface UserUpdateManyMutationInput {
+  userId?: String;
+  password?: String;
+  status?: Int;
+  level?: Int;
+  name?: String;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  problems?: UserUpdateproblemsInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
+}
+
+export interface PrivilegeGroupUpdateManyDataInput {
+  name?: String;
+  privilege?: Int;
+}
+
 export interface SubmitUpdateManyMutationInput {
   userId?: Int;
   userName?: String;
@@ -1467,29 +1492,6 @@ export interface SubmitUpdateManyMutationInput {
   limitMemory?: Int;
   time?: Int;
   memory?: Int;
-}
-
-export interface PrivilegeGroupUpdateManyWithWhereNestedInput {
-  where: PrivilegeGroupScalarWhereInput;
-  data: PrivilegeGroupUpdateManyDataInput;
-}
-
-export type ContestProblemWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface PrivilegeGroupUpdateManyDataInput {
-  name?: String;
-  privilege?: Int;
-}
-
-export interface UserUpdateOneWithoutSubmitRecordInput {
-  create?: UserCreateWithoutSubmitRecordInput;
-  update?: UserUpdateWithoutSubmitRecordDataInput;
-  upsert?: UserUpsertWithoutSubmitRecordInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: UserWhereUniqueInput;
 }
 
 export interface DiscussUpdateManyWithoutUserInput {
@@ -1508,6 +1510,32 @@ export interface DiscussUpdateManyWithoutUserInput {
   updateMany?:
     | DiscussUpdateManyWithWhereNestedInput[]
     | DiscussUpdateManyWithWhereNestedInput;
+}
+
+export type ContestProblemWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface DiscussUpdateWithWhereUniqueWithoutUserInput {
+  where: DiscussWhereUniqueInput;
+  data: DiscussUpdateWithoutUserDataInput;
+}
+
+export interface UserUpdateOneWithoutSubmitRecordInput {
+  create?: UserCreateWithoutSubmitRecordInput;
+  update?: UserUpdateWithoutSubmitRecordDataInput;
+  upsert?: UserUpsertWithoutSubmitRecordInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface DiscussUpdateWithoutUserDataInput {
+  contentRaw?: String;
+  content?: String;
+  userId?: Int;
+  userName?: String;
+  children?: DiscussChilderUpdateManyInput;
 }
 
 export interface UserCreateWithoutSubmitRecordInput {
@@ -1531,47 +1559,12 @@ export interface UserCreateWithoutSubmitRecordInput {
   userGroup?: UserGroupCreateManyWithoutUsersInput;
   createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
   privilegeUserGroup?: UserGroupCreateManyInput;
+  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
   problems?: UserCreateproblemsInput;
   createProblmes?: ProblemCreateManyWithoutCreateUserInput;
   submit?: Int;
   solved?: Int;
   accepted?: Int;
-}
-
-export interface DiscussUpdateWithWhereUniqueWithoutUserInput {
-  where: DiscussWhereUniqueInput;
-  data: DiscussUpdateWithoutUserDataInput;
-}
-
-export interface UserCreateOneWithoutSubmitRecordInput {
-  create?: UserCreateWithoutSubmitRecordInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface DiscussUpdateWithoutUserDataInput {
-  contentRaw?: String;
-  content?: String;
-  userId?: Int;
-  userName?: String;
-  children?: DiscussChilderUpdateManyInput;
-}
-
-export interface ProblemUpdateManyMutationInput {
-  status?: Int;
-  type?: Int;
-  tags?: Json;
-  title?: String;
-  describe?: String;
-  inDescribe?: String;
-  outDescribe?: String;
-  inExample?: String;
-  outExample?: String;
-  limitTime?: Int;
-  limitMemory?: Int;
-  hint?: String;
-  source?: String;
-  sourceId?: String;
-  example?: String;
 }
 
 export interface DiscussChilderUpdateManyInput {
@@ -1596,6 +1589,44 @@ export interface DiscussChilderUpdateManyInput {
     | DiscussChilderUpdateManyWithWhereNestedInput;
 }
 
+export interface UserCreateOneWithoutSubmitRecordInput {
+  create?: UserCreateWithoutSubmitRecordInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface DiscussChilderUpdateWithWhereUniqueNestedInput {
+  where: DiscussChilderWhereUniqueInput;
+  data: DiscussChilderUpdateDataInput;
+}
+
+export interface ProblemUpdateManyMutationInput {
+  status?: Int;
+  type?: Int;
+  tags?: Json;
+  title?: String;
+  describe?: String;
+  inDescribe?: String;
+  outDescribe?: String;
+  inExample?: String;
+  outExample?: String;
+  limitTime?: Int;
+  limitMemory?: Int;
+  hint?: String;
+  source?: String;
+  sourceId?: String;
+  example?: String;
+}
+
+export interface DiscussChilderUpdateDataInput {
+  contentRaw?: String;
+  content?: String;
+  user?: UserUpdateOneWithoutUserDiscussChilderInput;
+  userId?: Int;
+  userName?: String;
+  replyUserId?: Int;
+  replyUserName?: String;
+}
+
 export interface ProblemUpdateInput {
   status?: Int;
   type?: Int;
@@ -1616,55 +1647,6 @@ export interface ProblemUpdateInput {
   discuss?: DiscussUpdateManyInput;
 }
 
-export interface DiscussChilderUpdateWithWhereUniqueNestedInput {
-  where: DiscussChilderWhereUniqueInput;
-  data: DiscussChilderUpdateDataInput;
-}
-
-export interface UserUpsertWithWhereUniqueWithoutPrivilegeGroupInput {
-  where: UserWhereUniqueInput;
-  update: UserUpdateWithoutPrivilegeGroupDataInput;
-  create: UserCreateWithoutPrivilegeGroupInput;
-}
-
-export interface DiscussChilderUpdateDataInput {
-  contentRaw?: String;
-  content?: String;
-  user?: UserUpdateOneWithoutUserDiscussChilderInput;
-  userId?: Int;
-  userName?: String;
-  replyUserId?: Int;
-  replyUserName?: String;
-}
-
-export interface UserUpdateWithoutPrivilegeGroupDataInput {
-  userId?: String;
-  password?: String;
-  status?: Int;
-  level?: Int;
-  name?: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral?: Int;
-  coin?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack?: Int;
-  privilegeWhite?: Int;
-  UserDiscuss?: DiscussUpdateManyWithoutUserInput;
-  UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
-  userGroup?: UserGroupUpdateManyWithoutUsersInput;
-  createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
-  privilegeUserGroup?: UserGroupUpdateManyInput;
-  problems?: UserUpdateproblemsInput;
-  createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
-  submitRecord?: SubmitUpdateManyWithoutUserInput;
-  submit?: Int;
-  solved?: Int;
-  accepted?: Int;
-}
-
 export interface UserUpdateOneWithoutUserDiscussChilderInput {
   create?: UserCreateWithoutUserDiscussChilderInput;
   update?: UserUpdateWithoutUserDiscussChilderDataInput;
@@ -1674,24 +1656,10 @@ export interface UserUpdateOneWithoutUserDiscussChilderInput {
   connect?: UserWhereUniqueInput;
 }
 
-export interface UserUpdateManyWithoutPrivilegeGroupInput {
-  create?:
-    | UserCreateWithoutPrivilegeGroupInput[]
-    | UserCreateWithoutPrivilegeGroupInput;
-  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  update?:
-    | UserUpdateWithWhereUniqueWithoutPrivilegeGroupInput[]
-    | UserUpdateWithWhereUniqueWithoutPrivilegeGroupInput;
-  upsert?:
-    | UserUpsertWithWhereUniqueWithoutPrivilegeGroupInput[]
-    | UserUpsertWithWhereUniqueWithoutPrivilegeGroupInput;
-  deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
-  updateMany?:
-    | UserUpdateManyWithWhereNestedInput[]
-    | UserUpdateManyWithWhereNestedInput;
+export interface UserUpsertWithWhereUniqueWithoutPrivilegeGroupInput {
+  where: UserWhereUniqueInput;
+  update: UserUpdateWithoutPrivilegeGroupDataInput;
+  create: UserCreateWithoutPrivilegeGroupInput;
 }
 
 export interface UserUpdateWithoutUserDiscussChilderDataInput {
@@ -1714,6 +1682,7 @@ export interface UserUpdateWithoutUserDiscussChilderDataInput {
   userGroup?: UserGroupUpdateManyWithoutUsersInput;
   createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
   privilegeUserGroup?: UserGroupUpdateManyInput;
+  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
   problems?: UserUpdateproblemsInput;
   createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
   submitRecord?: SubmitUpdateManyWithoutUserInput;
@@ -1722,10 +1691,33 @@ export interface UserUpdateWithoutUserDiscussChilderDataInput {
   accepted?: Int;
 }
 
-export interface PrivilegeGroupUpdateInput {
+export interface UserUpdateWithoutPrivilegeGroupDataInput {
+  userId?: String;
+  password?: String;
+  status?: Int;
+  level?: Int;
   name?: String;
-  privilege?: Int;
-  users?: UserUpdateManyWithoutPrivilegeGroupInput;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  UserDiscuss?: DiscussUpdateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
+  userGroup?: UserGroupUpdateManyWithoutUsersInput;
+  createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupUpdateManyInput;
+  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
+  problems?: UserUpdateproblemsInput;
+  createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
+  submitRecord?: SubmitUpdateManyWithoutUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
 }
 
 export interface UserGroupUpdateManyWithoutUsersInput {
@@ -1748,6 +1740,48 @@ export interface UserGroupUpdateManyWithoutUsersInput {
     | UserGroupUpdateManyWithWhereNestedInput;
 }
 
+export interface UserUpdateManyWithoutPrivilegeGroupInput {
+  create?:
+    | UserCreateWithoutPrivilegeGroupInput[]
+    | UserCreateWithoutPrivilegeGroupInput;
+  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  update?:
+    | UserUpdateWithWhereUniqueWithoutPrivilegeGroupInput[]
+    | UserUpdateWithWhereUniqueWithoutPrivilegeGroupInput;
+  upsert?:
+    | UserUpsertWithWhereUniqueWithoutPrivilegeGroupInput[]
+    | UserUpsertWithWhereUniqueWithoutPrivilegeGroupInput;
+  deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
+  updateMany?:
+    | UserUpdateManyWithWhereNestedInput[]
+    | UserUpdateManyWithWhereNestedInput;
+}
+
+export interface UserGroupUpdateWithWhereUniqueWithoutUsersInput {
+  where: UserGroupWhereUniqueInput;
+  data: UserGroupUpdateWithoutUsersDataInput;
+}
+
+export interface PrivilegeGroupUpdateInput {
+  name?: String;
+  privilege?: Int;
+  users?: UserUpdateManyWithoutPrivilegeGroupInput;
+}
+
+export interface UserGroupUpdateWithoutUsersDataInput {
+  name?: String;
+  desc?: String;
+  count?: Int;
+  createUserId?: String;
+  createUserName?: String;
+  createUser?: UserUpdateOneRequiredWithoutCreateUserGroupInput;
+  privilege?: UserUpdateManyInput;
+  applyUsers?: UserUpdateManyWithoutApplyUserGroupInput;
+}
+
 export interface UserCreateManyWithoutPrivilegeGroupInput {
   create?:
     | UserCreateWithoutPrivilegeGroupInput[]
@@ -1755,9 +1789,22 @@ export interface UserCreateManyWithoutPrivilegeGroupInput {
   connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
 }
 
-export interface UserGroupUpdateWithWhereUniqueWithoutUsersInput {
-  where: UserGroupWhereUniqueInput;
-  data: UserGroupUpdateWithoutUsersDataInput;
+export interface UserUpdateManyInput {
+  create?: UserCreateInput[] | UserCreateInput;
+  update?:
+    | UserUpdateWithWhereUniqueNestedInput[]
+    | UserUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | UserUpsertWithWhereUniqueNestedInput[]
+    | UserUpsertWithWhereUniqueNestedInput;
+  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
+  updateMany?:
+    | UserUpdateManyWithWhereNestedInput[]
+    | UserUpdateManyWithWhereNestedInput;
 }
 
 export interface PrivilegeGroupCreateInput {
@@ -1781,43 +1828,6 @@ export interface DiscussChilderUpdateInput {
   replyUserName?: String;
 }
 
-export interface UserUpdateManyInput {
-  create?: UserCreateInput[] | UserCreateInput;
-  update?:
-    | UserUpdateWithWhereUniqueNestedInput[]
-    | UserUpdateWithWhereUniqueNestedInput;
-  upsert?:
-    | UserUpsertWithWhereUniqueNestedInput[]
-    | UserUpsertWithWhereUniqueNestedInput;
-  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
-  updateMany?:
-    | UserUpdateManyWithWhereNestedInput[]
-    | UserUpdateManyWithWhereNestedInput;
-}
-
-export interface DiscussUpdateManyMutationInput {
-  contentRaw?: String;
-  content?: String;
-  userId?: Int;
-  userName?: String;
-}
-
-export interface UserUpdateWithWhereUniqueNestedInput {
-  where: UserWhereUniqueInput;
-  data: UserUpdateDataInput;
-}
-
-export interface ContestProblemUpdateManyMutationInput {
-  problemId?: String;
-  problemTitle?: String;
-  ac?: Int;
-  wa?: Int;
-}
-
 export interface UserUpdateDataInput {
   userId?: String;
   password?: String;
@@ -1839,6 +1849,7 @@ export interface UserUpdateDataInput {
   userGroup?: UserGroupUpdateManyWithoutUsersInput;
   createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
   privilegeUserGroup?: UserGroupUpdateManyInput;
+  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
   problems?: UserUpdateproblemsInput;
   createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
   submitRecord?: SubmitUpdateManyWithoutUserInput;
@@ -1847,12 +1858,11 @@ export interface UserUpdateDataInput {
   accepted?: Int;
 }
 
-export interface ContestProblemUpdateInput {
-  problem?: ProblemUpdateOneInput;
-  problemId?: String;
-  problemTitle?: String;
-  ac?: Int;
-  wa?: Int;
+export interface DiscussUpdateManyMutationInput {
+  contentRaw?: String;
+  content?: String;
+  userId?: Int;
+  userName?: String;
 }
 
 export interface DiscussChilderUpdateManyWithoutUserInput {
@@ -1879,14 +1889,44 @@ export interface DiscussChilderUpdateManyWithoutUserInput {
     | DiscussChilderUpdateManyWithWhereNestedInput;
 }
 
-export interface UserGroupUpsertNestedInput {
-  update: UserGroupUpdateDataInput;
-  create: UserGroupCreateInput;
+export interface ContestProblemUpdateManyMutationInput {
+  problemId?: String;
+  problemTitle?: String;
+  ac?: Int;
+  wa?: Int;
 }
 
 export interface DiscussChilderUpdateWithWhereUniqueWithoutUserInput {
   where: DiscussChilderWhereUniqueInput;
   data: DiscussChilderUpdateWithoutUserDataInput;
+}
+
+export interface ContestProblemUpdateInput {
+  problem?: ProblemUpdateOneInput;
+  problemId?: String;
+  problemTitle?: String;
+  ac?: Int;
+  wa?: Int;
+}
+
+export interface DiscussChilderUpdateWithoutUserDataInput {
+  contentRaw?: String;
+  content?: String;
+  userId?: Int;
+  userName?: String;
+  replyUserId?: Int;
+  replyUserName?: String;
+}
+
+export interface UserGroupUpsertNestedInput {
+  update: UserGroupUpdateDataInput;
+  create: UserGroupCreateInput;
+}
+
+export interface DiscussChilderUpsertWithWhereUniqueWithoutUserInput {
+  where: DiscussChilderWhereUniqueInput;
+  update: DiscussChilderUpdateWithoutUserDataInput;
+  create: DiscussChilderCreateWithoutUserInput;
 }
 
 export interface ContestCreateInput {
@@ -2114,12 +2154,14 @@ export interface ProblemWhereInput {
 
 export interface UserGroupCreateInput {
   name: String;
+  desc?: String;
   count?: Int;
   createUserId: String;
   createUserName: String;
   createUser: UserCreateOneWithoutCreateUserGroupInput;
   privilege?: UserCreateManyInput;
   users?: UserCreateManyWithoutUserGroupInput;
+  applyUsers?: UserCreateManyWithoutApplyUserGroupInput;
 }
 
 export interface ContestWhereInput {
@@ -2240,6 +2282,7 @@ export interface UserCreateWithoutCreateUserGroupInput {
   UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
   userGroup?: UserGroupCreateManyWithoutUsersInput;
   privilegeUserGroup?: UserGroupCreateManyInput;
+  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
   problems?: UserCreateproblemsInput;
   createProblmes?: ProblemCreateManyWithoutCreateUserInput;
   submitRecord?: SubmitCreateManyWithoutUserInput;
@@ -2460,13 +2503,9 @@ export interface DiscussCreateWithoutUserInput {
   children?: DiscussChilderCreateManyInput;
 }
 
-export interface DiscussChilderUpdateManyDataInput {
-  contentRaw?: String;
-  content?: String;
-  userId?: Int;
-  userName?: String;
-  replyUserId?: Int;
-  replyUserName?: String;
+export interface UserGroupUpdateWithWhereUniqueWithoutCreateUserInput {
+  where: UserGroupWhereUniqueInput;
+  data: UserGroupUpdateWithoutCreateUserDataInput;
 }
 
 export interface DiscussChilderCreateInput {
@@ -2479,24 +2518,15 @@ export interface DiscussChilderCreateInput {
   replyUserName: String;
 }
 
-export interface UserGroupUpdateManyWithoutCreateUserInput {
-  create?:
-    | UserGroupCreateWithoutCreateUserInput[]
-    | UserGroupCreateWithoutCreateUserInput;
-  delete?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  set?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  disconnect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  update?:
-    | UserGroupUpdateWithWhereUniqueWithoutCreateUserInput[]
-    | UserGroupUpdateWithWhereUniqueWithoutCreateUserInput;
-  upsert?:
-    | UserGroupUpsertWithWhereUniqueWithoutCreateUserInput[]
-    | UserGroupUpsertWithWhereUniqueWithoutCreateUserInput;
-  deleteMany?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
-  updateMany?:
-    | UserGroupUpdateManyWithWhereNestedInput[]
-    | UserGroupUpdateManyWithWhereNestedInput;
+export interface UserGroupUpdateWithoutCreateUserDataInput {
+  name?: String;
+  desc?: String;
+  count?: Int;
+  createUserId?: String;
+  createUserName?: String;
+  privilege?: UserUpdateManyInput;
+  users?: UserUpdateManyWithoutUserGroupInput;
+  applyUsers?: UserUpdateManyWithoutApplyUserGroupInput;
 }
 
 export interface UserCreateWithoutUserDiscussChilderInput {
@@ -2519,58 +2549,7 @@ export interface UserCreateWithoutUserDiscussChilderInput {
   userGroup?: UserGroupCreateManyWithoutUsersInput;
   createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
   privilegeUserGroup?: UserGroupCreateManyInput;
-  problems?: UserCreateproblemsInput;
-  createProblmes?: ProblemCreateManyWithoutCreateUserInput;
-  submitRecord?: SubmitCreateManyWithoutUserInput;
-  submit?: Int;
-  solved?: Int;
-  accepted?: Int;
-}
-
-export interface UserGroupUpdateWithWhereUniqueWithoutCreateUserInput {
-  where: UserGroupWhereUniqueInput;
-  data: UserGroupUpdateWithoutCreateUserDataInput;
-}
-
-export interface UserGroupCreateWithoutUsersInput {
-  name: String;
-  count?: Int;
-  createUserId: String;
-  createUserName: String;
-  createUser: UserCreateOneWithoutCreateUserGroupInput;
-  privilege?: UserCreateManyInput;
-}
-
-export interface UserGroupUpdateWithoutCreateUserDataInput {
-  name?: String;
-  count?: Int;
-  createUserId?: String;
-  createUserName?: String;
-  privilege?: UserUpdateManyInput;
-  users?: UserUpdateManyWithoutUserGroupInput;
-}
-
-export interface UserCreateInput {
-  userId: String;
-  password: String;
-  status?: Int;
-  level?: Int;
-  name: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral?: Int;
-  coin?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack?: Int;
-  privilegeWhite?: Int;
-  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
-  UserDiscuss?: DiscussCreateManyWithoutUserInput;
-  UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
-  userGroup?: UserGroupCreateManyWithoutUsersInput;
-  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
-  privilegeUserGroup?: UserGroupCreateManyInput;
+  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
   problems?: UserCreateproblemsInput;
   createProblmes?: ProblemCreateManyWithoutCreateUserInput;
   submitRecord?: SubmitCreateManyWithoutUserInput;
@@ -2597,13 +2576,15 @@ export interface UserUpdateManyWithoutUserGroupInput {
     | UserUpdateManyWithWhereNestedInput;
 }
 
-export interface DiscussChilderCreateWithoutUserInput {
-  contentRaw: String;
-  content: String;
-  userId: Int;
-  userName: String;
-  replyUserId: Int;
-  replyUserName: String;
+export interface UserGroupCreateWithoutUsersInput {
+  name: String;
+  desc?: String;
+  count?: Int;
+  createUserId: String;
+  createUserName: String;
+  createUser: UserCreateOneWithoutCreateUserGroupInput;
+  privilege?: UserCreateManyInput;
+  applyUsers?: UserCreateManyWithoutApplyUserGroupInput;
 }
 
 export interface UserUpdateWithWhereUniqueWithoutUserGroupInput {
@@ -2611,13 +2592,34 @@ export interface UserUpdateWithWhereUniqueWithoutUserGroupInput {
   data: UserUpdateWithoutUserGroupDataInput;
 }
 
-export interface UserGroupCreateWithoutCreateUserInput {
+export interface UserCreateInput {
+  userId: String;
+  password: String;
+  status?: Int;
+  level?: Int;
   name: String;
-  count?: Int;
-  createUserId: String;
-  createUserName: String;
-  privilege?: UserCreateManyInput;
-  users?: UserCreateManyWithoutUserGroupInput;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
+  UserDiscuss?: DiscussCreateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
+  userGroup?: UserGroupCreateManyWithoutUsersInput;
+  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupCreateManyInput;
+  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
+  problems?: UserCreateproblemsInput;
+  createProblmes?: ProblemCreateManyWithoutCreateUserInput;
+  submitRecord?: SubmitCreateManyWithoutUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
 }
 
 export interface UserUpdateWithoutUserGroupDataInput {
@@ -2640,12 +2642,56 @@ export interface UserUpdateWithoutUserGroupDataInput {
   UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
   createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
   privilegeUserGroup?: UserGroupUpdateManyInput;
+  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
   problems?: UserUpdateproblemsInput;
   createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
   submitRecord?: SubmitUpdateManyWithoutUserInput;
   submit?: Int;
   solved?: Int;
   accepted?: Int;
+}
+
+export interface DiscussChilderCreateWithoutUserInput {
+  contentRaw: String;
+  content: String;
+  userId: Int;
+  userName: String;
+  replyUserId: Int;
+  replyUserName: String;
+}
+
+export interface UserGroupUpdateManyInput {
+  create?: UserGroupCreateInput[] | UserGroupCreateInput;
+  update?:
+    | UserGroupUpdateWithWhereUniqueNestedInput[]
+    | UserGroupUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | UserGroupUpsertWithWhereUniqueNestedInput[]
+    | UserGroupUpsertWithWhereUniqueNestedInput;
+  delete?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  set?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  disconnect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  deleteMany?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
+  updateMany?:
+    | UserGroupUpdateManyWithWhereNestedInput[]
+    | UserGroupUpdateManyWithWhereNestedInput;
+}
+
+export interface UserGroupCreateWithoutCreateUserInput {
+  name: String;
+  desc?: String;
+  count?: Int;
+  createUserId: String;
+  createUserName: String;
+  privilege?: UserCreateManyInput;
+  users?: UserCreateManyWithoutUserGroupInput;
+  applyUsers?: UserCreateManyWithoutApplyUserGroupInput;
+}
+
+export interface UserGroupUpdateWithWhereUniqueNestedInput {
+  where: UserGroupWhereUniqueInput;
+  data: UserGroupUpdateDataInput;
 }
 
 export interface UserCreateWithoutUserGroupInput {
@@ -2668,6 +2714,7 @@ export interface UserCreateWithoutUserGroupInput {
   UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
   createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
   privilegeUserGroup?: UserGroupCreateManyInput;
+  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
   problems?: UserCreateproblemsInput;
   createProblmes?: ProblemCreateManyWithoutCreateUserInput;
   submitRecord?: SubmitCreateManyWithoutUserInput;
@@ -2676,65 +2723,17 @@ export interface UserCreateWithoutUserGroupInput {
   accepted?: Int;
 }
 
-export interface UserGroupUpdateManyInput {
-  create?: UserGroupCreateInput[] | UserGroupCreateInput;
-  update?:
-    | UserGroupUpdateWithWhereUniqueNestedInput[]
-    | UserGroupUpdateWithWhereUniqueNestedInput;
-  upsert?:
-    | UserGroupUpsertWithWhereUniqueNestedInput[]
-    | UserGroupUpsertWithWhereUniqueNestedInput;
-  delete?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  set?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  disconnect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  deleteMany?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
-  updateMany?:
-    | UserGroupUpdateManyWithWhereNestedInput[]
-    | UserGroupUpdateManyWithWhereNestedInput;
-}
-
-export interface UserCreateproblemsInput {
-  set?: Json[] | Json;
-}
-
-export interface UserGroupUpdateWithWhereUniqueNestedInput {
-  where: UserGroupWhereUniqueInput;
-  data: UserGroupUpdateDataInput;
-}
-
-export interface ProblemCreateWithoutCreateUserInput {
-  status?: Int;
-  type?: Int;
-  tags: Json;
-  title: String;
-  describe: String;
-  inDescribe: String;
-  outDescribe: String;
-  inExample: String;
-  outExample: String;
-  limitTime: Int;
-  limitMemory: Int;
-  hint?: String;
-  source?: String;
-  sourceId?: String;
-  example?: String;
-  discuss?: DiscussCreateManyInput;
-}
-
 export interface UserGroupUpsertWithWhereUniqueNestedInput {
   where: UserGroupWhereUniqueInput;
   update: UserGroupUpdateDataInput;
   create: UserGroupCreateInput;
 }
 
-export interface DiscussCreateInput {
-  contentRaw: String;
-  content: String;
-  user?: UserCreateOneWithoutUserDiscussInput;
-  userId: Int;
-  userName: String;
-  children?: DiscussChilderCreateManyInput;
+export interface UserGroupCreateManyWithoutApplyUsersInput {
+  create?:
+    | UserGroupCreateWithoutApplyUsersInput[]
+    | UserGroupCreateWithoutApplyUsersInput;
+  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
 }
 
 export interface UserGroupScalarWhereInput {
@@ -2782,6 +2781,20 @@ export interface UserGroupScalarWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
+  desc?: String;
+  desc_not?: String;
+  desc_in?: String[] | String;
+  desc_not_in?: String[] | String;
+  desc_lt?: String;
+  desc_lte?: String;
+  desc_gt?: String;
+  desc_gte?: String;
+  desc_contains?: String;
+  desc_not_contains?: String;
+  desc_starts_with?: String;
+  desc_not_starts_with?: String;
+  desc_ends_with?: String;
+  desc_not_ends_with?: String;
   count?: Int;
   count_not?: Int;
   count_in?: Int[] | Int;
@@ -2823,6 +2836,71 @@ export interface UserGroupScalarWhereInput {
   NOT?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
 }
 
+export interface UserCreateproblemsInput {
+  set?: Json[] | Json;
+}
+
+export interface UserGroupUpdateManyWithWhereNestedInput {
+  where: UserGroupScalarWhereInput;
+  data: UserGroupUpdateManyDataInput;
+}
+
+export interface ProblemCreateWithoutCreateUserInput {
+  status?: Int;
+  type?: Int;
+  tags: Json;
+  title: String;
+  describe: String;
+  inDescribe: String;
+  outDescribe: String;
+  inExample: String;
+  outExample: String;
+  limitTime: Int;
+  limitMemory: Int;
+  hint?: String;
+  source?: String;
+  sourceId?: String;
+  example?: String;
+  discuss?: DiscussCreateManyInput;
+}
+
+export interface UserGroupUpdateManyDataInput {
+  name?: String;
+  desc?: String;
+  count?: Int;
+  createUserId?: String;
+  createUserName?: String;
+}
+
+export interface DiscussCreateInput {
+  contentRaw: String;
+  content: String;
+  user?: UserCreateOneWithoutUserDiscussInput;
+  userId: Int;
+  userName: String;
+  children?: DiscussChilderCreateManyInput;
+}
+
+export interface UserGroupUpdateManyWithoutApplyUsersInput {
+  create?:
+    | UserGroupCreateWithoutApplyUsersInput[]
+    | UserGroupCreateWithoutApplyUsersInput;
+  delete?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  set?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  disconnect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  update?:
+    | UserGroupUpdateWithWhereUniqueWithoutApplyUsersInput[]
+    | UserGroupUpdateWithWhereUniqueWithoutApplyUsersInput;
+  upsert?:
+    | UserGroupUpsertWithWhereUniqueWithoutApplyUsersInput[]
+    | UserGroupUpsertWithWhereUniqueWithoutApplyUsersInput;
+  deleteMany?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
+  updateMany?:
+    | UserGroupUpdateManyWithWhereNestedInput[]
+    | UserGroupUpdateManyWithWhereNestedInput;
+}
+
 export interface UserCreateWithoutUserDiscussInput {
   userId: String;
   password: String;
@@ -2843,6 +2921,7 @@ export interface UserCreateWithoutUserDiscussInput {
   userGroup?: UserGroupCreateManyWithoutUsersInput;
   createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
   privilegeUserGroup?: UserGroupCreateManyInput;
+  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
   problems?: UserCreateproblemsInput;
   createProblmes?: ProblemCreateManyWithoutCreateUserInput;
   submitRecord?: SubmitCreateManyWithoutUserInput;
@@ -2851,9 +2930,9 @@ export interface UserCreateWithoutUserDiscussInput {
   accepted?: Int;
 }
 
-export interface UserGroupUpdateManyWithWhereNestedInput {
-  where: UserGroupScalarWhereInput;
-  data: UserGroupUpdateManyDataInput;
+export interface UserGroupUpdateWithWhereUniqueWithoutApplyUsersInput {
+  where: UserGroupWhereUniqueInput;
+  data: UserGroupUpdateWithoutApplyUsersDataInput;
 }
 
 export interface SubmitCreateWithoutUserInput {
@@ -2873,11 +2952,15 @@ export interface SubmitCreateWithoutUserInput {
   memory: Int;
 }
 
-export interface UserGroupUpdateManyDataInput {
+export interface UserGroupUpdateWithoutApplyUsersDataInput {
   name?: String;
+  desc?: String;
   count?: Int;
   createUserId?: String;
   createUserName?: String;
+  createUser?: UserUpdateOneRequiredWithoutCreateUserGroupInput;
+  privilege?: UserUpdateManyInput;
+  users?: UserUpdateManyWithoutUserGroupInput;
 }
 
 export interface ProblemCreateInput {
@@ -2900,8 +2983,10 @@ export interface ProblemCreateInput {
   discuss?: DiscussCreateManyInput;
 }
 
-export interface UserUpdateproblemsInput {
-  set?: Json[] | Json;
+export interface UserGroupUpsertWithWhereUniqueWithoutApplyUsersInput {
+  where: UserGroupWhereUniqueInput;
+  update: UserGroupUpdateWithoutApplyUsersDataInput;
+  create: UserGroupCreateWithoutApplyUsersInput;
 }
 
 export interface UserCreateWithoutCreateProblmesInput {
@@ -2925,11 +3010,23 @@ export interface UserCreateWithoutCreateProblmesInput {
   userGroup?: UserGroupCreateManyWithoutUsersInput;
   createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
   privilegeUserGroup?: UserGroupCreateManyInput;
+  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
   problems?: UserCreateproblemsInput;
   submitRecord?: SubmitCreateManyWithoutUserInput;
   submit?: Int;
   solved?: Int;
   accepted?: Int;
+}
+
+export interface UserUpdateproblemsInput {
+  set?: Json[] | Json;
+}
+
+export interface UserCreateManyWithoutApplyUserGroupInput {
+  create?:
+    | UserCreateWithoutApplyUserGroupInput[]
+    | UserCreateWithoutApplyUserGroupInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
 }
 
 export interface ProblemUpdateManyWithoutCreateUserInput {
@@ -2960,6 +3057,36 @@ export interface ContestProblemCreateOneInput {
 export interface ProblemUpdateWithWhereUniqueWithoutCreateUserInput {
   where: ProblemWhereUniqueInput;
   data: ProblemUpdateWithoutCreateUserDataInput;
+}
+
+export interface ContestUpdateInput {
+  name?: String;
+  type?: Int;
+  createUserName?: String;
+  createUserId?: Int;
+  startTime?: DateTimeInput;
+  endTime?: DateTimeInput;
+  userGroup?: UserGroupUpdateOneRequiredInput;
+  contestProblem?: ContestProblemUpdateOneRequiredInput;
+}
+
+export interface ProblemUpdateWithoutCreateUserDataInput {
+  status?: Int;
+  type?: Int;
+  tags?: Json;
+  title?: String;
+  describe?: String;
+  inDescribe?: String;
+  outDescribe?: String;
+  inExample?: String;
+  outExample?: String;
+  limitTime?: Int;
+  limitMemory?: Int;
+  hint?: String;
+  source?: String;
+  sourceId?: String;
+  example?: String;
+  discuss?: DiscussUpdateManyInput;
 }
 
 export interface UserWhereInput {
@@ -3171,6 +3298,9 @@ export interface UserWhereInput {
   privilegeUserGroup_every?: UserGroupWhereInput;
   privilegeUserGroup_some?: UserGroupWhereInput;
   privilegeUserGroup_none?: UserGroupWhereInput;
+  applyUserGroup_every?: UserGroupWhereInput;
+  applyUserGroup_some?: UserGroupWhereInput;
+  applyUserGroup_none?: UserGroupWhereInput;
   createProblmes_every?: ProblemWhereInput;
   createProblmes_some?: ProblemWhereInput;
   createProblmes_none?: ProblemWhereInput;
@@ -3206,36 +3336,6 @@ export interface UserWhereInput {
   NOT?: UserWhereInput[] | UserWhereInput;
 }
 
-export interface ProblemUpdateWithoutCreateUserDataInput {
-  status?: Int;
-  type?: Int;
-  tags?: Json;
-  title?: String;
-  describe?: String;
-  inDescribe?: String;
-  outDescribe?: String;
-  inExample?: String;
-  outExample?: String;
-  limitTime?: Int;
-  limitMemory?: Int;
-  hint?: String;
-  source?: String;
-  sourceId?: String;
-  example?: String;
-  discuss?: DiscussUpdateManyInput;
-}
-
-export interface SubmitSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: SubmitWhereInput;
-  AND?: SubmitSubscriptionWhereInput[] | SubmitSubscriptionWhereInput;
-  OR?: SubmitSubscriptionWhereInput[] | SubmitSubscriptionWhereInput;
-  NOT?: SubmitSubscriptionWhereInput[] | SubmitSubscriptionWhereInput;
-}
-
 export interface DiscussUpdateManyInput {
   create?: DiscussCreateInput[] | DiscussCreateInput;
   update?:
@@ -3254,6 +3354,22 @@ export interface DiscussUpdateManyInput {
     | DiscussUpdateManyWithWhereNestedInput;
 }
 
+export interface SubmitSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: SubmitWhereInput;
+  AND?: SubmitSubscriptionWhereInput[] | SubmitSubscriptionWhereInput;
+  OR?: SubmitSubscriptionWhereInput[] | SubmitSubscriptionWhereInput;
+  NOT?: SubmitSubscriptionWhereInput[] | SubmitSubscriptionWhereInput;
+}
+
+export interface DiscussUpdateWithWhereUniqueNestedInput {
+  where: DiscussWhereUniqueInput;
+  data: DiscussUpdateDataInput;
+}
+
 export interface DiscussSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
@@ -3265,21 +3381,6 @@ export interface DiscussSubscriptionWhereInput {
   NOT?: DiscussSubscriptionWhereInput[] | DiscussSubscriptionWhereInput;
 }
 
-export interface DiscussUpdateWithWhereUniqueNestedInput {
-  where: DiscussWhereUniqueInput;
-  data: DiscussUpdateDataInput;
-}
-
-export interface UserGroupUpdateInput {
-  name?: String;
-  count?: Int;
-  createUserId?: String;
-  createUserName?: String;
-  createUser?: UserUpdateOneRequiredWithoutCreateUserGroupInput;
-  privilege?: UserUpdateManyInput;
-  users?: UserUpdateManyWithoutUserGroupInput;
-}
-
 export interface DiscussUpdateDataInput {
   contentRaw?: String;
   content?: String;
@@ -3289,9 +3390,16 @@ export interface DiscussUpdateDataInput {
   children?: DiscussChilderUpdateManyInput;
 }
 
-export interface UserUpsertWithoutSubmitRecordInput {
-  update: UserUpdateWithoutSubmitRecordDataInput;
-  create: UserCreateWithoutSubmitRecordInput;
+export interface UserGroupUpdateInput {
+  name?: String;
+  desc?: String;
+  count?: Int;
+  createUserId?: String;
+  createUserName?: String;
+  createUser?: UserUpdateOneRequiredWithoutCreateUserGroupInput;
+  privilege?: UserUpdateManyInput;
+  users?: UserUpdateManyWithoutUserGroupInput;
+  applyUsers?: UserUpdateManyWithoutApplyUserGroupInput;
 }
 
 export interface UserUpdateOneWithoutUserDiscussInput {
@@ -3303,22 +3411,9 @@ export interface UserUpdateOneWithoutUserDiscussInput {
   connect?: UserWhereUniqueInput;
 }
 
-export interface SubmitUpdateInput {
-  user?: UserUpdateOneWithoutSubmitRecordInput;
-  userId?: Int;
-  userName?: String;
-  problem?: ProblemUpdateOneRequiredInput;
-  problemId?: String;
-  problemTitle?: String;
-  language?: Int;
-  code?: String;
-  result?: String;
-  errorInfo?: String;
-  contest?: ContestUpdateOneInput;
-  limitTime?: Int;
-  limitMemory?: Int;
-  time?: Int;
-  memory?: Int;
+export interface UserUpsertWithoutSubmitRecordInput {
+  update: UserUpdateWithoutSubmitRecordDataInput;
+  create: UserCreateWithoutSubmitRecordInput;
 }
 
 export interface UserUpdateWithoutUserDiscussDataInput {
@@ -3341,6 +3436,7 @@ export interface UserUpdateWithoutUserDiscussDataInput {
   userGroup?: UserGroupUpdateManyWithoutUsersInput;
   createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
   privilegeUserGroup?: UserGroupUpdateManyInput;
+  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
   problems?: UserUpdateproblemsInput;
   createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
   submitRecord?: SubmitUpdateManyWithoutUserInput;
@@ -3349,22 +3445,22 @@ export interface UserUpdateWithoutUserDiscussDataInput {
   accepted?: Int;
 }
 
-export interface SubmitCreateInput {
-  user?: UserCreateOneWithoutSubmitRecordInput;
-  userId: Int;
-  userName: String;
-  problem: ProblemCreateOneInput;
-  problemId: String;
-  problemTitle: String;
-  language: Int;
-  code: String;
-  result: String;
+export interface SubmitUpdateInput {
+  user?: UserUpdateOneWithoutSubmitRecordInput;
+  userId?: Int;
+  userName?: String;
+  problem?: ProblemUpdateOneRequiredInput;
+  problemId?: String;
+  problemTitle?: String;
+  language?: Int;
+  code?: String;
+  result?: String;
   errorInfo?: String;
-  contest?: ContestCreateOneInput;
-  limitTime: Int;
-  limitMemory: Int;
-  time: Int;
-  memory: Int;
+  contest?: ContestUpdateOneInput;
+  limitTime?: Int;
+  limitMemory?: Int;
+  time?: Int;
+  memory?: Int;
 }
 
 export interface SubmitUpdateManyWithoutUserInput {
@@ -3385,9 +3481,22 @@ export interface SubmitUpdateManyWithoutUserInput {
     | SubmitUpdateManyWithWhereNestedInput;
 }
 
-export interface PrivilegeGroupUpdateManyMutationInput {
-  name?: String;
-  privilege?: Int;
+export interface SubmitCreateInput {
+  user?: UserCreateOneWithoutSubmitRecordInput;
+  userId: Int;
+  userName: String;
+  problem: ProblemCreateOneInput;
+  problemId: String;
+  problemTitle: String;
+  language: Int;
+  code: String;
+  result: String;
+  errorInfo?: String;
+  contest?: ContestCreateOneInput;
+  limitTime: Int;
+  limitMemory: Int;
+  time: Int;
+  memory: Int;
 }
 
 export interface SubmitUpdateWithWhereUniqueWithoutUserInput {
@@ -3395,9 +3504,9 @@ export interface SubmitUpdateWithWhereUniqueWithoutUserInput {
   data: SubmitUpdateWithoutUserDataInput;
 }
 
-export interface UserUpdateWithWhereUniqueWithoutPrivilegeGroupInput {
-  where: UserWhereUniqueInput;
-  data: UserUpdateWithoutPrivilegeGroupDataInput;
+export interface PrivilegeGroupUpdateManyMutationInput {
+  name?: String;
+  privilege?: Int;
 }
 
 export interface SubmitUpdateWithoutUserDataInput {
@@ -3415,6 +3524,18 @@ export interface SubmitUpdateWithoutUserDataInput {
   limitMemory?: Int;
   time?: Int;
   memory?: Int;
+}
+
+export interface UserUpdateWithWhereUniqueWithoutPrivilegeGroupInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateWithoutPrivilegeGroupDataInput;
+}
+
+export interface ProblemUpdateOneRequiredInput {
+  create?: ProblemCreateInput;
+  update?: ProblemUpdateDataInput;
+  upsert?: ProblemUpsertNestedInput;
+  connect?: ProblemWhereUniqueInput;
 }
 
 export interface UserCreateWithoutPrivilegeGroupInput {
@@ -3437,28 +3558,13 @@ export interface UserCreateWithoutPrivilegeGroupInput {
   userGroup?: UserGroupCreateManyWithoutUsersInput;
   createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
   privilegeUserGroup?: UserGroupCreateManyInput;
+  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
   problems?: UserCreateproblemsInput;
   createProblmes?: ProblemCreateManyWithoutCreateUserInput;
   submitRecord?: SubmitCreateManyWithoutUserInput;
   submit?: Int;
   solved?: Int;
   accepted?: Int;
-}
-
-export interface ProblemUpdateOneRequiredInput {
-  create?: ProblemCreateInput;
-  update?: ProblemUpdateDataInput;
-  upsert?: ProblemUpsertNestedInput;
-  connect?: ProblemWhereUniqueInput;
-}
-
-export interface DiscussChilderUpdateManyMutationInput {
-  contentRaw?: String;
-  content?: String;
-  userId?: Int;
-  userName?: String;
-  replyUserId?: Int;
-  replyUserName?: String;
 }
 
 export interface ProblemUpdateDataInput {
@@ -3481,13 +3587,13 @@ export interface ProblemUpdateDataInput {
   discuss?: DiscussUpdateManyInput;
 }
 
-export interface DiscussUpdateInput {
+export interface DiscussChilderUpdateManyMutationInput {
   contentRaw?: String;
   content?: String;
-  user?: UserUpdateOneWithoutUserDiscussInput;
   userId?: Int;
   userName?: String;
-  children?: DiscussChilderUpdateManyInput;
+  replyUserId?: Int;
+  replyUserName?: String;
 }
 
 export interface UserUpdateOneWithoutCreateProblmesInput {
@@ -3499,13 +3605,13 @@ export interface UserUpdateOneWithoutCreateProblmesInput {
   connect?: UserWhereUniqueInput;
 }
 
-export interface ContestUpdateManyMutationInput {
-  name?: String;
-  type?: Int;
-  createUserName?: String;
-  createUserId?: Int;
-  startTime?: DateTimeInput;
-  endTime?: DateTimeInput;
+export interface DiscussUpdateInput {
+  contentRaw?: String;
+  content?: String;
+  user?: UserUpdateOneWithoutUserDiscussInput;
+  userId?: Int;
+  userName?: String;
+  children?: DiscussChilderUpdateManyInput;
 }
 
 export interface UserUpdateWithoutCreateProblmesDataInput {
@@ -3529,6 +3635,7 @@ export interface UserUpdateWithoutCreateProblmesDataInput {
   userGroup?: UserGroupUpdateManyWithoutUsersInput;
   createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
   privilegeUserGroup?: UserGroupUpdateManyInput;
+  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
   problems?: UserUpdateproblemsInput;
   submitRecord?: SubmitUpdateManyWithoutUserInput;
   submit?: Int;
@@ -3536,9 +3643,13 @@ export interface UserUpdateWithoutCreateProblmesDataInput {
   accepted?: Int;
 }
 
-export interface UserGroupCreateOneInput {
-  create?: UserGroupCreateInput;
-  connect?: UserGroupWhereUniqueInput;
+export interface ContestUpdateManyMutationInput {
+  name?: String;
+  type?: Int;
+  createUserName?: String;
+  createUserId?: Int;
+  startTime?: DateTimeInput;
+  endTime?: DateTimeInput;
 }
 
 export interface UserUpsertWithoutCreateProblmesInput {
@@ -3546,11 +3657,9 @@ export interface UserUpsertWithoutCreateProblmesInput {
   create: UserCreateWithoutCreateProblmesInput;
 }
 
-export interface PrivilegeGroupCreateManyWithoutUsersInput {
-  create?:
-    | PrivilegeGroupCreateWithoutUsersInput[]
-    | PrivilegeGroupCreateWithoutUsersInput;
-  connect?: PrivilegeGroupWhereUniqueInput[] | PrivilegeGroupWhereUniqueInput;
+export interface UserGroupCreateOneInput {
+  create?: UserGroupCreateInput;
+  connect?: UserGroupWhereUniqueInput;
 }
 
 export interface ProblemUpsertNestedInput {
@@ -3558,9 +3667,11 @@ export interface ProblemUpsertNestedInput {
   create: ProblemCreateInput;
 }
 
-export interface DiscussChilderCreateManyInput {
-  create?: DiscussChilderCreateInput[] | DiscussChilderCreateInput;
-  connect?: DiscussChilderWhereUniqueInput[] | DiscussChilderWhereUniqueInput;
+export interface PrivilegeGroupCreateManyWithoutUsersInput {
+  create?:
+    | PrivilegeGroupCreateWithoutUsersInput[]
+    | PrivilegeGroupCreateWithoutUsersInput;
+  connect?: PrivilegeGroupWhereUniqueInput[] | PrivilegeGroupWhereUniqueInput;
 }
 
 export interface ContestUpdateOneInput {
@@ -3572,11 +3683,9 @@ export interface ContestUpdateOneInput {
   connect?: ContestWhereUniqueInput;
 }
 
-export interface UserGroupCreateManyWithoutUsersInput {
-  create?:
-    | UserGroupCreateWithoutUsersInput[]
-    | UserGroupCreateWithoutUsersInput;
-  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+export interface DiscussChilderCreateManyInput {
+  create?: DiscussChilderCreateInput[] | DiscussChilderCreateInput;
+  connect?: DiscussChilderWhereUniqueInput[] | DiscussChilderWhereUniqueInput;
 }
 
 export interface ContestUpdateDataInput {
@@ -3590,11 +3699,11 @@ export interface ContestUpdateDataInput {
   contestProblem?: ContestProblemUpdateOneRequiredInput;
 }
 
-export interface DiscussChilderCreateManyWithoutUserInput {
+export interface UserGroupCreateManyWithoutUsersInput {
   create?:
-    | DiscussChilderCreateWithoutUserInput[]
-    | DiscussChilderCreateWithoutUserInput;
-  connect?: DiscussChilderWhereUniqueInput[] | DiscussChilderWhereUniqueInput;
+    | UserGroupCreateWithoutUsersInput[]
+    | UserGroupCreateWithoutUsersInput;
+  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
 }
 
 export interface ContestProblemUpdateOneRequiredInput {
@@ -3604,9 +3713,11 @@ export interface ContestProblemUpdateOneRequiredInput {
   connect?: ContestProblemWhereUniqueInput;
 }
 
-export interface UserCreateManyWithoutUserGroupInput {
-  create?: UserCreateWithoutUserGroupInput[] | UserCreateWithoutUserGroupInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+export interface DiscussChilderCreateManyWithoutUserInput {
+  create?:
+    | DiscussChilderCreateWithoutUserInput[]
+    | DiscussChilderCreateWithoutUserInput;
+  connect?: DiscussChilderWhereUniqueInput[] | DiscussChilderWhereUniqueInput;
 }
 
 export interface ContestProblemUpdateDataInput {
@@ -3617,11 +3728,9 @@ export interface ContestProblemUpdateDataInput {
   wa?: Int;
 }
 
-export interface ProblemCreateManyWithoutCreateUserInput {
-  create?:
-    | ProblemCreateWithoutCreateUserInput[]
-    | ProblemCreateWithoutCreateUserInput;
-  connect?: ProblemWhereUniqueInput[] | ProblemWhereUniqueInput;
+export interface UserCreateManyWithoutUserGroupInput {
+  create?: UserCreateWithoutUserGroupInput[] | UserCreateWithoutUserGroupInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
 }
 
 export interface ProblemUpdateOneInput {
@@ -3633,9 +3742,15 @@ export interface ProblemUpdateOneInput {
   connect?: ProblemWhereUniqueInput;
 }
 
-export interface UserCreateOneWithoutUserDiscussInput {
-  create?: UserCreateWithoutUserDiscussInput;
-  connect?: UserWhereUniqueInput;
+export interface UserGroupCreateWithoutApplyUsersInput {
+  name: String;
+  desc?: String;
+  count?: Int;
+  createUserId: String;
+  createUserName: String;
+  createUser: UserCreateOneWithoutCreateUserGroupInput;
+  privilege?: UserCreateManyInput;
+  users?: UserCreateManyWithoutUserGroupInput;
 }
 
 export interface ContestProblemUpsertNestedInput {
@@ -3643,9 +3758,9 @@ export interface ContestProblemUpsertNestedInput {
   create: ContestProblemCreateInput;
 }
 
-export interface ProblemCreateOneInput {
-  create?: ProblemCreateInput;
-  connect?: ProblemWhereUniqueInput;
+export interface DiscussCreateManyInput {
+  create?: DiscussCreateInput[] | DiscussCreateInput;
+  connect?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
 }
 
 export interface ContestUpsertNestedInput {
@@ -3653,9 +3768,9 @@ export interface ContestUpsertNestedInput {
   create: ContestCreateInput;
 }
 
-export interface ContestCreateOneInput {
-  create?: ContestCreateInput;
-  connect?: ContestWhereUniqueInput;
+export interface SubmitCreateManyWithoutUserInput {
+  create?: SubmitCreateWithoutUserInput[] | SubmitCreateWithoutUserInput;
+  connect?: SubmitWhereUniqueInput[] | SubmitWhereUniqueInput;
 }
 
 export interface SubmitUpsertWithWhereUniqueWithoutUserInput {
@@ -3664,65 +3779,9 @@ export interface SubmitUpsertWithWhereUniqueWithoutUserInput {
   create: SubmitCreateWithoutUserInput;
 }
 
-export interface PrivilegeGroupWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  updatedAt?: DateTimeInput;
-  updatedAt_not?: DateTimeInput;
-  updatedAt_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_lt?: DateTimeInput;
-  updatedAt_lte?: DateTimeInput;
-  updatedAt_gt?: DateTimeInput;
-  updatedAt_gte?: DateTimeInput;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
-  privilege?: Int;
-  privilege_not?: Int;
-  privilege_in?: Int[] | Int;
-  privilege_not_in?: Int[] | Int;
-  privilege_lt?: Int;
-  privilege_lte?: Int;
-  privilege_gt?: Int;
-  privilege_gte?: Int;
-  users_every?: UserWhereInput;
-  users_some?: UserWhereInput;
-  users_none?: UserWhereInput;
-  AND?: PrivilegeGroupWhereInput[] | PrivilegeGroupWhereInput;
-  OR?: PrivilegeGroupWhereInput[] | PrivilegeGroupWhereInput;
-  NOT?: PrivilegeGroupWhereInput[] | PrivilegeGroupWhereInput;
+export interface UserCreateOneWithoutCreateProblmesInput {
+  create?: UserCreateWithoutCreateProblmesInput;
+  connect?: UserWhereUniqueInput;
 }
 
 export interface SubmitScalarWhereInput {
@@ -3893,15 +3952,33 @@ export interface SubmitScalarWhereInput {
   NOT?: SubmitScalarWhereInput[] | SubmitScalarWhereInput;
 }
 
-export interface ContestSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: ContestWhereInput;
-  AND?: ContestSubscriptionWhereInput[] | ContestSubscriptionWhereInput;
-  OR?: ContestSubscriptionWhereInput[] | ContestSubscriptionWhereInput;
-  NOT?: ContestSubscriptionWhereInput[] | ContestSubscriptionWhereInput;
+export interface UserCreateWithoutApplyUserGroupInput {
+  userId: String;
+  password: String;
+  status?: Int;
+  level?: Int;
+  name: String;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
+  UserDiscuss?: DiscussCreateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
+  userGroup?: UserGroupCreateManyWithoutUsersInput;
+  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupCreateManyInput;
+  problems?: UserCreateproblemsInput;
+  createProblmes?: ProblemCreateManyWithoutCreateUserInput;
+  submitRecord?: SubmitCreateManyWithoutUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
 }
 
 export interface SubmitUpdateManyWithWhereNestedInput {
@@ -3909,7 +3986,51 @@ export interface SubmitUpdateManyWithWhereNestedInput {
   data: SubmitUpdateManyDataInput;
 }
 
-export interface UserUpdateWithoutSubmitRecordDataInput {
+export interface UserGroupUpdateOneRequiredInput {
+  create?: UserGroupCreateInput;
+  update?: UserGroupUpdateDataInput;
+  upsert?: UserGroupUpsertNestedInput;
+  connect?: UserGroupWhereUniqueInput;
+}
+
+export interface SubmitUpdateManyDataInput {
+  userId?: Int;
+  userName?: String;
+  problemId?: String;
+  problemTitle?: String;
+  language?: Int;
+  code?: String;
+  result?: String;
+  errorInfo?: String;
+  limitTime?: Int;
+  limitMemory?: Int;
+  time?: Int;
+  memory?: Int;
+}
+
+export interface PrivilegeGroupSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: PrivilegeGroupWhereInput;
+  AND?:
+    | PrivilegeGroupSubscriptionWhereInput[]
+    | PrivilegeGroupSubscriptionWhereInput;
+  OR?:
+    | PrivilegeGroupSubscriptionWhereInput[]
+    | PrivilegeGroupSubscriptionWhereInput;
+  NOT?:
+    | PrivilegeGroupSubscriptionWhereInput[]
+    | PrivilegeGroupSubscriptionWhereInput;
+}
+
+export interface UserUpsertWithoutUserDiscussInput {
+  update: UserUpdateWithoutUserDiscussDataInput;
+  create: UserCreateWithoutUserDiscussInput;
+}
+
+export interface UserUpdateInput {
   userId?: String;
   password?: String;
   status?: Int;
@@ -3930,40 +4051,14 @@ export interface UserUpdateWithoutSubmitRecordDataInput {
   userGroup?: UserGroupUpdateManyWithoutUsersInput;
   createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
   privilegeUserGroup?: UserGroupUpdateManyInput;
+  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
   problems?: UserUpdateproblemsInput;
   createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
+  submitRecord?: SubmitUpdateManyWithoutUserInput;
   submit?: Int;
   solved?: Int;
   accepted?: Int;
 }
-
-export interface SubmitUpdateManyDataInput {
-  userId?: Int;
-  userName?: String;
-  problemId?: String;
-  problemTitle?: String;
-  language?: Int;
-  code?: String;
-  result?: String;
-  errorInfo?: String;
-  limitTime?: Int;
-  limitMemory?: Int;
-  time?: Int;
-  memory?: Int;
-}
-
-export type DiscussChilderWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface UserUpsertWithoutUserDiscussInput {
-  update: UserUpdateWithoutUserDiscussDataInput;
-  create: UserCreateWithoutUserDiscussInput;
-}
-
-export type ProblemWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
 
 export interface DiscussUpsertWithWhereUniqueNestedInput {
   where: DiscussWhereUniqueInput;
@@ -3971,9 +4066,8 @@ export interface DiscussUpsertWithWhereUniqueNestedInput {
   create: DiscussCreateInput;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
+export type DiscussWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
-  userId?: String;
 }>;
 
 export interface DiscussScalarWhereInput {
@@ -4062,20 +4156,18 @@ export interface DiscussScalarWhereInput {
   NOT?: DiscussScalarWhereInput[] | DiscussScalarWhereInput;
 }
 
-export interface DiscussCreateManyWithoutUserInput {
-  create?: DiscussCreateWithoutUserInput[] | DiscussCreateWithoutUserInput;
-  connect?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
-}
+export type PrivilegeGroupWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
 
 export interface DiscussUpdateManyWithWhereNestedInput {
   where: DiscussScalarWhereInput;
   data: DiscussUpdateManyDataInput;
 }
 
-export interface UserCreateManyInput {
-  create?: UserCreateInput[] | UserCreateInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-}
+export type SubmitWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
 
 export interface DiscussUpdateManyDataInput {
   contentRaw?: String;
@@ -4084,10 +4176,9 @@ export interface DiscussUpdateManyDataInput {
   userName?: String;
 }
 
-export interface UserGroupCreateManyInput {
-  create?: UserGroupCreateInput[] | UserGroupCreateInput;
-  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-}
+export type UserGroupWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
 
 export interface ProblemUpsertWithWhereUniqueWithoutCreateUserInput {
   where: ProblemWhereUniqueInput;
@@ -4095,9 +4186,9 @@ export interface ProblemUpsertWithWhereUniqueWithoutCreateUserInput {
   create: ProblemCreateWithoutCreateUserInput;
 }
 
-export interface SubmitCreateManyWithoutUserInput {
-  create?: SubmitCreateWithoutUserInput[] | SubmitCreateWithoutUserInput;
-  connect?: SubmitWhereUniqueInput[] | SubmitWhereUniqueInput;
+export interface UserCreateOneWithoutCreateUserGroupInput {
+  create?: UserCreateWithoutCreateUserGroupInput;
+  connect?: UserWhereUniqueInput;
 }
 
 export interface ProblemScalarWhereInput {
@@ -4308,12 +4399,9 @@ export interface ProblemScalarWhereInput {
   NOT?: ProblemScalarWhereInput[] | ProblemScalarWhereInput;
 }
 
-export interface ContestProblemCreateInput {
-  problem?: ProblemCreateOneInput;
-  problemId: String;
-  problemTitle: String;
-  ac?: Int;
-  wa?: Int;
+export interface UserCreateOneWithoutUserDiscussChilderInput {
+  create?: UserCreateWithoutUserDiscussChilderInput;
+  connect?: UserWhereUniqueInput;
 }
 
 export interface ProblemUpdateManyWithWhereNestedInput {
@@ -4321,33 +4409,11 @@ export interface ProblemUpdateManyWithWhereNestedInput {
   data: ProblemUpdateManyDataInput;
 }
 
-export interface UserUpdateInput {
-  userId?: String;
-  password?: String;
-  status?: Int;
-  level?: Int;
-  name?: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral?: Int;
-  coin?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack?: Int;
-  privilegeWhite?: Int;
-  privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
-  UserDiscuss?: DiscussUpdateManyWithoutUserInput;
-  UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
-  userGroup?: UserGroupUpdateManyWithoutUsersInput;
-  createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
-  privilegeUserGroup?: UserGroupUpdateManyInput;
-  problems?: UserUpdateproblemsInput;
-  createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
-  submitRecord?: SubmitUpdateManyWithoutUserInput;
-  submit?: Int;
-  solved?: Int;
-  accepted?: Int;
+export interface UserGroupCreateManyWithoutCreateUserInput {
+  create?:
+    | UserGroupCreateWithoutCreateUserInput[]
+    | UserGroupCreateWithoutCreateUserInput;
+  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
 }
 
 export interface ProblemUpdateManyDataInput {
@@ -4368,9 +4434,12 @@ export interface ProblemUpdateManyDataInput {
   example?: String;
 }
 
-export type PrivilegeGroupWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
+export interface ProblemCreateManyWithoutCreateUserInput {
+  create?:
+    | ProblemCreateWithoutCreateUserInput[]
+    | ProblemCreateWithoutCreateUserInput;
+  connect?: ProblemWhereUniqueInput[] | ProblemWhereUniqueInput;
+}
 
 export interface UserUpsertWithWhereUniqueWithoutUserGroupInput {
   where: UserWhereUniqueInput;
@@ -4378,9 +4447,10 @@ export interface UserUpsertWithWhereUniqueWithoutUserGroupInput {
   create: UserCreateWithoutUserGroupInput;
 }
 
-export type UserGroupWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
+export interface ProblemCreateOneInput {
+  create?: ProblemCreateInput;
+  connect?: ProblemWhereUniqueInput;
+}
 
 export interface UserScalarWhereInput {
   id?: ID_Input;
@@ -4602,9 +4672,12 @@ export interface UserScalarWhereInput {
   NOT?: UserScalarWhereInput[] | UserScalarWhereInput;
 }
 
-export interface UserCreateOneWithoutUserDiscussChilderInput {
-  create?: UserCreateWithoutUserDiscussChilderInput;
-  connect?: UserWhereUniqueInput;
+export interface ContestProblemCreateInput {
+  problem?: ProblemCreateOneInput;
+  problemId: String;
+  problemTitle: String;
+  ac?: Int;
+  wa?: Int;
 }
 
 export interface UserUpdateManyWithWhereNestedInput {
@@ -4612,9 +4685,15 @@ export interface UserUpdateManyWithWhereNestedInput {
   data: UserUpdateManyDataInput;
 }
 
-export interface DiscussCreateManyInput {
-  create?: DiscussCreateInput[] | DiscussCreateInput;
-  connect?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
+export interface ContestSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ContestWhereInput;
+  AND?: ContestSubscriptionWhereInput[] | ContestSubscriptionWhereInput;
+  OR?: ContestSubscriptionWhereInput[] | ContestSubscriptionWhereInput;
+  NOT?: ContestSubscriptionWhereInput[] | ContestSubscriptionWhereInput;
 }
 
 export interface UserUpdateManyDataInput {
@@ -4638,21 +4717,88 @@ export interface UserUpdateManyDataInput {
   accepted?: Int;
 }
 
-export interface PrivilegeGroupSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: PrivilegeGroupWhereInput;
-  AND?:
-    | PrivilegeGroupSubscriptionWhereInput[]
-    | PrivilegeGroupSubscriptionWhereInput;
-  OR?:
-    | PrivilegeGroupSubscriptionWhereInput[]
-    | PrivilegeGroupSubscriptionWhereInput;
-  NOT?:
-    | PrivilegeGroupSubscriptionWhereInput[]
-    | PrivilegeGroupSubscriptionWhereInput;
+export type DiscussChilderWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserUpdateManyWithoutApplyUserGroupInput {
+  create?:
+    | UserCreateWithoutApplyUserGroupInput[]
+    | UserCreateWithoutApplyUserGroupInput;
+  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  update?:
+    | UserUpdateWithWhereUniqueWithoutApplyUserGroupInput[]
+    | UserUpdateWithWhereUniqueWithoutApplyUserGroupInput;
+  upsert?:
+    | UserUpsertWithWhereUniqueWithoutApplyUserGroupInput[]
+    | UserUpsertWithWhereUniqueWithoutApplyUserGroupInput;
+  deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
+  updateMany?:
+    | UserUpdateManyWithWhereNestedInput[]
+    | UserUpdateManyWithWhereNestedInput;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  userId?: String;
+}>;
+
+export interface UserUpdateWithWhereUniqueWithoutApplyUserGroupInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateWithoutApplyUserGroupDataInput;
+}
+
+export interface DiscussCreateManyWithoutUserInput {
+  create?: DiscussCreateWithoutUserInput[] | DiscussCreateWithoutUserInput;
+  connect?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutApplyUserGroupDataInput {
+  userId?: String;
+  password?: String;
+  status?: Int;
+  level?: Int;
+  name?: String;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
+  UserDiscuss?: DiscussUpdateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
+  userGroup?: UserGroupUpdateManyWithoutUsersInput;
+  createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupUpdateManyInput;
+  problems?: UserUpdateproblemsInput;
+  createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
+  submitRecord?: SubmitUpdateManyWithoutUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
+}
+
+export interface UserGroupCreateManyInput {
+  create?: UserGroupCreateInput[] | UserGroupCreateInput;
+  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+}
+
+export interface UserUpsertWithWhereUniqueWithoutApplyUserGroupInput {
+  where: UserWhereUniqueInput;
+  update: UserUpdateWithoutApplyUserGroupDataInput;
+  create: UserCreateWithoutApplyUserGroupInput;
+}
+
+export interface ContestCreateOneInput {
+  create?: ContestCreateInput;
+  connect?: ContestWhereUniqueInput;
 }
 
 export interface UserGroupUpsertWithWhereUniqueWithoutCreateUserInput {
@@ -4661,9 +4807,34 @@ export interface UserGroupUpsertWithWhereUniqueWithoutCreateUserInput {
   create: UserGroupCreateWithoutCreateUserInput;
 }
 
-export type SubmitWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
+export interface UserUpdateWithoutSubmitRecordDataInput {
+  userId?: String;
+  password?: String;
+  status?: Int;
+  level?: Int;
+  name?: String;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
+  UserDiscuss?: DiscussUpdateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
+  userGroup?: UserGroupUpdateManyWithoutUsersInput;
+  createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupUpdateManyInput;
+  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
+  problems?: UserUpdateproblemsInput;
+  createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
+}
 
 export interface DiscussChilderUpsertWithWhereUniqueNestedInput {
   where: DiscussChilderWhereUniqueInput;
@@ -4688,25 +4859,79 @@ export interface UserUpsertWithWhereUniqueNestedInput {
   create: UserCreateInput;
 }
 
-export interface UserCreateOneWithoutCreateUserGroupInput {
-  create?: UserCreateWithoutCreateUserGroupInput;
-  connect?: UserWhereUniqueInput;
+export interface UserCreateManyInput {
+  create?: UserCreateInput[] | UserCreateInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
 }
 
-export type DiscussWhereUniqueInput = AtLeastOne<{
+export type ProblemWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
-export interface UserCreateOneWithoutCreateProblmesInput {
-  create?: UserCreateWithoutCreateProblmesInput;
-  connect?: UserWhereUniqueInput;
+export interface PrivilegeGroupWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  privilege?: Int;
+  privilege_not?: Int;
+  privilege_in?: Int[] | Int;
+  privilege_not_in?: Int[] | Int;
+  privilege_lt?: Int;
+  privilege_lte?: Int;
+  privilege_gt?: Int;
+  privilege_gte?: Int;
+  users_every?: UserWhereInput;
+  users_some?: UserWhereInput;
+  users_none?: UserWhereInput;
+  AND?: PrivilegeGroupWhereInput[] | PrivilegeGroupWhereInput;
+  OR?: PrivilegeGroupWhereInput[] | PrivilegeGroupWhereInput;
+  NOT?: PrivilegeGroupWhereInput[] | PrivilegeGroupWhereInput;
 }
 
-export interface UserGroupCreateManyWithoutCreateUserInput {
-  create?:
-    | UserGroupCreateWithoutCreateUserInput[]
-    | UserGroupCreateWithoutCreateUserInput;
-  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+export interface UserCreateOneWithoutUserDiscussInput {
+  create?: UserCreateWithoutUserDiscussInput;
+  connect?: UserWhereUniqueInput;
 }
 
 export interface NodeNode {
@@ -4718,6 +4943,7 @@ export interface UserGroupPreviousValues {
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   name: String;
+  desc?: String;
   count: Int;
   createUserId: String;
   createUserName: String;
@@ -4730,6 +4956,7 @@ export interface UserGroupPreviousValuesPromise
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   name: () => Promise<String>;
+  desc: () => Promise<String>;
   count: () => Promise<Int>;
   createUserId: () => Promise<String>;
   createUserName: () => Promise<String>;
@@ -4742,6 +4969,7 @@ export interface UserGroupPreviousValuesSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   name: () => Promise<AsyncIterator<String>>;
+  desc: () => Promise<AsyncIterator<String>>;
   count: () => Promise<AsyncIterator<Int>>;
   createUserId: () => Promise<AsyncIterator<String>>;
   createUserName: () => Promise<AsyncIterator<String>>;
@@ -5792,6 +6020,7 @@ export interface UserGroup {
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   name: String;
+  desc?: String;
   count: Int;
   createUserId: String;
   createUserName: String;
@@ -5802,6 +6031,7 @@ export interface UserGroupPromise extends Promise<UserGroup>, Fragmentable {
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   name: () => Promise<String>;
+  desc: () => Promise<String>;
   count: () => Promise<Int>;
   createUserId: () => Promise<String>;
   createUserName: () => Promise<String>;
@@ -5828,6 +6058,17 @@ export interface UserGroupPromise extends Promise<UserGroup>, Fragmentable {
       last?: Int;
     }
   ) => T;
+  applyUsers: <T = FragmentableArray<User>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
 }
 
 export interface UserGroupSubscription
@@ -5837,6 +6078,7 @@ export interface UserGroupSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   name: () => Promise<AsyncIterator<String>>;
+  desc: () => Promise<AsyncIterator<String>>;
   count: () => Promise<AsyncIterator<Int>>;
   createUserId: () => Promise<AsyncIterator<String>>;
   createUserName: () => Promise<AsyncIterator<String>>;
@@ -5853,6 +6095,17 @@ export interface UserGroupSubscription
     }
   ) => T;
   users: <T = Promise<AsyncIterator<UserSubscription>>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  applyUsers: <T = Promise<AsyncIterator<UserSubscription>>>(
     args?: {
       where?: UserWhereInput;
       orderBy?: UserOrderByInput;
@@ -6285,6 +6538,17 @@ export interface UserPromise extends Promise<User>, Fragmentable {
       last?: Int;
     }
   ) => T;
+  applyUserGroup: <T = FragmentableArray<UserGroup>>(
+    args?: {
+      where?: UserGroupWhereInput;
+      orderBy?: UserGroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
   problems: () => Promise<Json[]>;
   createProblmes: <T = FragmentableArray<Problem>>(
     args?: {
@@ -6389,6 +6653,17 @@ export interface UserSubscription
     }
   ) => T;
   privilegeUserGroup: <T = Promise<AsyncIterator<UserGroupSubscription>>>(
+    args?: {
+      where?: UserGroupWhereInput;
+      orderBy?: UserGroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  applyUserGroup: <T = Promise<AsyncIterator<UserGroupSubscription>>>(
     args?: {
       where?: UserGroupWhereInput;
       orderBy?: UserGroupOrderByInput;

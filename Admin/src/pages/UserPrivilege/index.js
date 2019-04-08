@@ -1,12 +1,3 @@
-import React, { Component } from 'react';
+import UserPrivilege from './UserPrivilege';
 
-export default class UserPrivilege extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    return <div className="user-privilege-page" />;
-  }
-}
+export default UserPrivilege;

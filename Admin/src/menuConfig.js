@@ -43,7 +43,7 @@ const asideMenuConfig = [
         path:  '/admin/user/list',
       },
       {
-        name: '添加用户',
+        name: '信息编辑',
         path:  '/admin/user/create',
       },
       {
@@ -61,17 +61,51 @@ const asideMenuConfig = [
     ],
   },
   {
-    name: '表格页',
-    path:  '/admin/table',
-    icon: 'directory',
+    name: '题目管理',
+    path:  '/admin/problem',
+    icon: 'creative',
     children: [
       {
-        name: '基础表格',
-        path:  '/admin/table/basic',
+        name: '题目列表',
+        path:  '/admin/problem/list',
       },
       {
-        name: '通用表格',
-        path:  '/admin/table/general',
+        name: '信息编辑',
+        path:  '/admin/problem/create',
+      },
+      {
+        name: '测试数据',
+        path:  '/admin/problem/testdata',
+      },
+    ],
+  },
+  {
+    name: '竞赛管理',
+    path:  '/admin/contest',
+    icon: 'activity',
+    children: [
+      {
+        name: '题目列表',
+        path:  '/admin/contest/list',
+      },
+      {
+        name: '信息编辑',
+        path:  '/admin/contest/create',
+      },
+    ],
+  },
+  {
+    name: '通知管理',
+    path:  '/admin/notice',
+    icon: 'horn',
+    children: [
+      {
+        name: '通知列表',
+        path:  '/admin/notice/list',
+      },
+      {
+        name: '站内信',
+        path:  '/admin/notice/message',
       },
     ],
   },

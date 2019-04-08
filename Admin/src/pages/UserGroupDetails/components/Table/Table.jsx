@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   Table,
-  Pagination,
   Button,
   Dialog,
   Icon,
@@ -10,102 +9,48 @@ import {
 } from '@alifd/next';
 import IceContainer from '@icedesign/container';
 import DataBinder from '@icedesign/data-binder';
-import FilterTag from '../FilterTag';
-import FilterForm from '../FilterForm';
 import api from '../../../../api/api';
+import BasicDetailInfo from "../BasicDetailInfo";
 import { withRouter } from 'react-router';
 
 const Tooltip = Balloon.Tooltip;
-// Random Numbers
-const random = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
-// MOCK 数据，实际业务按需进行替换
-const getData = (length = 10) => {
-  return Array.from({ length }).map(() => {
-    return {
-      id: random(1, 99999),
-      userId: `15136020${random(1, 9)}`,
-      name: ['淘小宝', '淘二宝'][random(0, 1)],
-      level: random(0, 6),
-      balance: random(10000, 100000),
-      accumulative: random(50000, 100000),
-      regdate: `2018-12-1${random(1, 9)}`,
-      birthday: `1992-10-1${random(1, 9)}`,
-      store: ['余杭盒马店', '滨江盒马店', '西湖盒马店'][random(0, 2)],
-    };
-  });
-};
 
 @withRouter
 @DataBinder({
-  usersTable: {
-    url: '/user/list',
+  userGroupTable: {
+    url: '/user/user-group/list',
     method: 'post',
     data: {
+      id: ''
     },
     defaultBindingData: {
-      items: []
+      createUser: {},
+      createdAt: "",
+      desc: null,
+      id: "",
+      name: "",
+      privilege: [],
+      users: [],
+      applyUsers: [],
     }
   }
 }, {requestClient: api})
 export default class GoodsTable extends Component {
-  state = {
-    current: 1,
-    isLoading: false,
-    data: [],
-  };
 
   componentDidMount() {
-    this.props.updateBindingData('usersTable', {})
+    this.props.updateBindingData('userGroupTable', {
+      data: {
+        id: this.props.match.params.id
+      }
+    })
   }
-
-  mockApi = (len) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(getData(len));
-      }, 600);
-    });
-  };
-
-  fetchData = (len) => {
-    this.setState(
-      {
-        isLoading: true,
-      },
-      () => {
-        this.mockApi(len).then((data) => {
-          this.setState({
-            data,
-            isLoading: false,
-          });
-        });
-      }
-    );
-  };
-
-  handlePaginationChange = (current) => {
-    this.setState(
-      {
-        current,
-      },
-      () => {
-        this.fetchData();
-      }
-    );
-  };
-
-  handleFilterChange = () => {
-    this.fetchData(5);
-  };
 
   handleDelete = () => {
     Dialog.confirm({
       title: '提示',
       content: '确认删除吗',
       onOk: () => {
-        this.fetchData(10);
+
       },
     });
   };
@@ -123,7 +68,7 @@ export default class GoodsTable extends Component {
           trigger={
             <Button
               type="secondary"
-              onClick={this.handleDetail}
+              onClick={() => this.handleDetail(record)}
             >
               <Icon type="account" />
             </Button>}
@@ -143,7 +88,7 @@ export default class GoodsTable extends Component {
         </Tooltip>
         <Tooltip
           trigger={
-            <Button type="normal" warning onClick={this.handleDelete}>
+            <Button type="normal" warning onClick={() => this.handleDelete(record)}>
               <Icon type="ashbin" />
             </Button>
           }
@@ -166,16 +111,12 @@ export default class GoodsTable extends Component {
     )
   }
   render() {
-    const { isLoading, data, current } = this.state;
-    const { usersTable } = this.props.bindingData;
+    const { userGroupTable } = this.props.bindingData;
     return (
-      <div style={styles.container}>
+      <div>
+        <BasicDetailInfo dataSource={userGroupTable} />
         <IceContainer>
-          <FilterTag onChange={this.handleFilterChange} />
-          <FilterForm onChange={this.handleFilterChange} />
-        </IceContainer>
-        <IceContainer>
-          <Table loading={usersTable.__loading} dataSource={usersTable.items} hasBorder={false}>
+          <Table loading={ userGroupTable.__loading } dataSource={userGroupTable.users} hasBorder={false}>
             <Table.Column title="ID" dataIndex="userId" />
             <Table.Column title="名称" dataIndex="name" />
             <Table.Column title="等级" cell={this.LevelTag} dataIndex="level" />
@@ -191,20 +132,8 @@ export default class GoodsTable extends Component {
               cell={this.renderOper}
             />
           </Table>
-          <Pagination
-            style={styles.pagination}
-            current={current}
-            onChange={this.handlePaginationChange}
-          />
         </IceContainer>
       </div>
     );
   }
 }
-
-const styles = {
-  pagination: {
-    marginTop: '20px',
-    textAlign: 'right',
-  },
-};

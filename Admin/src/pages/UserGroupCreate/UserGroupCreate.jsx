@@ -5,7 +5,7 @@ import { Breadcrumb } from '@alifd/next';
 import { withRouter, Link } from 'react-router-dom';
 
 @withRouter
-export default class UserCreate extends Component {
+export default class UserGroupCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -16,8 +16,8 @@ export default class UserCreate extends Component {
     <div className="user-create-page">
       <IceContainer>
         <Breadcrumb separator="/">
-          <Breadcrumb.Item><Link to="/">Admin</Link></Breadcrumb.Item>
-          <Breadcrumb.Item><Link to="/usergroup/manage">User</Link></Breadcrumb.Item>
+          <Breadcrumb.Item><Link to="/admin">Admin</Link></Breadcrumb.Item>
+          <Breadcrumb.Item><Link to="/admin/usergroup/manage">User</Link></Breadcrumb.Item>
           <Breadcrumb.Item>Create</Breadcrumb.Item>
         </Breadcrumb>
       </IceContainer>

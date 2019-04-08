@@ -40,7 +40,7 @@ function Nav ({history, location}) {
             <Link to="/user/profile" style={{color: '#777'}}>个人主页</Link>
           </p>
           <p>
-            <Link to="/admin" style={{color: '#777'}}>控制台</Link>
+            <a href="/admin" target='_blank' style={{color: '#777'}}>控制台</a>
           </p>
           <p style={{cursor: 'pointer'}} onClick={()=> {
             Cookies.set('pdoj_token', null)

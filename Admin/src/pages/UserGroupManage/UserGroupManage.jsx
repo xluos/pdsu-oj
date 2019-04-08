@@ -15,8 +15,8 @@ export default class UsergroupManage extends Component {
       <div className="usergroup-manage-page">
         <IceContainer>
           <Breadcrumb separator="/">
-            <Breadcrumb.Item><Link to="/">Admin</Link></Breadcrumb.Item>
-            <Breadcrumb.Item><Link to="/usergroup/manage">UserGroup</Link></Breadcrumb.Item>
+            <Breadcrumb.Item><Link to="/admin">Admin</Link></Breadcrumb.Item>
+            <Breadcrumb.Item><Link to="/admin/usergroup/manage">UserGroup</Link></Breadcrumb.Item>
             <Breadcrumb.Item>List</Breadcrumb.Item>
           </Breadcrumb>
         </IceContainer>

@@ -16,8 +16,8 @@ export default class UserCreate extends Component {
     <div className="user-create-page">
       <IceContainer>
         <Breadcrumb separator="/">
-          <Breadcrumb.Item><Link to="/">Admin</Link></Breadcrumb.Item>
-          <Breadcrumb.Item><Link to="/user">User</Link></Breadcrumb.Item>
+          <Breadcrumb.Item><Link to="/admin">Admin</Link></Breadcrumb.Item>
+          <Breadcrumb.Item><Link to="/admin/user">User</Link></Breadcrumb.Item>
           <Breadcrumb.Item>Create</Breadcrumb.Item>
         </Breadcrumb>
       </IceContainer>

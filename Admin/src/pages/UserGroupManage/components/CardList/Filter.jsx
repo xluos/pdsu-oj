@@ -11,19 +11,27 @@ export default class Filter extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.onSearch = this.props.onSearch
+    this.state = {
+      val: ''
+    };
   }
 
-  onChange = (value) => {
-    console.log({ value });
-  };
+  handleSearch = () => {
+    this.onSearch(this.state.val)
+  }
 
   render() {
     return (
       <IceContainer style={styles.container}>
         <div style={styles.label}>用户组名称:</div>
-        <Input placeholder="请输入用户组名称" hasClear onChange={this.onChange} />
-        <Button type="primary" style={styles.button}>
+        <Input
+          placeholder="请输入用户组名称"
+          hasClear
+          trim
+          onChange={val => this.setState({val})}
+          onPressEnter={this.handleSearch} />
+        <Button type="primary" style={styles.button} onClick={this.handleSearch}>
           查 询
         </Button>
       </IceContainer>

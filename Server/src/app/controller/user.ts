@@ -1,8 +1,8 @@
-import { controller, post, inject, provide, put, get } from 'midway';
+import { controller, post, inject, provide, put, del } from 'midway';
 import { IUser, IUserGroup } from '../../interface';
 import { prisma, UserGroupCreateInput, UserGroup, UserWhereUniqueInput } from '../../model/generated/prisma-client';
 import { handlePassword } from "../../lib/utils";
-import { USER_INFO } from '../../lib/fragment';
+import { USER_INFO, USER_GROUP_INFO, USER_GROUP_INFO_MINI } from '../../lib/fragment';
 @provide()
 @controller('/user')
 export class UserController {
@@ -80,53 +80,43 @@ export class UserController {
 
   }
 
-  @get('/user-group/:id')
+  @post('/user-group/list')
   async UserGroup(ctx): Promise<void> {
-    const id: string = ctx.params.id;
+    const { id, mini=false } = ctx._body.id;
 
+    ctx.validate({
+      id: 'string',
+      mini: 'boolean'
+    }, ctx._body)
     
     if (id === 'all') {
       let userGroups: UserGroup[] = await prisma.userGroups()
       ctx.body = { items: userGroups }
     } else {
-      let userGroups: UserGroup = await prisma.userGroup({id}).$fragment(`
-        {
-          id
-          name
-          createUser {
-            id
-            name
-            userId
-            desc
-            email
-            submit
-            solved
-            accepted
-          }
-          privilege {
-            id
-            name
-            userId
-            desc
-            email
-            submit
-            solved
-            accepted
-          }
-          users {
-            id
-            name
-            userId
-            desc
-            email
-            submit
-            solved
-            accepted
-          }
-        }
-      `)
+      let userGroups: UserGroup = await prisma.userGroup({id}).$fragment(mini ? USER_GROUP_INFO_MINI : USER_GROUP_INFO)
       ctx.body = userGroups
     }
+  }
+  
+  @post('/user-group/search')
+  async searchUserGroup(ctx): Promise<void> {
+    const name: string = ctx._body.name;
+
+    ctx.validate({
+      name: 'string?'
+    }, ctx._body)
+  
+    let userGroups: UserGroup[] = await prisma.userGroups({
+      where: {
+        OR: [
+          {name_contains: name},
+          {desc_contains: name},
+          {createUserName_contains: name},
+        ],
+      }
+    })
+    ctx.body = { items: userGroups }
+    
   }
 
   @post('/user-group')
@@ -189,6 +179,38 @@ export class UserController {
         },
         users: {
           connect: options.usersUUID.map((id: string): UserWhereUniqueInput => {return {id}})
+        }
+      },
+      where: {
+        id: options.id
+      }
+    }
+
+    let user: UserGroup;
+   
+    user = await prisma.updateUserGroup(args) 
+    
+    ctx.body = user;
+
+  }
+
+  @del('/user-group')
+  async delUserGroup(ctx): Promise<void> {
+    const options: IUserGroup = ctx._body;
+    ctx.validate({
+      id: 'string',
+      count: 'integer',
+      userUUID: { type: 'array', itemType: 'string' },
+    }, options);
+
+    const args = {
+      data: {
+        count: options.count,
+        privilege: {
+          delete: options.usersUUID.map((id: string): UserWhereUniqueInput => {return {id}})
+        },
+        users: {
+          delete: options.usersUUID.map((id: string): UserWhereUniqueInput => {return {id}})
         }
       },
       where: {

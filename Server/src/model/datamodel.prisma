@@ -23,6 +23,7 @@ type User {
   userGroup: [UserGroup!]! @relation(name: "UserGroupByUser")
   createUserGroup: [UserGroup!]! @relation(name: "CreateUserGroupByUser") 
   privilegeUserGroup: [UserGroup!]! @relation(name: "CrivilegeUserGroupByUser") 
+  applyUserGroup: [UserGroup!]! @relation(name: "ApplyUsersByUser")
   problems: [Json!]!
   createProblmes: [Problem] @relation(name: "ProblemByUser")
   submitRecord: [Submit] @relation(name: "SubmitRecordByUser")
@@ -54,6 +55,7 @@ type UserGroup {
   createUser: User! @relation(name: "CreateUserGroupByUser")
   privilege: [User!]! @relation(name: "PrivilegeUserGroupByUser")
   users: [User!]! @relation(name: "UserGroupByUser")
+  applyUsers: [User!]! @relation(name: "ApplyUsersByUser")
 }
 
 # 题目

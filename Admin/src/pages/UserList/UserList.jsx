@@ -12,8 +12,8 @@ export default class UserList extends Component {
       <div className="user-page">
         <IceContainer>
           <Breadcrumb separator="/">
-          <Breadcrumb.Item><Link to="/">Admin</Link></Breadcrumb.Item>
-            <Breadcrumb.Item><Link to="/user">User</Link></Breadcrumb.Item>
+          <Breadcrumb.Item><Link to="/admin">Admin</Link></Breadcrumb.Item>
+            <Breadcrumb.Item><Link to="/admin/user">User</Link></Breadcrumb.Item>
             <Breadcrumb.Item>List</Breadcrumb.Item>
           </Breadcrumb>
         </IceContainer>

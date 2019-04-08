@@ -8,9 +8,10 @@ const { Row, Col } = Grid;
 
 @DataBinder({
   userGroup: {
-    url: '/user/user-group/all',
-    method: 'get',
+    url: '/user/user-group/list',
+    method: 'post',
     data: {
+      id: 'all'
     },
     defaultBindingData: {
       items: []
@@ -33,15 +34,28 @@ export default class CardList extends Component {
     this.props.updateBindingData('userGroup')
   }
 
+  handleSearch = (val) => {
+    if (val) {
+      this.props.updateBindingData('userGroup', {
+        url: '/user/user-group/search',
+        data: {
+          name: val
+        }
+      })
+    } else {
+      this.props.updateBindingData('userGroup')
+    }
+  }
+
   render() {
     const { userGroup, __loading } = this.props.bindingData;
     return (
       <div style={styles.container}>
-        <Filter />
+        <Filter onSearch={this.handleSearch} />
         <Loading tip="loading..." style={{width: '100%'}} visible={__loading}>
           <Row wrap gutter="20" style={styles.row}>
             <Col l="6" xs="12" xxs="24">
-              <Link to="/usergroup/create" style={{ ...styles.card, ...styles.createScheme }}>
+              <Link to="/admin/usergroup/create" style={{ ...styles.card, ...styles.createScheme }}>
                 <Icon type="add" size="large" style={styles.addIcon} />
                 <span>新增用户组</span>
               </Link>
@@ -50,7 +64,7 @@ export default class CardList extends Component {
               return (
                 <Col l="6" xs="12" xxs="24" key={index}>
                   <div style={styles.card}>
-                    <Link to={`/usergroup/${item.id}`} style={{textDecoration: 'none'}}>
+                    <Link to={`/admin/usergroup/${item.id}`} style={{textDecoration: 'none'}}>
                       <div style={styles.head}>
                         <h4 style={styles.title}>{item.name}</h4>
                         <p style={styles.desc}>{item.desc}</p>

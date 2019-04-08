@@ -63,7 +63,7 @@ export default class BasicLayout extends Component {
           <Header isMobile={isMobile} />
           <Layout.Section scrollable>
             <Layout.Aside width="auto" type={null}>
-              <Aside isMobile={isMobile} />
+              <Aside isMobile={isMobile} openAll={false} />
             </Layout.Aside>
             <Layout.Main>
               <MainRoutes />

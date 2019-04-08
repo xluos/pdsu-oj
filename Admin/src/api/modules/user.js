@@ -15,7 +15,7 @@ export function setUserInfo(params) {
 }
 
 /**
- * 创建或设置用户信息
+ * 创建用户组信息
  *
  * @export
  * @param {*} params 用户信息

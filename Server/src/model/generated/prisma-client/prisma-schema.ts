@@ -2970,6 +2970,7 @@ type User {
   userGroup(where: UserGroupWhereInput, orderBy: UserGroupOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserGroup!]
   createUserGroup(where: UserGroupWhereInput, orderBy: UserGroupOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserGroup!]
   privilegeUserGroup(where: UserGroupWhereInput, orderBy: UserGroupOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserGroup!]
+  applyUserGroup(where: UserGroupWhereInput, orderBy: UserGroupOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserGroup!]
   problems: [Json!]!
   createProblmes(where: ProblemWhereInput, orderBy: ProblemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Problem!]
   submitRecord(where: SubmitWhereInput, orderBy: SubmitOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Submit!]
@@ -3005,6 +3006,7 @@ input UserCreateInput {
   userGroup: UserGroupCreateManyWithoutUsersInput
   createUserGroup: UserGroupCreateManyWithoutCreateUserInput
   privilegeUserGroup: UserGroupCreateManyInput
+  applyUserGroup: UserGroupCreateManyWithoutApplyUsersInput
   problems: UserCreateproblemsInput
   createProblmes: ProblemCreateManyWithoutCreateUserInput
   submitRecord: SubmitCreateManyWithoutUserInput
@@ -3015,6 +3017,11 @@ input UserCreateInput {
 
 input UserCreateManyInput {
   create: [UserCreateInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateManyWithoutApplyUserGroupInput {
+  create: [UserCreateWithoutApplyUserGroupInput!]
   connect: [UserWhereUniqueInput!]
 }
 
@@ -3057,6 +3064,35 @@ input UserCreateproblemsInput {
   set: [Json!]
 }
 
+input UserCreateWithoutApplyUserGroupInput {
+  userId: String!
+  password: String!
+  status: Int
+  level: Int
+  name: String!
+  photo: String
+  email: String
+  desc: String
+  integral: Int
+  coin: Int
+  defaultUserGroup: String
+  defaultUserGroupId: String
+  privilegeBlack: Int
+  privilegeWhite: Int
+  privilegeGroup: PrivilegeGroupCreateManyWithoutUsersInput
+  UserDiscuss: DiscussCreateManyWithoutUserInput
+  UserDiscussChilder: DiscussChilderCreateManyWithoutUserInput
+  userGroup: UserGroupCreateManyWithoutUsersInput
+  createUserGroup: UserGroupCreateManyWithoutCreateUserInput
+  privilegeUserGroup: UserGroupCreateManyInput
+  problems: UserCreateproblemsInput
+  createProblmes: ProblemCreateManyWithoutCreateUserInput
+  submitRecord: SubmitCreateManyWithoutUserInput
+  submit: Int
+  solved: Int
+  accepted: Int
+}
+
 input UserCreateWithoutCreateProblmesInput {
   userId: String!
   password: String!
@@ -3078,6 +3114,7 @@ input UserCreateWithoutCreateProblmesInput {
   userGroup: UserGroupCreateManyWithoutUsersInput
   createUserGroup: UserGroupCreateManyWithoutCreateUserInput
   privilegeUserGroup: UserGroupCreateManyInput
+  applyUserGroup: UserGroupCreateManyWithoutApplyUsersInput
   problems: UserCreateproblemsInput
   submitRecord: SubmitCreateManyWithoutUserInput
   submit: Int
@@ -3105,6 +3142,7 @@ input UserCreateWithoutCreateUserGroupInput {
   UserDiscussChilder: DiscussChilderCreateManyWithoutUserInput
   userGroup: UserGroupCreateManyWithoutUsersInput
   privilegeUserGroup: UserGroupCreateManyInput
+  applyUserGroup: UserGroupCreateManyWithoutApplyUsersInput
   problems: UserCreateproblemsInput
   createProblmes: ProblemCreateManyWithoutCreateUserInput
   submitRecord: SubmitCreateManyWithoutUserInput
@@ -3133,6 +3171,7 @@ input UserCreateWithoutPrivilegeGroupInput {
   userGroup: UserGroupCreateManyWithoutUsersInput
   createUserGroup: UserGroupCreateManyWithoutCreateUserInput
   privilegeUserGroup: UserGroupCreateManyInput
+  applyUserGroup: UserGroupCreateManyWithoutApplyUsersInput
   problems: UserCreateproblemsInput
   createProblmes: ProblemCreateManyWithoutCreateUserInput
   submitRecord: SubmitCreateManyWithoutUserInput
@@ -3162,6 +3201,7 @@ input UserCreateWithoutSubmitRecordInput {
   userGroup: UserGroupCreateManyWithoutUsersInput
   createUserGroup: UserGroupCreateManyWithoutCreateUserInput
   privilegeUserGroup: UserGroupCreateManyInput
+  applyUserGroup: UserGroupCreateManyWithoutApplyUsersInput
   problems: UserCreateproblemsInput
   createProblmes: ProblemCreateManyWithoutCreateUserInput
   submit: Int
@@ -3189,6 +3229,7 @@ input UserCreateWithoutUserDiscussChilderInput {
   userGroup: UserGroupCreateManyWithoutUsersInput
   createUserGroup: UserGroupCreateManyWithoutCreateUserInput
   privilegeUserGroup: UserGroupCreateManyInput
+  applyUserGroup: UserGroupCreateManyWithoutApplyUsersInput
   problems: UserCreateproblemsInput
   createProblmes: ProblemCreateManyWithoutCreateUserInput
   submitRecord: SubmitCreateManyWithoutUserInput
@@ -3217,6 +3258,7 @@ input UserCreateWithoutUserDiscussInput {
   userGroup: UserGroupCreateManyWithoutUsersInput
   createUserGroup: UserGroupCreateManyWithoutCreateUserInput
   privilegeUserGroup: UserGroupCreateManyInput
+  applyUserGroup: UserGroupCreateManyWithoutApplyUsersInput
   problems: UserCreateproblemsInput
   createProblmes: ProblemCreateManyWithoutCreateUserInput
   submitRecord: SubmitCreateManyWithoutUserInput
@@ -3245,6 +3287,7 @@ input UserCreateWithoutUserGroupInput {
   UserDiscussChilder: DiscussChilderCreateManyWithoutUserInput
   createUserGroup: UserGroupCreateManyWithoutCreateUserInput
   privilegeUserGroup: UserGroupCreateManyInput
+  applyUserGroup: UserGroupCreateManyWithoutApplyUsersInput
   problems: UserCreateproblemsInput
   createProblmes: ProblemCreateManyWithoutCreateUserInput
   submitRecord: SubmitCreateManyWithoutUserInput
@@ -3263,12 +3306,14 @@ type UserGroup {
   createdAt: DateTime!
   updatedAt: DateTime!
   name: String!
+  desc: String
   count: Int!
   createUserId: String!
   createUserName: String!
   createUser: User!
   privilege(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+  applyUsers(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
 }
 
 type UserGroupConnection {
@@ -3279,16 +3324,23 @@ type UserGroupConnection {
 
 input UserGroupCreateInput {
   name: String!
+  desc: String
   count: Int
   createUserId: String!
   createUserName: String!
   createUser: UserCreateOneWithoutCreateUserGroupInput!
   privilege: UserCreateManyInput
   users: UserCreateManyWithoutUserGroupInput
+  applyUsers: UserCreateManyWithoutApplyUserGroupInput
 }
 
 input UserGroupCreateManyInput {
   create: [UserGroupCreateInput!]
+  connect: [UserGroupWhereUniqueInput!]
+}
+
+input UserGroupCreateManyWithoutApplyUsersInput {
+  create: [UserGroupCreateWithoutApplyUsersInput!]
   connect: [UserGroupWhereUniqueInput!]
 }
 
@@ -3307,22 +3359,37 @@ input UserGroupCreateOneInput {
   connect: UserGroupWhereUniqueInput
 }
 
-input UserGroupCreateWithoutCreateUserInput {
+input UserGroupCreateWithoutApplyUsersInput {
   name: String!
-  count: Int
-  createUserId: String!
-  createUserName: String!
-  privilege: UserCreateManyInput
-  users: UserCreateManyWithoutUserGroupInput
-}
-
-input UserGroupCreateWithoutUsersInput {
-  name: String!
+  desc: String
   count: Int
   createUserId: String!
   createUserName: String!
   createUser: UserCreateOneWithoutCreateUserGroupInput!
   privilege: UserCreateManyInput
+  users: UserCreateManyWithoutUserGroupInput
+}
+
+input UserGroupCreateWithoutCreateUserInput {
+  name: String!
+  desc: String
+  count: Int
+  createUserId: String!
+  createUserName: String!
+  privilege: UserCreateManyInput
+  users: UserCreateManyWithoutUserGroupInput
+  applyUsers: UserCreateManyWithoutApplyUserGroupInput
+}
+
+input UserGroupCreateWithoutUsersInput {
+  name: String!
+  desc: String
+  count: Int
+  createUserId: String!
+  createUserName: String!
+  createUser: UserCreateOneWithoutCreateUserGroupInput!
+  privilege: UserCreateManyInput
+  applyUsers: UserCreateManyWithoutApplyUserGroupInput
 }
 
 type UserGroupEdge {
@@ -3339,6 +3406,8 @@ enum UserGroupOrderByInput {
   updatedAt_DESC
   name_ASC
   name_DESC
+  desc_ASC
+  desc_DESC
   count_ASC
   count_DESC
   createUserId_ASC
@@ -3352,6 +3421,7 @@ type UserGroupPreviousValues {
   createdAt: DateTime!
   updatedAt: DateTime!
   name: String!
+  desc: String
   count: Int!
   createUserId: String!
   createUserName: String!
@@ -3402,6 +3472,20 @@ input UserGroupScalarWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  desc: String
+  desc_not: String
+  desc_in: [String!]
+  desc_not_in: [String!]
+  desc_lt: String
+  desc_lte: String
+  desc_gt: String
+  desc_gte: String
+  desc_contains: String
+  desc_not_contains: String
+  desc_starts_with: String
+  desc_not_starts_with: String
+  desc_ends_with: String
+  desc_not_ends_with: String
   count: Int
   count_not: Int
   count_in: [Int!]
@@ -3463,26 +3547,31 @@ input UserGroupSubscriptionWhereInput {
 
 input UserGroupUpdateDataInput {
   name: String
+  desc: String
   count: Int
   createUserId: String
   createUserName: String
   createUser: UserUpdateOneRequiredWithoutCreateUserGroupInput
   privilege: UserUpdateManyInput
   users: UserUpdateManyWithoutUserGroupInput
+  applyUsers: UserUpdateManyWithoutApplyUserGroupInput
 }
 
 input UserGroupUpdateInput {
   name: String
+  desc: String
   count: Int
   createUserId: String
   createUserName: String
   createUser: UserUpdateOneRequiredWithoutCreateUserGroupInput
   privilege: UserUpdateManyInput
   users: UserUpdateManyWithoutUserGroupInput
+  applyUsers: UserUpdateManyWithoutApplyUserGroupInput
 }
 
 input UserGroupUpdateManyDataInput {
   name: String
+  desc: String
   count: Int
   createUserId: String
   createUserName: String
@@ -3502,9 +3591,22 @@ input UserGroupUpdateManyInput {
 
 input UserGroupUpdateManyMutationInput {
   name: String
+  desc: String
   count: Int
   createUserId: String
   createUserName: String
+}
+
+input UserGroupUpdateManyWithoutApplyUsersInput {
+  create: [UserGroupCreateWithoutApplyUsersInput!]
+  delete: [UserGroupWhereUniqueInput!]
+  connect: [UserGroupWhereUniqueInput!]
+  set: [UserGroupWhereUniqueInput!]
+  disconnect: [UserGroupWhereUniqueInput!]
+  update: [UserGroupUpdateWithWhereUniqueWithoutApplyUsersInput!]
+  upsert: [UserGroupUpsertWithWhereUniqueWithoutApplyUsersInput!]
+  deleteMany: [UserGroupScalarWhereInput!]
+  updateMany: [UserGroupUpdateManyWithWhereNestedInput!]
 }
 
 input UserGroupUpdateManyWithoutCreateUserInput {
@@ -3543,27 +3645,47 @@ input UserGroupUpdateOneRequiredInput {
   connect: UserGroupWhereUniqueInput
 }
 
-input UserGroupUpdateWithoutCreateUserDataInput {
+input UserGroupUpdateWithoutApplyUsersDataInput {
   name: String
-  count: Int
-  createUserId: String
-  createUserName: String
-  privilege: UserUpdateManyInput
-  users: UserUpdateManyWithoutUserGroupInput
-}
-
-input UserGroupUpdateWithoutUsersDataInput {
-  name: String
+  desc: String
   count: Int
   createUserId: String
   createUserName: String
   createUser: UserUpdateOneRequiredWithoutCreateUserGroupInput
   privilege: UserUpdateManyInput
+  users: UserUpdateManyWithoutUserGroupInput
+}
+
+input UserGroupUpdateWithoutCreateUserDataInput {
+  name: String
+  desc: String
+  count: Int
+  createUserId: String
+  createUserName: String
+  privilege: UserUpdateManyInput
+  users: UserUpdateManyWithoutUserGroupInput
+  applyUsers: UserUpdateManyWithoutApplyUserGroupInput
+}
+
+input UserGroupUpdateWithoutUsersDataInput {
+  name: String
+  desc: String
+  count: Int
+  createUserId: String
+  createUserName: String
+  createUser: UserUpdateOneRequiredWithoutCreateUserGroupInput
+  privilege: UserUpdateManyInput
+  applyUsers: UserUpdateManyWithoutApplyUserGroupInput
 }
 
 input UserGroupUpdateWithWhereUniqueNestedInput {
   where: UserGroupWhereUniqueInput!
   data: UserGroupUpdateDataInput!
+}
+
+input UserGroupUpdateWithWhereUniqueWithoutApplyUsersInput {
+  where: UserGroupWhereUniqueInput!
+  data: UserGroupUpdateWithoutApplyUsersDataInput!
 }
 
 input UserGroupUpdateWithWhereUniqueWithoutCreateUserInput {
@@ -3585,6 +3707,12 @@ input UserGroupUpsertWithWhereUniqueNestedInput {
   where: UserGroupWhereUniqueInput!
   update: UserGroupUpdateDataInput!
   create: UserGroupCreateInput!
+}
+
+input UserGroupUpsertWithWhereUniqueWithoutApplyUsersInput {
+  where: UserGroupWhereUniqueInput!
+  update: UserGroupUpdateWithoutApplyUsersDataInput!
+  create: UserGroupCreateWithoutApplyUsersInput!
 }
 
 input UserGroupUpsertWithWhereUniqueWithoutCreateUserInput {
@@ -3644,6 +3772,20 @@ input UserGroupWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  desc: String
+  desc_not: String
+  desc_in: [String!]
+  desc_not_in: [String!]
+  desc_lt: String
+  desc_lte: String
+  desc_gt: String
+  desc_gte: String
+  desc_contains: String
+  desc_not_contains: String
+  desc_starts_with: String
+  desc_not_starts_with: String
+  desc_ends_with: String
+  desc_not_ends_with: String
   count: Int
   count_not: Int
   count_in: [Int!]
@@ -3687,6 +3829,9 @@ input UserGroupWhereInput {
   users_every: UserWhereInput
   users_some: UserWhereInput
   users_none: UserWhereInput
+  applyUsers_every: UserWhereInput
+  applyUsers_some: UserWhereInput
+  applyUsers_none: UserWhereInput
   AND: [UserGroupWhereInput!]
   OR: [UserGroupWhereInput!]
   NOT: [UserGroupWhereInput!]
@@ -4022,6 +4167,7 @@ input UserUpdateDataInput {
   userGroup: UserGroupUpdateManyWithoutUsersInput
   createUserGroup: UserGroupUpdateManyWithoutCreateUserInput
   privilegeUserGroup: UserGroupUpdateManyInput
+  applyUserGroup: UserGroupUpdateManyWithoutApplyUsersInput
   problems: UserUpdateproblemsInput
   createProblmes: ProblemUpdateManyWithoutCreateUserInput
   submitRecord: SubmitUpdateManyWithoutUserInput
@@ -4051,6 +4197,7 @@ input UserUpdateInput {
   userGroup: UserGroupUpdateManyWithoutUsersInput
   createUserGroup: UserGroupUpdateManyWithoutCreateUserInput
   privilegeUserGroup: UserGroupUpdateManyInput
+  applyUserGroup: UserGroupUpdateManyWithoutApplyUsersInput
   problems: UserUpdateproblemsInput
   createProblmes: ProblemUpdateManyWithoutCreateUserInput
   submitRecord: SubmitUpdateManyWithoutUserInput
@@ -4111,6 +4258,18 @@ input UserUpdateManyMutationInput {
   submit: Int
   solved: Int
   accepted: Int
+}
+
+input UserUpdateManyWithoutApplyUserGroupInput {
+  create: [UserCreateWithoutApplyUserGroupInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutApplyUserGroupInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutApplyUserGroupInput!]
+  deleteMany: [UserScalarWhereInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
 }
 
 input UserUpdateManyWithoutPrivilegeGroupInput {
@@ -4189,6 +4348,35 @@ input UserUpdateproblemsInput {
   set: [Json!]
 }
 
+input UserUpdateWithoutApplyUserGroupDataInput {
+  userId: String
+  password: String
+  status: Int
+  level: Int
+  name: String
+  photo: String
+  email: String
+  desc: String
+  integral: Int
+  coin: Int
+  defaultUserGroup: String
+  defaultUserGroupId: String
+  privilegeBlack: Int
+  privilegeWhite: Int
+  privilegeGroup: PrivilegeGroupUpdateManyWithoutUsersInput
+  UserDiscuss: DiscussUpdateManyWithoutUserInput
+  UserDiscussChilder: DiscussChilderUpdateManyWithoutUserInput
+  userGroup: UserGroupUpdateManyWithoutUsersInput
+  createUserGroup: UserGroupUpdateManyWithoutCreateUserInput
+  privilegeUserGroup: UserGroupUpdateManyInput
+  problems: UserUpdateproblemsInput
+  createProblmes: ProblemUpdateManyWithoutCreateUserInput
+  submitRecord: SubmitUpdateManyWithoutUserInput
+  submit: Int
+  solved: Int
+  accepted: Int
+}
+
 input UserUpdateWithoutCreateProblmesDataInput {
   userId: String
   password: String
@@ -4210,6 +4398,7 @@ input UserUpdateWithoutCreateProblmesDataInput {
   userGroup: UserGroupUpdateManyWithoutUsersInput
   createUserGroup: UserGroupUpdateManyWithoutCreateUserInput
   privilegeUserGroup: UserGroupUpdateManyInput
+  applyUserGroup: UserGroupUpdateManyWithoutApplyUsersInput
   problems: UserUpdateproblemsInput
   submitRecord: SubmitUpdateManyWithoutUserInput
   submit: Int
@@ -4237,6 +4426,7 @@ input UserUpdateWithoutCreateUserGroupDataInput {
   UserDiscussChilder: DiscussChilderUpdateManyWithoutUserInput
   userGroup: UserGroupUpdateManyWithoutUsersInput
   privilegeUserGroup: UserGroupUpdateManyInput
+  applyUserGroup: UserGroupUpdateManyWithoutApplyUsersInput
   problems: UserUpdateproblemsInput
   createProblmes: ProblemUpdateManyWithoutCreateUserInput
   submitRecord: SubmitUpdateManyWithoutUserInput
@@ -4265,6 +4455,7 @@ input UserUpdateWithoutPrivilegeGroupDataInput {
   userGroup: UserGroupUpdateManyWithoutUsersInput
   createUserGroup: UserGroupUpdateManyWithoutCreateUserInput
   privilegeUserGroup: UserGroupUpdateManyInput
+  applyUserGroup: UserGroupUpdateManyWithoutApplyUsersInput
   problems: UserUpdateproblemsInput
   createProblmes: ProblemUpdateManyWithoutCreateUserInput
   submitRecord: SubmitUpdateManyWithoutUserInput
@@ -4294,6 +4485,7 @@ input UserUpdateWithoutSubmitRecordDataInput {
   userGroup: UserGroupUpdateManyWithoutUsersInput
   createUserGroup: UserGroupUpdateManyWithoutCreateUserInput
   privilegeUserGroup: UserGroupUpdateManyInput
+  applyUserGroup: UserGroupUpdateManyWithoutApplyUsersInput
   problems: UserUpdateproblemsInput
   createProblmes: ProblemUpdateManyWithoutCreateUserInput
   submit: Int
@@ -4321,6 +4513,7 @@ input UserUpdateWithoutUserDiscussChilderDataInput {
   userGroup: UserGroupUpdateManyWithoutUsersInput
   createUserGroup: UserGroupUpdateManyWithoutCreateUserInput
   privilegeUserGroup: UserGroupUpdateManyInput
+  applyUserGroup: UserGroupUpdateManyWithoutApplyUsersInput
   problems: UserUpdateproblemsInput
   createProblmes: ProblemUpdateManyWithoutCreateUserInput
   submitRecord: SubmitUpdateManyWithoutUserInput
@@ -4349,6 +4542,7 @@ input UserUpdateWithoutUserDiscussDataInput {
   userGroup: UserGroupUpdateManyWithoutUsersInput
   createUserGroup: UserGroupUpdateManyWithoutCreateUserInput
   privilegeUserGroup: UserGroupUpdateManyInput
+  applyUserGroup: UserGroupUpdateManyWithoutApplyUsersInput
   problems: UserUpdateproblemsInput
   createProblmes: ProblemUpdateManyWithoutCreateUserInput
   submitRecord: SubmitUpdateManyWithoutUserInput
@@ -4377,6 +4571,7 @@ input UserUpdateWithoutUserGroupDataInput {
   UserDiscussChilder: DiscussChilderUpdateManyWithoutUserInput
   createUserGroup: UserGroupUpdateManyWithoutCreateUserInput
   privilegeUserGroup: UserGroupUpdateManyInput
+  applyUserGroup: UserGroupUpdateManyWithoutApplyUsersInput
   problems: UserUpdateproblemsInput
   createProblmes: ProblemUpdateManyWithoutCreateUserInput
   submitRecord: SubmitUpdateManyWithoutUserInput
@@ -4388,6 +4583,11 @@ input UserUpdateWithoutUserGroupDataInput {
 input UserUpdateWithWhereUniqueNestedInput {
   where: UserWhereUniqueInput!
   data: UserUpdateDataInput!
+}
+
+input UserUpdateWithWhereUniqueWithoutApplyUserGroupInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutApplyUserGroupDataInput!
 }
 
 input UserUpdateWithWhereUniqueWithoutPrivilegeGroupInput {
@@ -4429,6 +4629,12 @@ input UserUpsertWithWhereUniqueNestedInput {
   where: UserWhereUniqueInput!
   update: UserUpdateDataInput!
   create: UserCreateInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutApplyUserGroupInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutApplyUserGroupDataInput!
+  create: UserCreateWithoutApplyUserGroupInput!
 }
 
 input UserUpsertWithWhereUniqueWithoutPrivilegeGroupInput {
@@ -4652,6 +4858,9 @@ input UserWhereInput {
   privilegeUserGroup_every: UserGroupWhereInput
   privilegeUserGroup_some: UserGroupWhereInput
   privilegeUserGroup_none: UserGroupWhereInput
+  applyUserGroup_every: UserGroupWhereInput
+  applyUserGroup_some: UserGroupWhereInput
+  applyUserGroup_none: UserGroupWhereInput
   createProblmes_every: ProblemWhereInput
   createProblmes_some: ProblemWhereInput
   createProblmes_none: ProblemWhereInput
