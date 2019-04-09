@@ -24,9 +24,9 @@ export default class Filter extends Component {
   render() {
     return (
       <IceContainer style={styles.container}>
-        <div style={styles.label}>用户组名称:</div>
+        <div style={styles.label}>搜索:</div>
         <Input
-          placeholder="请输入用户组名称"
+          placeholder="可查询用户组名称、描述、创建人等信息"
           hasClear
           trim
           onChange={val => this.setState({val})}

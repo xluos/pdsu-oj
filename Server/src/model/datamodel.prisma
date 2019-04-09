@@ -72,6 +72,7 @@ type Problem {
   outDescribe: String!
   inExample: String!
   outExample: String!
+  integral: Int @default(value: "0")
   limitTime: Int!
   limitMemory: Int!
   createUser: User @relation(name: "ProblemByUser")

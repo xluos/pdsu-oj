@@ -11,7 +11,8 @@ const { Row, Col } = Grid;
     url: '/user/user-group/list',
     method: 'post',
     data: {
-      id: 'all'
+      id: 'all',
+      mini: false
     },
     defaultBindingData: {
       items: []

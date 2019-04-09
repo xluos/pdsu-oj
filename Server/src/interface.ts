@@ -50,19 +50,24 @@ export interface IUserGroup {
 
 // 题目
 export interface IProblem {
+  id?: string
+  integral?: number
+  limitTime: number
+  limitMemory: number
+  sourceId?: string
+  createUserId?: string
   status?: number 
   type?: number 
-  tags?: object
-  title?: string
-  describe?: string
-  inDescribe?: string
-  outDescribe?: string
-  inExample?: string
-  outExample?: string
+  tags: object
+  title: string
+  describe: string
+  inDescribe: string
+  outDescribe: string
+  inExample: string
+  outExample: string
   hint?: string
   source?: string
   example?: string
-  discuss?: IDiscuss[] 
 }
 
 // 讨论

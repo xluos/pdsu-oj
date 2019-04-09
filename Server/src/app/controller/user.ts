@@ -10,7 +10,7 @@ export class UserController {
   service;
 
   @post('/list')
-  async loginUser(ctx): Promise<void> {
+  async getUserList(ctx): Promise<void> {
     // const options: IUser = ctx._body;
     // ctx.validate({
     //   userId: { type: 'string', min: 9, max: 9 },
@@ -82,13 +82,13 @@ export class UserController {
 
   @post('/user-group/list')
   async UserGroup(ctx): Promise<void> {
-    const { id, mini=false } = ctx._body.id;
+    const { id, mini } = ctx._body;
 
     ctx.validate({
       id: 'string',
       mini: 'boolean'
     }, ctx._body)
-    
+
     if (id === 'all') {
       let userGroups: UserGroup[] = await prisma.userGroups()
       ctx.body = { items: userGroups }

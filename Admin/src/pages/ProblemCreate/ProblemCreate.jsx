@@ -2,9 +2,11 @@
 import React from 'react';
 import IceContainer from '@icedesign/container';
 import { Breadcrumb } from '@alifd/next';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import ProblemForm from './components/ProblemForm';
 
-export default function ProblemCreate () {
+
+function ProblemCreate ({location}) {
   return (
     <div className="ProblemCreate-page">
       <IceContainer>
@@ -14,6 +16,9 @@ export default function ProblemCreate () {
           <Breadcrumb.Item>Create</Breadcrumb.Item>
         </Breadcrumb>
       </IceContainer>
+      <ProblemForm problemInfo={location.state} />
     </div>
   );
 }
+
+export default withRouter(ProblemCreate)

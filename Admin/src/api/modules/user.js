@@ -26,3 +26,16 @@ export function createUserGroup(params) {
     return get(response, 'data', {})
   })
 }
+
+/**
+ * 删除用户组用户
+ *
+ * @export
+ * @param {*} params 用户信息
+ * @returns 用户信息
+ */
+export function deleteUserGroupUser(params) {
+  return api.delete('/user/user-group', params).then(response => {
+    return get(response, 'data', {})
+  })
+}

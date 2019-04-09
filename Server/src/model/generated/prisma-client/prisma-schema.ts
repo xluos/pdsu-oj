@@ -1610,6 +1610,7 @@ type Problem {
   outDescribe: String!
   inExample: String!
   outExample: String!
+  integral: Int
   limitTime: Int!
   limitMemory: Int!
   createUser: User
@@ -1636,6 +1637,7 @@ input ProblemCreateInput {
   outDescribe: String!
   inExample: String!
   outExample: String!
+  integral: Int
   limitTime: Int!
   limitMemory: Int!
   createUser: UserCreateOneWithoutCreateProblmesInput
@@ -1666,6 +1668,7 @@ input ProblemCreateWithoutCreateUserInput {
   outDescribe: String!
   inExample: String!
   outExample: String!
+  integral: Int
   limitTime: Int!
   limitMemory: Int!
   hint: String
@@ -1705,6 +1708,8 @@ enum ProblemOrderByInput {
   inExample_DESC
   outExample_ASC
   outExample_DESC
+  integral_ASC
+  integral_DESC
   limitTime_ASC
   limitTime_DESC
   limitMemory_ASC
@@ -1732,6 +1737,7 @@ type ProblemPreviousValues {
   outDescribe: String!
   inExample: String!
   outExample: String!
+  integral: Int
   limitTime: Int!
   limitMemory: Int!
   hint: String
@@ -1871,6 +1877,14 @@ input ProblemScalarWhereInput {
   outExample_not_starts_with: String
   outExample_ends_with: String
   outExample_not_ends_with: String
+  integral: Int
+  integral_not: Int
+  integral_in: [Int!]
+  integral_not_in: [Int!]
+  integral_lt: Int
+  integral_lte: Int
+  integral_gt: Int
+  integral_gte: Int
   limitTime: Int
   limitTime_not: Int
   limitTime_in: [Int!]
@@ -1976,6 +1990,7 @@ input ProblemUpdateDataInput {
   outDescribe: String
   inExample: String
   outExample: String
+  integral: Int
   limitTime: Int
   limitMemory: Int
   createUser: UserUpdateOneWithoutCreateProblmesInput
@@ -1996,6 +2011,7 @@ input ProblemUpdateInput {
   outDescribe: String
   inExample: String
   outExample: String
+  integral: Int
   limitTime: Int
   limitMemory: Int
   createUser: UserUpdateOneWithoutCreateProblmesInput
@@ -2016,6 +2032,7 @@ input ProblemUpdateManyDataInput {
   outDescribe: String
   inExample: String
   outExample: String
+  integral: Int
   limitTime: Int
   limitMemory: Int
   hint: String
@@ -2034,6 +2051,7 @@ input ProblemUpdateManyMutationInput {
   outDescribe: String
   inExample: String
   outExample: String
+  integral: Int
   limitTime: Int
   limitMemory: Int
   hint: String
@@ -2085,6 +2103,7 @@ input ProblemUpdateWithoutCreateUserDataInput {
   outDescribe: String
   inExample: String
   outExample: String
+  integral: Int
   limitTime: Int
   limitMemory: Int
   hint: String
@@ -2241,6 +2260,14 @@ input ProblemWhereInput {
   outExample_not_starts_with: String
   outExample_ends_with: String
   outExample_not_ends_with: String
+  integral: Int
+  integral_not: Int
+  integral_in: [Int!]
+  integral_not_in: [Int!]
+  integral_lt: Int
+  integral_lte: Int
+  integral_gt: Int
+  integral_gte: Int
   limitTime: Int
   limitTime_not: Int
   limitTime_in: [Int!]

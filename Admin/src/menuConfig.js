@@ -43,7 +43,7 @@ const asideMenuConfig = [
         path:  '/admin/user/list',
       },
       {
-        name: '信息编辑',
+        name: '信息管理',
         path:  '/admin/user/create',
       },
       {
@@ -70,7 +70,7 @@ const asideMenuConfig = [
         path:  '/admin/problem/list',
       },
       {
-        name: '信息编辑',
+        name: '题目编辑',
         path:  '/admin/problem/create',
       },
       {
@@ -85,11 +85,11 @@ const asideMenuConfig = [
     icon: 'activity',
     children: [
       {
-        name: '题目列表',
+        name: '竞赛列表',
         path:  '/admin/contest/list',
       },
       {
-        name: '信息编辑',
+        name: '编辑竞赛',
         path:  '/admin/contest/create',
       },
     ],

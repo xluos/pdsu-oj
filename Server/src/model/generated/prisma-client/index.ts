@@ -517,6 +517,8 @@ export type ProblemOrderByInput =
   | "inExample_DESC"
   | "outExample_ASC"
   | "outExample_DESC"
+  | "integral_ASC"
+  | "integral_DESC"
   | "limitTime_ASC"
   | "limitTime_DESC"
   | "limitMemory_ASC"
@@ -1609,6 +1611,7 @@ export interface ProblemUpdateManyMutationInput {
   outDescribe?: String;
   inExample?: String;
   outExample?: String;
+  integral?: Int;
   limitTime?: Int;
   limitMemory?: Int;
   hint?: String;
@@ -1637,6 +1640,7 @@ export interface ProblemUpdateInput {
   outDescribe?: String;
   inExample?: String;
   outExample?: String;
+  integral?: Int;
   limitTime?: Int;
   limitMemory?: Int;
   createUser?: UserUpdateOneWithoutCreateProblmesInput;
@@ -2071,6 +2075,14 @@ export interface ProblemWhereInput {
   outExample_not_starts_with?: String;
   outExample_ends_with?: String;
   outExample_not_ends_with?: String;
+  integral?: Int;
+  integral_not?: Int;
+  integral_in?: Int[] | Int;
+  integral_not_in?: Int[] | Int;
+  integral_lt?: Int;
+  integral_lte?: Int;
+  integral_gt?: Int;
+  integral_gte?: Int;
   limitTime?: Int;
   limitTime_not?: Int;
   limitTime_in?: Int[] | Int;
@@ -2855,6 +2867,7 @@ export interface ProblemCreateWithoutCreateUserInput {
   outDescribe: String;
   inExample: String;
   outExample: String;
+  integral?: Int;
   limitTime: Int;
   limitMemory: Int;
   hint?: String;
@@ -2973,6 +2986,7 @@ export interface ProblemCreateInput {
   outDescribe: String;
   inExample: String;
   outExample: String;
+  integral?: Int;
   limitTime: Int;
   limitMemory: Int;
   createUser?: UserCreateOneWithoutCreateProblmesInput;
@@ -3080,6 +3094,7 @@ export interface ProblemUpdateWithoutCreateUserDataInput {
   outDescribe?: String;
   inExample?: String;
   outExample?: String;
+  integral?: Int;
   limitTime?: Int;
   limitMemory?: Int;
   hint?: String;
@@ -3577,6 +3592,7 @@ export interface ProblemUpdateDataInput {
   outDescribe?: String;
   inExample?: String;
   outExample?: String;
+  integral?: Int;
   limitTime?: Int;
   limitMemory?: Int;
   createUser?: UserUpdateOneWithoutCreateProblmesInput;
@@ -4322,6 +4338,14 @@ export interface ProblemScalarWhereInput {
   outExample_not_starts_with?: String;
   outExample_ends_with?: String;
   outExample_not_ends_with?: String;
+  integral?: Int;
+  integral_not?: Int;
+  integral_in?: Int[] | Int;
+  integral_not_in?: Int[] | Int;
+  integral_lt?: Int;
+  integral_lte?: Int;
+  integral_gt?: Int;
+  integral_gte?: Int;
   limitTime?: Int;
   limitTime_not?: Int;
   limitTime_in?: Int[] | Int;
@@ -4426,6 +4450,7 @@ export interface ProblemUpdateManyDataInput {
   outDescribe?: String;
   inExample?: String;
   outExample?: String;
+  integral?: Int;
   limitTime?: Int;
   limitMemory?: Int;
   hint?: String;
@@ -5820,6 +5845,7 @@ export interface Problem {
   outDescribe: String;
   inExample: String;
   outExample: String;
+  integral?: Int;
   limitTime: Int;
   limitMemory: Int;
   hint?: String;
@@ -5841,6 +5867,7 @@ export interface ProblemPromise extends Promise<Problem>, Fragmentable {
   outDescribe: () => Promise<String>;
   inExample: () => Promise<String>;
   outExample: () => Promise<String>;
+  integral: () => Promise<Int>;
   limitTime: () => Promise<Int>;
   limitMemory: () => Promise<Int>;
   createUser: <T = UserPromise>() => T;
@@ -5876,6 +5903,7 @@ export interface ProblemSubscription
   outDescribe: () => Promise<AsyncIterator<String>>;
   inExample: () => Promise<AsyncIterator<String>>;
   outExample: () => Promise<AsyncIterator<String>>;
+  integral: () => Promise<AsyncIterator<Int>>;
   limitTime: () => Promise<AsyncIterator<Int>>;
   limitMemory: () => Promise<AsyncIterator<Int>>;
   createUser: <T = UserSubscription>() => T;
@@ -6715,6 +6743,7 @@ export interface ProblemPreviousValues {
   outDescribe: String;
   inExample: String;
   outExample: String;
+  integral?: Int;
   limitTime: Int;
   limitMemory: Int;
   hint?: String;
@@ -6738,6 +6767,7 @@ export interface ProblemPreviousValuesPromise
   outDescribe: () => Promise<String>;
   inExample: () => Promise<String>;
   outExample: () => Promise<String>;
+  integral: () => Promise<Int>;
   limitTime: () => Promise<Int>;
   limitMemory: () => Promise<Int>;
   hint: () => Promise<String>;
@@ -6761,6 +6791,7 @@ export interface ProblemPreviousValuesSubscription
   outDescribe: () => Promise<AsyncIterator<String>>;
   inExample: () => Promise<AsyncIterator<String>>;
   outExample: () => Promise<AsyncIterator<String>>;
+  integral: () => Promise<AsyncIterator<Int>>;
   limitTime: () => Promise<AsyncIterator<Int>>;
   limitMemory: () => Promise<AsyncIterator<Int>>;
   hint: () => Promise<AsyncIterator<String>>;
