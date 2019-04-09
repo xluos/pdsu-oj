@@ -1,3 +1,3 @@
-import ContestFrom from './ContestFrom';
+import ContestForm from './ContestForm';
 
-export default ContestFrom;
+export default ContestForm;

@@ -6,26 +6,28 @@ import {
   Grid,
   Button,
   Select,
-  Switch,
   Message,
-  Rating,
+  DatePicker,
 } from '@alifd/next';
 import {
   FormBinderWrapper as IceFormBinderWrapper,
   FormBinder as IceFormBinder,
   FormError as IceFormError,
 } from '@icedesign/form-binder';
-
 import api from "../../../../api";
 import { mixin } from '../../../../lib/Utils';
 import { getUserInfo } from '../../../../lib/Storage';
 import { withRouter } from "react-router-dom";
 
+import moment from 'moment';
+moment.locale('zh-cn');
+
 const { Row, Col } = Grid;
+const { RangePicker } = DatePicker;
 
 @withRouter
-export default class ProblemForm extends Component {
-  static displayName = 'ProblemForm';
+export default class ContestFrom extends Component {
+  static displayName = 'ContestFrom';
 
   static propTypes = {};
 
@@ -34,34 +36,35 @@ export default class ProblemForm extends Component {
   constructor(props) {
     super(props);
     this.userInfo = getUserInfo()
+    const nowTime = moment()
     this.defaultValue = {
       id: '',
-      title: '测试题目',
-      status: 0,
-      tags: [],
-      describe: '描述',
-      inDescribe: '描述',
-      outDescribe: '描述',
-      inExample: '描述',
-      outExample: '描述',
-      integral: 0,
-      limitTime: 1000,
-      limitMemory: 32768,
+      name: '测试竞赛标题',
+      type: 0,
+      contestTime: [nowTime,nowTime],
       hint: '',
-      source: this.userInfo.name,
-      sourceId: this.userInfo.userId,
-      example: '',
+      userGroup: [],
+      contestProblem: [],
+      createUserName: this.userInfo.name,
+      createUserId: this.userInfo.userId,
     }
     this.state = {
-      value: mixin({ ...this.defaultValue}, props.problemInfo),
+      value: mixin({ ...this.defaultValue}, props.contestInfo),
       isCreate: props.problemInfo ? false : true,
       postLoading: false,
-      tagDataSource: [ // TODO 二期改为远程获取
-        {label:'模拟', value:'模拟'},
-        {label:'DP', value:'DP'},
-        {label:'图论', value:'图论'},
-        {label:'最短路', value:'最短路'},
-        {label:'树', value:'树'},
+      userGroupDate: [ // TODO 完善后改为远程获取
+        {label:'公开组1', value:'12212'},
+        {label:'公开组2', value:'123123'},
+        {label:'公开组3', value:'123'},
+        {label:'公开组4', value:'12323'},
+        {label:'公开组5', value:'11113'},
+      ],
+      contestProblemDate: [ // TODO 完善后改为远程获取
+        {label:'题目1', value:'12212'},
+        {label:'题目2', value:'123123'},
+        {label:'题目3', value:'123'},
+        {label:'题目4', value:'12323'},
+        {label:'题目5', value:'11113'},
       ]
     };
   }
@@ -90,14 +93,11 @@ export default class ProblemForm extends Component {
         values.createUserId = this.userInfo.id
       }
       try {
-        const data = await api.problem.setProblem(values)
+        const data = await api.contest.setContest(values)
         if (data.code) {
           throw Error(data.message)
         }
         Message.success(data.message)
-        if (!this.state.isCreate) {
-          this.props.history.goBack()
-        }
       } catch (error) {
         console.error(error)
         Message.error('请求错误，更多信息查看控制台')
@@ -105,12 +105,15 @@ export default class ProblemForm extends Component {
         this.setState({
           postLoading: false,
         })
+        // if (!this.state.isCreate) {
+          this.props.history.push('/admin/contest')
+        // }
       }
     });
   };
 
   render() {
-    const { tagDataSource } = this.state;
+    const { userGroupDate, contestProblemDate } = this.state;
     return (
       <div className="user-form">
         <IceContainer>
@@ -120,7 +123,7 @@ export default class ProblemForm extends Component {
             ref="form"
           >
             <div style={styles.formContent}>
-              <h2 style={styles.formTitle}>{this.state.isCreate ? '创建题目' : '题目信息修改'}</h2>
+              <h2 style={styles.formTitle}>{this.state.isCreate ? '创建比赛' : '比赛信息修改'}</h2>
 
               <Row style={styles.formItem}>
                 <Col xxs="6" s="3" l="3" style={styles.formLabel}>
@@ -143,7 +146,7 @@ export default class ProblemForm extends Component {
                   标题：
                 </Col>
                 <Col s="12" l="10">
-                  <IceFormBinder name="title" required message="必填">
+                  <IceFormBinder name="name" required message="必填">
                     <Input
                       trim
                       size="large"
@@ -151,71 +154,34 @@ export default class ProblemForm extends Component {
                       style={{ width: '100%' }}
                     />
                   </IceFormBinder>
-                  <IceFormError name="title" />
+                  <IceFormError name="name" />
                 </Col>
               </Row>
 
               <Row style={styles.formItem}>
                 <Col xxs="6" s="3" l="3" style={styles.formLabel}>
-                  时间限制：
+                  比赛时间：
                 </Col>
-                <Col s="6" l="4">
-                  <IceFormBinder name="limitTime" required message="必填">
-                    <Input
-                      trim
-                      size="large"
-                      placeholder="请输入题目标题"
-                      addonTextAfter="MS"
-                      style={{ width: '100%' }}
-                    />
+                <Col s="6" l="10">
+                  <IceFormBinder name="contestTime" required message="请选择">
+                    <RangePicker showTime={{  format: 'HH:mm' }} format="YYYY-MM-DD"/>
                   </IceFormBinder>
-                  <IceFormError name="limitTime" />
-                </Col>
-                <Col xxs="2" s="2" l="2" style={styles.formLabel}>
-                  空间限制：
-                </Col>
-                <Col s="6" l="4">
-                  <IceFormBinder name="limitMemory" required message="必填">
-                    <Input
-                      trim
-                      size="large"
-                      placeholder="请输入题目标题"
-                      addonTextAfter="K"
-                      style={{ width: '100%' }}
-                    />
-                  </IceFormBinder>
-                  <IceFormError name="limitMemory" />
+                  <IceFormError name="contestTime" />
                 </Col>
               </Row>
 
               <Row style={styles.formItem}>
                 <Col xxs="6" s="3" l="3" style={styles.formLabel}>
-                  启用题目：
+                  所属用户组：
                 </Col>
                 <Col s="12" l="10">
                   <IceFormBinder
-                    name="status"
-                    valuePropName="checked"
-                    setFieldValue={(selected) => selected === 1 }  // 转换为 boolean 传给 switch
-                    getFieldValue={(checked) => checked ? 1 : 0 }  // 返回值转换为 number 给表单值
-                    >
-                    <Switch />
-                  </IceFormBinder>
-                </Col>
-              </Row>
-
-              <Row style={styles.formItem}>
-                <Col xxs="6" s="3" l="3" style={styles.formLabel}>
-                  题目标签：
-                </Col>
-                <Col s="12" l="10">
-                  <IceFormBinder
-                    name="tags"
+                    name="userGroup"
                     >
                     <Select
                       aria-label="题目标签"
                       mode="tag"
-                      dataSource={tagDataSource}
+                      dataSource={userGroupDate}
                       style={{width: '100%', fontSize: 14}} />
                   </IceFormBinder>
                 </Col>
@@ -223,105 +189,32 @@ export default class ProblemForm extends Component {
 
               <Row style={styles.formItem}>
                 <Col xxs="6" s="3" l="3" style={styles.formLabel}>
-                  题目难度：
+                  所属题目：
                 </Col>
                 <Col s="12" l="10">
                   <IceFormBinder
-                    name="integral"
+                    name="contestProblem"
                     >
-                    <Rating defaultValue={1} size="large" />
+                    <Select
+                      aria-label="题目标签"
+                      mode="tag"
+                      dataSource={contestProblemDate}
+                      style={{width: '100%', fontSize: 14}} />
                   </IceFormBinder>
                 </Col>
               </Row>
 
               <Row style={styles.formItem}>
                 <Col xxs="6" s="3" l="3" style={styles.formLabel}>
-                  题目描述：
-                </Col>
-                <Col s="12" l="10">
-                  <IceFormBinder name="describe" required message="不能为空" >
-                    <Input.TextArea
-                      placeholder="请输入100字以内的描述"
-                      autoHeight={{minRows: 6, maxRows: 30}}
-                      style={{ width: '100%', lineHeight: 1.5, padding: 'padding: 4px 0' }}
-                      aria-label="描述" />
-                  </IceFormBinder>
-                  <IceFormError name="describe" />
-                </Col>
-              </Row>
-              <Row style={styles.formItem}>
-                <Col xxs="6" s="3" l="3" style={styles.formLabel}>
-                  输入描述：
-                </Col>
-                <Col s="12" l="10">
-                  <IceFormBinder name="inDescribe" required message="不能为空">
-                    <Input.TextArea
-                      placeholder="输入描述"
-                      autoHeight={{minRows: 6, maxRows: 30}}
-                      style={{ width: '100%', lineHeight: 1.5, padding: 'padding: 4px 0' }}
-                      aria-label="描述" />
-                  </IceFormBinder>
-                  <IceFormError name="inDescribe" />
-                </Col>
-              </Row>
-              <Row style={styles.formItem}>
-                <Col xxs="6" s="3" l="3" style={styles.formLabel}>
-                  输出描述：
-                </Col>
-                <Col s="12" l="10">
-                  <IceFormBinder name="outDescribe" required message="不能为空">
-                    <Input.TextArea
-                      placeholder="输出描述"
-                      autoHeight={{minRows: 6, maxRows: 30}}
-                      style={{ width: '100%', lineHeight: 1.5, padding: 'padding: 4px 0' }}
-                      aria-label="描述" />
-                  </IceFormBinder>
-                  <IceFormError name="outDescribe" />
-                </Col>
-              </Row>
-              <Row style={styles.formItem}>
-                <Col xxs="6" s="3" l="3" style={styles.formLabel}>
-                  输入样例：
-                </Col>
-                <Col s="12" l="10">
-                  <IceFormBinder name="inExample" required message="不能为空">
-                    <Input.TextArea
-                      placeholder="输入样例"
-                      autoHeight={{minRows: 6, maxRows: 30}}
-                      style={{ width: '100%', lineHeight: 1.5, padding: 'padding: 4px 0' }}
-                      aria-label="描述" />
-                  </IceFormBinder>
-                  <IceFormError name="inExample" />
-                </Col>
-              </Row>
-              <Row style={styles.formItem}>
-                <Col xxs="6" s="3" l="3" style={styles.formLabel}>
-                  输出样例：
-                </Col>
-                <Col s="12" l="10">
-                  <IceFormBinder name="outExample" required message="不能为空">
-                    <Input.TextArea
-                      placeholder="输出样例"
-                      autoHeight={{minRows: 6, maxRows: 30}}
-                      style={{ width: '100%', lineHeight: 1.5, padding: 'padding: 4px 0' }}
-                      aria-label="描述" />
-                  </IceFormBinder>
-                  <IceFormError name="outExample" />
-                </Col>
-              </Row>
-
-
-              <Row style={styles.formItem}>
-                <Col xxs="6" s="3" l="3" style={styles.formLabel}>
-                  提示：
+                  通知/提示：
                 </Col>
                 <Col s="12" l="10">
                   <IceFormBinder name="hint">
                     <Input.TextArea
-                      placeholder="提示信息"
-                      autoHeight={{minRows: 3, maxRows: 6}}
+                      placeholder="请输入100字以内的提示"
+                      rows={4}
                       style={{ width: '100%', lineHeight: 1.5, padding: 'padding: 4px 0' }}
-                      aria-label="提示信息" />
+                      aria-label="描述" />
                   </IceFormBinder>
                 </Col>
               </Row>

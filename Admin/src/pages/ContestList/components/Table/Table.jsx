@@ -3,9 +3,7 @@ import {
   Table,
   Pagination,
   Button,
-  Dialog,
-  Rating,
-  Switch,
+  Progress,
 } from '@alifd/next';
 import IceContainer from '@icedesign/container';
 import DataBinder from '@icedesign/data-binder';
@@ -13,6 +11,10 @@ import FilterTag from '../FilterTag';
 import FilterForm from '../FilterForm';
 import api from '../../../../api/api';
 import { withRouter } from 'react-router';
+
+import moment from 'moment';
+moment.locale('zh-cn');
+
 // Random Numbers
 const random = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -37,8 +39,8 @@ const getData = (length = 10) => {
 
 @withRouter
 @DataBinder({
-  problemTable: {
-    url: '/problem/list',
+  contestTable: {
+    url: '/contest/list',
     method: 'post',
     data: {
     },
@@ -55,7 +57,7 @@ export default class GoodsTable extends Component {
   };
 
   componentDidMount() {
-    this.props.updateBindingData('problemTable', {})
+    this.props.updateBindingData('contestTable', {})
   }
 
   mockApi = (len) => {
@@ -99,13 +101,10 @@ export default class GoodsTable extends Component {
 
 
   handleDetail = (record) => {
-    this.props.history.push(`/problem/${record.id}`)
+    this.props.history.push(`/contest/${record.id}`)
   };
   handleEdit = (record) => {
-    this.props.history.push({ pathname: '/admin/problem/create', state: record})
-  }
-  handleTestData = (record) => {
-    this.props.history.push({ pathname: '/admin/problem/testdata', state: record})
+    this.props.history.push({ pathname: '/admin/contest/create', state: record})
   }
   renderOper = (value, rowIndex, record) => {
     return (
@@ -123,32 +122,31 @@ export default class GoodsTable extends Component {
             >
               编辑
             </Button>
-            <Button
-              type="secondary"
-              onClick={() => this.handleTestData(record)}
-            >
-              测试数据
-            </Button>
       </Button.Group>
     );
   };
 
-  renderIntegral = (value) => {
+  renderBar = (value, rowIndex, record) => {
+    const startTime = new Date(record.startTime).getTime()
+    const endTime = new Date(record.endTime).getTime()
+    const nowTime = new Date().getTime()
+    const percent = (nowTime - startTime) / (endTime - startTime) * 100
+
+    let color = '#2eca9c'
+    if (percent > 60 && percent < 85) {
+      color = '#f1c826'
+    }
+    if (percent > 85) {
+      color = '#ff3000'
+    }
     return (
-      <Rating defaultValue={value} disabled />
+      <Progress percent={percent > 100 ? 100 : percent} color={color}/>
     );
   };
 
-  renderStatus = (value, rowIndex, record) => {
-    return (
-      <div>
-        <Switch defaultChecked={ value === 1 } disabled />
-      </div>
-    );
-  };
   render() {
     const { current } = this.state;
-    const { problemTable } = this.props.bindingData;
+    const { contestTable } = this.props.bindingData;
 
     return (
       <div style={styles.container}>
@@ -157,12 +155,11 @@ export default class GoodsTable extends Component {
           <FilterForm onChange={this.handleFilterChange} />
         </IceContainer>
         <IceContainer>
-          <Table loading={problemTable.__loading} dataSource={problemTable.items} hasBorder={false}>
+          <Table loading={contestTable.__loading} dataSource={contestTable.items} hasBorder={false}>
             <Table.Column title="ID" dataIndex="id" width={250} />
-            <Table.Column title="标题" dataIndex="title" />
-            <Table.Column title="难度" cell={this.renderIntegral} dataIndex="integral" />
-            <Table.Column title="状态" cell={this.renderStatus} dataIndex="status" />
-            <Table.Column title="来源" dataIndex="source" />
+            <Table.Column title="标题" dataIndex="name" />
+            <Table.Column title="截止时间" cell={(val) => moment(val).format('MM-DD HH:mm')} dataIndex="endTime" />
+            <Table.Column title="进度" cell={this.renderBar} dataIndex="status" />
             <Table.Column
               title="操作"
               width={300}

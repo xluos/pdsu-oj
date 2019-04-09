@@ -15,16 +15,17 @@ type User {
   coin: Int! @default(value: "0")
   defaultUserGroup: String @default(value: "")
   defaultUserGroupId: String @default(value: "")
-  privilegeBlack: Int! @default(value: "0")
+  privilegeBlack: Int! @default(value: "0") # 权限黑白名单
   privilegeWhite: Int! @default(value: "0")
-  privilegeGroup: [PrivilegeGroup!]!
+  privilegeCache: Int! @default(value: "0")  # 计算出真实权限的缓存
+  privilegeGroup: [PrivilegeGroup!]! # 所拥有的权限组
   UserDiscuss: [Discuss!]! @relation(name: "DiscussByUser")
   UserDiscussChilder: [DiscussChilder!]! @relation(name: "DiscussChilderByUser")
   userGroup: [UserGroup!]! @relation(name: "UserGroupByUser")
   createUserGroup: [UserGroup!]! @relation(name: "CreateUserGroupByUser") 
   privilegeUserGroup: [UserGroup!]! @relation(name: "CrivilegeUserGroupByUser") 
   applyUserGroup: [UserGroup!]! @relation(name: "ApplyUsersByUser")
-  problems: [Json!]!
+  problems: [Json!]! 
   createProblmes: [Problem] @relation(name: "ProblemByUser")
   submitRecord: [Submit] @relation(name: "SubmitRecordByUser")
   submit: Int! @default(value: "0")
@@ -52,7 +53,7 @@ type UserGroup {
   count: Int! @default(value: "1")
   createUserId: String!
   createUserName: String!
-  createUser: User! @relation(name: "CreateUserGroupByUser")
+  createUser: User! @relation(name: "CreateUserGroupByUser") 
   privilege: [User!]! @relation(name: "PrivilegeUserGroupByUser")
   users: [User!]! @relation(name: "UserGroupByUser")
   applyUsers: [User!]! @relation(name: "ApplyUsersByUser")
@@ -64,21 +65,21 @@ type Problem {
   problemId: Int @default(value: "0")
   createdAt: DateTime!
   updatedAt: DateTime!
-  status: Int! @default(value: "0")
-  type: Int! @default(value: "0"),
-  tags: Json!
+  status: Int! @default(value: "0") # 状态 表示题目是否启用
+  type: Int! @default(value: "0") # 类型用来标记是本地还是其他OJ的题目  0为本地
+  tags: Json! # 题目标签
   title: String!
   describe: String!
   inDescribe: String!
   outDescribe: String!
   inExample: String!
   outExample: String!
-  integral: Int @default(value: "0")
+  integral: Int @default(value: "0") # 题目的难度 即 积分
   limitTime: Int!
   limitMemory: Int!
   createUser: User @relation(name: "ProblemByUser")
   hint: String @default(value: "")
-  source: String @default(value: "")
+  source: String @default(value: "")  # 来源  本地题目为创建者 其他题目为真实来源
   sourceId: String @default(value: "")
   example: String @default(value: "")
   discuss: [Discuss!]! @relation(name: "DiscussByProblem" onDelete: CASCADE)
@@ -98,6 +99,7 @@ type Discuss {
   children: [DiscussChilder!]! @relation(name: "DiscussByChildren" onDelete: CASCADE)
 }
 
+# 评论回复
 type DiscussChilder {
   id: ID! @unique 
   createdAt: DateTime! 
@@ -111,6 +113,7 @@ type DiscussChilder {
   replyUserName: String!
 }
 
+# 提交记录
 type Submit {
   id: ID! @unique 
   createdAt: DateTime! 
@@ -132,18 +135,22 @@ type Submit {
   memory: Int!
 }
 
+# 比赛
 type Contest {
   id: ID! @unique 
   createdAt: DateTime! 
   updatedAt: DateTime!
   name: String!
-  type: Int
+  type: Int @default(value: "0") # 比赛类型 0 原创比赛 1 重放比赛
+  cloneId: String
   createUserName: String!
-  createUserId: Int!
+  createUserId: String!
+  firstStartTime: DateTime!
   startTime: DateTime!
   endTime: DateTime!
-  userGroup: UserGroup!
-  contestProblem: ContestProblem! @relation(name: "ContsetByProblem" onDelete: CASCADE)
+  hint: String
+  userGroup: [UserGroup!]!
+  contestProblem: [ContestProblem!]! @relation(name: "ContsetByProblem" onDelete: CASCADE)
 }
 
 type ContestProblem {

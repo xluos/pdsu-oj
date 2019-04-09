@@ -108,14 +108,18 @@ export interface ISubmit {
 }
 
 export interface IContest {
-  name?: string
-  type?: number
-  createUserName?: string
-  createUserId?: number
-  startTime?: string
-  endTime?: string
-  userGroup?: IUserGroup
-  contestProblem?: IContestProblem 
+  id?: string,
+  contestTime: string[],
+  hint?: string,
+  name: string
+  type: number
+  createUserName: string
+  createUserId: string
+  firstStartTime: string
+  startTime: string
+  endTime: string
+  userGroup: string[]
+  contestProblem: string[] 
 }
 
 export interface IContestProblem {

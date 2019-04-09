@@ -534,6 +534,24 @@ export type ProblemOrderByInput =
   | "example_ASC"
   | "example_DESC";
 
+export type UserGroupOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "desc_ASC"
+  | "desc_DESC"
+  | "count_ASC"
+  | "count_DESC"
+  | "createUserId_ASC"
+  | "createUserId_DESC"
+  | "createUserName_ASC"
+  | "createUserName_DESC";
+
 export type PrivilegeGroupOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -581,6 +599,8 @@ export type UserOrderByInput =
   | "privilegeBlack_DESC"
   | "privilegeWhite_ASC"
   | "privilegeWhite_DESC"
+  | "privilegeCache_ASC"
+  | "privilegeCache_DESC"
   | "submit_ASC"
   | "submit_DESC"
   | "solved_ASC"
@@ -624,24 +644,6 @@ export type DiscussChilderOrderByInput =
   | "replyUserName_ASC"
   | "replyUserName_DESC";
 
-export type UserGroupOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "desc_ASC"
-  | "desc_DESC"
-  | "count_ASC"
-  | "count_DESC"
-  | "createUserId_ASC"
-  | "createUserId_DESC"
-  | "createUserName_ASC"
-  | "createUserName_DESC";
-
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
 export type SubmitOrderByInput =
@@ -676,26 +678,6 @@ export type SubmitOrderByInput =
   | "memory_ASC"
   | "memory_DESC";
 
-export type ContestOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "type_ASC"
-  | "type_DESC"
-  | "createUserName_ASC"
-  | "createUserName_DESC"
-  | "createUserId_ASC"
-  | "createUserId_DESC"
-  | "startTime_ASC"
-  | "startTime_DESC"
-  | "endTime_ASC"
-  | "endTime_DESC";
-
 export type ContestProblemOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -711,6 +693,32 @@ export type ContestProblemOrderByInput =
   | "ac_DESC"
   | "wa_ASC"
   | "wa_DESC";
+
+export type ContestOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "type_ASC"
+  | "type_DESC"
+  | "cloneId_ASC"
+  | "cloneId_DESC"
+  | "createUserName_ASC"
+  | "createUserName_DESC"
+  | "createUserId_ASC"
+  | "createUserId_DESC"
+  | "firstStartTime_ASC"
+  | "firstStartTime_DESC"
+  | "startTime_ASC"
+  | "startTime_DESC"
+  | "endTime_ASC"
+  | "endTime_DESC"
+  | "hint_ASC"
+  | "hint_DESC";
 
 export interface UserUpdateWithWhereUniqueNestedInput {
   where: UserWhereUniqueInput;
@@ -827,121 +835,6 @@ export interface DiscussChilderScalarWhereInput {
   AND?: DiscussChilderScalarWhereInput[] | DiscussChilderScalarWhereInput;
   OR?: DiscussChilderScalarWhereInput[] | DiscussChilderScalarWhereInput;
   NOT?: DiscussChilderScalarWhereInput[] | DiscussChilderScalarWhereInput;
-}
-
-export interface UserGroupWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  updatedAt?: DateTimeInput;
-  updatedAt_not?: DateTimeInput;
-  updatedAt_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_lt?: DateTimeInput;
-  updatedAt_lte?: DateTimeInput;
-  updatedAt_gt?: DateTimeInput;
-  updatedAt_gte?: DateTimeInput;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
-  desc?: String;
-  desc_not?: String;
-  desc_in?: String[] | String;
-  desc_not_in?: String[] | String;
-  desc_lt?: String;
-  desc_lte?: String;
-  desc_gt?: String;
-  desc_gte?: String;
-  desc_contains?: String;
-  desc_not_contains?: String;
-  desc_starts_with?: String;
-  desc_not_starts_with?: String;
-  desc_ends_with?: String;
-  desc_not_ends_with?: String;
-  count?: Int;
-  count_not?: Int;
-  count_in?: Int[] | Int;
-  count_not_in?: Int[] | Int;
-  count_lt?: Int;
-  count_lte?: Int;
-  count_gt?: Int;
-  count_gte?: Int;
-  createUserId?: String;
-  createUserId_not?: String;
-  createUserId_in?: String[] | String;
-  createUserId_not_in?: String[] | String;
-  createUserId_lt?: String;
-  createUserId_lte?: String;
-  createUserId_gt?: String;
-  createUserId_gte?: String;
-  createUserId_contains?: String;
-  createUserId_not_contains?: String;
-  createUserId_starts_with?: String;
-  createUserId_not_starts_with?: String;
-  createUserId_ends_with?: String;
-  createUserId_not_ends_with?: String;
-  createUserName?: String;
-  createUserName_not?: String;
-  createUserName_in?: String[] | String;
-  createUserName_not_in?: String[] | String;
-  createUserName_lt?: String;
-  createUserName_lte?: String;
-  createUserName_gt?: String;
-  createUserName_gte?: String;
-  createUserName_contains?: String;
-  createUserName_not_contains?: String;
-  createUserName_starts_with?: String;
-  createUserName_not_starts_with?: String;
-  createUserName_ends_with?: String;
-  createUserName_not_ends_with?: String;
-  createUser?: UserWhereInput;
-  privilege_every?: UserWhereInput;
-  privilege_some?: UserWhereInput;
-  privilege_none?: UserWhereInput;
-  users_every?: UserWhereInput;
-  users_some?: UserWhereInput;
-  users_none?: UserWhereInput;
-  applyUsers_every?: UserWhereInput;
-  applyUsers_some?: UserWhereInput;
-  applyUsers_none?: UserWhereInput;
-  AND?: UserGroupWhereInput[] | UserGroupWhereInput;
-  OR?: UserGroupWhereInput[] | UserGroupWhereInput;
-  NOT?: UserGroupWhereInput[] | UserGroupWhereInput;
-}
-
-export interface DiscussChilderUpdateManyWithWhereNestedInput {
-  where: DiscussChilderScalarWhereInput;
-  data: DiscussChilderUpdateManyDataInput;
 }
 
 export interface SubmitWhereInput {
@@ -1115,13 +1008,9 @@ export interface SubmitWhereInput {
   NOT?: SubmitWhereInput[] | SubmitWhereInput;
 }
 
-export interface DiscussChilderUpdateManyDataInput {
-  contentRaw?: String;
-  content?: String;
-  userId?: Int;
-  userName?: String;
-  replyUserId?: Int;
-  replyUserName?: String;
+export interface DiscussChilderUpdateManyWithWhereNestedInput {
+  where: DiscussChilderScalarWhereInput;
+  data: DiscussChilderUpdateManyDataInput;
 }
 
 export interface ContestProblemWhereInput {
@@ -1230,24 +1119,13 @@ export interface UserUpdateOneRequiredWithoutCreateUserGroupInput {
   connect?: UserWhereUniqueInput;
 }
 
-export interface UserGroupUpdateManyWithoutCreateUserInput {
-  create?:
-    | UserGroupCreateWithoutCreateUserInput[]
-    | UserGroupCreateWithoutCreateUserInput;
-  delete?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  set?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  disconnect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  update?:
-    | UserGroupUpdateWithWhereUniqueWithoutCreateUserInput[]
-    | UserGroupUpdateWithWhereUniqueWithoutCreateUserInput;
-  upsert?:
-    | UserGroupUpsertWithWhereUniqueWithoutCreateUserInput[]
-    | UserGroupUpsertWithWhereUniqueWithoutCreateUserInput;
-  deleteMany?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
-  updateMany?:
-    | UserGroupUpdateManyWithWhereNestedInput[]
-    | UserGroupUpdateManyWithWhereNestedInput;
+export interface DiscussChilderUpdateManyDataInput {
+  contentRaw?: String;
+  content?: String;
+  userId?: Int;
+  userName?: String;
+  replyUserId?: Int;
+  replyUserName?: String;
 }
 
 export interface UserUpdateWithoutCreateUserGroupDataInput {
@@ -1265,6 +1143,7 @@ export interface UserUpdateWithoutCreateUserGroupDataInput {
   defaultUserGroupId?: String;
   privilegeBlack?: Int;
   privilegeWhite?: Int;
+  privilegeCache?: Int;
   privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
   UserDiscuss?: DiscussUpdateManyWithoutUserInput;
   UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
@@ -1314,20 +1193,330 @@ export interface PrivilegeGroupUpdateManyWithoutUsersInput {
     | PrivilegeGroupUpdateManyWithWhereNestedInput;
 }
 
-export interface UserSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+export interface PrivilegeGroupWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  privilege?: Int;
+  privilege_not?: Int;
+  privilege_in?: Int[] | Int;
+  privilege_not_in?: Int[] | Int;
+  privilege_lt?: Int;
+  privilege_lte?: Int;
+  privilege_gt?: Int;
+  privilege_gte?: Int;
+  users_every?: UserWhereInput;
+  users_some?: UserWhereInput;
+  users_none?: UserWhereInput;
+  AND?: PrivilegeGroupWhereInput[] | PrivilegeGroupWhereInput;
+  OR?: PrivilegeGroupWhereInput[] | PrivilegeGroupWhereInput;
+  NOT?: PrivilegeGroupWhereInput[] | PrivilegeGroupWhereInput;
 }
 
 export interface PrivilegeGroupUpdateWithWhereUniqueWithoutUsersInput {
   where: PrivilegeGroupWhereUniqueInput;
   data: PrivilegeGroupUpdateWithoutUsersDataInput;
+}
+
+export interface UserWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  userId?: String;
+  userId_not?: String;
+  userId_in?: String[] | String;
+  userId_not_in?: String[] | String;
+  userId_lt?: String;
+  userId_lte?: String;
+  userId_gt?: String;
+  userId_gte?: String;
+  userId_contains?: String;
+  userId_not_contains?: String;
+  userId_starts_with?: String;
+  userId_not_starts_with?: String;
+  userId_ends_with?: String;
+  userId_not_ends_with?: String;
+  password?: String;
+  password_not?: String;
+  password_in?: String[] | String;
+  password_not_in?: String[] | String;
+  password_lt?: String;
+  password_lte?: String;
+  password_gt?: String;
+  password_gte?: String;
+  password_contains?: String;
+  password_not_contains?: String;
+  password_starts_with?: String;
+  password_not_starts_with?: String;
+  password_ends_with?: String;
+  password_not_ends_with?: String;
+  status?: Int;
+  status_not?: Int;
+  status_in?: Int[] | Int;
+  status_not_in?: Int[] | Int;
+  status_lt?: Int;
+  status_lte?: Int;
+  status_gt?: Int;
+  status_gte?: Int;
+  level?: Int;
+  level_not?: Int;
+  level_in?: Int[] | Int;
+  level_not_in?: Int[] | Int;
+  level_lt?: Int;
+  level_lte?: Int;
+  level_gt?: Int;
+  level_gte?: Int;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  photo?: String;
+  photo_not?: String;
+  photo_in?: String[] | String;
+  photo_not_in?: String[] | String;
+  photo_lt?: String;
+  photo_lte?: String;
+  photo_gt?: String;
+  photo_gte?: String;
+  photo_contains?: String;
+  photo_not_contains?: String;
+  photo_starts_with?: String;
+  photo_not_starts_with?: String;
+  photo_ends_with?: String;
+  photo_not_ends_with?: String;
+  email?: String;
+  email_not?: String;
+  email_in?: String[] | String;
+  email_not_in?: String[] | String;
+  email_lt?: String;
+  email_lte?: String;
+  email_gt?: String;
+  email_gte?: String;
+  email_contains?: String;
+  email_not_contains?: String;
+  email_starts_with?: String;
+  email_not_starts_with?: String;
+  email_ends_with?: String;
+  email_not_ends_with?: String;
+  desc?: String;
+  desc_not?: String;
+  desc_in?: String[] | String;
+  desc_not_in?: String[] | String;
+  desc_lt?: String;
+  desc_lte?: String;
+  desc_gt?: String;
+  desc_gte?: String;
+  desc_contains?: String;
+  desc_not_contains?: String;
+  desc_starts_with?: String;
+  desc_not_starts_with?: String;
+  desc_ends_with?: String;
+  desc_not_ends_with?: String;
+  integral?: Int;
+  integral_not?: Int;
+  integral_in?: Int[] | Int;
+  integral_not_in?: Int[] | Int;
+  integral_lt?: Int;
+  integral_lte?: Int;
+  integral_gt?: Int;
+  integral_gte?: Int;
+  coin?: Int;
+  coin_not?: Int;
+  coin_in?: Int[] | Int;
+  coin_not_in?: Int[] | Int;
+  coin_lt?: Int;
+  coin_lte?: Int;
+  coin_gt?: Int;
+  coin_gte?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroup_not?: String;
+  defaultUserGroup_in?: String[] | String;
+  defaultUserGroup_not_in?: String[] | String;
+  defaultUserGroup_lt?: String;
+  defaultUserGroup_lte?: String;
+  defaultUserGroup_gt?: String;
+  defaultUserGroup_gte?: String;
+  defaultUserGroup_contains?: String;
+  defaultUserGroup_not_contains?: String;
+  defaultUserGroup_starts_with?: String;
+  defaultUserGroup_not_starts_with?: String;
+  defaultUserGroup_ends_with?: String;
+  defaultUserGroup_not_ends_with?: String;
+  defaultUserGroupId?: String;
+  defaultUserGroupId_not?: String;
+  defaultUserGroupId_in?: String[] | String;
+  defaultUserGroupId_not_in?: String[] | String;
+  defaultUserGroupId_lt?: String;
+  defaultUserGroupId_lte?: String;
+  defaultUserGroupId_gt?: String;
+  defaultUserGroupId_gte?: String;
+  defaultUserGroupId_contains?: String;
+  defaultUserGroupId_not_contains?: String;
+  defaultUserGroupId_starts_with?: String;
+  defaultUserGroupId_not_starts_with?: String;
+  defaultUserGroupId_ends_with?: String;
+  defaultUserGroupId_not_ends_with?: String;
+  privilegeBlack?: Int;
+  privilegeBlack_not?: Int;
+  privilegeBlack_in?: Int[] | Int;
+  privilegeBlack_not_in?: Int[] | Int;
+  privilegeBlack_lt?: Int;
+  privilegeBlack_lte?: Int;
+  privilegeBlack_gt?: Int;
+  privilegeBlack_gte?: Int;
+  privilegeWhite?: Int;
+  privilegeWhite_not?: Int;
+  privilegeWhite_in?: Int[] | Int;
+  privilegeWhite_not_in?: Int[] | Int;
+  privilegeWhite_lt?: Int;
+  privilegeWhite_lte?: Int;
+  privilegeWhite_gt?: Int;
+  privilegeWhite_gte?: Int;
+  privilegeCache?: Int;
+  privilegeCache_not?: Int;
+  privilegeCache_in?: Int[] | Int;
+  privilegeCache_not_in?: Int[] | Int;
+  privilegeCache_lt?: Int;
+  privilegeCache_lte?: Int;
+  privilegeCache_gt?: Int;
+  privilegeCache_gte?: Int;
+  privilegeGroup_every?: PrivilegeGroupWhereInput;
+  privilegeGroup_some?: PrivilegeGroupWhereInput;
+  privilegeGroup_none?: PrivilegeGroupWhereInput;
+  UserDiscuss_every?: DiscussWhereInput;
+  UserDiscuss_some?: DiscussWhereInput;
+  UserDiscuss_none?: DiscussWhereInput;
+  UserDiscussChilder_every?: DiscussChilderWhereInput;
+  UserDiscussChilder_some?: DiscussChilderWhereInput;
+  UserDiscussChilder_none?: DiscussChilderWhereInput;
+  userGroup_every?: UserGroupWhereInput;
+  userGroup_some?: UserGroupWhereInput;
+  userGroup_none?: UserGroupWhereInput;
+  createUserGroup_every?: UserGroupWhereInput;
+  createUserGroup_some?: UserGroupWhereInput;
+  createUserGroup_none?: UserGroupWhereInput;
+  privilegeUserGroup_every?: UserGroupWhereInput;
+  privilegeUserGroup_some?: UserGroupWhereInput;
+  privilegeUserGroup_none?: UserGroupWhereInput;
+  applyUserGroup_every?: UserGroupWhereInput;
+  applyUserGroup_some?: UserGroupWhereInput;
+  applyUserGroup_none?: UserGroupWhereInput;
+  createProblmes_every?: ProblemWhereInput;
+  createProblmes_some?: ProblemWhereInput;
+  createProblmes_none?: ProblemWhereInput;
+  submitRecord_every?: SubmitWhereInput;
+  submitRecord_some?: SubmitWhereInput;
+  submitRecord_none?: SubmitWhereInput;
+  submit?: Int;
+  submit_not?: Int;
+  submit_in?: Int[] | Int;
+  submit_not_in?: Int[] | Int;
+  submit_lt?: Int;
+  submit_lte?: Int;
+  submit_gt?: Int;
+  submit_gte?: Int;
+  solved?: Int;
+  solved_not?: Int;
+  solved_in?: Int[] | Int;
+  solved_not_in?: Int[] | Int;
+  solved_lt?: Int;
+  solved_lte?: Int;
+  solved_gt?: Int;
+  solved_gte?: Int;
+  accepted?: Int;
+  accepted_not?: Int;
+  accepted_in?: Int[] | Int;
+  accepted_not_in?: Int[] | Int;
+  accepted_lt?: Int;
+  accepted_lte?: Int;
+  accepted_gt?: Int;
+  accepted_gte?: Int;
+  AND?: UserWhereInput[] | UserWhereInput;
+  OR?: UserWhereInput[] | UserWhereInput;
+  NOT?: UserWhereInput[] | UserWhereInput;
+}
+
+export interface PrivilegeGroupUpdateWithoutUsersDataInput {
+  name?: String;
+  privilege?: Int;
 }
 
 export interface ProblemSubscriptionWhereInput {
@@ -1341,49 +1530,27 @@ export interface ProblemSubscriptionWhereInput {
   NOT?: ProblemSubscriptionWhereInput[] | ProblemSubscriptionWhereInput;
 }
 
-export interface PrivilegeGroupUpdateWithoutUsersDataInput {
-  name?: String;
-  privilege?: Int;
-}
-
-export interface DiscussChilderSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: DiscussChilderWhereInput;
-  AND?:
-    | DiscussChilderSubscriptionWhereInput[]
-    | DiscussChilderSubscriptionWhereInput;
-  OR?:
-    | DiscussChilderSubscriptionWhereInput[]
-    | DiscussChilderSubscriptionWhereInput;
-  NOT?:
-    | DiscussChilderSubscriptionWhereInput[]
-    | DiscussChilderSubscriptionWhereInput;
-}
-
 export interface PrivilegeGroupUpsertWithWhereUniqueWithoutUsersInput {
   where: PrivilegeGroupWhereUniqueInput;
   update: PrivilegeGroupUpdateWithoutUsersDataInput;
   create: PrivilegeGroupCreateWithoutUsersInput;
 }
 
-export interface ContestProblemSubscriptionWhereInput {
+export interface PrivilegeGroupSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: ContestProblemWhereInput;
+  node?: PrivilegeGroupWhereInput;
   AND?:
-    | ContestProblemSubscriptionWhereInput[]
-    | ContestProblemSubscriptionWhereInput;
+    | PrivilegeGroupSubscriptionWhereInput[]
+    | PrivilegeGroupSubscriptionWhereInput;
   OR?:
-    | ContestProblemSubscriptionWhereInput[]
-    | ContestProblemSubscriptionWhereInput;
+    | PrivilegeGroupSubscriptionWhereInput[]
+    | PrivilegeGroupSubscriptionWhereInput;
   NOT?:
-    | ContestProblemSubscriptionWhereInput[]
-    | ContestProblemSubscriptionWhereInput;
+    | PrivilegeGroupSubscriptionWhereInput[]
+    | PrivilegeGroupSubscriptionWhereInput;
 }
 
 export interface PrivilegeGroupScalarWhereInput {
@@ -1444,12 +1611,15 @@ export interface PrivilegeGroupScalarWhereInput {
   NOT?: PrivilegeGroupScalarWhereInput[] | PrivilegeGroupScalarWhereInput;
 }
 
-export interface UserGroupUpdateManyMutationInput {
-  name?: String;
-  desc?: String;
-  count?: Int;
-  createUserId?: String;
-  createUserName?: String;
+export interface DiscussSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: DiscussWhereInput;
+  AND?: DiscussSubscriptionWhereInput[] | DiscussSubscriptionWhereInput;
+  OR?: DiscussSubscriptionWhereInput[] | DiscussSubscriptionWhereInput;
+  NOT?: DiscussSubscriptionWhereInput[] | DiscussSubscriptionWhereInput;
 }
 
 export interface PrivilegeGroupUpdateManyWithWhereNestedInput {
@@ -1457,25 +1627,15 @@ export interface PrivilegeGroupUpdateManyWithWhereNestedInput {
   data: PrivilegeGroupUpdateManyDataInput;
 }
 
-export interface UserUpdateManyMutationInput {
-  userId?: String;
-  password?: String;
-  status?: Int;
-  level?: Int;
-  name?: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral?: Int;
-  coin?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack?: Int;
-  privilegeWhite?: Int;
-  problems?: UserUpdateproblemsInput;
-  submit?: Int;
-  solved?: Int;
-  accepted?: Int;
+export interface ContestSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ContestWhereInput;
+  AND?: ContestSubscriptionWhereInput[] | ContestSubscriptionWhereInput;
+  OR?: ContestSubscriptionWhereInput[] | ContestSubscriptionWhereInput;
+  NOT?: ContestSubscriptionWhereInput[] | ContestSubscriptionWhereInput;
 }
 
 export interface PrivilegeGroupUpdateManyDataInput {
@@ -1483,19 +1643,16 @@ export interface PrivilegeGroupUpdateManyDataInput {
   privilege?: Int;
 }
 
-export interface SubmitUpdateManyMutationInput {
-  userId?: Int;
-  userName?: String;
-  problemId?: String;
-  problemTitle?: String;
-  language?: Int;
-  code?: String;
-  result?: String;
-  errorInfo?: String;
-  limitTime?: Int;
-  limitMemory?: Int;
-  time?: Int;
-  memory?: Int;
+export interface UserGroupUpdateInput {
+  name?: String;
+  desc?: String;
+  count?: Int;
+  createUserId?: String;
+  createUserName?: String;
+  createUser?: UserUpdateOneRequiredWithoutCreateUserGroupInput;
+  privilege?: UserUpdateManyInput;
+  users?: UserUpdateManyWithoutUserGroupInput;
+  applyUsers?: UserUpdateManyWithoutApplyUserGroupInput;
 }
 
 export interface DiscussUpdateManyWithoutUserInput {
@@ -1516,22 +1673,45 @@ export interface DiscussUpdateManyWithoutUserInput {
     | DiscussUpdateManyWithWhereNestedInput;
 }
 
-export type ContestProblemWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
+export interface UserUpdateInput {
+  userId?: String;
+  password?: String;
+  status?: Int;
+  level?: Int;
+  name?: String;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  privilegeCache?: Int;
+  privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
+  UserDiscuss?: DiscussUpdateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
+  userGroup?: UserGroupUpdateManyWithoutUsersInput;
+  createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupUpdateManyInput;
+  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
+  problems?: UserUpdateproblemsInput;
+  createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
+  submitRecord?: SubmitUpdateManyWithoutUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
+}
 
 export interface DiscussUpdateWithWhereUniqueWithoutUserInput {
   where: DiscussWhereUniqueInput;
   data: DiscussUpdateWithoutUserDataInput;
 }
 
-export interface UserUpdateOneWithoutSubmitRecordInput {
-  create?: UserCreateWithoutSubmitRecordInput;
-  update?: UserUpdateWithoutSubmitRecordDataInput;
-  upsert?: UserUpsertWithoutSubmitRecordInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: UserWhereUniqueInput;
+export interface UserUpsertWithoutSubmitRecordInput {
+  update: UserUpdateWithoutSubmitRecordDataInput;
+  create: UserCreateWithoutSubmitRecordInput;
 }
 
 export interface DiscussUpdateWithoutUserDataInput {
@@ -1542,12 +1722,12 @@ export interface DiscussUpdateWithoutUserDataInput {
   children?: DiscussChilderUpdateManyInput;
 }
 
-export interface UserCreateWithoutSubmitRecordInput {
-  userId: String;
-  password: String;
+export interface UserUpdateWithoutSubmitRecordDataInput {
+  userId?: String;
+  password?: String;
   status?: Int;
   level?: Int;
-  name: String;
+  name?: String;
   photo?: String;
   email?: String;
   desc?: String;
@@ -1557,15 +1737,16 @@ export interface UserCreateWithoutSubmitRecordInput {
   defaultUserGroupId?: String;
   privilegeBlack?: Int;
   privilegeWhite?: Int;
-  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
-  UserDiscuss?: DiscussCreateManyWithoutUserInput;
-  UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
-  userGroup?: UserGroupCreateManyWithoutUsersInput;
-  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
-  privilegeUserGroup?: UserGroupCreateManyInput;
-  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
-  problems?: UserCreateproblemsInput;
-  createProblmes?: ProblemCreateManyWithoutCreateUserInput;
+  privilegeCache?: Int;
+  privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
+  UserDiscuss?: DiscussUpdateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
+  userGroup?: UserGroupUpdateManyWithoutUsersInput;
+  createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupUpdateManyInput;
+  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
+  problems?: UserUpdateproblemsInput;
+  createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
   submit?: Int;
   solved?: Int;
   accepted?: Int;
@@ -1593,14 +1774,94 @@ export interface DiscussChilderUpdateManyInput {
     | DiscussChilderUpdateManyWithWhereNestedInput;
 }
 
-export interface UserCreateOneWithoutSubmitRecordInput {
-  create?: UserCreateWithoutSubmitRecordInput;
-  connect?: UserWhereUniqueInput;
+export interface SubmitUpdateInput {
+  user?: UserUpdateOneWithoutSubmitRecordInput;
+  userId?: Int;
+  userName?: String;
+  problem?: ProblemUpdateOneRequiredInput;
+  problemId?: String;
+  problemTitle?: String;
+  language?: Int;
+  code?: String;
+  result?: String;
+  errorInfo?: String;
+  contest?: ContestUpdateOneInput;
+  limitTime?: Int;
+  limitMemory?: Int;
+  time?: Int;
+  memory?: Int;
 }
 
 export interface DiscussChilderUpdateWithWhereUniqueNestedInput {
   where: DiscussChilderWhereUniqueInput;
   data: DiscussChilderUpdateDataInput;
+}
+
+export interface UserCreateWithoutSubmitRecordInput {
+  userId: String;
+  password: String;
+  status?: Int;
+  level?: Int;
+  name: String;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  privilegeCache?: Int;
+  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
+  UserDiscuss?: DiscussCreateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
+  userGroup?: UserGroupCreateManyWithoutUsersInput;
+  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupCreateManyInput;
+  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
+  problems?: UserCreateproblemsInput;
+  createProblmes?: ProblemCreateManyWithoutCreateUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
+}
+
+export interface DiscussChilderUpdateDataInput {
+  contentRaw?: String;
+  content?: String;
+  user?: UserUpdateOneWithoutUserDiscussChilderInput;
+  userId?: Int;
+  userName?: String;
+  replyUserId?: Int;
+  replyUserName?: String;
+}
+
+export interface SubmitCreateInput {
+  user?: UserCreateOneWithoutSubmitRecordInput;
+  userId: Int;
+  userName: String;
+  problem: ProblemCreateOneInput;
+  problemId: String;
+  problemTitle: String;
+  language: Int;
+  code: String;
+  result: String;
+  errorInfo?: String;
+  contest?: ContestCreateOneInput;
+  limitTime: Int;
+  limitMemory: Int;
+  time: Int;
+  memory: Int;
+}
+
+export interface UserUpdateOneWithoutUserDiscussChilderInput {
+  create?: UserCreateWithoutUserDiscussChilderInput;
+  update?: UserUpdateWithoutUserDiscussChilderDataInput;
+  upsert?: UserUpsertWithoutUserDiscussChilderInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
 }
 
 export interface ProblemUpdateManyMutationInput {
@@ -1623,53 +1884,6 @@ export interface ProblemUpdateManyMutationInput {
   example?: String;
 }
 
-export interface DiscussChilderUpdateDataInput {
-  contentRaw?: String;
-  content?: String;
-  user?: UserUpdateOneWithoutUserDiscussChilderInput;
-  userId?: Int;
-  userName?: String;
-  replyUserId?: Int;
-  replyUserName?: String;
-}
-
-export interface ProblemUpdateInput {
-  problemId?: Int;
-  status?: Int;
-  type?: Int;
-  tags?: Json;
-  title?: String;
-  describe?: String;
-  inDescribe?: String;
-  outDescribe?: String;
-  inExample?: String;
-  outExample?: String;
-  integral?: Int;
-  limitTime?: Int;
-  limitMemory?: Int;
-  createUser?: UserUpdateOneWithoutCreateProblmesInput;
-  hint?: String;
-  source?: String;
-  sourceId?: String;
-  example?: String;
-  discuss?: DiscussUpdateManyInput;
-}
-
-export interface UserUpdateOneWithoutUserDiscussChilderInput {
-  create?: UserCreateWithoutUserDiscussChilderInput;
-  update?: UserUpdateWithoutUserDiscussChilderDataInput;
-  upsert?: UserUpsertWithoutUserDiscussChilderInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface UserUpsertWithWhereUniqueWithoutPrivilegeGroupInput {
-  where: UserWhereUniqueInput;
-  update: UserUpdateWithoutPrivilegeGroupDataInput;
-  create: UserCreateWithoutPrivilegeGroupInput;
-}
-
 export interface UserUpdateWithoutUserDiscussChilderDataInput {
   userId?: String;
   password?: String;
@@ -1685,6 +1899,7 @@ export interface UserUpdateWithoutUserDiscussChilderDataInput {
   defaultUserGroupId?: String;
   privilegeBlack?: Int;
   privilegeWhite?: Int;
+  privilegeCache?: Int;
   privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
   UserDiscuss?: DiscussUpdateManyWithoutUserInput;
   userGroup?: UserGroupUpdateManyWithoutUsersInput;
@@ -1699,33 +1914,9 @@ export interface UserUpdateWithoutUserDiscussChilderDataInput {
   accepted?: Int;
 }
 
-export interface UserUpdateWithoutPrivilegeGroupDataInput {
-  userId?: String;
-  password?: String;
-  status?: Int;
-  level?: Int;
+export interface PrivilegeGroupUpdateManyMutationInput {
   name?: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral?: Int;
-  coin?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack?: Int;
-  privilegeWhite?: Int;
-  UserDiscuss?: DiscussUpdateManyWithoutUserInput;
-  UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
-  userGroup?: UserGroupUpdateManyWithoutUsersInput;
-  createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
-  privilegeUserGroup?: UserGroupUpdateManyInput;
-  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
-  problems?: UserUpdateproblemsInput;
-  createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
-  submitRecord?: SubmitUpdateManyWithoutUserInput;
-  submit?: Int;
-  solved?: Int;
-  accepted?: Int;
+  privilege?: Int;
 }
 
 export interface UserGroupUpdateManyWithoutUsersInput {
@@ -1748,6 +1939,33 @@ export interface UserGroupUpdateManyWithoutUsersInput {
     | UserGroupUpdateManyWithWhereNestedInput;
 }
 
+export interface UserUpsertWithWhereUniqueWithoutPrivilegeGroupInput {
+  where: UserWhereUniqueInput;
+  update: UserUpdateWithoutPrivilegeGroupDataInput;
+  create: UserCreateWithoutPrivilegeGroupInput;
+}
+
+export interface UserGroupUpdateWithWhereUniqueWithoutUsersInput {
+  where: UserGroupWhereUniqueInput;
+  data: UserGroupUpdateWithoutUsersDataInput;
+}
+
+export interface UserUpdateWithWhereUniqueWithoutPrivilegeGroupInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateWithoutPrivilegeGroupDataInput;
+}
+
+export interface UserGroupUpdateWithoutUsersDataInput {
+  name?: String;
+  desc?: String;
+  count?: Int;
+  createUserId?: String;
+  createUserName?: String;
+  createUser?: UserUpdateOneRequiredWithoutCreateUserGroupInput;
+  privilege?: UserUpdateManyInput;
+  applyUsers?: UserUpdateManyWithoutApplyUserGroupInput;
+}
+
 export interface UserUpdateManyWithoutPrivilegeGroupInput {
   create?:
     | UserCreateWithoutPrivilegeGroupInput[]
@@ -1768,35 +1986,6 @@ export interface UserUpdateManyWithoutPrivilegeGroupInput {
     | UserUpdateManyWithWhereNestedInput;
 }
 
-export interface UserGroupUpdateWithWhereUniqueWithoutUsersInput {
-  where: UserGroupWhereUniqueInput;
-  data: UserGroupUpdateWithoutUsersDataInput;
-}
-
-export interface PrivilegeGroupUpdateInput {
-  name?: String;
-  privilege?: Int;
-  users?: UserUpdateManyWithoutPrivilegeGroupInput;
-}
-
-export interface UserGroupUpdateWithoutUsersDataInput {
-  name?: String;
-  desc?: String;
-  count?: Int;
-  createUserId?: String;
-  createUserName?: String;
-  createUser?: UserUpdateOneRequiredWithoutCreateUserGroupInput;
-  privilege?: UserUpdateManyInput;
-  applyUsers?: UserUpdateManyWithoutApplyUserGroupInput;
-}
-
-export interface UserCreateManyWithoutPrivilegeGroupInput {
-  create?:
-    | UserCreateWithoutPrivilegeGroupInput[]
-    | UserCreateWithoutPrivilegeGroupInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-}
-
 export interface UserUpdateManyInput {
   create?: UserCreateInput[] | UserCreateInput;
   update?:
@@ -1815,25 +2004,47 @@ export interface UserUpdateManyInput {
     | UserUpdateManyWithWhereNestedInput;
 }
 
-export interface PrivilegeGroupCreateInput {
+export interface UserCreateWithoutPrivilegeGroupInput {
+  userId: String;
+  password: String;
+  status?: Int;
+  level?: Int;
   name: String;
-  privilege: Int;
-  users?: UserCreateManyWithoutPrivilegeGroupInput;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  privilegeCache?: Int;
+  UserDiscuss?: DiscussCreateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
+  userGroup?: UserGroupCreateManyWithoutUsersInput;
+  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupCreateManyInput;
+  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
+  problems?: UserCreateproblemsInput;
+  createProblmes?: ProblemCreateManyWithoutCreateUserInput;
+  submitRecord?: SubmitCreateManyWithoutUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
 }
 
-export interface UserUpsertWithoutCreateUserGroupInput {
-  update: UserUpdateWithoutCreateUserGroupDataInput;
-  create: UserCreateWithoutCreateUserGroupInput;
+export interface UserGroupUpsertWithWhereUniqueNestedInput {
+  where: UserGroupWhereUniqueInput;
+  update: UserGroupUpdateDataInput;
+  create: UserGroupCreateInput;
 }
 
-export interface DiscussChilderUpdateInput {
-  contentRaw?: String;
-  content?: String;
-  user?: UserUpdateOneWithoutUserDiscussChilderInput;
-  userId?: Int;
-  userName?: String;
-  replyUserId?: Int;
-  replyUserName?: String;
+export interface UserCreateManyWithoutPrivilegeGroupInput {
+  create?:
+    | UserCreateWithoutPrivilegeGroupInput[]
+    | UserCreateWithoutPrivilegeGroupInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
 }
 
 export interface UserUpdateDataInput {
@@ -1851,6 +2062,7 @@ export interface UserUpdateDataInput {
   defaultUserGroupId?: String;
   privilegeBlack?: Int;
   privilegeWhite?: Int;
+  privilegeCache?: Int;
   privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
   UserDiscuss?: DiscussUpdateManyWithoutUserInput;
   UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
@@ -1866,11 +2078,13 @@ export interface UserUpdateDataInput {
   accepted?: Int;
 }
 
-export interface DiscussUpdateManyMutationInput {
+export interface DiscussChilderUpdateManyMutationInput {
   contentRaw?: String;
   content?: String;
   userId?: Int;
   userName?: String;
+  replyUserId?: Int;
+  replyUserName?: String;
 }
 
 export interface DiscussChilderUpdateManyWithoutUserInput {
@@ -1897,11 +2111,14 @@ export interface DiscussChilderUpdateManyWithoutUserInput {
     | DiscussChilderUpdateManyWithWhereNestedInput;
 }
 
-export interface ContestProblemUpdateManyMutationInput {
-  problemId?: String;
-  problemTitle?: String;
-  ac?: Int;
-  wa?: Int;
+export interface DiscussChilderUpdateInput {
+  contentRaw?: String;
+  content?: String;
+  user?: UserUpdateOneWithoutUserDiscussChilderInput;
+  userId?: Int;
+  userName?: String;
+  replyUserId?: Int;
+  replyUserName?: String;
 }
 
 export interface DiscussChilderUpdateWithWhereUniqueWithoutUserInput {
@@ -1909,12 +2126,13 @@ export interface DiscussChilderUpdateWithWhereUniqueWithoutUserInput {
   data: DiscussChilderUpdateWithoutUserDataInput;
 }
 
-export interface ContestProblemUpdateInput {
-  problem?: ProblemUpdateOneInput;
-  problemId?: String;
-  problemTitle?: String;
-  ac?: Int;
-  wa?: Int;
+export interface DiscussUpdateInput {
+  contentRaw?: String;
+  content?: String;
+  user?: UserUpdateOneWithoutUserDiscussInput;
+  userId?: Int;
+  userName?: String;
+  children?: DiscussChilderUpdateManyInput;
 }
 
 export interface DiscussChilderUpdateWithoutUserDataInput {
@@ -1926,9 +2144,11 @@ export interface DiscussChilderUpdateWithoutUserDataInput {
   replyUserName?: String;
 }
 
-export interface UserGroupUpsertNestedInput {
-  update: UserGroupUpdateDataInput;
-  create: UserGroupCreateInput;
+export interface ContestProblemUpdateManyMutationInput {
+  problemId?: String;
+  problemTitle?: String;
+  ac?: Int;
+  wa?: Int;
 }
 
 export interface DiscussChilderUpsertWithWhereUniqueWithoutUserInput {
@@ -1937,15 +2157,174 @@ export interface DiscussChilderUpsertWithWhereUniqueWithoutUserInput {
   create: DiscussChilderCreateWithoutUserInput;
 }
 
+export interface ContestUpdateManyMutationInput {
+  name?: String;
+  type?: Int;
+  cloneId?: String;
+  createUserName?: String;
+  createUserId?: String;
+  firstStartTime?: DateTimeInput;
+  startTime?: DateTimeInput;
+  endTime?: DateTimeInput;
+  hint?: String;
+}
+
+export interface ContestWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  type?: Int;
+  type_not?: Int;
+  type_in?: Int[] | Int;
+  type_not_in?: Int[] | Int;
+  type_lt?: Int;
+  type_lte?: Int;
+  type_gt?: Int;
+  type_gte?: Int;
+  cloneId?: String;
+  cloneId_not?: String;
+  cloneId_in?: String[] | String;
+  cloneId_not_in?: String[] | String;
+  cloneId_lt?: String;
+  cloneId_lte?: String;
+  cloneId_gt?: String;
+  cloneId_gte?: String;
+  cloneId_contains?: String;
+  cloneId_not_contains?: String;
+  cloneId_starts_with?: String;
+  cloneId_not_starts_with?: String;
+  cloneId_ends_with?: String;
+  cloneId_not_ends_with?: String;
+  createUserName?: String;
+  createUserName_not?: String;
+  createUserName_in?: String[] | String;
+  createUserName_not_in?: String[] | String;
+  createUserName_lt?: String;
+  createUserName_lte?: String;
+  createUserName_gt?: String;
+  createUserName_gte?: String;
+  createUserName_contains?: String;
+  createUserName_not_contains?: String;
+  createUserName_starts_with?: String;
+  createUserName_not_starts_with?: String;
+  createUserName_ends_with?: String;
+  createUserName_not_ends_with?: String;
+  createUserId?: String;
+  createUserId_not?: String;
+  createUserId_in?: String[] | String;
+  createUserId_not_in?: String[] | String;
+  createUserId_lt?: String;
+  createUserId_lte?: String;
+  createUserId_gt?: String;
+  createUserId_gte?: String;
+  createUserId_contains?: String;
+  createUserId_not_contains?: String;
+  createUserId_starts_with?: String;
+  createUserId_not_starts_with?: String;
+  createUserId_ends_with?: String;
+  createUserId_not_ends_with?: String;
+  firstStartTime?: DateTimeInput;
+  firstStartTime_not?: DateTimeInput;
+  firstStartTime_in?: DateTimeInput[] | DateTimeInput;
+  firstStartTime_not_in?: DateTimeInput[] | DateTimeInput;
+  firstStartTime_lt?: DateTimeInput;
+  firstStartTime_lte?: DateTimeInput;
+  firstStartTime_gt?: DateTimeInput;
+  firstStartTime_gte?: DateTimeInput;
+  startTime?: DateTimeInput;
+  startTime_not?: DateTimeInput;
+  startTime_in?: DateTimeInput[] | DateTimeInput;
+  startTime_not_in?: DateTimeInput[] | DateTimeInput;
+  startTime_lt?: DateTimeInput;
+  startTime_lte?: DateTimeInput;
+  startTime_gt?: DateTimeInput;
+  startTime_gte?: DateTimeInput;
+  endTime?: DateTimeInput;
+  endTime_not?: DateTimeInput;
+  endTime_in?: DateTimeInput[] | DateTimeInput;
+  endTime_not_in?: DateTimeInput[] | DateTimeInput;
+  endTime_lt?: DateTimeInput;
+  endTime_lte?: DateTimeInput;
+  endTime_gt?: DateTimeInput;
+  endTime_gte?: DateTimeInput;
+  hint?: String;
+  hint_not?: String;
+  hint_in?: String[] | String;
+  hint_not_in?: String[] | String;
+  hint_lt?: String;
+  hint_lte?: String;
+  hint_gt?: String;
+  hint_gte?: String;
+  hint_contains?: String;
+  hint_not_contains?: String;
+  hint_starts_with?: String;
+  hint_not_starts_with?: String;
+  hint_ends_with?: String;
+  hint_not_ends_with?: String;
+  userGroup_every?: UserGroupWhereInput;
+  userGroup_some?: UserGroupWhereInput;
+  userGroup_none?: UserGroupWhereInput;
+  contestProblem_every?: ContestProblemWhereInput;
+  contestProblem_some?: ContestProblemWhereInput;
+  contestProblem_none?: ContestProblemWhereInput;
+  AND?: ContestWhereInput[] | ContestWhereInput;
+  OR?: ContestWhereInput[] | ContestWhereInput;
+  NOT?: ContestWhereInput[] | ContestWhereInput;
+}
+
 export interface ContestCreateInput {
   name: String;
   type?: Int;
+  cloneId?: String;
   createUserName: String;
-  createUserId: Int;
+  createUserId: String;
+  firstStartTime: DateTimeInput;
   startTime: DateTimeInput;
   endTime: DateTimeInput;
-  userGroup: UserGroupCreateOneInput;
-  contestProblem: ContestProblemCreateOneInput;
+  hint?: String;
+  userGroup?: UserGroupCreateManyInput;
+  contestProblem?: ContestProblemCreateManyInput;
 }
 
 export interface ProblemWhereInput {
@@ -2188,7 +2567,329 @@ export interface UserGroupCreateInput {
   applyUsers?: UserCreateManyWithoutApplyUserGroupInput;
 }
 
-export interface ContestWhereInput {
+export interface UserUpsertWithoutCreateUserGroupInput {
+  update: UserUpdateWithoutCreateUserGroupDataInput;
+  create: UserCreateWithoutCreateUserGroupInput;
+}
+
+export interface UserCreateWithoutCreateUserGroupInput {
+  userId: String;
+  password: String;
+  status?: Int;
+  level?: Int;
+  name: String;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  privilegeCache?: Int;
+  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
+  UserDiscuss?: DiscussCreateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
+  userGroup?: UserGroupCreateManyWithoutUsersInput;
+  privilegeUserGroup?: UserGroupCreateManyInput;
+  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
+  problems?: UserCreateproblemsInput;
+  createProblmes?: ProblemCreateManyWithoutCreateUserInput;
+  submitRecord?: SubmitCreateManyWithoutUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
+}
+
+export interface UserGroupUpdateManyWithoutCreateUserInput {
+  create?:
+    | UserGroupCreateWithoutCreateUserInput[]
+    | UserGroupCreateWithoutCreateUserInput;
+  delete?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  set?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  disconnect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  update?:
+    | UserGroupUpdateWithWhereUniqueWithoutCreateUserInput[]
+    | UserGroupUpdateWithWhereUniqueWithoutCreateUserInput;
+  upsert?:
+    | UserGroupUpsertWithWhereUniqueWithoutCreateUserInput[]
+    | UserGroupUpsertWithWhereUniqueWithoutCreateUserInput;
+  deleteMany?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
+  updateMany?:
+    | UserGroupUpdateManyWithWhereNestedInput[]
+    | UserGroupUpdateManyWithWhereNestedInput;
+}
+
+export interface PrivilegeGroupCreateWithoutUsersInput {
+  name: String;
+  privilege: Int;
+}
+
+export interface UserGroupUpdateWithWhereUniqueWithoutCreateUserInput {
+  where: UserGroupWhereUniqueInput;
+  data: UserGroupUpdateWithoutCreateUserDataInput;
+}
+
+export interface DiscussCreateWithoutUserInput {
+  contentRaw: String;
+  content: String;
+  userId: Int;
+  userName: String;
+  children?: DiscussChilderCreateManyInput;
+}
+
+export interface UserGroupUpdateWithoutCreateUserDataInput {
+  name?: String;
+  desc?: String;
+  count?: Int;
+  createUserId?: String;
+  createUserName?: String;
+  privilege?: UserUpdateManyInput;
+  users?: UserUpdateManyWithoutUserGroupInput;
+  applyUsers?: UserUpdateManyWithoutApplyUserGroupInput;
+}
+
+export interface DiscussChilderCreateInput {
+  contentRaw: String;
+  content: String;
+  user?: UserCreateOneWithoutUserDiscussChilderInput;
+  userId: Int;
+  userName: String;
+  replyUserId: Int;
+  replyUserName: String;
+}
+
+export interface UserUpdateManyWithoutUserGroupInput {
+  create?: UserCreateWithoutUserGroupInput[] | UserCreateWithoutUserGroupInput;
+  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  update?:
+    | UserUpdateWithWhereUniqueWithoutUserGroupInput[]
+    | UserUpdateWithWhereUniqueWithoutUserGroupInput;
+  upsert?:
+    | UserUpsertWithWhereUniqueWithoutUserGroupInput[]
+    | UserUpsertWithWhereUniqueWithoutUserGroupInput;
+  deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
+  updateMany?:
+    | UserUpdateManyWithWhereNestedInput[]
+    | UserUpdateManyWithWhereNestedInput;
+}
+
+export interface UserCreateWithoutUserDiscussChilderInput {
+  userId: String;
+  password: String;
+  status?: Int;
+  level?: Int;
+  name: String;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  privilegeCache?: Int;
+  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
+  UserDiscuss?: DiscussCreateManyWithoutUserInput;
+  userGroup?: UserGroupCreateManyWithoutUsersInput;
+  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupCreateManyInput;
+  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
+  problems?: UserCreateproblemsInput;
+  createProblmes?: ProblemCreateManyWithoutCreateUserInput;
+  submitRecord?: SubmitCreateManyWithoutUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
+}
+
+export interface UserUpdateWithWhereUniqueWithoutUserGroupInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateWithoutUserGroupDataInput;
+}
+
+export interface UserGroupCreateWithoutUsersInput {
+  name: String;
+  desc?: String;
+  count?: Int;
+  createUserId: String;
+  createUserName: String;
+  createUser: UserCreateOneWithoutCreateUserGroupInput;
+  privilege?: UserCreateManyInput;
+  applyUsers?: UserCreateManyWithoutApplyUserGroupInput;
+}
+
+export interface UserUpdateWithoutUserGroupDataInput {
+  userId?: String;
+  password?: String;
+  status?: Int;
+  level?: Int;
+  name?: String;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  privilegeCache?: Int;
+  privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
+  UserDiscuss?: DiscussUpdateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
+  createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupUpdateManyInput;
+  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
+  problems?: UserUpdateproblemsInput;
+  createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
+  submitRecord?: SubmitUpdateManyWithoutUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
+}
+
+export interface UserCreateInput {
+  userId: String;
+  password: String;
+  status?: Int;
+  level?: Int;
+  name: String;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  privilegeCache?: Int;
+  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
+  UserDiscuss?: DiscussCreateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
+  userGroup?: UserGroupCreateManyWithoutUsersInput;
+  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupCreateManyInput;
+  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
+  problems?: UserCreateproblemsInput;
+  createProblmes?: ProblemCreateManyWithoutCreateUserInput;
+  submitRecord?: SubmitCreateManyWithoutUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
+}
+
+export interface UserGroupUpdateManyWithoutApplyUsersInput {
+  create?:
+    | UserGroupCreateWithoutApplyUsersInput[]
+    | UserGroupCreateWithoutApplyUsersInput;
+  delete?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  set?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  disconnect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  update?:
+    | UserGroupUpdateWithWhereUniqueWithoutApplyUsersInput[]
+    | UserGroupUpdateWithWhereUniqueWithoutApplyUsersInput;
+  upsert?:
+    | UserGroupUpsertWithWhereUniqueWithoutApplyUsersInput[]
+    | UserGroupUpsertWithWhereUniqueWithoutApplyUsersInput;
+  deleteMany?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
+  updateMany?:
+    | UserGroupUpdateManyWithWhereNestedInput[]
+    | UserGroupUpdateManyWithWhereNestedInput;
+}
+
+export interface DiscussChilderCreateWithoutUserInput {
+  contentRaw: String;
+  content: String;
+  userId: Int;
+  userName: String;
+  replyUserId: Int;
+  replyUserName: String;
+}
+
+export interface UserGroupUpdateWithWhereUniqueWithoutApplyUsersInput {
+  where: UserGroupWhereUniqueInput;
+  data: UserGroupUpdateWithoutApplyUsersDataInput;
+}
+
+export interface UserGroupCreateWithoutCreateUserInput {
+  name: String;
+  desc?: String;
+  count?: Int;
+  createUserId: String;
+  createUserName: String;
+  privilege?: UserCreateManyInput;
+  users?: UserCreateManyWithoutUserGroupInput;
+  applyUsers?: UserCreateManyWithoutApplyUserGroupInput;
+}
+
+export interface UserGroupUpdateWithoutApplyUsersDataInput {
+  name?: String;
+  desc?: String;
+  count?: Int;
+  createUserId?: String;
+  createUserName?: String;
+  createUser?: UserUpdateOneRequiredWithoutCreateUserGroupInput;
+  privilege?: UserUpdateManyInput;
+  users?: UserUpdateManyWithoutUserGroupInput;
+}
+
+export interface UserCreateWithoutUserGroupInput {
+  userId: String;
+  password: String;
+  status?: Int;
+  level?: Int;
+  name: String;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  privilegeCache?: Int;
+  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
+  UserDiscuss?: DiscussCreateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
+  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupCreateManyInput;
+  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
+  problems?: UserCreateproblemsInput;
+  createProblmes?: ProblemCreateManyWithoutCreateUserInput;
+  submitRecord?: SubmitCreateManyWithoutUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
+}
+
+export interface UserGroupUpsertWithWhereUniqueWithoutApplyUsersInput {
+  where: UserGroupWhereUniqueInput;
+  update: UserGroupUpdateWithoutApplyUsersDataInput;
+  create: UserGroupCreateWithoutApplyUsersInput;
+}
+
+export interface UserGroupCreateWithoutApplyUsersInput {
+  name: String;
+  desc?: String;
+  count?: Int;
+  createUserId: String;
+  createUserName: String;
+  createUser: UserCreateOneWithoutCreateUserGroupInput;
+  privilege?: UserCreateManyInput;
+  users?: UserCreateManyWithoutUserGroupInput;
+}
+
+export interface UserGroupScalarWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -2233,14 +2934,42 @@ export interface ContestWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
-  type?: Int;
-  type_not?: Int;
-  type_in?: Int[] | Int;
-  type_not_in?: Int[] | Int;
-  type_lt?: Int;
-  type_lte?: Int;
-  type_gt?: Int;
-  type_gte?: Int;
+  desc?: String;
+  desc_not?: String;
+  desc_in?: String[] | String;
+  desc_not_in?: String[] | String;
+  desc_lt?: String;
+  desc_lte?: String;
+  desc_gt?: String;
+  desc_gte?: String;
+  desc_contains?: String;
+  desc_not_contains?: String;
+  desc_starts_with?: String;
+  desc_not_starts_with?: String;
+  desc_ends_with?: String;
+  desc_not_ends_with?: String;
+  count?: Int;
+  count_not?: Int;
+  count_in?: Int[] | Int;
+  count_not_in?: Int[] | Int;
+  count_lt?: Int;
+  count_lte?: Int;
+  count_gt?: Int;
+  count_gte?: Int;
+  createUserId?: String;
+  createUserId_not?: String;
+  createUserId_in?: String[] | String;
+  createUserId_not_in?: String[] | String;
+  createUserId_lt?: String;
+  createUserId_lte?: String;
+  createUserId_gt?: String;
+  createUserId_gte?: String;
+  createUserId_contains?: String;
+  createUserId_not_contains?: String;
+  createUserId_starts_with?: String;
+  createUserId_not_starts_with?: String;
+  createUserId_ends_with?: String;
+  createUserId_not_ends_with?: String;
   createUserName?: String;
   createUserName_not?: String;
   createUserName_in?: String[] | String;
@@ -2255,38 +2984,130 @@ export interface ContestWhereInput {
   createUserName_not_starts_with?: String;
   createUserName_ends_with?: String;
   createUserName_not_ends_with?: String;
-  createUserId?: Int;
-  createUserId_not?: Int;
-  createUserId_in?: Int[] | Int;
-  createUserId_not_in?: Int[] | Int;
-  createUserId_lt?: Int;
-  createUserId_lte?: Int;
-  createUserId_gt?: Int;
-  createUserId_gte?: Int;
-  startTime?: DateTimeInput;
-  startTime_not?: DateTimeInput;
-  startTime_in?: DateTimeInput[] | DateTimeInput;
-  startTime_not_in?: DateTimeInput[] | DateTimeInput;
-  startTime_lt?: DateTimeInput;
-  startTime_lte?: DateTimeInput;
-  startTime_gt?: DateTimeInput;
-  startTime_gte?: DateTimeInput;
-  endTime?: DateTimeInput;
-  endTime_not?: DateTimeInput;
-  endTime_in?: DateTimeInput[] | DateTimeInput;
-  endTime_not_in?: DateTimeInput[] | DateTimeInput;
-  endTime_lt?: DateTimeInput;
-  endTime_lte?: DateTimeInput;
-  endTime_gt?: DateTimeInput;
-  endTime_gte?: DateTimeInput;
-  userGroup?: UserGroupWhereInput;
-  contestProblem?: ContestProblemWhereInput;
-  AND?: ContestWhereInput[] | ContestWhereInput;
-  OR?: ContestWhereInput[] | ContestWhereInput;
-  NOT?: ContestWhereInput[] | ContestWhereInput;
+  AND?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
+  OR?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
+  NOT?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
 }
 
-export interface UserCreateWithoutCreateUserGroupInput {
+export interface ProblemCreateManyWithoutCreateUserInput {
+  create?:
+    | ProblemCreateWithoutCreateUserInput[]
+    | ProblemCreateWithoutCreateUserInput;
+  connect?: ProblemWhereUniqueInput[] | ProblemWhereUniqueInput;
+}
+
+export interface UserGroupUpdateManyWithWhereNestedInput {
+  where: UserGroupScalarWhereInput;
+  data: UserGroupUpdateManyDataInput;
+}
+
+export interface DiscussCreateManyInput {
+  create?: DiscussCreateInput[] | DiscussCreateInput;
+  connect?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
+}
+
+export interface UserGroupUpdateManyDataInput {
+  name?: String;
+  desc?: String;
+  count?: Int;
+  createUserId?: String;
+  createUserName?: String;
+}
+
+export interface UserCreateOneWithoutUserDiscussInput {
+  create?: UserCreateWithoutUserDiscussInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateproblemsInput {
+  set?: Json[] | Json;
+}
+
+export interface SubmitCreateManyWithoutUserInput {
+  create?: SubmitCreateWithoutUserInput[] | SubmitCreateWithoutUserInput;
+  connect?: SubmitWhereUniqueInput[] | SubmitWhereUniqueInput;
+}
+
+export interface ProblemUpdateManyWithoutCreateUserInput {
+  create?:
+    | ProblemCreateWithoutCreateUserInput[]
+    | ProblemCreateWithoutCreateUserInput;
+  delete?: ProblemWhereUniqueInput[] | ProblemWhereUniqueInput;
+  connect?: ProblemWhereUniqueInput[] | ProblemWhereUniqueInput;
+  set?: ProblemWhereUniqueInput[] | ProblemWhereUniqueInput;
+  disconnect?: ProblemWhereUniqueInput[] | ProblemWhereUniqueInput;
+  update?:
+    | ProblemUpdateWithWhereUniqueWithoutCreateUserInput[]
+    | ProblemUpdateWithWhereUniqueWithoutCreateUserInput;
+  upsert?:
+    | ProblemUpsertWithWhereUniqueWithoutCreateUserInput[]
+    | ProblemUpsertWithWhereUniqueWithoutCreateUserInput;
+  deleteMany?: ProblemScalarWhereInput[] | ProblemScalarWhereInput;
+  updateMany?:
+    | ProblemUpdateManyWithWhereNestedInput[]
+    | ProblemUpdateManyWithWhereNestedInput;
+}
+
+export interface ProblemCreateOneInput {
+  create?: ProblemCreateInput;
+  connect?: ProblemWhereUniqueInput;
+}
+
+export interface ProblemUpdateWithWhereUniqueWithoutCreateUserInput {
+  where: ProblemWhereUniqueInput;
+  data: ProblemUpdateWithoutCreateUserDataInput;
+}
+
+export interface UserCreateOneWithoutCreateProblmesInput {
+  create?: UserCreateWithoutCreateProblmesInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface ProblemUpdateWithoutCreateUserDataInput {
+  problemId?: Int;
+  status?: Int;
+  type?: Int;
+  tags?: Json;
+  title?: String;
+  describe?: String;
+  inDescribe?: String;
+  outDescribe?: String;
+  inExample?: String;
+  outExample?: String;
+  integral?: Int;
+  limitTime?: Int;
+  limitMemory?: Int;
+  hint?: String;
+  source?: String;
+  sourceId?: String;
+  example?: String;
+  discuss?: DiscussUpdateManyInput;
+}
+
+export interface ContestCreateOneInput {
+  create?: ContestCreateInput;
+  connect?: ContestWhereUniqueInput;
+}
+
+export interface DiscussUpdateManyInput {
+  create?: DiscussCreateInput[] | DiscussCreateInput;
+  update?:
+    | DiscussUpdateWithWhereUniqueNestedInput[]
+    | DiscussUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | DiscussUpsertWithWhereUniqueNestedInput[]
+    | DiscussUpsertWithWhereUniqueNestedInput;
+  delete?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
+  connect?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
+  set?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
+  disconnect?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
+  deleteMany?: DiscussScalarWhereInput[] | DiscussScalarWhereInput;
+  updateMany?:
+    | DiscussUpdateManyWithWhereNestedInput[]
+    | DiscussUpdateManyWithWhereNestedInput;
+}
+
+export interface UserCreateWithoutApplyUserGroupInput {
   userId: String;
   password: String;
   status?: Int;
@@ -2301,18 +3122,68 @@ export interface UserCreateWithoutCreateUserGroupInput {
   defaultUserGroupId?: String;
   privilegeBlack?: Int;
   privilegeWhite?: Int;
+  privilegeCache?: Int;
   privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
   UserDiscuss?: DiscussCreateManyWithoutUserInput;
   UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
   userGroup?: UserGroupCreateManyWithoutUsersInput;
+  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
   privilegeUserGroup?: UserGroupCreateManyInput;
-  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
   problems?: UserCreateproblemsInput;
   createProblmes?: ProblemCreateManyWithoutCreateUserInput;
   submitRecord?: SubmitCreateManyWithoutUserInput;
   submit?: Int;
   solved?: Int;
   accepted?: Int;
+}
+
+export interface DiscussUpdateWithWhereUniqueNestedInput {
+  where: DiscussWhereUniqueInput;
+  data: DiscussUpdateDataInput;
+}
+
+export interface ContestProblemCreateInput {
+  problem?: ProblemCreateOneInput;
+  problemId: String;
+  problemTitle: String;
+  ac?: Int;
+  wa?: Int;
+}
+
+export interface DiscussUpdateDataInput {
+  contentRaw?: String;
+  content?: String;
+  user?: UserUpdateOneWithoutUserDiscussInput;
+  userId?: Int;
+  userName?: String;
+  children?: DiscussChilderUpdateManyInput;
+}
+
+export interface UserGroupUpdateManyInput {
+  create?: UserGroupCreateInput[] | UserGroupCreateInput;
+  update?:
+    | UserGroupUpdateWithWhereUniqueNestedInput[]
+    | UserGroupUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | UserGroupUpsertWithWhereUniqueNestedInput[]
+    | UserGroupUpsertWithWhereUniqueNestedInput;
+  delete?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  set?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  disconnect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+  deleteMany?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
+  updateMany?:
+    | UserGroupUpdateManyWithWhereNestedInput[]
+    | UserGroupUpdateManyWithWhereNestedInput;
+}
+
+export interface UserUpdateOneWithoutUserDiscussInput {
+  create?: UserCreateWithoutUserDiscussInput;
+  update?: UserUpdateWithoutUserDiscussDataInput;
+  upsert?: UserUpsertWithoutUserDiscussInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
 }
 
 export interface DiscussChilderWhereInput {
@@ -2424,229 +3295,7 @@ export interface DiscussChilderWhereInput {
   NOT?: DiscussChilderWhereInput[] | DiscussChilderWhereInput;
 }
 
-export interface PrivilegeGroupCreateWithoutUsersInput {
-  name: String;
-  privilege: Int;
-}
-
-export interface DiscussWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  updatedAt?: DateTimeInput;
-  updatedAt_not?: DateTimeInput;
-  updatedAt_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_lt?: DateTimeInput;
-  updatedAt_lte?: DateTimeInput;
-  updatedAt_gt?: DateTimeInput;
-  updatedAt_gte?: DateTimeInput;
-  contentRaw?: String;
-  contentRaw_not?: String;
-  contentRaw_in?: String[] | String;
-  contentRaw_not_in?: String[] | String;
-  contentRaw_lt?: String;
-  contentRaw_lte?: String;
-  contentRaw_gt?: String;
-  contentRaw_gte?: String;
-  contentRaw_contains?: String;
-  contentRaw_not_contains?: String;
-  contentRaw_starts_with?: String;
-  contentRaw_not_starts_with?: String;
-  contentRaw_ends_with?: String;
-  contentRaw_not_ends_with?: String;
-  content?: String;
-  content_not?: String;
-  content_in?: String[] | String;
-  content_not_in?: String[] | String;
-  content_lt?: String;
-  content_lte?: String;
-  content_gt?: String;
-  content_gte?: String;
-  content_contains?: String;
-  content_not_contains?: String;
-  content_starts_with?: String;
-  content_not_starts_with?: String;
-  content_ends_with?: String;
-  content_not_ends_with?: String;
-  user?: UserWhereInput;
-  userId?: Int;
-  userId_not?: Int;
-  userId_in?: Int[] | Int;
-  userId_not_in?: Int[] | Int;
-  userId_lt?: Int;
-  userId_lte?: Int;
-  userId_gt?: Int;
-  userId_gte?: Int;
-  userName?: String;
-  userName_not?: String;
-  userName_in?: String[] | String;
-  userName_not_in?: String[] | String;
-  userName_lt?: String;
-  userName_lte?: String;
-  userName_gt?: String;
-  userName_gte?: String;
-  userName_contains?: String;
-  userName_not_contains?: String;
-  userName_starts_with?: String;
-  userName_not_starts_with?: String;
-  userName_ends_with?: String;
-  userName_not_ends_with?: String;
-  children_every?: DiscussChilderWhereInput;
-  children_some?: DiscussChilderWhereInput;
-  children_none?: DiscussChilderWhereInput;
-  AND?: DiscussWhereInput[] | DiscussWhereInput;
-  OR?: DiscussWhereInput[] | DiscussWhereInput;
-  NOT?: DiscussWhereInput[] | DiscussWhereInput;
-}
-
-export interface DiscussCreateWithoutUserInput {
-  contentRaw: String;
-  content: String;
-  userId: Int;
-  userName: String;
-  children?: DiscussChilderCreateManyInput;
-}
-
-export interface UserGroupUpdateWithWhereUniqueWithoutCreateUserInput {
-  where: UserGroupWhereUniqueInput;
-  data: UserGroupUpdateWithoutCreateUserDataInput;
-}
-
-export interface DiscussChilderCreateInput {
-  contentRaw: String;
-  content: String;
-  user?: UserCreateOneWithoutUserDiscussChilderInput;
-  userId: Int;
-  userName: String;
-  replyUserId: Int;
-  replyUserName: String;
-}
-
-export interface UserGroupUpdateWithoutCreateUserDataInput {
-  name?: String;
-  desc?: String;
-  count?: Int;
-  createUserId?: String;
-  createUserName?: String;
-  privilege?: UserUpdateManyInput;
-  users?: UserUpdateManyWithoutUserGroupInput;
-  applyUsers?: UserUpdateManyWithoutApplyUserGroupInput;
-}
-
-export interface UserCreateWithoutUserDiscussChilderInput {
-  userId: String;
-  password: String;
-  status?: Int;
-  level?: Int;
-  name: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral?: Int;
-  coin?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack?: Int;
-  privilegeWhite?: Int;
-  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
-  UserDiscuss?: DiscussCreateManyWithoutUserInput;
-  userGroup?: UserGroupCreateManyWithoutUsersInput;
-  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
-  privilegeUserGroup?: UserGroupCreateManyInput;
-  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
-  problems?: UserCreateproblemsInput;
-  createProblmes?: ProblemCreateManyWithoutCreateUserInput;
-  submitRecord?: SubmitCreateManyWithoutUserInput;
-  submit?: Int;
-  solved?: Int;
-  accepted?: Int;
-}
-
-export interface UserUpdateManyWithoutUserGroupInput {
-  create?: UserCreateWithoutUserGroupInput[] | UserCreateWithoutUserGroupInput;
-  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  update?:
-    | UserUpdateWithWhereUniqueWithoutUserGroupInput[]
-    | UserUpdateWithWhereUniqueWithoutUserGroupInput;
-  upsert?:
-    | UserUpsertWithWhereUniqueWithoutUserGroupInput[]
-    | UserUpsertWithWhereUniqueWithoutUserGroupInput;
-  deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
-  updateMany?:
-    | UserUpdateManyWithWhereNestedInput[]
-    | UserUpdateManyWithWhereNestedInput;
-}
-
-export interface UserGroupCreateWithoutUsersInput {
-  name: String;
-  desc?: String;
-  count?: Int;
-  createUserId: String;
-  createUserName: String;
-  createUser: UserCreateOneWithoutCreateUserGroupInput;
-  privilege?: UserCreateManyInput;
-  applyUsers?: UserCreateManyWithoutApplyUserGroupInput;
-}
-
-export interface UserUpdateWithWhereUniqueWithoutUserGroupInput {
-  where: UserWhereUniqueInput;
-  data: UserUpdateWithoutUserGroupDataInput;
-}
-
-export interface UserCreateInput {
-  userId: String;
-  password: String;
-  status?: Int;
-  level?: Int;
-  name: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral?: Int;
-  coin?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack?: Int;
-  privilegeWhite?: Int;
-  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
-  UserDiscuss?: DiscussCreateManyWithoutUserInput;
-  UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
-  userGroup?: UserGroupCreateManyWithoutUsersInput;
-  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
-  privilegeUserGroup?: UserGroupCreateManyInput;
-  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
-  problems?: UserCreateproblemsInput;
-  createProblmes?: ProblemCreateManyWithoutCreateUserInput;
-  submitRecord?: SubmitCreateManyWithoutUserInput;
-  submit?: Int;
-  solved?: Int;
-  accepted?: Int;
-}
-
-export interface UserUpdateWithoutUserGroupDataInput {
+export interface UserUpdateWithoutUserDiscussDataInput {
   userId?: String;
   password?: String;
   status?: Int;
@@ -2661,9 +3310,10 @@ export interface UserUpdateWithoutUserGroupDataInput {
   defaultUserGroupId?: String;
   privilegeBlack?: Int;
   privilegeWhite?: Int;
+  privilegeCache?: Int;
   privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
-  UserDiscuss?: DiscussUpdateManyWithoutUserInput;
   UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
+  userGroup?: UserGroupUpdateManyWithoutUsersInput;
   createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
   privilegeUserGroup?: UserGroupUpdateManyInput;
   applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
@@ -2675,92 +3325,36 @@ export interface UserUpdateWithoutUserGroupDataInput {
   accepted?: Int;
 }
 
-export interface DiscussChilderCreateWithoutUserInput {
-  contentRaw: String;
-  content: String;
-  userId: Int;
-  userName: String;
-  replyUserId: Int;
-  replyUserName: String;
+export interface UserSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
 }
 
-export interface UserGroupUpdateManyInput {
-  create?: UserGroupCreateInput[] | UserGroupCreateInput;
+export interface SubmitUpdateManyWithoutUserInput {
+  create?: SubmitCreateWithoutUserInput[] | SubmitCreateWithoutUserInput;
+  delete?: SubmitWhereUniqueInput[] | SubmitWhereUniqueInput;
+  connect?: SubmitWhereUniqueInput[] | SubmitWhereUniqueInput;
+  set?: SubmitWhereUniqueInput[] | SubmitWhereUniqueInput;
+  disconnect?: SubmitWhereUniqueInput[] | SubmitWhereUniqueInput;
   update?:
-    | UserGroupUpdateWithWhereUniqueNestedInput[]
-    | UserGroupUpdateWithWhereUniqueNestedInput;
+    | SubmitUpdateWithWhereUniqueWithoutUserInput[]
+    | SubmitUpdateWithWhereUniqueWithoutUserInput;
   upsert?:
-    | UserGroupUpsertWithWhereUniqueNestedInput[]
-    | UserGroupUpsertWithWhereUniqueNestedInput;
-  delete?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  set?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  disconnect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  deleteMany?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
+    | SubmitUpsertWithWhereUniqueWithoutUserInput[]
+    | SubmitUpsertWithWhereUniqueWithoutUserInput;
+  deleteMany?: SubmitScalarWhereInput[] | SubmitScalarWhereInput;
   updateMany?:
-    | UserGroupUpdateManyWithWhereNestedInput[]
-    | UserGroupUpdateManyWithWhereNestedInput;
+    | SubmitUpdateManyWithWhereNestedInput[]
+    | SubmitUpdateManyWithWhereNestedInput;
 }
 
-export interface UserGroupCreateWithoutCreateUserInput {
-  name: String;
-  desc?: String;
-  count?: Int;
-  createUserId: String;
-  createUserName: String;
-  privilege?: UserCreateManyInput;
-  users?: UserCreateManyWithoutUserGroupInput;
-  applyUsers?: UserCreateManyWithoutApplyUserGroupInput;
-}
-
-export interface UserGroupUpdateWithWhereUniqueNestedInput {
-  where: UserGroupWhereUniqueInput;
-  data: UserGroupUpdateDataInput;
-}
-
-export interface UserCreateWithoutUserGroupInput {
-  userId: String;
-  password: String;
-  status?: Int;
-  level?: Int;
-  name: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral?: Int;
-  coin?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack?: Int;
-  privilegeWhite?: Int;
-  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
-  UserDiscuss?: DiscussCreateManyWithoutUserInput;
-  UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
-  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
-  privilegeUserGroup?: UserGroupCreateManyInput;
-  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
-  problems?: UserCreateproblemsInput;
-  createProblmes?: ProblemCreateManyWithoutCreateUserInput;
-  submitRecord?: SubmitCreateManyWithoutUserInput;
-  submit?: Int;
-  solved?: Int;
-  accepted?: Int;
-}
-
-export interface UserGroupUpsertWithWhereUniqueNestedInput {
-  where: UserGroupWhereUniqueInput;
-  update: UserGroupUpdateDataInput;
-  create: UserGroupCreateInput;
-}
-
-export interface UserGroupCreateManyWithoutApplyUsersInput {
-  create?:
-    | UserGroupCreateWithoutApplyUsersInput[]
-    | UserGroupCreateWithoutApplyUsersInput;
-  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-}
-
-export interface UserGroupScalarWhereInput {
+export interface UserGroupWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -2855,174 +3449,66 @@ export interface UserGroupScalarWhereInput {
   createUserName_not_starts_with?: String;
   createUserName_ends_with?: String;
   createUserName_not_ends_with?: String;
-  AND?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
-  OR?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
-  NOT?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
+  createUser?: UserWhereInput;
+  privilege_every?: UserWhereInput;
+  privilege_some?: UserWhereInput;
+  privilege_none?: UserWhereInput;
+  users_every?: UserWhereInput;
+  users_some?: UserWhereInput;
+  users_none?: UserWhereInput;
+  applyUsers_every?: UserWhereInput;
+  applyUsers_some?: UserWhereInput;
+  applyUsers_none?: UserWhereInput;
+  AND?: UserGroupWhereInput[] | UserGroupWhereInput;
+  OR?: UserGroupWhereInput[] | UserGroupWhereInput;
+  NOT?: UserGroupWhereInput[] | UserGroupWhereInput;
 }
 
-export interface UserCreateproblemsInput {
-  set?: Json[] | Json;
+export interface SubmitUpdateWithWhereUniqueWithoutUserInput {
+  where: SubmitWhereUniqueInput;
+  data: SubmitUpdateWithoutUserDataInput;
 }
 
-export interface UserGroupUpdateManyWithWhereNestedInput {
-  where: UserGroupScalarWhereInput;
-  data: UserGroupUpdateManyDataInput;
+export interface ContestProblemSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ContestProblemWhereInput;
+  AND?:
+    | ContestProblemSubscriptionWhereInput[]
+    | ContestProblemSubscriptionWhereInput;
+  OR?:
+    | ContestProblemSubscriptionWhereInput[]
+    | ContestProblemSubscriptionWhereInput;
+  NOT?:
+    | ContestProblemSubscriptionWhereInput[]
+    | ContestProblemSubscriptionWhereInput;
 }
 
-export interface ProblemCreateWithoutCreateUserInput {
-  problemId?: Int;
-  status?: Int;
-  type?: Int;
-  tags: Json;
-  title: String;
-  describe: String;
-  inDescribe: String;
-  outDescribe: String;
-  inExample: String;
-  outExample: String;
-  integral?: Int;
-  limitTime: Int;
-  limitMemory: Int;
-  hint?: String;
-  source?: String;
-  sourceId?: String;
-  example?: String;
-  discuss?: DiscussCreateManyInput;
-}
-
-export interface UserGroupUpdateManyDataInput {
-  name?: String;
-  desc?: String;
-  count?: Int;
-  createUserId?: String;
-  createUserName?: String;
-}
-
-export interface DiscussCreateInput {
-  contentRaw: String;
-  content: String;
-  user?: UserCreateOneWithoutUserDiscussInput;
-  userId: Int;
-  userName: String;
-  children?: DiscussChilderCreateManyInput;
-}
-
-export interface UserGroupUpdateManyWithoutApplyUsersInput {
-  create?:
-    | UserGroupCreateWithoutApplyUsersInput[]
-    | UserGroupCreateWithoutApplyUsersInput;
-  delete?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  set?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  disconnect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-  update?:
-    | UserGroupUpdateWithWhereUniqueWithoutApplyUsersInput[]
-    | UserGroupUpdateWithWhereUniqueWithoutApplyUsersInput;
-  upsert?:
-    | UserGroupUpsertWithWhereUniqueWithoutApplyUsersInput[]
-    | UserGroupUpsertWithWhereUniqueWithoutApplyUsersInput;
-  deleteMany?: UserGroupScalarWhereInput[] | UserGroupScalarWhereInput;
-  updateMany?:
-    | UserGroupUpdateManyWithWhereNestedInput[]
-    | UserGroupUpdateManyWithWhereNestedInput;
-}
-
-export interface UserCreateWithoutUserDiscussInput {
-  userId: String;
-  password: String;
-  status?: Int;
-  level?: Int;
-  name: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral?: Int;
-  coin?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack?: Int;
-  privilegeWhite?: Int;
-  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
-  UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
-  userGroup?: UserGroupCreateManyWithoutUsersInput;
-  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
-  privilegeUserGroup?: UserGroupCreateManyInput;
-  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
-  problems?: UserCreateproblemsInput;
-  createProblmes?: ProblemCreateManyWithoutCreateUserInput;
-  submitRecord?: SubmitCreateManyWithoutUserInput;
-  submit?: Int;
-  solved?: Int;
-  accepted?: Int;
-}
-
-export interface UserGroupUpdateWithWhereUniqueWithoutApplyUsersInput {
-  where: UserGroupWhereUniqueInput;
-  data: UserGroupUpdateWithoutApplyUsersDataInput;
-}
-
-export interface SubmitCreateWithoutUserInput {
-  userId: Int;
-  userName: String;
-  problem: ProblemCreateOneInput;
-  problemId: String;
-  problemTitle: String;
-  language: Int;
-  code: String;
-  result: String;
+export interface SubmitUpdateWithoutUserDataInput {
+  userId?: Int;
+  userName?: String;
+  problem?: ProblemUpdateOneRequiredInput;
+  problemId?: String;
+  problemTitle?: String;
+  language?: Int;
+  code?: String;
+  result?: String;
   errorInfo?: String;
-  contest?: ContestCreateOneInput;
-  limitTime: Int;
-  limitMemory: Int;
-  time: Int;
-  memory: Int;
+  contest?: ContestUpdateOneInput;
+  limitTime?: Int;
+  limitMemory?: Int;
+  time?: Int;
+  memory?: Int;
 }
 
-export interface UserGroupUpdateWithoutApplyUsersDataInput {
-  name?: String;
-  desc?: String;
-  count?: Int;
-  createUserId?: String;
-  createUserName?: String;
-  createUser?: UserUpdateOneRequiredWithoutCreateUserGroupInput;
-  privilege?: UserUpdateManyInput;
-  users?: UserUpdateManyWithoutUserGroupInput;
-}
-
-export interface ProblemCreateInput {
-  problemId?: Int;
-  status?: Int;
-  type?: Int;
-  tags: Json;
-  title: String;
-  describe: String;
-  inDescribe: String;
-  outDescribe: String;
-  inExample: String;
-  outExample: String;
-  integral?: Int;
-  limitTime: Int;
-  limitMemory: Int;
-  createUser?: UserCreateOneWithoutCreateProblmesInput;
-  hint?: String;
-  source?: String;
-  sourceId?: String;
-  example?: String;
-  discuss?: DiscussCreateManyInput;
-}
-
-export interface UserGroupUpsertWithWhereUniqueWithoutApplyUsersInput {
-  where: UserGroupWhereUniqueInput;
-  update: UserGroupUpdateWithoutApplyUsersDataInput;
-  create: UserGroupCreateWithoutApplyUsersInput;
-}
-
-export interface UserCreateWithoutCreateProblmesInput {
-  userId: String;
-  password: String;
+export interface UserUpdateManyMutationInput {
+  userId?: String;
+  password?: String;
   status?: Int;
   level?: Int;
-  name: String;
+  name?: String;
   photo?: String;
   email?: String;
   desc?: String;
@@ -3032,73 +3518,25 @@ export interface UserCreateWithoutCreateProblmesInput {
   defaultUserGroupId?: String;
   privilegeBlack?: Int;
   privilegeWhite?: Int;
-  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
-  UserDiscuss?: DiscussCreateManyWithoutUserInput;
-  UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
-  userGroup?: UserGroupCreateManyWithoutUsersInput;
-  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
-  privilegeUserGroup?: UserGroupCreateManyInput;
-  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
-  problems?: UserCreateproblemsInput;
-  submitRecord?: SubmitCreateManyWithoutUserInput;
+  privilegeCache?: Int;
+  problems?: UserUpdateproblemsInput;
   submit?: Int;
   solved?: Int;
   accepted?: Int;
 }
 
-export interface UserUpdateproblemsInput {
-  set?: Json[] | Json;
+export interface ProblemUpdateOneRequiredInput {
+  create?: ProblemCreateInput;
+  update?: ProblemUpdateDataInput;
+  upsert?: ProblemUpsertNestedInput;
+  connect?: ProblemWhereUniqueInput;
 }
 
-export interface UserCreateManyWithoutApplyUserGroupInput {
-  create?:
-    | UserCreateWithoutApplyUserGroupInput[]
-    | UserCreateWithoutApplyUserGroupInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-}
+export type ContestProblemWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
 
-export interface ProblemUpdateManyWithoutCreateUserInput {
-  create?:
-    | ProblemCreateWithoutCreateUserInput[]
-    | ProblemCreateWithoutCreateUserInput;
-  delete?: ProblemWhereUniqueInput[] | ProblemWhereUniqueInput;
-  connect?: ProblemWhereUniqueInput[] | ProblemWhereUniqueInput;
-  set?: ProblemWhereUniqueInput[] | ProblemWhereUniqueInput;
-  disconnect?: ProblemWhereUniqueInput[] | ProblemWhereUniqueInput;
-  update?:
-    | ProblemUpdateWithWhereUniqueWithoutCreateUserInput[]
-    | ProblemUpdateWithWhereUniqueWithoutCreateUserInput;
-  upsert?:
-    | ProblemUpsertWithWhereUniqueWithoutCreateUserInput[]
-    | ProblemUpsertWithWhereUniqueWithoutCreateUserInput;
-  deleteMany?: ProblemScalarWhereInput[] | ProblemScalarWhereInput;
-  updateMany?:
-    | ProblemUpdateManyWithWhereNestedInput[]
-    | ProblemUpdateManyWithWhereNestedInput;
-}
-
-export interface ContestProblemCreateOneInput {
-  create?: ContestProblemCreateInput;
-  connect?: ContestProblemWhereUniqueInput;
-}
-
-export interface ProblemUpdateWithWhereUniqueWithoutCreateUserInput {
-  where: ProblemWhereUniqueInput;
-  data: ProblemUpdateWithoutCreateUserDataInput;
-}
-
-export interface ContestUpdateInput {
-  name?: String;
-  type?: Int;
-  createUserName?: String;
-  createUserId?: Int;
-  startTime?: DateTimeInput;
-  endTime?: DateTimeInput;
-  userGroup?: UserGroupUpdateOneRequiredInput;
-  contestProblem?: ContestProblemUpdateOneRequiredInput;
-}
-
-export interface ProblemUpdateWithoutCreateUserDataInput {
+export interface ProblemUpdateDataInput {
   problemId?: Int;
   status?: Int;
   type?: Int;
@@ -3112,6 +3550,7 @@ export interface ProblemUpdateWithoutCreateUserDataInput {
   integral?: Int;
   limitTime?: Int;
   limitMemory?: Int;
+  createUser?: UserUpdateOneWithoutCreateProblmesInput;
   hint?: String;
   source?: String;
   sourceId?: String;
@@ -3119,7 +3558,185 @@ export interface ProblemUpdateWithoutCreateUserDataInput {
   discuss?: DiscussUpdateManyInput;
 }
 
-export interface UserWhereInput {
+export type DiscussWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserUpdateOneWithoutCreateProblmesInput {
+  create?: UserCreateWithoutCreateProblmesInput;
+  update?: UserUpdateWithoutCreateProblmesDataInput;
+  upsert?: UserUpsertWithoutCreateProblmesInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export type DiscussChilderWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserUpdateWithoutCreateProblmesDataInput {
+  userId?: String;
+  password?: String;
+  status?: Int;
+  level?: Int;
+  name?: String;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  privilegeCache?: Int;
+  privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
+  UserDiscuss?: DiscussUpdateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
+  userGroup?: UserGroupUpdateManyWithoutUsersInput;
+  createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupUpdateManyInput;
+  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
+  problems?: UserUpdateproblemsInput;
+  submitRecord?: SubmitUpdateManyWithoutUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
+}
+
+export type PrivilegeGroupWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserUpsertWithoutCreateProblmesInput {
+  update: UserUpdateWithoutCreateProblmesDataInput;
+  create: UserCreateWithoutCreateProblmesInput;
+}
+
+export type ProblemWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ProblemUpsertNestedInput {
+  update: ProblemUpdateDataInput;
+  create: ProblemCreateInput;
+}
+
+export type SubmitWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ContestUpdateOneInput {
+  create?: ContestCreateInput;
+  update?: ContestUpdateDataInput;
+  upsert?: ContestUpsertNestedInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: ContestWhereUniqueInput;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  userId?: String;
+}>;
+
+export interface ContestUpdateDataInput {
+  name?: String;
+  type?: Int;
+  cloneId?: String;
+  createUserName?: String;
+  createUserId?: String;
+  firstStartTime?: DateTimeInput;
+  startTime?: DateTimeInput;
+  endTime?: DateTimeInput;
+  hint?: String;
+  userGroup?: UserGroupUpdateManyInput;
+  contestProblem?: ContestProblemUpdateManyInput;
+}
+
+export type UserGroupWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ContestProblemUpdateManyInput {
+  create?: ContestProblemCreateInput[] | ContestProblemCreateInput;
+  update?:
+    | ContestProblemUpdateWithWhereUniqueNestedInput[]
+    | ContestProblemUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | ContestProblemUpsertWithWhereUniqueNestedInput[]
+    | ContestProblemUpsertWithWhereUniqueNestedInput;
+  delete?: ContestProblemWhereUniqueInput[] | ContestProblemWhereUniqueInput;
+  connect?: ContestProblemWhereUniqueInput[] | ContestProblemWhereUniqueInput;
+  set?: ContestProblemWhereUniqueInput[] | ContestProblemWhereUniqueInput;
+  disconnect?:
+    | ContestProblemWhereUniqueInput[]
+    | ContestProblemWhereUniqueInput;
+  deleteMany?:
+    | ContestProblemScalarWhereInput[]
+    | ContestProblemScalarWhereInput;
+  updateMany?:
+    | ContestProblemUpdateManyWithWhereNestedInput[]
+    | ContestProblemUpdateManyWithWhereNestedInput;
+}
+
+export interface UserCreateOneWithoutCreateUserGroupInput {
+  create?: UserCreateWithoutCreateUserGroupInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface ContestProblemUpdateWithWhereUniqueNestedInput {
+  where: ContestProblemWhereUniqueInput;
+  data: ContestProblemUpdateDataInput;
+}
+
+export interface DiscussCreateManyWithoutUserInput {
+  create?: DiscussCreateWithoutUserInput[] | DiscussCreateWithoutUserInput;
+  connect?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
+}
+
+export interface ContestProblemUpdateDataInput {
+  problem?: ProblemUpdateOneInput;
+  problemId?: String;
+  problemTitle?: String;
+  ac?: Int;
+  wa?: Int;
+}
+
+export interface UserCreateOneWithoutUserDiscussChilderInput {
+  create?: UserCreateWithoutUserDiscussChilderInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface ProblemUpdateOneInput {
+  create?: ProblemCreateInput;
+  update?: ProblemUpdateDataInput;
+  upsert?: ProblemUpsertNestedInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: ProblemWhereUniqueInput;
+}
+
+export interface UserCreateManyInput {
+  create?: UserCreateInput[] | UserCreateInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+}
+
+export interface ContestProblemUpsertWithWhereUniqueNestedInput {
+  where: ContestProblemWhereUniqueInput;
+  update: ContestProblemUpdateDataInput;
+  create: ContestProblemCreateInput;
+}
+
+export interface UserGroupCreateManyWithoutCreateUserInput {
+  create?:
+    | UserGroupCreateWithoutCreateUserInput[]
+    | UserGroupCreateWithoutCreateUserInput;
+  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+}
+
+export interface ContestProblemScalarWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -3150,425 +3767,96 @@ export interface UserWhereInput {
   updatedAt_lte?: DateTimeInput;
   updatedAt_gt?: DateTimeInput;
   updatedAt_gte?: DateTimeInput;
-  userId?: String;
-  userId_not?: String;
-  userId_in?: String[] | String;
-  userId_not_in?: String[] | String;
-  userId_lt?: String;
-  userId_lte?: String;
-  userId_gt?: String;
-  userId_gte?: String;
-  userId_contains?: String;
-  userId_not_contains?: String;
-  userId_starts_with?: String;
-  userId_not_starts_with?: String;
-  userId_ends_with?: String;
-  userId_not_ends_with?: String;
-  password?: String;
-  password_not?: String;
-  password_in?: String[] | String;
-  password_not_in?: String[] | String;
-  password_lt?: String;
-  password_lte?: String;
-  password_gt?: String;
-  password_gte?: String;
-  password_contains?: String;
-  password_not_contains?: String;
-  password_starts_with?: String;
-  password_not_starts_with?: String;
-  password_ends_with?: String;
-  password_not_ends_with?: String;
-  status?: Int;
-  status_not?: Int;
-  status_in?: Int[] | Int;
-  status_not_in?: Int[] | Int;
-  status_lt?: Int;
-  status_lte?: Int;
-  status_gt?: Int;
-  status_gte?: Int;
-  level?: Int;
-  level_not?: Int;
-  level_in?: Int[] | Int;
-  level_not_in?: Int[] | Int;
-  level_lt?: Int;
-  level_lte?: Int;
-  level_gt?: Int;
-  level_gte?: Int;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
-  photo?: String;
-  photo_not?: String;
-  photo_in?: String[] | String;
-  photo_not_in?: String[] | String;
-  photo_lt?: String;
-  photo_lte?: String;
-  photo_gt?: String;
-  photo_gte?: String;
-  photo_contains?: String;
-  photo_not_contains?: String;
-  photo_starts_with?: String;
-  photo_not_starts_with?: String;
-  photo_ends_with?: String;
-  photo_not_ends_with?: String;
-  email?: String;
-  email_not?: String;
-  email_in?: String[] | String;
-  email_not_in?: String[] | String;
-  email_lt?: String;
-  email_lte?: String;
-  email_gt?: String;
-  email_gte?: String;
-  email_contains?: String;
-  email_not_contains?: String;
-  email_starts_with?: String;
-  email_not_starts_with?: String;
-  email_ends_with?: String;
-  email_not_ends_with?: String;
-  desc?: String;
-  desc_not?: String;
-  desc_in?: String[] | String;
-  desc_not_in?: String[] | String;
-  desc_lt?: String;
-  desc_lte?: String;
-  desc_gt?: String;
-  desc_gte?: String;
-  desc_contains?: String;
-  desc_not_contains?: String;
-  desc_starts_with?: String;
-  desc_not_starts_with?: String;
-  desc_ends_with?: String;
-  desc_not_ends_with?: String;
-  integral?: Int;
-  integral_not?: Int;
-  integral_in?: Int[] | Int;
-  integral_not_in?: Int[] | Int;
-  integral_lt?: Int;
-  integral_lte?: Int;
-  integral_gt?: Int;
-  integral_gte?: Int;
-  coin?: Int;
-  coin_not?: Int;
-  coin_in?: Int[] | Int;
-  coin_not_in?: Int[] | Int;
-  coin_lt?: Int;
-  coin_lte?: Int;
-  coin_gt?: Int;
-  coin_gte?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroup_not?: String;
-  defaultUserGroup_in?: String[] | String;
-  defaultUserGroup_not_in?: String[] | String;
-  defaultUserGroup_lt?: String;
-  defaultUserGroup_lte?: String;
-  defaultUserGroup_gt?: String;
-  defaultUserGroup_gte?: String;
-  defaultUserGroup_contains?: String;
-  defaultUserGroup_not_contains?: String;
-  defaultUserGroup_starts_with?: String;
-  defaultUserGroup_not_starts_with?: String;
-  defaultUserGroup_ends_with?: String;
-  defaultUserGroup_not_ends_with?: String;
-  defaultUserGroupId?: String;
-  defaultUserGroupId_not?: String;
-  defaultUserGroupId_in?: String[] | String;
-  defaultUserGroupId_not_in?: String[] | String;
-  defaultUserGroupId_lt?: String;
-  defaultUserGroupId_lte?: String;
-  defaultUserGroupId_gt?: String;
-  defaultUserGroupId_gte?: String;
-  defaultUserGroupId_contains?: String;
-  defaultUserGroupId_not_contains?: String;
-  defaultUserGroupId_starts_with?: String;
-  defaultUserGroupId_not_starts_with?: String;
-  defaultUserGroupId_ends_with?: String;
-  defaultUserGroupId_not_ends_with?: String;
-  privilegeBlack?: Int;
-  privilegeBlack_not?: Int;
-  privilegeBlack_in?: Int[] | Int;
-  privilegeBlack_not_in?: Int[] | Int;
-  privilegeBlack_lt?: Int;
-  privilegeBlack_lte?: Int;
-  privilegeBlack_gt?: Int;
-  privilegeBlack_gte?: Int;
-  privilegeWhite?: Int;
-  privilegeWhite_not?: Int;
-  privilegeWhite_in?: Int[] | Int;
-  privilegeWhite_not_in?: Int[] | Int;
-  privilegeWhite_lt?: Int;
-  privilegeWhite_lte?: Int;
-  privilegeWhite_gt?: Int;
-  privilegeWhite_gte?: Int;
-  privilegeGroup_every?: PrivilegeGroupWhereInput;
-  privilegeGroup_some?: PrivilegeGroupWhereInput;
-  privilegeGroup_none?: PrivilegeGroupWhereInput;
-  UserDiscuss_every?: DiscussWhereInput;
-  UserDiscuss_some?: DiscussWhereInput;
-  UserDiscuss_none?: DiscussWhereInput;
-  UserDiscussChilder_every?: DiscussChilderWhereInput;
-  UserDiscussChilder_some?: DiscussChilderWhereInput;
-  UserDiscussChilder_none?: DiscussChilderWhereInput;
-  userGroup_every?: UserGroupWhereInput;
-  userGroup_some?: UserGroupWhereInput;
-  userGroup_none?: UserGroupWhereInput;
-  createUserGroup_every?: UserGroupWhereInput;
-  createUserGroup_some?: UserGroupWhereInput;
-  createUserGroup_none?: UserGroupWhereInput;
-  privilegeUserGroup_every?: UserGroupWhereInput;
-  privilegeUserGroup_some?: UserGroupWhereInput;
-  privilegeUserGroup_none?: UserGroupWhereInput;
-  applyUserGroup_every?: UserGroupWhereInput;
-  applyUserGroup_some?: UserGroupWhereInput;
-  applyUserGroup_none?: UserGroupWhereInput;
-  createProblmes_every?: ProblemWhereInput;
-  createProblmes_some?: ProblemWhereInput;
-  createProblmes_none?: ProblemWhereInput;
-  submitRecord_every?: SubmitWhereInput;
-  submitRecord_some?: SubmitWhereInput;
-  submitRecord_none?: SubmitWhereInput;
-  submit?: Int;
-  submit_not?: Int;
-  submit_in?: Int[] | Int;
-  submit_not_in?: Int[] | Int;
-  submit_lt?: Int;
-  submit_lte?: Int;
-  submit_gt?: Int;
-  submit_gte?: Int;
-  solved?: Int;
-  solved_not?: Int;
-  solved_in?: Int[] | Int;
-  solved_not_in?: Int[] | Int;
-  solved_lt?: Int;
-  solved_lte?: Int;
-  solved_gt?: Int;
-  solved_gte?: Int;
-  accepted?: Int;
-  accepted_not?: Int;
-  accepted_in?: Int[] | Int;
-  accepted_not_in?: Int[] | Int;
-  accepted_lt?: Int;
-  accepted_lte?: Int;
-  accepted_gt?: Int;
-  accepted_gte?: Int;
-  AND?: UserWhereInput[] | UserWhereInput;
-  OR?: UserWhereInput[] | UserWhereInput;
-  NOT?: UserWhereInput[] | UserWhereInput;
-}
-
-export interface DiscussUpdateManyInput {
-  create?: DiscussCreateInput[] | DiscussCreateInput;
-  update?:
-    | DiscussUpdateWithWhereUniqueNestedInput[]
-    | DiscussUpdateWithWhereUniqueNestedInput;
-  upsert?:
-    | DiscussUpsertWithWhereUniqueNestedInput[]
-    | DiscussUpsertWithWhereUniqueNestedInput;
-  delete?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
-  connect?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
-  set?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
-  disconnect?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
-  deleteMany?: DiscussScalarWhereInput[] | DiscussScalarWhereInput;
-  updateMany?:
-    | DiscussUpdateManyWithWhereNestedInput[]
-    | DiscussUpdateManyWithWhereNestedInput;
-}
-
-export interface SubmitSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: SubmitWhereInput;
-  AND?: SubmitSubscriptionWhereInput[] | SubmitSubscriptionWhereInput;
-  OR?: SubmitSubscriptionWhereInput[] | SubmitSubscriptionWhereInput;
-  NOT?: SubmitSubscriptionWhereInput[] | SubmitSubscriptionWhereInput;
-}
-
-export interface DiscussUpdateWithWhereUniqueNestedInput {
-  where: DiscussWhereUniqueInput;
-  data: DiscussUpdateDataInput;
-}
-
-export interface DiscussSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: DiscussWhereInput;
-  AND?: DiscussSubscriptionWhereInput[] | DiscussSubscriptionWhereInput;
-  OR?: DiscussSubscriptionWhereInput[] | DiscussSubscriptionWhereInput;
-  NOT?: DiscussSubscriptionWhereInput[] | DiscussSubscriptionWhereInput;
-}
-
-export interface DiscussUpdateDataInput {
-  contentRaw?: String;
-  content?: String;
-  user?: UserUpdateOneWithoutUserDiscussInput;
-  userId?: Int;
-  userName?: String;
-  children?: DiscussChilderUpdateManyInput;
-}
-
-export interface UserGroupUpdateInput {
-  name?: String;
-  desc?: String;
-  count?: Int;
-  createUserId?: String;
-  createUserName?: String;
-  createUser?: UserUpdateOneRequiredWithoutCreateUserGroupInput;
-  privilege?: UserUpdateManyInput;
-  users?: UserUpdateManyWithoutUserGroupInput;
-  applyUsers?: UserUpdateManyWithoutApplyUserGroupInput;
-}
-
-export interface UserUpdateOneWithoutUserDiscussInput {
-  create?: UserCreateWithoutUserDiscussInput;
-  update?: UserUpdateWithoutUserDiscussDataInput;
-  upsert?: UserUpsertWithoutUserDiscussInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface UserUpsertWithoutSubmitRecordInput {
-  update: UserUpdateWithoutSubmitRecordDataInput;
-  create: UserCreateWithoutSubmitRecordInput;
-}
-
-export interface UserUpdateWithoutUserDiscussDataInput {
-  userId?: String;
-  password?: String;
-  status?: Int;
-  level?: Int;
-  name?: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral?: Int;
-  coin?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack?: Int;
-  privilegeWhite?: Int;
-  privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
-  UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
-  userGroup?: UserGroupUpdateManyWithoutUsersInput;
-  createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
-  privilegeUserGroup?: UserGroupUpdateManyInput;
-  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
-  problems?: UserUpdateproblemsInput;
-  createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
-  submitRecord?: SubmitUpdateManyWithoutUserInput;
-  submit?: Int;
-  solved?: Int;
-  accepted?: Int;
-}
-
-export interface SubmitUpdateInput {
-  user?: UserUpdateOneWithoutSubmitRecordInput;
-  userId?: Int;
-  userName?: String;
-  problem?: ProblemUpdateOneRequiredInput;
   problemId?: String;
+  problemId_not?: String;
+  problemId_in?: String[] | String;
+  problemId_not_in?: String[] | String;
+  problemId_lt?: String;
+  problemId_lte?: String;
+  problemId_gt?: String;
+  problemId_gte?: String;
+  problemId_contains?: String;
+  problemId_not_contains?: String;
+  problemId_starts_with?: String;
+  problemId_not_starts_with?: String;
+  problemId_ends_with?: String;
+  problemId_not_ends_with?: String;
   problemTitle?: String;
-  language?: Int;
-  code?: String;
-  result?: String;
-  errorInfo?: String;
-  contest?: ContestUpdateOneInput;
-  limitTime?: Int;
-  limitMemory?: Int;
-  time?: Int;
-  memory?: Int;
+  problemTitle_not?: String;
+  problemTitle_in?: String[] | String;
+  problemTitle_not_in?: String[] | String;
+  problemTitle_lt?: String;
+  problemTitle_lte?: String;
+  problemTitle_gt?: String;
+  problemTitle_gte?: String;
+  problemTitle_contains?: String;
+  problemTitle_not_contains?: String;
+  problemTitle_starts_with?: String;
+  problemTitle_not_starts_with?: String;
+  problemTitle_ends_with?: String;
+  problemTitle_not_ends_with?: String;
+  ac?: Int;
+  ac_not?: Int;
+  ac_in?: Int[] | Int;
+  ac_not_in?: Int[] | Int;
+  ac_lt?: Int;
+  ac_lte?: Int;
+  ac_gt?: Int;
+  ac_gte?: Int;
+  wa?: Int;
+  wa_not?: Int;
+  wa_in?: Int[] | Int;
+  wa_not_in?: Int[] | Int;
+  wa_lt?: Int;
+  wa_lte?: Int;
+  wa_gt?: Int;
+  wa_gte?: Int;
+  AND?: ContestProblemScalarWhereInput[] | ContestProblemScalarWhereInput;
+  OR?: ContestProblemScalarWhereInput[] | ContestProblemScalarWhereInput;
+  NOT?: ContestProblemScalarWhereInput[] | ContestProblemScalarWhereInput;
 }
 
-export interface SubmitUpdateManyWithoutUserInput {
-  create?: SubmitCreateWithoutUserInput[] | SubmitCreateWithoutUserInput;
-  delete?: SubmitWhereUniqueInput[] | SubmitWhereUniqueInput;
-  connect?: SubmitWhereUniqueInput[] | SubmitWhereUniqueInput;
-  set?: SubmitWhereUniqueInput[] | SubmitWhereUniqueInput;
-  disconnect?: SubmitWhereUniqueInput[] | SubmitWhereUniqueInput;
-  update?:
-    | SubmitUpdateWithWhereUniqueWithoutUserInput[]
-    | SubmitUpdateWithWhereUniqueWithoutUserInput;
-  upsert?:
-    | SubmitUpsertWithWhereUniqueWithoutUserInput[]
-    | SubmitUpsertWithWhereUniqueWithoutUserInput;
-  deleteMany?: SubmitScalarWhereInput[] | SubmitScalarWhereInput;
-  updateMany?:
-    | SubmitUpdateManyWithWhereNestedInput[]
-    | SubmitUpdateManyWithWhereNestedInput;
+export interface UserGroupCreateManyWithoutApplyUsersInput {
+  create?:
+    | UserGroupCreateWithoutApplyUsersInput[]
+    | UserGroupCreateWithoutApplyUsersInput;
+  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
 }
 
-export interface SubmitCreateInput {
-  user?: UserCreateOneWithoutSubmitRecordInput;
-  userId: Int;
-  userName: String;
-  problem: ProblemCreateOneInput;
-  problemId: String;
-  problemTitle: String;
-  language: Int;
-  code: String;
-  result: String;
-  errorInfo?: String;
-  contest?: ContestCreateOneInput;
+export interface ContestProblemUpdateManyWithWhereNestedInput {
+  where: ContestProblemScalarWhereInput;
+  data: ContestProblemUpdateManyDataInput;
+}
+
+export interface ProblemCreateWithoutCreateUserInput {
+  problemId?: Int;
+  status?: Int;
+  type?: Int;
+  tags: Json;
+  title: String;
+  describe: String;
+  inDescribe: String;
+  outDescribe: String;
+  inExample: String;
+  outExample: String;
+  integral?: Int;
   limitTime: Int;
   limitMemory: Int;
-  time: Int;
-  memory: Int;
+  hint?: String;
+  source?: String;
+  sourceId?: String;
+  example?: String;
+  discuss?: DiscussCreateManyInput;
 }
 
-export interface SubmitUpdateWithWhereUniqueWithoutUserInput {
-  where: SubmitWhereUniqueInput;
-  data: SubmitUpdateWithoutUserDataInput;
-}
-
-export interface PrivilegeGroupUpdateManyMutationInput {
-  name?: String;
-  privilege?: Int;
-}
-
-export interface SubmitUpdateWithoutUserDataInput {
-  userId?: Int;
-  userName?: String;
-  problem?: ProblemUpdateOneRequiredInput;
+export interface ContestProblemUpdateManyDataInput {
   problemId?: String;
   problemTitle?: String;
-  language?: Int;
-  code?: String;
-  result?: String;
-  errorInfo?: String;
-  contest?: ContestUpdateOneInput;
-  limitTime?: Int;
-  limitMemory?: Int;
-  time?: Int;
-  memory?: Int;
+  ac?: Int;
+  wa?: Int;
 }
 
-export interface UserUpdateWithWhereUniqueWithoutPrivilegeGroupInput {
-  where: UserWhereUniqueInput;
-  data: UserUpdateWithoutPrivilegeGroupDataInput;
-}
-
-export interface ProblemUpdateOneRequiredInput {
-  create?: ProblemCreateInput;
-  update?: ProblemUpdateDataInput;
-  upsert?: ProblemUpsertNestedInput;
-  connect?: ProblemWhereUniqueInput;
-}
-
-export interface UserCreateWithoutPrivilegeGroupInput {
+export interface UserCreateWithoutUserDiscussInput {
   userId: String;
   password: String;
   status?: Int;
@@ -3583,7 +3871,8 @@ export interface UserCreateWithoutPrivilegeGroupInput {
   defaultUserGroupId?: String;
   privilegeBlack?: Int;
   privilegeWhite?: Int;
-  UserDiscuss?: DiscussCreateManyWithoutUserInput;
+  privilegeCache?: Int;
+  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
   UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
   userGroup?: UserGroupCreateManyWithoutUsersInput;
   createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
@@ -3597,212 +3886,31 @@ export interface UserCreateWithoutPrivilegeGroupInput {
   accepted?: Int;
 }
 
-export interface ProblemUpdateDataInput {
-  problemId?: Int;
-  status?: Int;
-  type?: Int;
-  tags?: Json;
-  title?: String;
-  describe?: String;
-  inDescribe?: String;
-  outDescribe?: String;
-  inExample?: String;
-  outExample?: String;
-  integral?: Int;
-  limitTime?: Int;
-  limitMemory?: Int;
-  createUser?: UserUpdateOneWithoutCreateProblmesInput;
-  hint?: String;
-  source?: String;
-  sourceId?: String;
-  example?: String;
-  discuss?: DiscussUpdateManyInput;
-}
-
-export interface DiscussChilderUpdateManyMutationInput {
-  contentRaw?: String;
-  content?: String;
-  userId?: Int;
-  userName?: String;
-  replyUserId?: Int;
-  replyUserName?: String;
-}
-
-export interface UserUpdateOneWithoutCreateProblmesInput {
-  create?: UserCreateWithoutCreateProblmesInput;
-  update?: UserUpdateWithoutCreateProblmesDataInput;
-  upsert?: UserUpsertWithoutCreateProblmesInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface DiscussUpdateInput {
-  contentRaw?: String;
-  content?: String;
-  user?: UserUpdateOneWithoutUserDiscussInput;
-  userId?: Int;
-  userName?: String;
-  children?: DiscussChilderUpdateManyInput;
-}
-
-export interface UserUpdateWithoutCreateProblmesDataInput {
-  userId?: String;
-  password?: String;
-  status?: Int;
-  level?: Int;
-  name?: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral?: Int;
-  coin?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack?: Int;
-  privilegeWhite?: Int;
-  privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
-  UserDiscuss?: DiscussUpdateManyWithoutUserInput;
-  UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
-  userGroup?: UserGroupUpdateManyWithoutUsersInput;
-  createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
-  privilegeUserGroup?: UserGroupUpdateManyInput;
-  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
-  problems?: UserUpdateproblemsInput;
-  submitRecord?: SubmitUpdateManyWithoutUserInput;
-  submit?: Int;
-  solved?: Int;
-  accepted?: Int;
-}
-
-export interface ContestUpdateManyMutationInput {
-  name?: String;
-  type?: Int;
-  createUserName?: String;
-  createUserId?: Int;
-  startTime?: DateTimeInput;
-  endTime?: DateTimeInput;
-}
-
-export interface UserUpsertWithoutCreateProblmesInput {
-  update: UserUpdateWithoutCreateProblmesDataInput;
-  create: UserCreateWithoutCreateProblmesInput;
-}
-
-export interface UserGroupCreateOneInput {
-  create?: UserGroupCreateInput;
-  connect?: UserGroupWhereUniqueInput;
-}
-
-export interface ProblemUpsertNestedInput {
-  update: ProblemUpdateDataInput;
-  create: ProblemCreateInput;
-}
-
-export interface PrivilegeGroupCreateManyWithoutUsersInput {
-  create?:
-    | PrivilegeGroupCreateWithoutUsersInput[]
-    | PrivilegeGroupCreateWithoutUsersInput;
-  connect?: PrivilegeGroupWhereUniqueInput[] | PrivilegeGroupWhereUniqueInput;
-}
-
-export interface ContestUpdateOneInput {
-  create?: ContestCreateInput;
-  update?: ContestUpdateDataInput;
-  upsert?: ContestUpsertNestedInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: ContestWhereUniqueInput;
-}
-
-export interface DiscussChilderCreateManyInput {
-  create?: DiscussChilderCreateInput[] | DiscussChilderCreateInput;
-  connect?: DiscussChilderWhereUniqueInput[] | DiscussChilderWhereUniqueInput;
-}
-
-export interface ContestUpdateDataInput {
-  name?: String;
-  type?: Int;
-  createUserName?: String;
-  createUserId?: Int;
-  startTime?: DateTimeInput;
-  endTime?: DateTimeInput;
-  userGroup?: UserGroupUpdateOneRequiredInput;
-  contestProblem?: ContestProblemUpdateOneRequiredInput;
-}
-
-export interface UserGroupCreateManyWithoutUsersInput {
-  create?:
-    | UserGroupCreateWithoutUsersInput[]
-    | UserGroupCreateWithoutUsersInput;
-  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
-}
-
-export interface ContestProblemUpdateOneRequiredInput {
-  create?: ContestProblemCreateInput;
-  update?: ContestProblemUpdateDataInput;
-  upsert?: ContestProblemUpsertNestedInput;
-  connect?: ContestProblemWhereUniqueInput;
-}
-
-export interface DiscussChilderCreateManyWithoutUserInput {
-  create?:
-    | DiscussChilderCreateWithoutUserInput[]
-    | DiscussChilderCreateWithoutUserInput;
-  connect?: DiscussChilderWhereUniqueInput[] | DiscussChilderWhereUniqueInput;
-}
-
-export interface ContestProblemUpdateDataInput {
-  problem?: ProblemUpdateOneInput;
-  problemId?: String;
-  problemTitle?: String;
-  ac?: Int;
-  wa?: Int;
-}
-
-export interface UserCreateManyWithoutUserGroupInput {
-  create?: UserCreateWithoutUserGroupInput[] | UserCreateWithoutUserGroupInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-}
-
-export interface ProblemUpdateOneInput {
-  create?: ProblemCreateInput;
-  update?: ProblemUpdateDataInput;
-  upsert?: ProblemUpsertNestedInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: ProblemWhereUniqueInput;
-}
-
-export interface UserGroupCreateWithoutApplyUsersInput {
-  name: String;
-  desc?: String;
-  count?: Int;
-  createUserId: String;
-  createUserName: String;
-  createUser: UserCreateOneWithoutCreateUserGroupInput;
-  privilege?: UserCreateManyInput;
-  users?: UserCreateManyWithoutUserGroupInput;
-}
-
-export interface ContestProblemUpsertNestedInput {
-  update: ContestProblemUpdateDataInput;
-  create: ContestProblemCreateInput;
-}
-
-export interface DiscussCreateManyInput {
-  create?: DiscussCreateInput[] | DiscussCreateInput;
-  connect?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
-}
-
 export interface ContestUpsertNestedInput {
   update: ContestUpdateDataInput;
   create: ContestCreateInput;
 }
 
-export interface SubmitCreateManyWithoutUserInput {
-  create?: SubmitCreateWithoutUserInput[] | SubmitCreateWithoutUserInput;
-  connect?: SubmitWhereUniqueInput[] | SubmitWhereUniqueInput;
+export interface ProblemCreateInput {
+  problemId?: Int;
+  status?: Int;
+  type?: Int;
+  tags: Json;
+  title: String;
+  describe: String;
+  inDescribe: String;
+  outDescribe: String;
+  inExample: String;
+  outExample: String;
+  integral?: Int;
+  limitTime: Int;
+  limitMemory: Int;
+  createUser?: UserCreateOneWithoutCreateProblmesInput;
+  hint?: String;
+  source?: String;
+  sourceId?: String;
+  example?: String;
+  discuss?: DiscussCreateManyInput;
 }
 
 export interface SubmitUpsertWithWhereUniqueWithoutUserInput {
@@ -3811,9 +3919,11 @@ export interface SubmitUpsertWithWhereUniqueWithoutUserInput {
   create: SubmitCreateWithoutUserInput;
 }
 
-export interface UserCreateOneWithoutCreateProblmesInput {
-  create?: UserCreateWithoutCreateProblmesInput;
-  connect?: UserWhereUniqueInput;
+export interface UserCreateManyWithoutApplyUserGroupInput {
+  create?:
+    | UserCreateWithoutApplyUserGroupInput[]
+    | UserCreateWithoutApplyUserGroupInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
 }
 
 export interface SubmitScalarWhereInput {
@@ -3984,33 +4094,18 @@ export interface SubmitScalarWhereInput {
   NOT?: SubmitScalarWhereInput[] | SubmitScalarWhereInput;
 }
 
-export interface UserCreateWithoutApplyUserGroupInput {
-  userId: String;
-  password: String;
-  status?: Int;
-  level?: Int;
-  name: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral?: Int;
-  coin?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack?: Int;
-  privilegeWhite?: Int;
-  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
-  UserDiscuss?: DiscussCreateManyWithoutUserInput;
-  UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
-  userGroup?: UserGroupCreateManyWithoutUsersInput;
-  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
-  privilegeUserGroup?: UserGroupCreateManyInput;
-  problems?: UserCreateproblemsInput;
-  createProblmes?: ProblemCreateManyWithoutCreateUserInput;
-  submitRecord?: SubmitCreateManyWithoutUserInput;
-  submit?: Int;
-  solved?: Int;
-  accepted?: Int;
+export interface ContestUpdateInput {
+  name?: String;
+  type?: Int;
+  cloneId?: String;
+  createUserName?: String;
+  createUserId?: String;
+  firstStartTime?: DateTimeInput;
+  startTime?: DateTimeInput;
+  endTime?: DateTimeInput;
+  hint?: String;
+  userGroup?: UserGroupUpdateManyInput;
+  contestProblem?: ContestProblemUpdateManyInput;
 }
 
 export interface SubmitUpdateManyWithWhereNestedInput {
@@ -4018,11 +4113,94 @@ export interface SubmitUpdateManyWithWhereNestedInput {
   data: SubmitUpdateManyDataInput;
 }
 
-export interface UserGroupUpdateOneRequiredInput {
-  create?: UserGroupCreateInput;
-  update?: UserGroupUpdateDataInput;
-  upsert?: UserGroupUpsertNestedInput;
-  connect?: UserGroupWhereUniqueInput;
+export interface DiscussWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  contentRaw?: String;
+  contentRaw_not?: String;
+  contentRaw_in?: String[] | String;
+  contentRaw_not_in?: String[] | String;
+  contentRaw_lt?: String;
+  contentRaw_lte?: String;
+  contentRaw_gt?: String;
+  contentRaw_gte?: String;
+  contentRaw_contains?: String;
+  contentRaw_not_contains?: String;
+  contentRaw_starts_with?: String;
+  contentRaw_not_starts_with?: String;
+  contentRaw_ends_with?: String;
+  contentRaw_not_ends_with?: String;
+  content?: String;
+  content_not?: String;
+  content_in?: String[] | String;
+  content_not_in?: String[] | String;
+  content_lt?: String;
+  content_lte?: String;
+  content_gt?: String;
+  content_gte?: String;
+  content_contains?: String;
+  content_not_contains?: String;
+  content_starts_with?: String;
+  content_not_starts_with?: String;
+  content_ends_with?: String;
+  content_not_ends_with?: String;
+  user?: UserWhereInput;
+  userId?: Int;
+  userId_not?: Int;
+  userId_in?: Int[] | Int;
+  userId_not_in?: Int[] | Int;
+  userId_lt?: Int;
+  userId_lte?: Int;
+  userId_gt?: Int;
+  userId_gte?: Int;
+  userName?: String;
+  userName_not?: String;
+  userName_in?: String[] | String;
+  userName_not_in?: String[] | String;
+  userName_lt?: String;
+  userName_lte?: String;
+  userName_gt?: String;
+  userName_gte?: String;
+  userName_contains?: String;
+  userName_not_contains?: String;
+  userName_starts_with?: String;
+  userName_not_starts_with?: String;
+  userName_ends_with?: String;
+  userName_not_ends_with?: String;
+  children_every?: DiscussChilderWhereInput;
+  children_some?: DiscussChilderWhereInput;
+  children_none?: DiscussChilderWhereInput;
+  AND?: DiscussWhereInput[] | DiscussWhereInput;
+  OR?: DiscussWhereInput[] | DiscussWhereInput;
+  NOT?: DiscussWhereInput[] | DiscussWhereInput;
 }
 
 export interface SubmitUpdateManyDataInput {
@@ -4040,21 +4218,21 @@ export interface SubmitUpdateManyDataInput {
   memory?: Int;
 }
 
-export interface PrivilegeGroupSubscriptionWhereInput {
+export interface DiscussChilderSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: PrivilegeGroupWhereInput;
+  node?: DiscussChilderWhereInput;
   AND?:
-    | PrivilegeGroupSubscriptionWhereInput[]
-    | PrivilegeGroupSubscriptionWhereInput;
+    | DiscussChilderSubscriptionWhereInput[]
+    | DiscussChilderSubscriptionWhereInput;
   OR?:
-    | PrivilegeGroupSubscriptionWhereInput[]
-    | PrivilegeGroupSubscriptionWhereInput;
+    | DiscussChilderSubscriptionWhereInput[]
+    | DiscussChilderSubscriptionWhereInput;
   NOT?:
-    | PrivilegeGroupSubscriptionWhereInput[]
-    | PrivilegeGroupSubscriptionWhereInput;
+    | DiscussChilderSubscriptionWhereInput[]
+    | DiscussChilderSubscriptionWhereInput;
 }
 
 export interface UserUpsertWithoutUserDiscussInput {
@@ -4062,34 +4240,19 @@ export interface UserUpsertWithoutUserDiscussInput {
   create: UserCreateWithoutUserDiscussInput;
 }
 
-export interface UserUpdateInput {
-  userId?: String;
-  password?: String;
-  status?: Int;
-  level?: Int;
-  name?: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral?: Int;
-  coin?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack?: Int;
-  privilegeWhite?: Int;
-  privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
-  UserDiscuss?: DiscussUpdateManyWithoutUserInput;
-  UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
-  userGroup?: UserGroupUpdateManyWithoutUsersInput;
-  createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
-  privilegeUserGroup?: UserGroupUpdateManyInput;
-  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
-  problems?: UserUpdateproblemsInput;
-  createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
-  submitRecord?: SubmitUpdateManyWithoutUserInput;
-  submit?: Int;
-  solved?: Int;
-  accepted?: Int;
+export interface SubmitUpdateManyMutationInput {
+  userId?: Int;
+  userName?: String;
+  problemId?: String;
+  problemTitle?: String;
+  language?: Int;
+  code?: String;
+  result?: String;
+  errorInfo?: String;
+  limitTime?: Int;
+  limitMemory?: Int;
+  time?: Int;
+  memory?: Int;
 }
 
 export interface DiscussUpsertWithWhereUniqueNestedInput {
@@ -4098,9 +4261,10 @@ export interface DiscussUpsertWithWhereUniqueNestedInput {
   create: DiscussCreateInput;
 }
 
-export type DiscussWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
+export interface UserCreateOneWithoutSubmitRecordInput {
+  create?: UserCreateWithoutSubmitRecordInput;
+  connect?: UserWhereUniqueInput;
+}
 
 export interface DiscussScalarWhereInput {
   id?: ID_Input;
@@ -4188,18 +4352,46 @@ export interface DiscussScalarWhereInput {
   NOT?: DiscussScalarWhereInput[] | DiscussScalarWhereInput;
 }
 
-export type PrivilegeGroupWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
+export interface UserUpdateWithoutPrivilegeGroupDataInput {
+  userId?: String;
+  password?: String;
+  status?: Int;
+  level?: Int;
+  name?: String;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  privilegeCache?: Int;
+  UserDiscuss?: DiscussUpdateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
+  userGroup?: UserGroupUpdateManyWithoutUsersInput;
+  createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupUpdateManyInput;
+  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
+  problems?: UserUpdateproblemsInput;
+  createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
+  submitRecord?: SubmitUpdateManyWithoutUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
+}
 
 export interface DiscussUpdateManyWithWhereNestedInput {
   where: DiscussScalarWhereInput;
   data: DiscussUpdateManyDataInput;
 }
 
-export type SubmitWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
+export interface PrivilegeGroupCreateInput {
+  name: String;
+  privilege: Int;
+  users?: UserCreateManyWithoutPrivilegeGroupInput;
+}
 
 export interface DiscussUpdateManyDataInput {
   contentRaw?: String;
@@ -4208,9 +4400,13 @@ export interface DiscussUpdateManyDataInput {
   userName?: String;
 }
 
-export type UserGroupWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
+export interface ContestProblemUpdateInput {
+  problem?: ProblemUpdateOneInput;
+  problemId?: String;
+  problemTitle?: String;
+  ac?: Int;
+  wa?: Int;
+}
 
 export interface ProblemUpsertWithWhereUniqueWithoutCreateUserInput {
   where: ProblemWhereUniqueInput;
@@ -4218,9 +4414,11 @@ export interface ProblemUpsertWithWhereUniqueWithoutCreateUserInput {
   create: ProblemCreateWithoutCreateUserInput;
 }
 
-export interface UserCreateOneWithoutCreateUserGroupInput {
-  create?: UserCreateWithoutCreateUserGroupInput;
-  connect?: UserWhereUniqueInput;
+export interface PrivilegeGroupCreateManyWithoutUsersInput {
+  create?:
+    | PrivilegeGroupCreateWithoutUsersInput[]
+    | PrivilegeGroupCreateWithoutUsersInput;
+  connect?: PrivilegeGroupWhereUniqueInput[] | PrivilegeGroupWhereUniqueInput;
 }
 
 export interface ProblemScalarWhereInput {
@@ -4447,9 +4645,11 @@ export interface ProblemScalarWhereInput {
   NOT?: ProblemScalarWhereInput[] | ProblemScalarWhereInput;
 }
 
-export interface UserCreateOneWithoutUserDiscussChilderInput {
-  create?: UserCreateWithoutUserDiscussChilderInput;
-  connect?: UserWhereUniqueInput;
+export interface UserGroupCreateManyWithoutUsersInput {
+  create?:
+    | UserGroupCreateWithoutUsersInput[]
+    | UserGroupCreateWithoutUsersInput;
+  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
 }
 
 export interface ProblemUpdateManyWithWhereNestedInput {
@@ -4457,11 +4657,9 @@ export interface ProblemUpdateManyWithWhereNestedInput {
   data: ProblemUpdateManyDataInput;
 }
 
-export interface UserGroupCreateManyWithoutCreateUserInput {
-  create?:
-    | UserGroupCreateWithoutCreateUserInput[]
-    | UserGroupCreateWithoutCreateUserInput;
-  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+export interface UserCreateManyWithoutUserGroupInput {
+  create?: UserCreateWithoutUserGroupInput[] | UserCreateWithoutUserGroupInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
 }
 
 export interface ProblemUpdateManyDataInput {
@@ -4484,11 +4682,13 @@ export interface ProblemUpdateManyDataInput {
   example?: String;
 }
 
-export interface ProblemCreateManyWithoutCreateUserInput {
-  create?:
-    | ProblemCreateWithoutCreateUserInput[]
-    | ProblemCreateWithoutCreateUserInput;
-  connect?: ProblemWhereUniqueInput[] | ProblemWhereUniqueInput;
+export interface DiscussCreateInput {
+  contentRaw: String;
+  content: String;
+  user?: UserCreateOneWithoutUserDiscussInput;
+  userId: Int;
+  userName: String;
+  children?: DiscussChilderCreateManyInput;
 }
 
 export interface UserUpsertWithWhereUniqueWithoutUserGroupInput {
@@ -4497,9 +4697,34 @@ export interface UserUpsertWithWhereUniqueWithoutUserGroupInput {
   create: UserCreateWithoutUserGroupInput;
 }
 
-export interface ProblemCreateOneInput {
-  create?: ProblemCreateInput;
-  connect?: ProblemWhereUniqueInput;
+export interface UserCreateWithoutCreateProblmesInput {
+  userId: String;
+  password: String;
+  status?: Int;
+  level?: Int;
+  name: String;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral?: Int;
+  coin?: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack?: Int;
+  privilegeWhite?: Int;
+  privilegeCache?: Int;
+  privilegeGroup?: PrivilegeGroupCreateManyWithoutUsersInput;
+  UserDiscuss?: DiscussCreateManyWithoutUserInput;
+  UserDiscussChilder?: DiscussChilderCreateManyWithoutUserInput;
+  userGroup?: UserGroupCreateManyWithoutUsersInput;
+  createUserGroup?: UserGroupCreateManyWithoutCreateUserInput;
+  privilegeUserGroup?: UserGroupCreateManyInput;
+  applyUserGroup?: UserGroupCreateManyWithoutApplyUsersInput;
+  problems?: UserCreateproblemsInput;
+  submitRecord?: SubmitCreateManyWithoutUserInput;
+  submit?: Int;
+  solved?: Int;
+  accepted?: Int;
 }
 
 export interface UserScalarWhereInput {
@@ -4693,6 +4918,14 @@ export interface UserScalarWhereInput {
   privilegeWhite_lte?: Int;
   privilegeWhite_gt?: Int;
   privilegeWhite_gte?: Int;
+  privilegeCache?: Int;
+  privilegeCache_not?: Int;
+  privilegeCache_in?: Int[] | Int;
+  privilegeCache_not_in?: Int[] | Int;
+  privilegeCache_lt?: Int;
+  privilegeCache_lte?: Int;
+  privilegeCache_gt?: Int;
+  privilegeCache_gte?: Int;
   submit?: Int;
   submit_not?: Int;
   submit_in?: Int[] | Int;
@@ -4722,12 +4955,9 @@ export interface UserScalarWhereInput {
   NOT?: UserScalarWhereInput[] | UserScalarWhereInput;
 }
 
-export interface ContestProblemCreateInput {
-  problem?: ProblemCreateOneInput;
-  problemId: String;
-  problemTitle: String;
-  ac?: Int;
-  wa?: Int;
+export interface UserGroupUpdateWithWhereUniqueNestedInput {
+  where: UserGroupWhereUniqueInput;
+  data: UserGroupUpdateDataInput;
 }
 
 export interface UserUpdateManyWithWhereNestedInput {
@@ -4735,15 +4965,12 @@ export interface UserUpdateManyWithWhereNestedInput {
   data: UserUpdateManyDataInput;
 }
 
-export interface ContestSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: ContestWhereInput;
-  AND?: ContestSubscriptionWhereInput[] | ContestSubscriptionWhereInput;
-  OR?: ContestSubscriptionWhereInput[] | ContestSubscriptionWhereInput;
-  NOT?: ContestSubscriptionWhereInput[] | ContestSubscriptionWhereInput;
+export interface UserGroupUpdateManyMutationInput {
+  name?: String;
+  desc?: String;
+  count?: Int;
+  createUserId?: String;
+  createUserName?: String;
 }
 
 export interface UserUpdateManyDataInput {
@@ -4761,15 +4988,34 @@ export interface UserUpdateManyDataInput {
   defaultUserGroupId?: String;
   privilegeBlack?: Int;
   privilegeWhite?: Int;
+  privilegeCache?: Int;
   problems?: UserUpdateproblemsInput;
   submit?: Int;
   solved?: Int;
   accepted?: Int;
 }
 
-export type DiscussChilderWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
+export interface ProblemUpdateInput {
+  problemId?: Int;
+  status?: Int;
+  type?: Int;
+  tags?: Json;
+  title?: String;
+  describe?: String;
+  inDescribe?: String;
+  outDescribe?: String;
+  inExample?: String;
+  outExample?: String;
+  integral?: Int;
+  limitTime?: Int;
+  limitMemory?: Int;
+  createUser?: UserUpdateOneWithoutCreateProblmesInput;
+  hint?: String;
+  source?: String;
+  sourceId?: String;
+  example?: String;
+  discuss?: DiscussUpdateManyInput;
+}
 
 export interface UserUpdateManyWithoutApplyUserGroupInput {
   create?:
@@ -4791,19 +5037,21 @@ export interface UserUpdateManyWithoutApplyUserGroupInput {
     | UserUpdateManyWithWhereNestedInput;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-  userId?: String;
-}>;
+export interface DiscussUpdateManyMutationInput {
+  contentRaw?: String;
+  content?: String;
+  userId?: Int;
+  userName?: String;
+}
 
 export interface UserUpdateWithWhereUniqueWithoutApplyUserGroupInput {
   where: UserWhereUniqueInput;
   data: UserUpdateWithoutApplyUserGroupDataInput;
 }
 
-export interface DiscussCreateManyWithoutUserInput {
-  create?: DiscussCreateWithoutUserInput[] | DiscussCreateWithoutUserInput;
-  connect?: DiscussWhereUniqueInput[] | DiscussWhereUniqueInput;
+export interface DiscussChilderCreateManyInput {
+  create?: DiscussChilderCreateInput[] | DiscussChilderCreateInput;
+  connect?: DiscussChilderWhereUniqueInput[] | DiscussChilderWhereUniqueInput;
 }
 
 export interface UserUpdateWithoutApplyUserGroupDataInput {
@@ -4821,6 +5069,7 @@ export interface UserUpdateWithoutApplyUserGroupDataInput {
   defaultUserGroupId?: String;
   privilegeBlack?: Int;
   privilegeWhite?: Int;
+  privilegeCache?: Int;
   privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
   UserDiscuss?: DiscussUpdateManyWithoutUserInput;
   UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
@@ -4835,9 +5084,8 @@ export interface UserUpdateWithoutApplyUserGroupDataInput {
   accepted?: Int;
 }
 
-export interface UserGroupCreateManyInput {
-  create?: UserGroupCreateInput[] | UserGroupCreateInput;
-  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
+export interface UserCreateproblemsInput {
+  set?: Json[] | Json;
 }
 
 export interface UserUpsertWithWhereUniqueWithoutApplyUserGroupInput {
@@ -4846,9 +5094,9 @@ export interface UserUpsertWithWhereUniqueWithoutApplyUserGroupInput {
   create: UserCreateWithoutApplyUserGroupInput;
 }
 
-export interface ContestCreateOneInput {
-  create?: ContestCreateInput;
-  connect?: ContestWhereUniqueInput;
+export interface ContestProblemCreateManyInput {
+  create?: ContestProblemCreateInput[] | ContestProblemCreateInput;
+  connect?: ContestProblemWhereUniqueInput[] | ContestProblemWhereUniqueInput;
 }
 
 export interface UserGroupUpsertWithWhereUniqueWithoutCreateUserInput {
@@ -4857,33 +5105,13 @@ export interface UserGroupUpsertWithWhereUniqueWithoutCreateUserInput {
   create: UserGroupCreateWithoutCreateUserInput;
 }
 
-export interface UserUpdateWithoutSubmitRecordDataInput {
-  userId?: String;
-  password?: String;
-  status?: Int;
-  level?: Int;
-  name?: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral?: Int;
-  coin?: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack?: Int;
-  privilegeWhite?: Int;
-  privilegeGroup?: PrivilegeGroupUpdateManyWithoutUsersInput;
-  UserDiscuss?: DiscussUpdateManyWithoutUserInput;
-  UserDiscussChilder?: DiscussChilderUpdateManyWithoutUserInput;
-  userGroup?: UserGroupUpdateManyWithoutUsersInput;
-  createUserGroup?: UserGroupUpdateManyWithoutCreateUserInput;
-  privilegeUserGroup?: UserGroupUpdateManyInput;
-  applyUserGroup?: UserGroupUpdateManyWithoutApplyUsersInput;
-  problems?: UserUpdateproblemsInput;
-  createProblmes?: ProblemUpdateManyWithoutCreateUserInput;
-  submit?: Int;
-  solved?: Int;
-  accepted?: Int;
+export interface UserUpdateOneWithoutSubmitRecordInput {
+  create?: UserCreateWithoutSubmitRecordInput;
+  update?: UserUpdateWithoutSubmitRecordDataInput;
+  upsert?: UserUpsertWithoutSubmitRecordInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
 }
 
 export interface DiscussChilderUpsertWithWhereUniqueNestedInput {
@@ -4909,79 +5137,50 @@ export interface UserUpsertWithWhereUniqueNestedInput {
   create: UserCreateInput;
 }
 
-export interface UserCreateManyInput {
-  create?: UserCreateInput[] | UserCreateInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-}
-
-export type ProblemWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface PrivilegeGroupWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  updatedAt?: DateTimeInput;
-  updatedAt_not?: DateTimeInput;
-  updatedAt_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_lt?: DateTimeInput;
-  updatedAt_lte?: DateTimeInput;
-  updatedAt_gt?: DateTimeInput;
-  updatedAt_gte?: DateTimeInput;
+export interface PrivilegeGroupUpdateInput {
   name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
   privilege?: Int;
-  privilege_not?: Int;
-  privilege_in?: Int[] | Int;
-  privilege_not_in?: Int[] | Int;
-  privilege_lt?: Int;
-  privilege_lte?: Int;
-  privilege_gt?: Int;
-  privilege_gte?: Int;
-  users_every?: UserWhereInput;
-  users_some?: UserWhereInput;
-  users_none?: UserWhereInput;
-  AND?: PrivilegeGroupWhereInput[] | PrivilegeGroupWhereInput;
-  OR?: PrivilegeGroupWhereInput[] | PrivilegeGroupWhereInput;
-  NOT?: PrivilegeGroupWhereInput[] | PrivilegeGroupWhereInput;
+  users?: UserUpdateManyWithoutPrivilegeGroupInput;
 }
 
-export interface UserCreateOneWithoutUserDiscussInput {
-  create?: UserCreateWithoutUserDiscussInput;
-  connect?: UserWhereUniqueInput;
+export interface SubmitSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: SubmitWhereInput;
+  AND?: SubmitSubscriptionWhereInput[] | SubmitSubscriptionWhereInput;
+  OR?: SubmitSubscriptionWhereInput[] | SubmitSubscriptionWhereInput;
+  NOT?: SubmitSubscriptionWhereInput[] | SubmitSubscriptionWhereInput;
+}
+
+export interface SubmitCreateWithoutUserInput {
+  userId: Int;
+  userName: String;
+  problem: ProblemCreateOneInput;
+  problemId: String;
+  problemTitle: String;
+  language: Int;
+  code: String;
+  result: String;
+  errorInfo?: String;
+  contest?: ContestCreateOneInput;
+  limitTime: Int;
+  limitMemory: Int;
+  time: Int;
+  memory: Int;
+}
+
+export interface DiscussChilderCreateManyWithoutUserInput {
+  create?:
+    | DiscussChilderCreateWithoutUserInput[]
+    | DiscussChilderCreateWithoutUserInput;
+  connect?: DiscussChilderWhereUniqueInput[] | DiscussChilderWhereUniqueInput;
+}
+
+export interface UserGroupCreateManyInput {
+  create?: UserGroupCreateInput[] | UserGroupCreateInput;
+  connect?: UserGroupWhereUniqueInput[] | UserGroupWhereUniqueInput;
 }
 
 export interface NodeNode {
@@ -5046,1029 +5245,6 @@ export interface PageInfoSubscription
   hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
   startCursor: () => Promise<AsyncIterator<String>>;
   endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PrivilegeGroup {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  name: String;
-  privilege: Int;
-}
-
-export interface PrivilegeGroupPromise
-  extends Promise<PrivilegeGroup>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  name: () => Promise<String>;
-  privilege: () => Promise<Int>;
-  users: <T = FragmentableArray<User>>(
-    args?: {
-      where?: UserWhereInput;
-      orderBy?: UserOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface PrivilegeGroupSubscription
-  extends Promise<AsyncIterator<PrivilegeGroup>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  name: () => Promise<AsyncIterator<String>>;
-  privilege: () => Promise<AsyncIterator<Int>>;
-  users: <T = Promise<AsyncIterator<UserSubscription>>>(
-    args?: {
-      where?: UserWhereInput;
-      orderBy?: UserOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface ContestConnection {
-  pageInfo: PageInfo;
-  edges: ContestEdge[];
-}
-
-export interface ContestConnectionPromise
-  extends Promise<ContestConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ContestEdge>>() => T;
-  aggregate: <T = AggregateContestPromise>() => T;
-}
-
-export interface ContestConnectionSubscription
-  extends Promise<AsyncIterator<ContestConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ContestEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateContestSubscription>() => T;
-}
-
-export interface UserGroupEdge {
-  node: UserGroup;
-  cursor: String;
-}
-
-export interface UserGroupEdgePromise
-  extends Promise<UserGroupEdge>,
-    Fragmentable {
-  node: <T = UserGroupPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserGroupEdgeSubscription
-  extends Promise<AsyncIterator<UserGroupEdge>>,
-    Fragmentable {
-  node: <T = UserGroupSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateUserGroup {
-  count: Int;
-}
-
-export interface AggregateUserGroupPromise
-  extends Promise<AggregateUserGroup>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserGroupSubscription
-  extends Promise<AsyncIterator<AggregateUserGroup>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface DiscussChilder {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  contentRaw: String;
-  content: String;
-  userId: Int;
-  userName: String;
-  replyUserId: Int;
-  replyUserName: String;
-}
-
-export interface DiscussChilderPromise
-  extends Promise<DiscussChilder>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  contentRaw: () => Promise<String>;
-  content: () => Promise<String>;
-  user: <T = UserPromise>() => T;
-  userId: () => Promise<Int>;
-  userName: () => Promise<String>;
-  replyUserId: () => Promise<Int>;
-  replyUserName: () => Promise<String>;
-}
-
-export interface DiscussChilderSubscription
-  extends Promise<AsyncIterator<DiscussChilder>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  contentRaw: () => Promise<AsyncIterator<String>>;
-  content: () => Promise<AsyncIterator<String>>;
-  user: <T = UserSubscription>() => T;
-  userId: () => Promise<AsyncIterator<Int>>;
-  userName: () => Promise<AsyncIterator<String>>;
-  replyUserId: () => Promise<AsyncIterator<Int>>;
-  replyUserName: () => Promise<AsyncIterator<String>>;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface UserEdge {
-  node: User;
-  cursor: String;
-}
-
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
-    Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserGroupConnection {
-  pageInfo: PageInfo;
-  edges: UserGroupEdge[];
-}
-
-export interface UserGroupConnectionPromise
-  extends Promise<UserGroupConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserGroupEdge>>() => T;
-  aggregate: <T = AggregateUserGroupPromise>() => T;
-}
-
-export interface UserGroupConnectionSubscription
-  extends Promise<AsyncIterator<UserGroupConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserGroupEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserGroupSubscription>() => T;
-}
-
-export interface AggregateSubmit {
-  count: Int;
-}
-
-export interface AggregateSubmitPromise
-  extends Promise<AggregateSubmit>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateSubmitSubscription
-  extends Promise<AsyncIterator<AggregateSubmit>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface ContestProblem {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  problemId: String;
-  problemTitle: String;
-  ac: Int;
-  wa: Int;
-}
-
-export interface ContestProblemPromise
-  extends Promise<ContestProblem>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  problem: <T = ProblemPromise>() => T;
-  problemId: () => Promise<String>;
-  problemTitle: () => Promise<String>;
-  ac: () => Promise<Int>;
-  wa: () => Promise<Int>;
-}
-
-export interface ContestProblemSubscription
-  extends Promise<AsyncIterator<ContestProblem>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  problem: <T = ProblemSubscription>() => T;
-  problemId: () => Promise<AsyncIterator<String>>;
-  problemTitle: () => Promise<AsyncIterator<String>>;
-  ac: () => Promise<AsyncIterator<Int>>;
-  wa: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface SubmitConnection {
-  pageInfo: PageInfo;
-  edges: SubmitEdge[];
-}
-
-export interface SubmitConnectionPromise
-  extends Promise<SubmitConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<SubmitEdge>>() => T;
-  aggregate: <T = AggregateSubmitPromise>() => T;
-}
-
-export interface SubmitConnectionSubscription
-  extends Promise<AsyncIterator<SubmitConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<SubmitEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateSubmitSubscription>() => T;
-}
-
-export interface Contest {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  name: String;
-  type?: Int;
-  createUserName: String;
-  createUserId: Int;
-  startTime: DateTimeOutput;
-  endTime: DateTimeOutput;
-}
-
-export interface ContestPromise extends Promise<Contest>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  name: () => Promise<String>;
-  type: () => Promise<Int>;
-  createUserName: () => Promise<String>;
-  createUserId: () => Promise<Int>;
-  startTime: () => Promise<DateTimeOutput>;
-  endTime: () => Promise<DateTimeOutput>;
-  userGroup: <T = UserGroupPromise>() => T;
-  contestProblem: <T = ContestProblemPromise>() => T;
-}
-
-export interface ContestSubscription
-  extends Promise<AsyncIterator<Contest>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  name: () => Promise<AsyncIterator<String>>;
-  type: () => Promise<AsyncIterator<Int>>;
-  createUserName: () => Promise<AsyncIterator<String>>;
-  createUserId: () => Promise<AsyncIterator<Int>>;
-  startTime: () => Promise<AsyncIterator<DateTimeOutput>>;
-  endTime: () => Promise<AsyncIterator<DateTimeOutput>>;
-  userGroup: <T = UserGroupSubscription>() => T;
-  contestProblem: <T = ContestProblemSubscription>() => T;
-}
-
-export interface ProblemEdge {
-  node: Problem;
-  cursor: String;
-}
-
-export interface ProblemEdgePromise extends Promise<ProblemEdge>, Fragmentable {
-  node: <T = ProblemPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface ProblemEdgeSubscription
-  extends Promise<AsyncIterator<ProblemEdge>>,
-    Fragmentable {
-  node: <T = ProblemSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ContestSubscriptionPayload {
-  mutation: MutationType;
-  node: Contest;
-  updatedFields: String[];
-  previousValues: ContestPreviousValues;
-}
-
-export interface ContestSubscriptionPayloadPromise
-  extends Promise<ContestSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = ContestPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = ContestPreviousValuesPromise>() => T;
-}
-
-export interface ContestSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ContestSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = ContestSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ContestPreviousValuesSubscription>() => T;
-}
-
-export interface AggregatePrivilegeGroup {
-  count: Int;
-}
-
-export interface AggregatePrivilegeGroupPromise
-  extends Promise<AggregatePrivilegeGroup>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregatePrivilegeGroupSubscription
-  extends Promise<AsyncIterator<AggregatePrivilegeGroup>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface ContestPreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  name: String;
-  type?: Int;
-  createUserName: String;
-  createUserId: Int;
-  startTime: DateTimeOutput;
-  endTime: DateTimeOutput;
-}
-
-export interface ContestPreviousValuesPromise
-  extends Promise<ContestPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  name: () => Promise<String>;
-  type: () => Promise<Int>;
-  createUserName: () => Promise<String>;
-  createUserId: () => Promise<Int>;
-  startTime: () => Promise<DateTimeOutput>;
-  endTime: () => Promise<DateTimeOutput>;
-}
-
-export interface ContestPreviousValuesSubscription
-  extends Promise<AsyncIterator<ContestPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  name: () => Promise<AsyncIterator<String>>;
-  type: () => Promise<AsyncIterator<Int>>;
-  createUserName: () => Promise<AsyncIterator<String>>;
-  createUserId: () => Promise<AsyncIterator<Int>>;
-  startTime: () => Promise<AsyncIterator<DateTimeOutput>>;
-  endTime: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface PrivilegeGroupConnection {
-  pageInfo: PageInfo;
-  edges: PrivilegeGroupEdge[];
-}
-
-export interface PrivilegeGroupConnectionPromise
-  extends Promise<PrivilegeGroupConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PrivilegeGroupEdge>>() => T;
-  aggregate: <T = AggregatePrivilegeGroupPromise>() => T;
-}
-
-export interface PrivilegeGroupConnectionSubscription
-  extends Promise<AsyncIterator<PrivilegeGroupConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PrivilegeGroupEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePrivilegeGroupSubscription>() => T;
-}
-
-export interface Submit {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  userId: Int;
-  userName: String;
-  problemId: String;
-  problemTitle: String;
-  language: Int;
-  code: String;
-  result: String;
-  errorInfo?: String;
-  limitTime: Int;
-  limitMemory: Int;
-  time: Int;
-  memory: Int;
-}
-
-export interface SubmitPromise extends Promise<Submit>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  user: <T = UserPromise>() => T;
-  userId: () => Promise<Int>;
-  userName: () => Promise<String>;
-  problem: <T = ProblemPromise>() => T;
-  problemId: () => Promise<String>;
-  problemTitle: () => Promise<String>;
-  language: () => Promise<Int>;
-  code: () => Promise<String>;
-  result: () => Promise<String>;
-  errorInfo: () => Promise<String>;
-  contest: <T = ContestPromise>() => T;
-  limitTime: () => Promise<Int>;
-  limitMemory: () => Promise<Int>;
-  time: () => Promise<Int>;
-  memory: () => Promise<Int>;
-}
-
-export interface SubmitSubscription
-  extends Promise<AsyncIterator<Submit>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  user: <T = UserSubscription>() => T;
-  userId: () => Promise<AsyncIterator<Int>>;
-  userName: () => Promise<AsyncIterator<String>>;
-  problem: <T = ProblemSubscription>() => T;
-  problemId: () => Promise<AsyncIterator<String>>;
-  problemTitle: () => Promise<AsyncIterator<String>>;
-  language: () => Promise<AsyncIterator<Int>>;
-  code: () => Promise<AsyncIterator<String>>;
-  result: () => Promise<AsyncIterator<String>>;
-  errorInfo: () => Promise<AsyncIterator<String>>;
-  contest: <T = ContestSubscription>() => T;
-  limitTime: () => Promise<AsyncIterator<Int>>;
-  limitMemory: () => Promise<AsyncIterator<Int>>;
-  time: () => Promise<AsyncIterator<Int>>;
-  memory: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface DiscussChilderEdge {
-  node: DiscussChilder;
-  cursor: String;
-}
-
-export interface DiscussChilderEdgePromise
-  extends Promise<DiscussChilderEdge>,
-    Fragmentable {
-  node: <T = DiscussChilderPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface DiscussChilderEdgeSubscription
-  extends Promise<AsyncIterator<DiscussChilderEdge>>,
-    Fragmentable {
-  node: <T = DiscussChilderSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ContestProblemSubscriptionPayload {
-  mutation: MutationType;
-  node: ContestProblem;
-  updatedFields: String[];
-  previousValues: ContestProblemPreviousValues;
-}
-
-export interface ContestProblemSubscriptionPayloadPromise
-  extends Promise<ContestProblemSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = ContestProblemPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = ContestProblemPreviousValuesPromise>() => T;
-}
-
-export interface ContestProblemSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ContestProblemSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = ContestProblemSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ContestProblemPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateDiscuss {
-  count: Int;
-}
-
-export interface AggregateDiscussPromise
-  extends Promise<AggregateDiscuss>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateDiscussSubscription
-  extends Promise<AsyncIterator<AggregateDiscuss>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface ContestProblemPreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  problemId: String;
-  problemTitle: String;
-  ac: Int;
-  wa: Int;
-}
-
-export interface ContestProblemPreviousValuesPromise
-  extends Promise<ContestProblemPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  problemId: () => Promise<String>;
-  problemTitle: () => Promise<String>;
-  ac: () => Promise<Int>;
-  wa: () => Promise<Int>;
-}
-
-export interface ContestProblemPreviousValuesSubscription
-  extends Promise<AsyncIterator<ContestProblemPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  problemId: () => Promise<AsyncIterator<String>>;
-  problemTitle: () => Promise<AsyncIterator<String>>;
-  ac: () => Promise<AsyncIterator<Int>>;
-  wa: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface DiscussConnection {
-  pageInfo: PageInfo;
-  edges: DiscussEdge[];
-}
-
-export interface DiscussConnectionPromise
-  extends Promise<DiscussConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<DiscussEdge>>() => T;
-  aggregate: <T = AggregateDiscussPromise>() => T;
-}
-
-export interface DiscussConnectionSubscription
-  extends Promise<AsyncIterator<DiscussConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<DiscussEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateDiscussSubscription>() => T;
-}
-
-export interface UserPreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  userId: String;
-  password: String;
-  status: Int;
-  level: Int;
-  name: String;
-  photo?: String;
-  email?: String;
-  desc?: String;
-  integral: Int;
-  coin: Int;
-  defaultUserGroup?: String;
-  defaultUserGroupId?: String;
-  privilegeBlack: Int;
-  privilegeWhite: Int;
-  problems: Json[];
-  submit: Int;
-  solved: Int;
-  accepted: Int;
-}
-
-export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  userId: () => Promise<String>;
-  password: () => Promise<String>;
-  status: () => Promise<Int>;
-  level: () => Promise<Int>;
-  name: () => Promise<String>;
-  photo: () => Promise<String>;
-  email: () => Promise<String>;
-  desc: () => Promise<String>;
-  integral: () => Promise<Int>;
-  coin: () => Promise<Int>;
-  defaultUserGroup: () => Promise<String>;
-  defaultUserGroupId: () => Promise<String>;
-  privilegeBlack: () => Promise<Int>;
-  privilegeWhite: () => Promise<Int>;
-  problems: () => Promise<Json[]>;
-  submit: () => Promise<Int>;
-  solved: () => Promise<Int>;
-  accepted: () => Promise<Int>;
-}
-
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  userId: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
-  status: () => Promise<AsyncIterator<Int>>;
-  level: () => Promise<AsyncIterator<Int>>;
-  name: () => Promise<AsyncIterator<String>>;
-  photo: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-  desc: () => Promise<AsyncIterator<String>>;
-  integral: () => Promise<AsyncIterator<Int>>;
-  coin: () => Promise<AsyncIterator<Int>>;
-  defaultUserGroup: () => Promise<AsyncIterator<String>>;
-  defaultUserGroupId: () => Promise<AsyncIterator<String>>;
-  privilegeBlack: () => Promise<AsyncIterator<Int>>;
-  privilegeWhite: () => Promise<AsyncIterator<Int>>;
-  problems: () => Promise<AsyncIterator<Json[]>>;
-  submit: () => Promise<AsyncIterator<Int>>;
-  solved: () => Promise<AsyncIterator<Int>>;
-  accepted: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface ContestProblemEdge {
-  node: ContestProblem;
-  cursor: String;
-}
-
-export interface ContestProblemEdgePromise
-  extends Promise<ContestProblemEdge>,
-    Fragmentable {
-  node: <T = ContestProblemPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface ContestProblemEdgeSubscription
-  extends Promise<AsyncIterator<ContestProblemEdge>>,
-    Fragmentable {
-  node: <T = ContestProblemSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface DiscussSubscriptionPayload {
-  mutation: MutationType;
-  node: Discuss;
-  updatedFields: String[];
-  previousValues: DiscussPreviousValues;
-}
-
-export interface DiscussSubscriptionPayloadPromise
-  extends Promise<DiscussSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = DiscussPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = DiscussPreviousValuesPromise>() => T;
-}
-
-export interface DiscussSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<DiscussSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = DiscussSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = DiscussPreviousValuesSubscription>() => T;
-}
-
-export interface UserGroupSubscriptionPayload {
-  mutation: MutationType;
-  node: UserGroup;
-  updatedFields: String[];
-  previousValues: UserGroupPreviousValues;
-}
-
-export interface UserGroupSubscriptionPayloadPromise
-  extends Promise<UserGroupSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserGroupPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserGroupPreviousValuesPromise>() => T;
-}
-
-export interface UserGroupSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserGroupSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserGroupSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserGroupPreviousValuesSubscription>() => T;
-}
-
-export interface DiscussPreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  contentRaw: String;
-  content: String;
-  userId: Int;
-  userName: String;
-}
-
-export interface DiscussPreviousValuesPromise
-  extends Promise<DiscussPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  contentRaw: () => Promise<String>;
-  content: () => Promise<String>;
-  userId: () => Promise<Int>;
-  userName: () => Promise<String>;
-}
-
-export interface DiscussPreviousValuesSubscription
-  extends Promise<AsyncIterator<DiscussPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  contentRaw: () => Promise<AsyncIterator<String>>;
-  content: () => Promise<AsyncIterator<String>>;
-  userId: () => Promise<AsyncIterator<Int>>;
-  userName: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ContestEdge {
-  node: Contest;
-  cursor: String;
-}
-
-export interface ContestEdgePromise extends Promise<ContestEdge>, Fragmentable {
-  node: <T = ContestPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface ContestEdgeSubscription
-  extends Promise<AsyncIterator<ContestEdge>>,
-    Fragmentable {
-  node: <T = ContestSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface Problem {
-  id: ID_Output;
-  problemId?: Int;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  status: Int;
-  type: Int;
-  tags: Json;
-  title: String;
-  describe: String;
-  inDescribe: String;
-  outDescribe: String;
-  inExample: String;
-  outExample: String;
-  integral?: Int;
-  limitTime: Int;
-  limitMemory: Int;
-  hint?: String;
-  source?: String;
-  sourceId?: String;
-  example?: String;
-}
-
-export interface ProblemPromise extends Promise<Problem>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  problemId: () => Promise<Int>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  status: () => Promise<Int>;
-  type: () => Promise<Int>;
-  tags: () => Promise<Json>;
-  title: () => Promise<String>;
-  describe: () => Promise<String>;
-  inDescribe: () => Promise<String>;
-  outDescribe: () => Promise<String>;
-  inExample: () => Promise<String>;
-  outExample: () => Promise<String>;
-  integral: () => Promise<Int>;
-  limitTime: () => Promise<Int>;
-  limitMemory: () => Promise<Int>;
-  createUser: <T = UserPromise>() => T;
-  hint: () => Promise<String>;
-  source: () => Promise<String>;
-  sourceId: () => Promise<String>;
-  example: () => Promise<String>;
-  discuss: <T = FragmentableArray<Discuss>>(
-    args?: {
-      where?: DiscussWhereInput;
-      orderBy?: DiscussOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface ProblemSubscription
-  extends Promise<AsyncIterator<Problem>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  problemId: () => Promise<AsyncIterator<Int>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  status: () => Promise<AsyncIterator<Int>>;
-  type: () => Promise<AsyncIterator<Int>>;
-  tags: () => Promise<AsyncIterator<Json>>;
-  title: () => Promise<AsyncIterator<String>>;
-  describe: () => Promise<AsyncIterator<String>>;
-  inDescribe: () => Promise<AsyncIterator<String>>;
-  outDescribe: () => Promise<AsyncIterator<String>>;
-  inExample: () => Promise<AsyncIterator<String>>;
-  outExample: () => Promise<AsyncIterator<String>>;
-  integral: () => Promise<AsyncIterator<Int>>;
-  limitTime: () => Promise<AsyncIterator<Int>>;
-  limitMemory: () => Promise<AsyncIterator<Int>>;
-  createUser: <T = UserSubscription>() => T;
-  hint: () => Promise<AsyncIterator<String>>;
-  source: () => Promise<AsyncIterator<String>>;
-  sourceId: () => Promise<AsyncIterator<String>>;
-  example: () => Promise<AsyncIterator<String>>;
-  discuss: <T = Promise<AsyncIterator<DiscussSubscription>>>(
-    args?: {
-      where?: DiscussWhereInput;
-      orderBy?: DiscussOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface AggregateUser {
-  count: Int;
-}
-
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface DiscussChilderSubscriptionPayload {
-  mutation: MutationType;
-  node: DiscussChilder;
-  updatedFields: String[];
-  previousValues: DiscussChilderPreviousValues;
-}
-
-export interface DiscussChilderSubscriptionPayloadPromise
-  extends Promise<DiscussChilderSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = DiscussChilderPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = DiscussChilderPreviousValuesPromise>() => T;
-}
-
-export interface DiscussChilderSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<DiscussChilderSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = DiscussChilderSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = DiscussChilderPreviousValuesSubscription>() => T;
-}
-
-export interface SubmitEdge {
-  node: Submit;
-  cursor: String;
-}
-
-export interface SubmitEdgePromise extends Promise<SubmitEdge>, Fragmentable {
-  node: <T = SubmitPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface SubmitEdgeSubscription
-  extends Promise<AsyncIterator<SubmitEdge>>,
-    Fragmentable {
-  node: <T = SubmitSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface DiscussChilderPreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  contentRaw: String;
-  content: String;
-  userId: Int;
-  userName: String;
-  replyUserId: Int;
-  replyUserName: String;
-}
-
-export interface DiscussChilderPreviousValuesPromise
-  extends Promise<DiscussChilderPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  contentRaw: () => Promise<String>;
-  content: () => Promise<String>;
-  userId: () => Promise<Int>;
-  userName: () => Promise<String>;
-  replyUserId: () => Promise<Int>;
-  replyUserName: () => Promise<String>;
-}
-
-export interface DiscussChilderPreviousValuesSubscription
-  extends Promise<AsyncIterator<DiscussChilderPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  contentRaw: () => Promise<AsyncIterator<String>>;
-  content: () => Promise<AsyncIterator<String>>;
-  userId: () => Promise<AsyncIterator<Int>>;
-  userName: () => Promise<AsyncIterator<String>>;
-  replyUserId: () => Promise<AsyncIterator<Int>>;
-  replyUserName: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ProblemConnection {
-  pageInfo: PageInfo;
-  edges: ProblemEdge[];
-}
-
-export interface ProblemConnectionPromise
-  extends Promise<ProblemConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ProblemEdge>>() => T;
-  aggregate: <T = AggregateProblemPromise>() => T;
-}
-
-export interface ProblemConnectionSubscription
-  extends Promise<AsyncIterator<ProblemConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ProblemEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateProblemSubscription>() => T;
 }
 
 export interface UserGroup {
@@ -6174,316 +5350,25 @@ export interface UserGroupSubscription
   ) => T;
 }
 
-export interface AggregateDiscussChilder {
-  count: Int;
-}
-
-export interface AggregateDiscussChilderPromise
-  extends Promise<AggregateDiscussChilder>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateDiscussChilderSubscription
-  extends Promise<AsyncIterator<AggregateDiscussChilder>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PrivilegeGroupSubscriptionPayload {
-  mutation: MutationType;
-  node: PrivilegeGroup;
-  updatedFields: String[];
-  previousValues: PrivilegeGroupPreviousValues;
-}
-
-export interface PrivilegeGroupSubscriptionPayloadPromise
-  extends Promise<PrivilegeGroupSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = PrivilegeGroupPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = PrivilegeGroupPreviousValuesPromise>() => T;
-}
-
-export interface PrivilegeGroupSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PrivilegeGroupSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = PrivilegeGroupSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PrivilegeGroupPreviousValuesSubscription>() => T;
-}
-
-export interface DiscussEdge {
-  node: Discuss;
-  cursor: String;
-}
-
-export interface DiscussEdgePromise extends Promise<DiscussEdge>, Fragmentable {
-  node: <T = DiscussPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface DiscussEdgeSubscription
-  extends Promise<AsyncIterator<DiscussEdge>>,
-    Fragmentable {
-  node: <T = DiscussSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PrivilegeGroupPreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  name: String;
-  privilege: Int;
-}
-
-export interface PrivilegeGroupPreviousValuesPromise
-  extends Promise<PrivilegeGroupPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  name: () => Promise<String>;
-  privilege: () => Promise<Int>;
-}
-
-export interface PrivilegeGroupPreviousValuesSubscription
-  extends Promise<AsyncIterator<PrivilegeGroupPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  name: () => Promise<AsyncIterator<String>>;
-  privilege: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface ContestProblemConnection {
+export interface ContestConnection {
   pageInfo: PageInfo;
-  edges: ContestProblemEdge[];
+  edges: ContestEdge[];
 }
 
-export interface ContestProblemConnectionPromise
-  extends Promise<ContestProblemConnection>,
+export interface ContestConnectionPromise
+  extends Promise<ContestConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ContestProblemEdge>>() => T;
-  aggregate: <T = AggregateContestProblemPromise>() => T;
+  edges: <T = FragmentableArray<ContestEdge>>() => T;
+  aggregate: <T = AggregateContestPromise>() => T;
 }
 
-export interface ContestProblemConnectionSubscription
-  extends Promise<AsyncIterator<ContestProblemConnection>>,
+export interface ContestConnectionSubscription
+  extends Promise<AsyncIterator<ContestConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ContestProblemEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateContestProblemSubscription>() => T;
-}
-
-export interface UserSubscriptionPayload {
-  mutation: MutationType;
-  node: User;
-  updatedFields: String[];
-  previousValues: UserPreviousValues;
-}
-
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
-}
-
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
-}
-
-export interface Discuss {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  contentRaw: String;
-  content: String;
-  userId: Int;
-  userName: String;
-}
-
-export interface DiscussPromise extends Promise<Discuss>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  contentRaw: () => Promise<String>;
-  content: () => Promise<String>;
-  user: <T = UserPromise>() => T;
-  userId: () => Promise<Int>;
-  userName: () => Promise<String>;
-  children: <T = FragmentableArray<DiscussChilder>>(
-    args?: {
-      where?: DiscussChilderWhereInput;
-      orderBy?: DiscussChilderOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface DiscussSubscription
-  extends Promise<AsyncIterator<Discuss>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  contentRaw: () => Promise<AsyncIterator<String>>;
-  content: () => Promise<AsyncIterator<String>>;
-  user: <T = UserSubscription>() => T;
-  userId: () => Promise<AsyncIterator<Int>>;
-  userName: () => Promise<AsyncIterator<String>>;
-  children: <T = Promise<AsyncIterator<DiscussChilderSubscription>>>(
-    args?: {
-      where?: DiscussChilderWhereInput;
-      orderBy?: DiscussChilderOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface ProblemSubscriptionPayload {
-  mutation: MutationType;
-  node: Problem;
-  updatedFields: String[];
-  previousValues: ProblemPreviousValues;
-}
-
-export interface ProblemSubscriptionPayloadPromise
-  extends Promise<ProblemSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = ProblemPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = ProblemPreviousValuesPromise>() => T;
-}
-
-export interface ProblemSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ProblemSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = ProblemSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ProblemPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateProblem {
-  count: Int;
-}
-
-export interface AggregateProblemPromise
-  extends Promise<AggregateProblem>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateProblemSubscription
-  extends Promise<AsyncIterator<AggregateProblem>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface SubmitPreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  userId: Int;
-  userName: String;
-  problemId: String;
-  problemTitle: String;
-  language: Int;
-  code: String;
-  result: String;
-  errorInfo?: String;
-  limitTime: Int;
-  limitMemory: Int;
-  time: Int;
-  memory: Int;
-}
-
-export interface SubmitPreviousValuesPromise
-  extends Promise<SubmitPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  userId: () => Promise<Int>;
-  userName: () => Promise<String>;
-  problemId: () => Promise<String>;
-  problemTitle: () => Promise<String>;
-  language: () => Promise<Int>;
-  code: () => Promise<String>;
-  result: () => Promise<String>;
-  errorInfo: () => Promise<String>;
-  limitTime: () => Promise<Int>;
-  limitMemory: () => Promise<Int>;
-  time: () => Promise<Int>;
-  memory: () => Promise<Int>;
-}
-
-export interface SubmitPreviousValuesSubscription
-  extends Promise<AsyncIterator<SubmitPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  userId: () => Promise<AsyncIterator<Int>>;
-  userName: () => Promise<AsyncIterator<String>>;
-  problemId: () => Promise<AsyncIterator<String>>;
-  problemTitle: () => Promise<AsyncIterator<String>>;
-  language: () => Promise<AsyncIterator<Int>>;
-  code: () => Promise<AsyncIterator<String>>;
-  result: () => Promise<AsyncIterator<String>>;
-  errorInfo: () => Promise<AsyncIterator<String>>;
-  limitTime: () => Promise<AsyncIterator<Int>>;
-  limitMemory: () => Promise<AsyncIterator<Int>>;
-  time: () => Promise<AsyncIterator<Int>>;
-  memory: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface SubmitSubscriptionPayload {
-  mutation: MutationType;
-  node: Submit;
-  updatedFields: String[];
-  previousValues: SubmitPreviousValues;
-}
-
-export interface SubmitSubscriptionPayloadPromise
-  extends Promise<SubmitSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = SubmitPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = SubmitPreviousValuesPromise>() => T;
-}
-
-export interface SubmitSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<SubmitSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = SubmitSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = SubmitPreviousValuesSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ContestEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateContestSubscription>() => T;
 }
 
 export interface User {
@@ -6504,6 +5389,7 @@ export interface User {
   defaultUserGroupId?: String;
   privilegeBlack: Int;
   privilegeWhite: Int;
+  privilegeCache: Int;
   problems: Json[];
   submit: Int;
   solved: Int;
@@ -6528,6 +5414,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   defaultUserGroupId: () => Promise<String>;
   privilegeBlack: () => Promise<Int>;
   privilegeWhite: () => Promise<Int>;
+  privilegeCache: () => Promise<Int>;
   privilegeGroup: <T = FragmentableArray<PrivilegeGroup>>(
     args?: {
       where?: PrivilegeGroupWhereInput;
@@ -6653,6 +5540,7 @@ export interface UserSubscription
   defaultUserGroupId: () => Promise<AsyncIterator<String>>;
   privilegeBlack: () => Promise<AsyncIterator<Int>>;
   privilegeWhite: () => Promise<AsyncIterator<Int>>;
+  privilegeCache: () => Promise<AsyncIterator<Int>>;
   privilegeGroup: <T = Promise<AsyncIterator<PrivilegeGroupSubscription>>>(
     args?: {
       where?: PrivilegeGroupWhereInput;
@@ -6758,6 +5646,1376 @@ export interface UserSubscription
   accepted: () => Promise<AsyncIterator<Int>>;
 }
 
+export interface UserGroupSubscriptionPayload {
+  mutation: MutationType;
+  node: UserGroup;
+  updatedFields: String[];
+  previousValues: UserGroupPreviousValues;
+}
+
+export interface UserGroupSubscriptionPayloadPromise
+  extends Promise<UserGroupSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UserGroupPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserGroupPreviousValuesPromise>() => T;
+}
+
+export interface UserGroupSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserGroupSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserGroupSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserGroupPreviousValuesSubscription>() => T;
+}
+
+export interface SubmitPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  userId: Int;
+  userName: String;
+  problemId: String;
+  problemTitle: String;
+  language: Int;
+  code: String;
+  result: String;
+  errorInfo?: String;
+  limitTime: Int;
+  limitMemory: Int;
+  time: Int;
+  memory: Int;
+}
+
+export interface SubmitPreviousValuesPromise
+  extends Promise<SubmitPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  userId: () => Promise<Int>;
+  userName: () => Promise<String>;
+  problemId: () => Promise<String>;
+  problemTitle: () => Promise<String>;
+  language: () => Promise<Int>;
+  code: () => Promise<String>;
+  result: () => Promise<String>;
+  errorInfo: () => Promise<String>;
+  limitTime: () => Promise<Int>;
+  limitMemory: () => Promise<Int>;
+  time: () => Promise<Int>;
+  memory: () => Promise<Int>;
+}
+
+export interface SubmitPreviousValuesSubscription
+  extends Promise<AsyncIterator<SubmitPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  userId: () => Promise<AsyncIterator<Int>>;
+  userName: () => Promise<AsyncIterator<String>>;
+  problemId: () => Promise<AsyncIterator<String>>;
+  problemTitle: () => Promise<AsyncIterator<String>>;
+  language: () => Promise<AsyncIterator<Int>>;
+  code: () => Promise<AsyncIterator<String>>;
+  result: () => Promise<AsyncIterator<String>>;
+  errorInfo: () => Promise<AsyncIterator<String>>;
+  limitTime: () => Promise<AsyncIterator<Int>>;
+  limitMemory: () => Promise<AsyncIterator<Int>>;
+  time: () => Promise<AsyncIterator<Int>>;
+  memory: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface PrivilegeGroup {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  name: String;
+  privilege: Int;
+}
+
+export interface PrivilegeGroupPromise
+  extends Promise<PrivilegeGroup>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  name: () => Promise<String>;
+  privilege: () => Promise<Int>;
+  users: <T = FragmentableArray<User>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface PrivilegeGroupSubscription
+  extends Promise<AsyncIterator<PrivilegeGroup>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  name: () => Promise<AsyncIterator<String>>;
+  privilege: () => Promise<AsyncIterator<Int>>;
+  users: <T = Promise<AsyncIterator<UserSubscription>>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface AggregateUserGroup {
+  count: Int;
+}
+
+export interface AggregateUserGroupPromise
+  extends Promise<AggregateUserGroup>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserGroupSubscription
+  extends Promise<AsyncIterator<AggregateUserGroup>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserGroupEdge {
+  node: UserGroup;
+  cursor: String;
+}
+
+export interface UserGroupEdgePromise
+  extends Promise<UserGroupEdge>,
+    Fragmentable {
+  node: <T = UserGroupPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserGroupEdgeSubscription
+  extends Promise<AsyncIterator<UserGroupEdge>>,
+    Fragmentable {
+  node: <T = UserGroupSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface ContestProblem {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  problemId: String;
+  problemTitle: String;
+  ac: Int;
+  wa: Int;
+}
+
+export interface ContestProblemPromise
+  extends Promise<ContestProblem>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  problem: <T = ProblemPromise>() => T;
+  problemId: () => Promise<String>;
+  problemTitle: () => Promise<String>;
+  ac: () => Promise<Int>;
+  wa: () => Promise<Int>;
+}
+
+export interface ContestProblemSubscription
+  extends Promise<AsyncIterator<ContestProblem>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  problem: <T = ProblemSubscription>() => T;
+  problemId: () => Promise<AsyncIterator<String>>;
+  problemTitle: () => Promise<AsyncIterator<String>>;
+  ac: () => Promise<AsyncIterator<Int>>;
+  wa: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface SubmitEdge {
+  node: Submit;
+  cursor: String;
+}
+
+export interface SubmitEdgePromise extends Promise<SubmitEdge>, Fragmentable {
+  node: <T = SubmitPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface SubmitEdgeSubscription
+  extends Promise<AsyncIterator<SubmitEdge>>,
+    Fragmentable {
+  node: <T = SubmitSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface Contest {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  name: String;
+  type?: Int;
+  cloneId?: String;
+  createUserName: String;
+  createUserId: String;
+  firstStartTime: DateTimeOutput;
+  startTime: DateTimeOutput;
+  endTime: DateTimeOutput;
+  hint?: String;
+}
+
+export interface ContestPromise extends Promise<Contest>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  name: () => Promise<String>;
+  type: () => Promise<Int>;
+  cloneId: () => Promise<String>;
+  createUserName: () => Promise<String>;
+  createUserId: () => Promise<String>;
+  firstStartTime: () => Promise<DateTimeOutput>;
+  startTime: () => Promise<DateTimeOutput>;
+  endTime: () => Promise<DateTimeOutput>;
+  hint: () => Promise<String>;
+  userGroup: <T = FragmentableArray<UserGroup>>(
+    args?: {
+      where?: UserGroupWhereInput;
+      orderBy?: UserGroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  contestProblem: <T = FragmentableArray<ContestProblem>>(
+    args?: {
+      where?: ContestProblemWhereInput;
+      orderBy?: ContestProblemOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface ContestSubscription
+  extends Promise<AsyncIterator<Contest>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  name: () => Promise<AsyncIterator<String>>;
+  type: () => Promise<AsyncIterator<Int>>;
+  cloneId: () => Promise<AsyncIterator<String>>;
+  createUserName: () => Promise<AsyncIterator<String>>;
+  createUserId: () => Promise<AsyncIterator<String>>;
+  firstStartTime: () => Promise<AsyncIterator<DateTimeOutput>>;
+  startTime: () => Promise<AsyncIterator<DateTimeOutput>>;
+  endTime: () => Promise<AsyncIterator<DateTimeOutput>>;
+  hint: () => Promise<AsyncIterator<String>>;
+  userGroup: <T = Promise<AsyncIterator<UserGroupSubscription>>>(
+    args?: {
+      where?: UserGroupWhereInput;
+      orderBy?: UserGroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  contestProblem: <T = Promise<AsyncIterator<ContestProblemSubscription>>>(
+    args?: {
+      where?: ContestProblemWhereInput;
+      orderBy?: ContestProblemOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface AggregateProblem {
+  count: Int;
+}
+
+export interface AggregateProblemPromise
+  extends Promise<AggregateProblem>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateProblemSubscription
+  extends Promise<AsyncIterator<AggregateProblem>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ContestSubscriptionPayload {
+  mutation: MutationType;
+  node: Contest;
+  updatedFields: String[];
+  previousValues: ContestPreviousValues;
+}
+
+export interface ContestSubscriptionPayloadPromise
+  extends Promise<ContestSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ContestPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ContestPreviousValuesPromise>() => T;
+}
+
+export interface ContestSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ContestSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ContestSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ContestPreviousValuesSubscription>() => T;
+}
+
+export interface ProblemConnection {
+  pageInfo: PageInfo;
+  edges: ProblemEdge[];
+}
+
+export interface ProblemConnectionPromise
+  extends Promise<ProblemConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProblemEdge>>() => T;
+  aggregate: <T = AggregateProblemPromise>() => T;
+}
+
+export interface ProblemConnectionSubscription
+  extends Promise<AsyncIterator<ProblemConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProblemEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProblemSubscription>() => T;
+}
+
+export interface ContestPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  name: String;
+  type?: Int;
+  cloneId?: String;
+  createUserName: String;
+  createUserId: String;
+  firstStartTime: DateTimeOutput;
+  startTime: DateTimeOutput;
+  endTime: DateTimeOutput;
+  hint?: String;
+}
+
+export interface ContestPreviousValuesPromise
+  extends Promise<ContestPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  name: () => Promise<String>;
+  type: () => Promise<Int>;
+  cloneId: () => Promise<String>;
+  createUserName: () => Promise<String>;
+  createUserId: () => Promise<String>;
+  firstStartTime: () => Promise<DateTimeOutput>;
+  startTime: () => Promise<DateTimeOutput>;
+  endTime: () => Promise<DateTimeOutput>;
+  hint: () => Promise<String>;
+}
+
+export interface ContestPreviousValuesSubscription
+  extends Promise<AsyncIterator<ContestPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  name: () => Promise<AsyncIterator<String>>;
+  type: () => Promise<AsyncIterator<Int>>;
+  cloneId: () => Promise<AsyncIterator<String>>;
+  createUserName: () => Promise<AsyncIterator<String>>;
+  createUserId: () => Promise<AsyncIterator<String>>;
+  firstStartTime: () => Promise<AsyncIterator<DateTimeOutput>>;
+  startTime: () => Promise<AsyncIterator<DateTimeOutput>>;
+  endTime: () => Promise<AsyncIterator<DateTimeOutput>>;
+  hint: () => Promise<AsyncIterator<String>>;
+}
+
+export interface PrivilegeGroupEdge {
+  node: PrivilegeGroup;
+  cursor: String;
+}
+
+export interface PrivilegeGroupEdgePromise
+  extends Promise<PrivilegeGroupEdge>,
+    Fragmentable {
+  node: <T = PrivilegeGroupPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface PrivilegeGroupEdgeSubscription
+  extends Promise<AsyncIterator<PrivilegeGroupEdge>>,
+    Fragmentable {
+  node: <T = PrivilegeGroupSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  userId: String;
+  password: String;
+  status: Int;
+  level: Int;
+  name: String;
+  photo?: String;
+  email?: String;
+  desc?: String;
+  integral: Int;
+  coin: Int;
+  defaultUserGroup?: String;
+  defaultUserGroupId?: String;
+  privilegeBlack: Int;
+  privilegeWhite: Int;
+  privilegeCache: Int;
+  problems: Json[];
+  submit: Int;
+  solved: Int;
+  accepted: Int;
+}
+
+export interface UserPreviousValuesPromise
+  extends Promise<UserPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  userId: () => Promise<String>;
+  password: () => Promise<String>;
+  status: () => Promise<Int>;
+  level: () => Promise<Int>;
+  name: () => Promise<String>;
+  photo: () => Promise<String>;
+  email: () => Promise<String>;
+  desc: () => Promise<String>;
+  integral: () => Promise<Int>;
+  coin: () => Promise<Int>;
+  defaultUserGroup: () => Promise<String>;
+  defaultUserGroupId: () => Promise<String>;
+  privilegeBlack: () => Promise<Int>;
+  privilegeWhite: () => Promise<Int>;
+  privilegeCache: () => Promise<Int>;
+  problems: () => Promise<Json[]>;
+  submit: () => Promise<Int>;
+  solved: () => Promise<Int>;
+  accepted: () => Promise<Int>;
+}
+
+export interface UserPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  userId: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<Int>>;
+  level: () => Promise<AsyncIterator<Int>>;
+  name: () => Promise<AsyncIterator<String>>;
+  photo: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  desc: () => Promise<AsyncIterator<String>>;
+  integral: () => Promise<AsyncIterator<Int>>;
+  coin: () => Promise<AsyncIterator<Int>>;
+  defaultUserGroup: () => Promise<AsyncIterator<String>>;
+  defaultUserGroupId: () => Promise<AsyncIterator<String>>;
+  privilegeBlack: () => Promise<AsyncIterator<Int>>;
+  privilegeWhite: () => Promise<AsyncIterator<Int>>;
+  privilegeCache: () => Promise<AsyncIterator<Int>>;
+  problems: () => Promise<AsyncIterator<Json[]>>;
+  submit: () => Promise<AsyncIterator<Int>>;
+  solved: () => Promise<AsyncIterator<Int>>;
+  accepted: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateDiscussChilder {
+  count: Int;
+}
+
+export interface AggregateDiscussChilderPromise
+  extends Promise<AggregateDiscussChilder>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateDiscussChilderSubscription
+  extends Promise<AsyncIterator<AggregateDiscussChilder>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ContestProblemSubscriptionPayload {
+  mutation: MutationType;
+  node: ContestProblem;
+  updatedFields: String[];
+  previousValues: ContestProblemPreviousValues;
+}
+
+export interface ContestProblemSubscriptionPayloadPromise
+  extends Promise<ContestProblemSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ContestProblemPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ContestProblemPreviousValuesPromise>() => T;
+}
+
+export interface ContestProblemSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ContestProblemSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ContestProblemSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ContestProblemPreviousValuesSubscription>() => T;
+}
+
+export interface DiscussChilderConnection {
+  pageInfo: PageInfo;
+  edges: DiscussChilderEdge[];
+}
+
+export interface DiscussChilderConnectionPromise
+  extends Promise<DiscussChilderConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<DiscussChilderEdge>>() => T;
+  aggregate: <T = AggregateDiscussChilderPromise>() => T;
+}
+
+export interface DiscussChilderConnectionSubscription
+  extends Promise<AsyncIterator<DiscussChilderConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<DiscussChilderEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateDiscussChilderSubscription>() => T;
+}
+
+export interface ContestProblemPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  problemId: String;
+  problemTitle: String;
+  ac: Int;
+  wa: Int;
+}
+
+export interface ContestProblemPreviousValuesPromise
+  extends Promise<ContestProblemPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  problemId: () => Promise<String>;
+  problemTitle: () => Promise<String>;
+  ac: () => Promise<Int>;
+  wa: () => Promise<Int>;
+}
+
+export interface ContestProblemPreviousValuesSubscription
+  extends Promise<AsyncIterator<ContestProblemPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  problemId: () => Promise<AsyncIterator<String>>;
+  problemTitle: () => Promise<AsyncIterator<String>>;
+  ac: () => Promise<AsyncIterator<Int>>;
+  wa: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface DiscussEdge {
+  node: Discuss;
+  cursor: String;
+}
+
+export interface DiscussEdgePromise extends Promise<DiscussEdge>, Fragmentable {
+  node: <T = DiscussPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface DiscussEdgeSubscription
+  extends Promise<AsyncIterator<DiscussEdge>>,
+    Fragmentable {
+  node: <T = DiscussSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface Submit {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  userId: Int;
+  userName: String;
+  problemId: String;
+  problemTitle: String;
+  language: Int;
+  code: String;
+  result: String;
+  errorInfo?: String;
+  limitTime: Int;
+  limitMemory: Int;
+  time: Int;
+  memory: Int;
+}
+
+export interface SubmitPromise extends Promise<Submit>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  user: <T = UserPromise>() => T;
+  userId: () => Promise<Int>;
+  userName: () => Promise<String>;
+  problem: <T = ProblemPromise>() => T;
+  problemId: () => Promise<String>;
+  problemTitle: () => Promise<String>;
+  language: () => Promise<Int>;
+  code: () => Promise<String>;
+  result: () => Promise<String>;
+  errorInfo: () => Promise<String>;
+  contest: <T = ContestPromise>() => T;
+  limitTime: () => Promise<Int>;
+  limitMemory: () => Promise<Int>;
+  time: () => Promise<Int>;
+  memory: () => Promise<Int>;
+}
+
+export interface SubmitSubscription
+  extends Promise<AsyncIterator<Submit>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  user: <T = UserSubscription>() => T;
+  userId: () => Promise<AsyncIterator<Int>>;
+  userName: () => Promise<AsyncIterator<String>>;
+  problem: <T = ProblemSubscription>() => T;
+  problemId: () => Promise<AsyncIterator<String>>;
+  problemTitle: () => Promise<AsyncIterator<String>>;
+  language: () => Promise<AsyncIterator<Int>>;
+  code: () => Promise<AsyncIterator<String>>;
+  result: () => Promise<AsyncIterator<String>>;
+  errorInfo: () => Promise<AsyncIterator<String>>;
+  contest: <T = ContestSubscription>() => T;
+  limitTime: () => Promise<AsyncIterator<Int>>;
+  limitMemory: () => Promise<AsyncIterator<Int>>;
+  time: () => Promise<AsyncIterator<Int>>;
+  memory: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateContestProblem {
+  count: Int;
+}
+
+export interface AggregateContestProblemPromise
+  extends Promise<AggregateContestProblem>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateContestProblemSubscription
+  extends Promise<AsyncIterator<AggregateContestProblem>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface DiscussSubscriptionPayload {
+  mutation: MutationType;
+  node: Discuss;
+  updatedFields: String[];
+  previousValues: DiscussPreviousValues;
+}
+
+export interface DiscussSubscriptionPayloadPromise
+  extends Promise<DiscussSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = DiscussPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = DiscussPreviousValuesPromise>() => T;
+}
+
+export interface DiscussSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<DiscussSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = DiscussSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = DiscussPreviousValuesSubscription>() => T;
+}
+
+export interface ContestProblemConnection {
+  pageInfo: PageInfo;
+  edges: ContestProblemEdge[];
+}
+
+export interface ContestProblemConnectionPromise
+  extends Promise<ContestProblemConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ContestProblemEdge>>() => T;
+  aggregate: <T = AggregateContestProblemPromise>() => T;
+}
+
+export interface ContestProblemConnectionSubscription
+  extends Promise<AsyncIterator<ContestProblemConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ContestProblemEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateContestProblemSubscription>() => T;
+}
+
+export interface DiscussPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  contentRaw: String;
+  content: String;
+  userId: Int;
+  userName: String;
+}
+
+export interface DiscussPreviousValuesPromise
+  extends Promise<DiscussPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  contentRaw: () => Promise<String>;
+  content: () => Promise<String>;
+  userId: () => Promise<Int>;
+  userName: () => Promise<String>;
+}
+
+export interface DiscussPreviousValuesSubscription
+  extends Promise<AsyncIterator<DiscussPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  contentRaw: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+  userId: () => Promise<AsyncIterator<Int>>;
+  userName: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ContestEdge {
+  node: Contest;
+  cursor: String;
+}
+
+export interface ContestEdgePromise extends Promise<ContestEdge>, Fragmentable {
+  node: <T = ContestPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ContestEdgeSubscription
+  extends Promise<AsyncIterator<ContestEdge>>,
+    Fragmentable {
+  node: <T = ContestSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserSubscriptionPayload {
+  mutation: MutationType;
+  node: User;
+  updatedFields: String[];
+  previousValues: UserPreviousValues;
+}
+
+export interface UserSubscriptionPayloadPromise
+  extends Promise<UserSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UserPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValuesPromise>() => T;
+}
+
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
+}
+
+export interface UserEdge {
+  node: User;
+  cursor: String;
+}
+
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface DiscussChilderSubscriptionPayload {
+  mutation: MutationType;
+  node: DiscussChilder;
+  updatedFields: String[];
+  previousValues: DiscussChilderPreviousValues;
+}
+
+export interface DiscussChilderSubscriptionPayloadPromise
+  extends Promise<DiscussChilderSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = DiscussChilderPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = DiscussChilderPreviousValuesPromise>() => T;
+}
+
+export interface DiscussChilderSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<DiscussChilderSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = DiscussChilderSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = DiscussChilderPreviousValuesSubscription>() => T;
+}
+
+export interface SubmitConnection {
+  pageInfo: PageInfo;
+  edges: SubmitEdge[];
+}
+
+export interface SubmitConnectionPromise
+  extends Promise<SubmitConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<SubmitEdge>>() => T;
+  aggregate: <T = AggregateSubmitPromise>() => T;
+}
+
+export interface SubmitConnectionSubscription
+  extends Promise<AsyncIterator<SubmitConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<SubmitEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateSubmitSubscription>() => T;
+}
+
+export interface DiscussChilderPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  contentRaw: String;
+  content: String;
+  userId: Int;
+  userName: String;
+  replyUserId: Int;
+  replyUserName: String;
+}
+
+export interface DiscussChilderPreviousValuesPromise
+  extends Promise<DiscussChilderPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  contentRaw: () => Promise<String>;
+  content: () => Promise<String>;
+  userId: () => Promise<Int>;
+  userName: () => Promise<String>;
+  replyUserId: () => Promise<Int>;
+  replyUserName: () => Promise<String>;
+}
+
+export interface DiscussChilderPreviousValuesSubscription
+  extends Promise<AsyncIterator<DiscussChilderPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  contentRaw: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+  userId: () => Promise<AsyncIterator<Int>>;
+  userName: () => Promise<AsyncIterator<String>>;
+  replyUserId: () => Promise<AsyncIterator<Int>>;
+  replyUserName: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregatePrivilegeGroup {
+  count: Int;
+}
+
+export interface AggregatePrivilegeGroupPromise
+  extends Promise<AggregatePrivilegeGroup>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregatePrivilegeGroupSubscription
+  extends Promise<AsyncIterator<AggregatePrivilegeGroup>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Problem {
+  id: ID_Output;
+  problemId?: Int;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  status: Int;
+  type: Int;
+  tags: Json;
+  title: String;
+  describe: String;
+  inDescribe: String;
+  outDescribe: String;
+  inExample: String;
+  outExample: String;
+  integral?: Int;
+  limitTime: Int;
+  limitMemory: Int;
+  hint?: String;
+  source?: String;
+  sourceId?: String;
+  example?: String;
+}
+
+export interface ProblemPromise extends Promise<Problem>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  problemId: () => Promise<Int>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  status: () => Promise<Int>;
+  type: () => Promise<Int>;
+  tags: () => Promise<Json>;
+  title: () => Promise<String>;
+  describe: () => Promise<String>;
+  inDescribe: () => Promise<String>;
+  outDescribe: () => Promise<String>;
+  inExample: () => Promise<String>;
+  outExample: () => Promise<String>;
+  integral: () => Promise<Int>;
+  limitTime: () => Promise<Int>;
+  limitMemory: () => Promise<Int>;
+  createUser: <T = UserPromise>() => T;
+  hint: () => Promise<String>;
+  source: () => Promise<String>;
+  sourceId: () => Promise<String>;
+  example: () => Promise<String>;
+  discuss: <T = FragmentableArray<Discuss>>(
+    args?: {
+      where?: DiscussWhereInput;
+      orderBy?: DiscussOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface ProblemSubscription
+  extends Promise<AsyncIterator<Problem>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  problemId: () => Promise<AsyncIterator<Int>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  status: () => Promise<AsyncIterator<Int>>;
+  type: () => Promise<AsyncIterator<Int>>;
+  tags: () => Promise<AsyncIterator<Json>>;
+  title: () => Promise<AsyncIterator<String>>;
+  describe: () => Promise<AsyncIterator<String>>;
+  inDescribe: () => Promise<AsyncIterator<String>>;
+  outDescribe: () => Promise<AsyncIterator<String>>;
+  inExample: () => Promise<AsyncIterator<String>>;
+  outExample: () => Promise<AsyncIterator<String>>;
+  integral: () => Promise<AsyncIterator<Int>>;
+  limitTime: () => Promise<AsyncIterator<Int>>;
+  limitMemory: () => Promise<AsyncIterator<Int>>;
+  createUser: <T = UserSubscription>() => T;
+  hint: () => Promise<AsyncIterator<String>>;
+  source: () => Promise<AsyncIterator<String>>;
+  sourceId: () => Promise<AsyncIterator<String>>;
+  example: () => Promise<AsyncIterator<String>>;
+  discuss: <T = Promise<AsyncIterator<DiscussSubscription>>>(
+    args?: {
+      where?: DiscussWhereInput;
+      orderBy?: DiscussOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface DiscussChilderEdge {
+  node: DiscussChilder;
+  cursor: String;
+}
+
+export interface DiscussChilderEdgePromise
+  extends Promise<DiscussChilderEdge>,
+    Fragmentable {
+  node: <T = DiscussChilderPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface DiscussChilderEdgeSubscription
+  extends Promise<AsyncIterator<DiscussChilderEdge>>,
+    Fragmentable {
+  node: <T = DiscussChilderSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface PrivilegeGroupSubscriptionPayload {
+  mutation: MutationType;
+  node: PrivilegeGroup;
+  updatedFields: String[];
+  previousValues: PrivilegeGroupPreviousValues;
+}
+
+export interface PrivilegeGroupSubscriptionPayloadPromise
+  extends Promise<PrivilegeGroupSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = PrivilegeGroupPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = PrivilegeGroupPreviousValuesPromise>() => T;
+}
+
+export interface PrivilegeGroupSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<PrivilegeGroupSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = PrivilegeGroupSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = PrivilegeGroupPreviousValuesSubscription>() => T;
+}
+
+export interface DiscussConnection {
+  pageInfo: PageInfo;
+  edges: DiscussEdge[];
+}
+
+export interface DiscussConnectionPromise
+  extends Promise<DiscussConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<DiscussEdge>>() => T;
+  aggregate: <T = AggregateDiscussPromise>() => T;
+}
+
+export interface DiscussConnectionSubscription
+  extends Promise<AsyncIterator<DiscussConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<DiscussEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateDiscussSubscription>() => T;
+}
+
+export interface PrivilegeGroupPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  name: String;
+  privilege: Int;
+}
+
+export interface PrivilegeGroupPreviousValuesPromise
+  extends Promise<PrivilegeGroupPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  name: () => Promise<String>;
+  privilege: () => Promise<Int>;
+}
+
+export interface PrivilegeGroupPreviousValuesSubscription
+  extends Promise<AsyncIterator<PrivilegeGroupPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  name: () => Promise<AsyncIterator<String>>;
+  privilege: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateContest {
+  count: Int;
+}
+
+export interface AggregateContestPromise
+  extends Promise<AggregateContest>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateContestSubscription
+  extends Promise<AsyncIterator<AggregateContest>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Discuss {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  contentRaw: String;
+  content: String;
+  userId: Int;
+  userName: String;
+}
+
+export interface DiscussPromise extends Promise<Discuss>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  contentRaw: () => Promise<String>;
+  content: () => Promise<String>;
+  user: <T = UserPromise>() => T;
+  userId: () => Promise<Int>;
+  userName: () => Promise<String>;
+  children: <T = FragmentableArray<DiscussChilder>>(
+    args?: {
+      where?: DiscussChilderWhereInput;
+      orderBy?: DiscussChilderOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface DiscussSubscription
+  extends Promise<AsyncIterator<Discuss>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  contentRaw: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+  user: <T = UserSubscription>() => T;
+  userId: () => Promise<AsyncIterator<Int>>;
+  userName: () => Promise<AsyncIterator<String>>;
+  children: <T = Promise<AsyncIterator<DiscussChilderSubscription>>>(
+    args?: {
+      where?: DiscussChilderWhereInput;
+      orderBy?: DiscussChilderOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface AggregateSubmit {
+  count: Int;
+}
+
+export interface AggregateSubmitPromise
+  extends Promise<AggregateSubmit>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateSubmitSubscription
+  extends Promise<AsyncIterator<AggregateSubmit>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface PrivilegeGroupConnection {
+  pageInfo: PageInfo;
+  edges: PrivilegeGroupEdge[];
+}
+
+export interface PrivilegeGroupConnectionPromise
+  extends Promise<PrivilegeGroupConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<PrivilegeGroupEdge>>() => T;
+  aggregate: <T = AggregatePrivilegeGroupPromise>() => T;
+}
+
+export interface PrivilegeGroupConnectionSubscription
+  extends Promise<AsyncIterator<PrivilegeGroupConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PrivilegeGroupEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePrivilegeGroupSubscription>() => T;
+}
+
+export interface SubmitSubscriptionPayload {
+  mutation: MutationType;
+  node: Submit;
+  updatedFields: String[];
+  previousValues: SubmitPreviousValues;
+}
+
+export interface SubmitSubscriptionPayloadPromise
+  extends Promise<SubmitSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = SubmitPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = SubmitPreviousValuesPromise>() => T;
+}
+
+export interface SubmitSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<SubmitSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = SubmitSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = SubmitPreviousValuesSubscription>() => T;
+}
+
+export interface DiscussChilder {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  contentRaw: String;
+  content: String;
+  userId: Int;
+  userName: String;
+  replyUserId: Int;
+  replyUserName: String;
+}
+
+export interface DiscussChilderPromise
+  extends Promise<DiscussChilder>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  contentRaw: () => Promise<String>;
+  content: () => Promise<String>;
+  user: <T = UserPromise>() => T;
+  userId: () => Promise<Int>;
+  userName: () => Promise<String>;
+  replyUserId: () => Promise<Int>;
+  replyUserName: () => Promise<String>;
+}
+
+export interface DiscussChilderSubscription
+  extends Promise<AsyncIterator<DiscussChilder>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  contentRaw: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+  user: <T = UserSubscription>() => T;
+  userId: () => Promise<AsyncIterator<Int>>;
+  userName: () => Promise<AsyncIterator<String>>;
+  replyUserId: () => Promise<AsyncIterator<Int>>;
+  replyUserName: () => Promise<AsyncIterator<String>>;
+}
+
 export interface ProblemPreviousValues {
   id: ID_Output;
   problemId?: Int;
@@ -6831,111 +7089,103 @@ export interface ProblemPreviousValuesSubscription
   example: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PrivilegeGroupEdge {
-  node: PrivilegeGroup;
+export interface ProblemSubscriptionPayload {
+  mutation: MutationType;
+  node: Problem;
+  updatedFields: String[];
+  previousValues: ProblemPreviousValues;
+}
+
+export interface ProblemSubscriptionPayloadPromise
+  extends Promise<ProblemSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ProblemPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ProblemPreviousValuesPromise>() => T;
+}
+
+export interface ProblemSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProblemSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ProblemSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ProblemPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateDiscuss {
+  count: Int;
+}
+
+export interface AggregateDiscussPromise
+  extends Promise<AggregateDiscuss>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateDiscussSubscription
+  extends Promise<AsyncIterator<AggregateDiscuss>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProblemEdge {
+  node: Problem;
   cursor: String;
 }
 
-export interface PrivilegeGroupEdgePromise
-  extends Promise<PrivilegeGroupEdge>,
-    Fragmentable {
-  node: <T = PrivilegeGroupPromise>() => T;
+export interface ProblemEdgePromise extends Promise<ProblemEdge>, Fragmentable {
+  node: <T = ProblemPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface PrivilegeGroupEdgeSubscription
-  extends Promise<AsyncIterator<PrivilegeGroupEdge>>,
+export interface ProblemEdgeSubscription
+  extends Promise<AsyncIterator<ProblemEdge>>,
     Fragmentable {
-  node: <T = PrivilegeGroupSubscription>() => T;
+  node: <T = ProblemSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserConnection {
+export interface UserGroupConnection {
   pageInfo: PageInfo;
-  edges: UserEdge[];
+  edges: UserGroupEdge[];
 }
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface UserGroupConnectionPromise
+  extends Promise<UserGroupConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  edges: <T = FragmentableArray<UserGroupEdge>>() => T;
+  aggregate: <T = AggregateUserGroupPromise>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface UserGroupConnectionSubscription
+  extends Promise<AsyncIterator<UserGroupConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserGroupEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserGroupSubscription>() => T;
 }
 
-export interface AggregateContest {
-  count: Int;
+export interface ContestProblemEdge {
+  node: ContestProblem;
+  cursor: String;
 }
 
-export interface AggregateContestPromise
-  extends Promise<AggregateContest>,
+export interface ContestProblemEdgePromise
+  extends Promise<ContestProblemEdge>,
     Fragmentable {
-  count: () => Promise<Int>;
+  node: <T = ContestProblemPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface AggregateContestSubscription
-  extends Promise<AsyncIterator<AggregateContest>>,
+export interface ContestProblemEdgeSubscription
+  extends Promise<AsyncIterator<ContestProblemEdge>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  node: <T = ContestProblemSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
-
-export interface AggregateContestProblem {
-  count: Int;
-}
-
-export interface AggregateContestProblemPromise
-  extends Promise<AggregateContestProblem>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateContestProblemSubscription
-  extends Promise<AsyncIterator<AggregateContestProblem>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface DiscussChilderConnection {
-  pageInfo: PageInfo;
-  edges: DiscussChilderEdge[];
-}
-
-export interface DiscussChilderConnectionPromise
-  extends Promise<DiscussChilderConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<DiscussChilderEdge>>() => T;
-  aggregate: <T = AggregateDiscussChilderPromise>() => T;
-}
-
-export interface DiscussChilderConnectionSubscription
-  extends Promise<AsyncIterator<DiscussChilderConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<DiscussChilderEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateDiscussChilderSubscription>() => T;
-}
-
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
-
-/*
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
-*/
-export type ID_Input = string | number;
-export type ID_Output = string;
-
-export type Long = string;
 
 /*
 DateTime scalar input type, allowing Date
@@ -6947,10 +7197,23 @@ DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
 
+export type Long = string;
+
 /*
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
+
+/*
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+*/
+export type ID_Input = string | number;
+export type ID_Output = string;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 

@@ -48,12 +48,15 @@ type Contest {
   updatedAt: DateTime!
   name: String!
   type: Int
+  cloneId: String
   createUserName: String!
-  createUserId: Int!
+  createUserId: String!
+  firstStartTime: DateTime!
   startTime: DateTime!
   endTime: DateTime!
-  userGroup: UserGroup!
-  contestProblem: ContestProblem!
+  hint: String
+  userGroup(where: UserGroupWhereInput, orderBy: UserGroupOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserGroup!]
+  contestProblem(where: ContestProblemWhereInput, orderBy: ContestProblemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestProblem!]
 }
 
 type ContestConnection {
@@ -65,12 +68,15 @@ type ContestConnection {
 input ContestCreateInput {
   name: String!
   type: Int
+  cloneId: String
   createUserName: String!
-  createUserId: Int!
+  createUserId: String!
+  firstStartTime: DateTime!
   startTime: DateTime!
   endTime: DateTime!
-  userGroup: UserGroupCreateOneInput!
-  contestProblem: ContestProblemCreateOneInput!
+  hint: String
+  userGroup: UserGroupCreateManyInput
+  contestProblem: ContestProblemCreateManyInput
 }
 
 input ContestCreateOneInput {
@@ -94,14 +100,20 @@ enum ContestOrderByInput {
   name_DESC
   type_ASC
   type_DESC
+  cloneId_ASC
+  cloneId_DESC
   createUserName_ASC
   createUserName_DESC
   createUserId_ASC
   createUserId_DESC
+  firstStartTime_ASC
+  firstStartTime_DESC
   startTime_ASC
   startTime_DESC
   endTime_ASC
   endTime_DESC
+  hint_ASC
+  hint_DESC
 }
 
 type ContestPreviousValues {
@@ -110,10 +122,13 @@ type ContestPreviousValues {
   updatedAt: DateTime!
   name: String!
   type: Int
+  cloneId: String
   createUserName: String!
-  createUserId: Int!
+  createUserId: String!
+  firstStartTime: DateTime!
   startTime: DateTime!
   endTime: DateTime!
+  hint: String
 }
 
 type ContestProblem {
@@ -141,9 +156,9 @@ input ContestProblemCreateInput {
   wa: Int
 }
 
-input ContestProblemCreateOneInput {
-  create: ContestProblemCreateInput
-  connect: ContestProblemWhereUniqueInput
+input ContestProblemCreateManyInput {
+  create: [ContestProblemCreateInput!]
+  connect: [ContestProblemWhereUniqueInput!]
 }
 
 type ContestProblemEdge {
@@ -176,6 +191,86 @@ type ContestProblemPreviousValues {
   problemTitle: String!
   ac: Int!
   wa: Int!
+}
+
+input ContestProblemScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  problemId: String
+  problemId_not: String
+  problemId_in: [String!]
+  problemId_not_in: [String!]
+  problemId_lt: String
+  problemId_lte: String
+  problemId_gt: String
+  problemId_gte: String
+  problemId_contains: String
+  problemId_not_contains: String
+  problemId_starts_with: String
+  problemId_not_starts_with: String
+  problemId_ends_with: String
+  problemId_not_ends_with: String
+  problemTitle: String
+  problemTitle_not: String
+  problemTitle_in: [String!]
+  problemTitle_not_in: [String!]
+  problemTitle_lt: String
+  problemTitle_lte: String
+  problemTitle_gt: String
+  problemTitle_gte: String
+  problemTitle_contains: String
+  problemTitle_not_contains: String
+  problemTitle_starts_with: String
+  problemTitle_not_starts_with: String
+  problemTitle_ends_with: String
+  problemTitle_not_ends_with: String
+  ac: Int
+  ac_not: Int
+  ac_in: [Int!]
+  ac_not_in: [Int!]
+  ac_lt: Int
+  ac_lte: Int
+  ac_gt: Int
+  ac_gte: Int
+  wa: Int
+  wa_not: Int
+  wa_in: [Int!]
+  wa_not_in: [Int!]
+  wa_lt: Int
+  wa_lte: Int
+  wa_gt: Int
+  wa_gte: Int
+  AND: [ContestProblemScalarWhereInput!]
+  OR: [ContestProblemScalarWhereInput!]
+  NOT: [ContestProblemScalarWhereInput!]
 }
 
 type ContestProblemSubscriptionPayload {
@@ -212,6 +307,25 @@ input ContestProblemUpdateInput {
   wa: Int
 }
 
+input ContestProblemUpdateManyDataInput {
+  problemId: String
+  problemTitle: String
+  ac: Int
+  wa: Int
+}
+
+input ContestProblemUpdateManyInput {
+  create: [ContestProblemCreateInput!]
+  update: [ContestProblemUpdateWithWhereUniqueNestedInput!]
+  upsert: [ContestProblemUpsertWithWhereUniqueNestedInput!]
+  delete: [ContestProblemWhereUniqueInput!]
+  connect: [ContestProblemWhereUniqueInput!]
+  set: [ContestProblemWhereUniqueInput!]
+  disconnect: [ContestProblemWhereUniqueInput!]
+  deleteMany: [ContestProblemScalarWhereInput!]
+  updateMany: [ContestProblemUpdateManyWithWhereNestedInput!]
+}
+
 input ContestProblemUpdateManyMutationInput {
   problemId: String
   problemTitle: String
@@ -219,14 +333,18 @@ input ContestProblemUpdateManyMutationInput {
   wa: Int
 }
 
-input ContestProblemUpdateOneRequiredInput {
-  create: ContestProblemCreateInput
-  update: ContestProblemUpdateDataInput
-  upsert: ContestProblemUpsertNestedInput
-  connect: ContestProblemWhereUniqueInput
+input ContestProblemUpdateManyWithWhereNestedInput {
+  where: ContestProblemScalarWhereInput!
+  data: ContestProblemUpdateManyDataInput!
 }
 
-input ContestProblemUpsertNestedInput {
+input ContestProblemUpdateWithWhereUniqueNestedInput {
+  where: ContestProblemWhereUniqueInput!
+  data: ContestProblemUpdateDataInput!
+}
+
+input ContestProblemUpsertWithWhereUniqueNestedInput {
+  where: ContestProblemWhereUniqueInput!
   update: ContestProblemUpdateDataInput!
   create: ContestProblemCreateInput!
 }
@@ -337,32 +455,41 @@ input ContestSubscriptionWhereInput {
 input ContestUpdateDataInput {
   name: String
   type: Int
+  cloneId: String
   createUserName: String
-  createUserId: Int
+  createUserId: String
+  firstStartTime: DateTime
   startTime: DateTime
   endTime: DateTime
-  userGroup: UserGroupUpdateOneRequiredInput
-  contestProblem: ContestProblemUpdateOneRequiredInput
+  hint: String
+  userGroup: UserGroupUpdateManyInput
+  contestProblem: ContestProblemUpdateManyInput
 }
 
 input ContestUpdateInput {
   name: String
   type: Int
+  cloneId: String
   createUserName: String
-  createUserId: Int
+  createUserId: String
+  firstStartTime: DateTime
   startTime: DateTime
   endTime: DateTime
-  userGroup: UserGroupUpdateOneRequiredInput
-  contestProblem: ContestProblemUpdateOneRequiredInput
+  hint: String
+  userGroup: UserGroupUpdateManyInput
+  contestProblem: ContestProblemUpdateManyInput
 }
 
 input ContestUpdateManyMutationInput {
   name: String
   type: Int
+  cloneId: String
   createUserName: String
-  createUserId: Int
+  createUserId: String
+  firstStartTime: DateTime
   startTime: DateTime
   endTime: DateTime
+  hint: String
 }
 
 input ContestUpdateOneInput {
@@ -432,6 +559,20 @@ input ContestWhereInput {
   type_lte: Int
   type_gt: Int
   type_gte: Int
+  cloneId: String
+  cloneId_not: String
+  cloneId_in: [String!]
+  cloneId_not_in: [String!]
+  cloneId_lt: String
+  cloneId_lte: String
+  cloneId_gt: String
+  cloneId_gte: String
+  cloneId_contains: String
+  cloneId_not_contains: String
+  cloneId_starts_with: String
+  cloneId_not_starts_with: String
+  cloneId_ends_with: String
+  cloneId_not_ends_with: String
   createUserName: String
   createUserName_not: String
   createUserName_in: [String!]
@@ -446,14 +587,28 @@ input ContestWhereInput {
   createUserName_not_starts_with: String
   createUserName_ends_with: String
   createUserName_not_ends_with: String
-  createUserId: Int
-  createUserId_not: Int
-  createUserId_in: [Int!]
-  createUserId_not_in: [Int!]
-  createUserId_lt: Int
-  createUserId_lte: Int
-  createUserId_gt: Int
-  createUserId_gte: Int
+  createUserId: String
+  createUserId_not: String
+  createUserId_in: [String!]
+  createUserId_not_in: [String!]
+  createUserId_lt: String
+  createUserId_lte: String
+  createUserId_gt: String
+  createUserId_gte: String
+  createUserId_contains: String
+  createUserId_not_contains: String
+  createUserId_starts_with: String
+  createUserId_not_starts_with: String
+  createUserId_ends_with: String
+  createUserId_not_ends_with: String
+  firstStartTime: DateTime
+  firstStartTime_not: DateTime
+  firstStartTime_in: [DateTime!]
+  firstStartTime_not_in: [DateTime!]
+  firstStartTime_lt: DateTime
+  firstStartTime_lte: DateTime
+  firstStartTime_gt: DateTime
+  firstStartTime_gte: DateTime
   startTime: DateTime
   startTime_not: DateTime
   startTime_in: [DateTime!]
@@ -470,8 +625,26 @@ input ContestWhereInput {
   endTime_lte: DateTime
   endTime_gt: DateTime
   endTime_gte: DateTime
-  userGroup: UserGroupWhereInput
-  contestProblem: ContestProblemWhereInput
+  hint: String
+  hint_not: String
+  hint_in: [String!]
+  hint_not_in: [String!]
+  hint_lt: String
+  hint_lte: String
+  hint_gt: String
+  hint_gte: String
+  hint_contains: String
+  hint_not_contains: String
+  hint_starts_with: String
+  hint_not_starts_with: String
+  hint_ends_with: String
+  hint_not_ends_with: String
+  userGroup_every: UserGroupWhereInput
+  userGroup_some: UserGroupWhereInput
+  userGroup_none: UserGroupWhereInput
+  contestProblem_every: ContestProblemWhereInput
+  contestProblem_some: ContestProblemWhereInput
+  contestProblem_none: ContestProblemWhereInput
   AND: [ContestWhereInput!]
   OR: [ContestWhereInput!]
   NOT: [ContestWhereInput!]
@@ -3018,6 +3191,7 @@ type User {
   defaultUserGroupId: String
   privilegeBlack: Int!
   privilegeWhite: Int!
+  privilegeCache: Int!
   privilegeGroup(where: PrivilegeGroupWhereInput, orderBy: PrivilegeGroupOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PrivilegeGroup!]
   UserDiscuss(where: DiscussWhereInput, orderBy: DiscussOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Discuss!]
   UserDiscussChilder(where: DiscussChilderWhereInput, orderBy: DiscussChilderOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DiscussChilder!]
@@ -3054,6 +3228,7 @@ input UserCreateInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupCreateManyWithoutUsersInput
   UserDiscuss: DiscussCreateManyWithoutUserInput
   UserDiscussChilder: DiscussChilderCreateManyWithoutUserInput
@@ -3133,6 +3308,7 @@ input UserCreateWithoutApplyUserGroupInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupCreateManyWithoutUsersInput
   UserDiscuss: DiscussCreateManyWithoutUserInput
   UserDiscussChilder: DiscussChilderCreateManyWithoutUserInput
@@ -3162,6 +3338,7 @@ input UserCreateWithoutCreateProblmesInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupCreateManyWithoutUsersInput
   UserDiscuss: DiscussCreateManyWithoutUserInput
   UserDiscussChilder: DiscussChilderCreateManyWithoutUserInput
@@ -3191,6 +3368,7 @@ input UserCreateWithoutCreateUserGroupInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupCreateManyWithoutUsersInput
   UserDiscuss: DiscussCreateManyWithoutUserInput
   UserDiscussChilder: DiscussChilderCreateManyWithoutUserInput
@@ -3220,6 +3398,7 @@ input UserCreateWithoutPrivilegeGroupInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   UserDiscuss: DiscussCreateManyWithoutUserInput
   UserDiscussChilder: DiscussChilderCreateManyWithoutUserInput
   userGroup: UserGroupCreateManyWithoutUsersInput
@@ -3249,6 +3428,7 @@ input UserCreateWithoutSubmitRecordInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupCreateManyWithoutUsersInput
   UserDiscuss: DiscussCreateManyWithoutUserInput
   UserDiscussChilder: DiscussChilderCreateManyWithoutUserInput
@@ -3278,6 +3458,7 @@ input UserCreateWithoutUserDiscussChilderInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupCreateManyWithoutUsersInput
   UserDiscuss: DiscussCreateManyWithoutUserInput
   userGroup: UserGroupCreateManyWithoutUsersInput
@@ -3307,6 +3488,7 @@ input UserCreateWithoutUserDiscussInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupCreateManyWithoutUsersInput
   UserDiscussChilder: DiscussChilderCreateManyWithoutUserInput
   userGroup: UserGroupCreateManyWithoutUsersInput
@@ -3336,6 +3518,7 @@ input UserCreateWithoutUserGroupInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupCreateManyWithoutUsersInput
   UserDiscuss: DiscussCreateManyWithoutUserInput
   UserDiscussChilder: DiscussChilderCreateManyWithoutUserInput
@@ -3406,11 +3589,6 @@ input UserGroupCreateManyWithoutCreateUserInput {
 input UserGroupCreateManyWithoutUsersInput {
   create: [UserGroupCreateWithoutUsersInput!]
   connect: [UserGroupWhereUniqueInput!]
-}
-
-input UserGroupCreateOneInput {
-  create: UserGroupCreateInput
-  connect: UserGroupWhereUniqueInput
 }
 
 input UserGroupCreateWithoutApplyUsersInput {
@@ -3692,13 +3870,6 @@ input UserGroupUpdateManyWithWhereNestedInput {
   data: UserGroupUpdateManyDataInput!
 }
 
-input UserGroupUpdateOneRequiredInput {
-  create: UserGroupCreateInput
-  update: UserGroupUpdateDataInput
-  upsert: UserGroupUpsertNestedInput
-  connect: UserGroupWhereUniqueInput
-}
-
 input UserGroupUpdateWithoutApplyUsersDataInput {
   name: String
   desc: String
@@ -3750,11 +3921,6 @@ input UserGroupUpdateWithWhereUniqueWithoutCreateUserInput {
 input UserGroupUpdateWithWhereUniqueWithoutUsersInput {
   where: UserGroupWhereUniqueInput!
   data: UserGroupUpdateWithoutUsersDataInput!
-}
-
-input UserGroupUpsertNestedInput {
-  update: UserGroupUpdateDataInput!
-  create: UserGroupCreateInput!
 }
 
 input UserGroupUpsertWithWhereUniqueNestedInput {
@@ -3930,6 +4096,8 @@ enum UserOrderByInput {
   privilegeBlack_DESC
   privilegeWhite_ASC
   privilegeWhite_DESC
+  privilegeCache_ASC
+  privilegeCache_DESC
   submit_ASC
   submit_DESC
   solved_ASC
@@ -3956,6 +4124,7 @@ type UserPreviousValues {
   defaultUserGroupId: String
   privilegeBlack: Int!
   privilegeWhite: Int!
+  privilegeCache: Int!
   problems: [Json!]!
   submit: Int!
   solved: Int!
@@ -4153,6 +4322,14 @@ input UserScalarWhereInput {
   privilegeWhite_lte: Int
   privilegeWhite_gt: Int
   privilegeWhite_gte: Int
+  privilegeCache: Int
+  privilegeCache_not: Int
+  privilegeCache_in: [Int!]
+  privilegeCache_not_in: [Int!]
+  privilegeCache_lt: Int
+  privilegeCache_lte: Int
+  privilegeCache_gt: Int
+  privilegeCache_gte: Int
   submit: Int
   submit_not: Int
   submit_in: [Int!]
@@ -4215,6 +4392,7 @@ input UserUpdateDataInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupUpdateManyWithoutUsersInput
   UserDiscuss: DiscussUpdateManyWithoutUserInput
   UserDiscussChilder: DiscussChilderUpdateManyWithoutUserInput
@@ -4245,6 +4423,7 @@ input UserUpdateInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupUpdateManyWithoutUsersInput
   UserDiscuss: DiscussUpdateManyWithoutUserInput
   UserDiscussChilder: DiscussChilderUpdateManyWithoutUserInput
@@ -4275,6 +4454,7 @@ input UserUpdateManyDataInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   problems: UserUpdateproblemsInput
   submit: Int
   solved: Int
@@ -4308,6 +4488,7 @@ input UserUpdateManyMutationInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   problems: UserUpdateproblemsInput
   submit: Int
   solved: Int
@@ -4417,6 +4598,7 @@ input UserUpdateWithoutApplyUserGroupDataInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupUpdateManyWithoutUsersInput
   UserDiscuss: DiscussUpdateManyWithoutUserInput
   UserDiscussChilder: DiscussChilderUpdateManyWithoutUserInput
@@ -4446,6 +4628,7 @@ input UserUpdateWithoutCreateProblmesDataInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupUpdateManyWithoutUsersInput
   UserDiscuss: DiscussUpdateManyWithoutUserInput
   UserDiscussChilder: DiscussChilderUpdateManyWithoutUserInput
@@ -4475,6 +4658,7 @@ input UserUpdateWithoutCreateUserGroupDataInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupUpdateManyWithoutUsersInput
   UserDiscuss: DiscussUpdateManyWithoutUserInput
   UserDiscussChilder: DiscussChilderUpdateManyWithoutUserInput
@@ -4504,6 +4688,7 @@ input UserUpdateWithoutPrivilegeGroupDataInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   UserDiscuss: DiscussUpdateManyWithoutUserInput
   UserDiscussChilder: DiscussChilderUpdateManyWithoutUserInput
   userGroup: UserGroupUpdateManyWithoutUsersInput
@@ -4533,6 +4718,7 @@ input UserUpdateWithoutSubmitRecordDataInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupUpdateManyWithoutUsersInput
   UserDiscuss: DiscussUpdateManyWithoutUserInput
   UserDiscussChilder: DiscussChilderUpdateManyWithoutUserInput
@@ -4562,6 +4748,7 @@ input UserUpdateWithoutUserDiscussChilderDataInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupUpdateManyWithoutUsersInput
   UserDiscuss: DiscussUpdateManyWithoutUserInput
   userGroup: UserGroupUpdateManyWithoutUsersInput
@@ -4591,6 +4778,7 @@ input UserUpdateWithoutUserDiscussDataInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupUpdateManyWithoutUsersInput
   UserDiscussChilder: DiscussChilderUpdateManyWithoutUserInput
   userGroup: UserGroupUpdateManyWithoutUsersInput
@@ -4620,6 +4808,7 @@ input UserUpdateWithoutUserGroupDataInput {
   defaultUserGroupId: String
   privilegeBlack: Int
   privilegeWhite: Int
+  privilegeCache: Int
   privilegeGroup: PrivilegeGroupUpdateManyWithoutUsersInput
   UserDiscuss: DiscussUpdateManyWithoutUserInput
   UserDiscussChilder: DiscussChilderUpdateManyWithoutUserInput
@@ -4894,6 +5083,14 @@ input UserWhereInput {
   privilegeWhite_lte: Int
   privilegeWhite_gt: Int
   privilegeWhite_gte: Int
+  privilegeCache: Int
+  privilegeCache_not: Int
+  privilegeCache_in: [Int!]
+  privilegeCache_not_in: [Int!]
+  privilegeCache_lt: Int
+  privilegeCache_lte: Int
+  privilegeCache_gt: Int
+  privilegeCache_gte: Int
   privilegeGroup_every: PrivilegeGroupWhereInput
   privilegeGroup_some: PrivilegeGroupWhereInput
   privilegeGroup_none: PrivilegeGroupWhereInput

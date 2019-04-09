@@ -95,9 +95,6 @@ export default class ProblemForm extends Component {
           throw Error(data.message)
         }
         Message.success(data.message)
-        if (!this.state.isCreate) {
-          this.props.history.goBack()
-        }
       } catch (error) {
         console.error(error)
         Message.error('请求错误，更多信息查看控制台')
@@ -105,6 +102,9 @@ export default class ProblemForm extends Component {
         this.setState({
           postLoading: false,
         })
+        // if (!this.state.isCreate) {
+          this.props.history.push('/admin/problem')
+        // }
       }
     });
   };
