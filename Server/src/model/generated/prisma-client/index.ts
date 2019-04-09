@@ -495,6 +495,8 @@ export interface ClientConstructor<T> {
 export type ProblemOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "problemId_ASC"
+  | "problemId_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -1602,6 +1604,7 @@ export interface DiscussChilderUpdateWithWhereUniqueNestedInput {
 }
 
 export interface ProblemUpdateManyMutationInput {
+  problemId?: Int;
   status?: Int;
   type?: Int;
   tags?: Json;
@@ -1631,6 +1634,7 @@ export interface DiscussChilderUpdateDataInput {
 }
 
 export interface ProblemUpdateInput {
+  problemId?: Int;
   status?: Int;
   type?: Int;
   tags?: Json;
@@ -1959,6 +1963,14 @@ export interface ProblemWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  problemId?: Int;
+  problemId_not?: Int;
+  problemId_in?: Int[] | Int;
+  problemId_not_in?: Int[] | Int;
+  problemId_lt?: Int;
+  problemId_lte?: Int;
+  problemId_gt?: Int;
+  problemId_gte?: Int;
   createdAt?: DateTimeInput;
   createdAt_not?: DateTimeInput;
   createdAt_in?: DateTimeInput[] | DateTimeInput;
@@ -2858,6 +2870,7 @@ export interface UserGroupUpdateManyWithWhereNestedInput {
 }
 
 export interface ProblemCreateWithoutCreateUserInput {
+  problemId?: Int;
   status?: Int;
   type?: Int;
   tags: Json;
@@ -2977,6 +2990,7 @@ export interface UserGroupUpdateWithoutApplyUsersDataInput {
 }
 
 export interface ProblemCreateInput {
+  problemId?: Int;
   status?: Int;
   type?: Int;
   tags: Json;
@@ -3085,6 +3099,7 @@ export interface ContestUpdateInput {
 }
 
 export interface ProblemUpdateWithoutCreateUserDataInput {
+  problemId?: Int;
   status?: Int;
   type?: Int;
   tags?: Json;
@@ -3583,6 +3598,7 @@ export interface UserCreateWithoutPrivilegeGroupInput {
 }
 
 export interface ProblemUpdateDataInput {
+  problemId?: Int;
   status?: Int;
   type?: Int;
   tags?: Json;
@@ -4222,6 +4238,14 @@ export interface ProblemScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  problemId?: Int;
+  problemId_not?: Int;
+  problemId_in?: Int[] | Int;
+  problemId_not_in?: Int[] | Int;
+  problemId_lt?: Int;
+  problemId_lte?: Int;
+  problemId_gt?: Int;
+  problemId_gte?: Int;
   createdAt?: DateTimeInput;
   createdAt_not?: DateTimeInput;
   createdAt_in?: DateTimeInput[] | DateTimeInput;
@@ -4441,6 +4465,7 @@ export interface UserGroupCreateManyWithoutCreateUserInput {
 }
 
 export interface ProblemUpdateManyDataInput {
+  problemId?: Int;
   status?: Int;
   type?: Int;
   tags?: Json;
@@ -5834,6 +5859,7 @@ export interface ContestEdgeSubscription
 
 export interface Problem {
   id: ID_Output;
+  problemId?: Int;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   status: Int;
@@ -5856,6 +5882,7 @@ export interface Problem {
 
 export interface ProblemPromise extends Promise<Problem>, Fragmentable {
   id: () => Promise<ID_Output>;
+  problemId: () => Promise<Int>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   status: () => Promise<Int>;
@@ -5892,6 +5919,7 @@ export interface ProblemSubscription
   extends Promise<AsyncIterator<Problem>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  problemId: () => Promise<AsyncIterator<Int>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   status: () => Promise<AsyncIterator<Int>>;
@@ -6732,6 +6760,7 @@ export interface UserSubscription
 
 export interface ProblemPreviousValues {
   id: ID_Output;
+  problemId?: Int;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   status: Int;
@@ -6756,6 +6785,7 @@ export interface ProblemPreviousValuesPromise
   extends Promise<ProblemPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  problemId: () => Promise<Int>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   status: () => Promise<Int>;
@@ -6780,6 +6810,7 @@ export interface ProblemPreviousValuesSubscription
   extends Promise<AsyncIterator<ProblemPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  problemId: () => Promise<AsyncIterator<Int>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   status: () => Promise<AsyncIterator<Int>>;

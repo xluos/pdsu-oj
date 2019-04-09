@@ -1,10 +1,23 @@
 
-  import React from 'react';
-  import IceContainer from '@icedesign/container';
-  import { Breadcrumb } from '@alifd/next';
-  import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import IceContainer from '@icedesign/container';
+import { Breadcrumb } from '@alifd/next';
+import { Link, withRouter } from 'react-router-dom';
+import TestDataTable from "./components/TestDataTable";
+import SelectProblem from "./components/SelectProblem";
+import _ from 'lodash'
 
-  export default function ProblemTestData () {
+@withRouter
+export default class ProblemTestData extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      problemId: _.get(this.props, 'location.state.id', '')
+    };
+  }
+
+  render () {
     return (
       <div className="ProblemTestData-page">
         <IceContainer>
@@ -14,6 +27,20 @@
             <Breadcrumb.Item>TestData</Breadcrumb.Item>
           </Breadcrumb>
         </IceContainer>
+        {
+          this.state.problemId ? (
+            <TestDataTable id={this.state.problemId}/>
+          ) : (
+            <SelectProblem onChange={() => {
+              this.setState({
+                problemId: val
+              })
+            }}/>
+          )
+        }
       </div>
     );
   }
+
+}
+

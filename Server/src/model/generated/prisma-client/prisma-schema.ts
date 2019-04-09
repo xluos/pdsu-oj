@@ -1599,6 +1599,7 @@ input PrivilegeGroupWhereUniqueInput {
 
 type Problem {
   id: ID!
+  problemId: Int
   createdAt: DateTime!
   updatedAt: DateTime!
   status: Int!
@@ -1628,6 +1629,7 @@ type ProblemConnection {
 }
 
 input ProblemCreateInput {
+  problemId: Int
   status: Int
   type: Int
   tags: Json!
@@ -1659,6 +1661,7 @@ input ProblemCreateOneInput {
 }
 
 input ProblemCreateWithoutCreateUserInput {
+  problemId: Int
   status: Int
   type: Int
   tags: Json!
@@ -1686,6 +1689,8 @@ type ProblemEdge {
 enum ProblemOrderByInput {
   id_ASC
   id_DESC
+  problemId_ASC
+  problemId_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -1726,6 +1731,7 @@ enum ProblemOrderByInput {
 
 type ProblemPreviousValues {
   id: ID!
+  problemId: Int
   createdAt: DateTime!
   updatedAt: DateTime!
   status: Int!
@@ -1761,6 +1767,14 @@ input ProblemScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  problemId: Int
+  problemId_not: Int
+  problemId_in: [Int!]
+  problemId_not_in: [Int!]
+  problemId_lt: Int
+  problemId_lte: Int
+  problemId_gt: Int
+  problemId_gte: Int
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -1981,6 +1995,7 @@ input ProblemSubscriptionWhereInput {
 }
 
 input ProblemUpdateDataInput {
+  problemId: Int
   status: Int
   type: Int
   tags: Json
@@ -2002,6 +2017,7 @@ input ProblemUpdateDataInput {
 }
 
 input ProblemUpdateInput {
+  problemId: Int
   status: Int
   type: Int
   tags: Json
@@ -2023,6 +2039,7 @@ input ProblemUpdateInput {
 }
 
 input ProblemUpdateManyDataInput {
+  problemId: Int
   status: Int
   type: Int
   tags: Json
@@ -2042,6 +2059,7 @@ input ProblemUpdateManyDataInput {
 }
 
 input ProblemUpdateManyMutationInput {
+  problemId: Int
   status: Int
   type: Int
   tags: Json
@@ -2094,6 +2112,7 @@ input ProblemUpdateOneRequiredInput {
 }
 
 input ProblemUpdateWithoutCreateUserDataInput {
+  problemId: Int
   status: Int
   type: Int
   tags: Json
@@ -2144,6 +2163,14 @@ input ProblemWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  problemId: Int
+  problemId_not: Int
+  problemId_in: [Int!]
+  problemId_not_in: [Int!]
+  problemId_lt: Int
+  problemId_lte: Int
+  problemId_gt: Int
+  problemId_gte: Int
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]

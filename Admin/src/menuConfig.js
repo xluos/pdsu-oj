@@ -100,7 +100,7 @@ const asideMenuConfig = [
     icon: 'horn',
     children: [
       {
-        name: '通知列表',
+        name: '通知管理',
         path:  '/admin/notice/list',
       },
       {

@@ -61,6 +61,7 @@ type UserGroup {
 # 题目
 type Problem {
   id: ID! @unique
+  problemId: Int @default(value: "0")
   createdAt: DateTime!
   updatedAt: DateTime!
   status: Int! @default(value: "0")
