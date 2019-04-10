@@ -9,7 +9,7 @@ import './index.scss';
 import '@alifd/next/reset.scss';
 import './icon.js'
 
-import router from './router';
+import RouterContainer from './router';
 @withRouter
 class ScrollToTop extends Component {
   componentDidUpdate(prevProps) {
@@ -31,7 +31,7 @@ if (!ICE_CONTAINER) {
 ReactDOM.render(
   <Router>
     <ScrollToTop>
-      {router()}
+      <RouterContainer />
     </ScrollToTop>
   </Router>,
 

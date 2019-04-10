@@ -33,7 +33,6 @@ export default class Login extends Component {
       value,
     });
   };
-
   handleSubmit = async (values, errors) => {
     if (errors) {
       Message.error('提交错误！请检查参数');

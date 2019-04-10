@@ -10,7 +10,10 @@ export = (appInfo: any) => {
     'options',
     'error',
   ];
-
+  config.multipart = {
+    mode: 'file',
+    fileSize: '50mb'
+  };
   config.jwt = {
     secret: '159789'
   };

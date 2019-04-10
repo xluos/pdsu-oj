@@ -36,7 +36,7 @@ export class BaseController {
     console.log(user, handlePassword(options.password));
     
     if (user.password === handlePassword(options.password)){
-      ctx.cookies.set('pdoj_token', this.jwt.sign(user, { expiresIn: 3600 }), {signed: true, httpOnly: false})
+      ctx.cookies.set('pdoj_token', this.jwt.sign(excludePassword(user), { expiresIn: 3600 }), {signed: true, httpOnly: false})
       ctx.body = {userInfo: excludePassword(user)};
     } else {
       throw Error('登录错误');   
