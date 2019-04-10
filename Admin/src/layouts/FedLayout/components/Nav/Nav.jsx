@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Popover } from 'antd';
 import routerData from '../../../../router.fed';
-import { getUserInfo, setUserInfo } from "../../../../lib/Storage";
-import Cookies from 'js-cookie'
 import './Nav.scss';
+import { verifyLoginStatus ,clearLoginStatus } from '../../../../lib/Utils';
+import { getUserInfo } from '../../../../lib/Storage';
+import { Message } from '@alifd/next';
 
 @withRouter
 export default class Nav extends Component {
   state = {
-    userInfo: getUserInfo() || {}
+    userStatus: verifyLoginStatus(),
+    userInfo: getUserInfo()
   }
   go = (pathname) => {
     return {
@@ -20,7 +22,7 @@ export default class Nav extends Component {
     }
   }
   render () {
-    const { userInfo } = this.state
+    const { userInfo, userStatus } = this.state
     return (
     <nav className="nav-bar">
       <div className="nav-bar-logo">LOGO</div>
@@ -39,20 +41,21 @@ export default class Nav extends Component {
         }
       </ul>
       <div className="nav-bar-user">
-        <Popover content={userInfo.name ? (
+        <Popover content={userStatus ? (
           <div>
             <p>
               <Link to="/user/profile" style={{color: '#777'}}>个人主页</Link>
             </p>
             <p>
-              <a href="/admin" target='_blank' style={{color: '#777'}}>控制台</a>
+              <Link to="/admin" style={{color: '#777'}}>控制台</Link>
+              {/* <a href="/admin" target='_blank' style={{color: '#777'}}>控制台</a> */}
             </p>
             <p style={{cursor: 'pointer'}} onClick={()=> {
-              Cookies.set('pdoj_token', null)
-              setUserInfo({})
+              clearLoginStatus()
               this.setState({
-                userInfo: {}
+                userStatus: false
               })
+              Message.notice('已退出')
             }}>退出</p>
           </div>
         ) : (
@@ -60,9 +63,9 @@ export default class Nav extends Component {
             <p><Link to={this.go("/login")} style={{color: '#777'}}>登录</Link></p>
             <p><Link to={this.go("/signup")} style={{color: '#777'}}>注册</Link></p>
           </div>
-        )} title={userInfo.name || '未登录'}>
+        )} title={userStatus && userInfo.name || '未登录'}>
           <span className="user-name">
-            {userInfo.name || '未登录'}
+            {userStatus && userInfo.name || '未登录'}
           </span>
         </Popover>
       </div>

@@ -60,7 +60,7 @@ $ice-header-icon-down-color: #fff !default;
           color: $color-brand1-6;
         }
       }
-    } 
+    }
   }
 
 .user-profile-menu {
@@ -74,6 +74,9 @@ $ice-header-icon-down-color: #fff !default;
     color: #666;
     i {
       margin-right: 5px;
+    }
+    a {
+      color: #777;
     }
   }
 }

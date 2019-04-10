@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Route,
-  Switch
+  Route
 } from 'react-router-dom'
 export default class Routes extends Component {
   static displayName = 'Routes';

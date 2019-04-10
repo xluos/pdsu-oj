@@ -12,8 +12,6 @@ export default class RootRoutes extends Routes {
   static displayName = 'RootRoutes';
 
   render() {
-    console.log(RootRouteData);
-
     return (
       <Switch>
         {/* 渲染路由表 */}

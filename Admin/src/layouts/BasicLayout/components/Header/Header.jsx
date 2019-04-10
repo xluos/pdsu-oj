@@ -7,13 +7,17 @@ import cx from 'classnames';
 import { Link } from 'react-router-dom';
 import { headerMenuConfig } from '../../../../menuConfig';
 import Logo from '../Logo';
-
+import { getUserInfo } from '../../../../lib/Storage';
 import './scss/base.scss';
 
+
 export default class Header extends PureComponent {
+  state = {
+    userInfo: getUserInfo()
+  }
   render() {
     const { isMobile, className, style } = this.props;
-
+    const { userInfo } = this.state
     return (
       <Layout.Header
         theme={'dark'}
@@ -65,9 +69,9 @@ export default class Header extends PureComponent {
                   className="user-avatar"
                 />
                 <div className="user-profile">
-                  <span className="user-name">徐大大</span>
+                  <span className="user-name">{userInfo.name}</span>
                   <br />
-                  <span className="user-department">技术部</span>
+                  <span className="user-department">{userInfo.defaultUserGroup}</span>
                 </div>
                 <Icon
                   type="arrow-down"
@@ -81,16 +85,22 @@ export default class Header extends PureComponent {
           >
             <ul>
               <li className="user-profile-menu-item">
-                <Icon type="account" size="small" />
-                我的主页
+                <Link to="/user/profile">
+                  <Icon type="account" size="small" />
+                  我的主页
+                </Link>
               </li>
               <li className="user-profile-menu-item">
-                <Icon type="repair" size="small" />
-                设置
+                <Link to="/admin/setting">
+                  <Icon type="repair" size="small" />
+                  设置
+                </Link>
               </li>
               <li className="user-profile-menu-item">
-                <Icon type="compass" size="small" />
-                退出
+                <Link to="/">
+                  <Icon type="compass" size="small" />
+                  退出
+                </Link>
               </li>
             </ul>
           </Balloon>

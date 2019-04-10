@@ -9,6 +9,7 @@ import Aside from './components/Aside';
 import Footer from './components/Footer';
 import MainRoutes from './MainRoutes';
 import './scss/index.scss';
+import { verifyLoginStatus } from '../../lib/Utils';
 
 @withRouter
 export default class BasicLayout extends Component {
@@ -25,6 +26,9 @@ export default class BasicLayout extends Component {
   }
 
   componentDidMount() {
+    if (!verifyLoginStatus()) {
+      this.props.history.push('/login', {backUrl: this.props.location.pathname})
+    }
     this.enquireScreenRegister();
   }
 
