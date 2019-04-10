@@ -13,7 +13,7 @@ import './scss/base.scss';
 
 export default class Header extends PureComponent {
   state = {
-    userInfo: getUserInfo()
+    userInfo: getUserInfo() || {}
   }
   render() {
     const { isMobile, className, style } = this.props;

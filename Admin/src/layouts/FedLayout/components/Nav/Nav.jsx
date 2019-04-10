@@ -60,8 +60,8 @@ export default class Nav extends Component {
           </div>
         ) : (
           <div>
-            <p><Link to={this.go("/login")} style={{color: '#777'}}>登录</Link></p>
-            <p><Link to={this.go("/signup")} style={{color: '#777'}}>注册</Link></p>
+            <p><Link to={this.go("/base/login")} style={{color: '#777'}}>登录</Link></p>
+            <p><Link to={this.go("/base/signup")} style={{color: '#777'}}>注册</Link></p>
           </div>
         )} title={userStatus && userInfo.name || '未登录'}>
           <span className="user-name">

@@ -105,13 +105,13 @@ export default [
 export const RootRoute = [
   {
     name: 'signup',
-    path: '/signup',
+    path: '/base/signup',
     component: SignUp,
     exact: true,
   },
   {
     name: 'login',
-    path: '/login',
+    path: '/base/login',
     component: LogIn,
     exact: true,
   },

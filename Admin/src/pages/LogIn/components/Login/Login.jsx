@@ -109,11 +109,11 @@ export default class Login extends Component {
             </Row>
 
             <Row className="tips" style={styles.tips}>
-              <Link to="/signup" style={styles.link}>
+              <Link to="/base/signup" style={styles.link}>
                 立即注册
               </Link>
               <span style={styles.line}>|</span>
-              <Link to="/signup" style={styles.link}>
+              <Link to="/base/signup" style={styles.link}>
                 忘记密码
               </Link>
             </Row>

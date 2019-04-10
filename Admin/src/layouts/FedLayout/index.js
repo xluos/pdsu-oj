@@ -1,3 +1,3 @@
-import BasicLayout from './BasicLayout';
+import FedLayout from './FedLayout';
 
-export default BasicLayout;
+export default FedLayout;

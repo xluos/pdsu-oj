@@ -4,6 +4,7 @@
 import { Switch, Route } from 'react-router-dom';
 import React, { Component } from 'react';
 import Cookies from 'js-cookie'
+import AdminLayout from './layouts/AdminLayout';
 import BasicLayout from './layouts/BasicLayout';
 import FedLayout from './layouts/FedLayout';
 
@@ -16,7 +17,8 @@ export default class Router extends Component {
   render () {
     return (
       <Switch>
-        <Route path="/admin" component={BasicLayout} />
+        <Route path="/admin" component={AdminLayout} />
+        <Route path="/base" component={BasicLayout} />
         <Route path="/" component={FedLayout} />
       </Switch>
     );
