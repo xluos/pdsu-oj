@@ -19,3 +19,10 @@ export const USER_GROUP_INFO_MINI = `
   createdAt
 }
 `
+
+export const PROBLEM_INFO_MINI = `
+{
+  id
+  title
+}
+`

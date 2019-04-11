@@ -129,3 +129,8 @@ export interface IContestProblem {
   ac?: number 
   wa?: number 
 }
+
+export interface IFileService {
+  insertPdsuOjData: (data: string, createUserName?: string, createUserId?: string ) => Promise<number>,
+  insertHustOjData: (data: string, createUserName?: string, createUserId?: string ) => Promise<number>,
+}
