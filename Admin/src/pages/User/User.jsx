@@ -6,8 +6,8 @@ import ChartRadar from "./components/ChartRadar";
 import ChartTypeLine from "./components/ChartTypeLine";
 import ChartPie from "./components/ChartPie";
 import { getUserInfo } from "../../lib/Storage";
+import api from "../../api";
 import './User.scss';
-import Placeholder from '../../components/Placeholder';
 
 function UserInfo({user}) {
   return (
@@ -36,8 +36,14 @@ export default class User extends Component {
     super(props);
     this.match = this.props.match
     this.state = {
-      userInfo: getUserInfo()
+      user: {}
     }
+  }
+  async componentDidMount () {
+    const { id: myid } = getUserInfo() || {}
+    const queryId = this.match.params.id === 'profile' ? myid : this.match.params.id
+    const userinfo = await api.user.getUserInfo(queryId)
+    this.setState(userinfo.data);
   }
   render () {
     return (
@@ -49,7 +55,7 @@ export default class User extends Component {
         <Row gutter={16}>
           <Col span={24}>
             <div className="user-content">
-              <UserInfo user={this.state.userInfo}/>
+              <UserInfo user={this.state.user || {}}/>
             </div>
           </Col>
         </Row>
@@ -68,7 +74,6 @@ export default class User extends Component {
         <Row gutter={16}>
           <Col span={24}>
             <div className="user-content">
-              {<Placeholder content={`User ${this.match.params.id}`} />}
             </div>
           </Col>
         </Row>

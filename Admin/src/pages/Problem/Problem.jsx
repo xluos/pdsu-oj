@@ -31,7 +31,8 @@ export default class ProblemPage extends Component {
       pageNo: 1,
       pageSize: 20,
       where: {
-        mini: true
+        mini: true,
+        status: true,
       }
     }
   };

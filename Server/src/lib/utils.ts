@@ -10,8 +10,10 @@ export function handlePassword(params:string) {
 export const excludePassword  = ({password='', ...rest}) => rest;
 
 export const parseArgs = (options, count) => {
+  console.log(options, count);
+  
   let pageSize = (!options.pageSize || options.pageSize < 0) ? 20 : options.pageSize
-  let pageEnd = Math.ceil(count / pageSize)
+  let pageEnd = Math.ceil(count / pageSize) || 1
   let pageNo = (!options.pageNo || options.pageNo < 1) ? 1 : options.pageNo
   if (pageNo > pageEnd) { pageNo = pageEnd }
   return {

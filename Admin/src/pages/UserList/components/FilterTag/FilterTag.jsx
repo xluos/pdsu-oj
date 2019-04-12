@@ -24,7 +24,7 @@ export default class FilterTag extends Component {
     data: MOCK_DATA,
   };
 
-  handleClick = (value, index) => {
+  handleClick = (value, index, idx) => {
     const { data } = this.state;
     data[index].selected = value;
     this.setState(
@@ -32,7 +32,7 @@ export default class FilterTag extends Component {
         data,
       },
       () => {
-        this.props.onChange();
+        this.props.onChange(idx);
       }
     );
   };
@@ -53,7 +53,7 @@ export default class FilterTag extends Component {
                     item.selected === text ? styles.activeText : styles.filterText;
                   return (
                     <span
-                      onClick={() => this.handleClick(text, index)}
+                      onClick={() => this.handleClick(text, index, idx)}
                       className={activeStyle}
                       key={idx}
                     >

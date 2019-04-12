@@ -13,30 +13,11 @@ import DataBinder from '@icedesign/data-binder';
 import FilterTag from '../FilterTag';
 import FilterForm from '../FilterForm';
 import api from '../../../../api/api';
+import produce from 'immer';
 import { withRouter } from 'react-router';
+import _ from 'lodash';
 
 const Tooltip = Balloon.Tooltip;
-// Random Numbers
-const random = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
-// MOCK 数据，实际业务按需进行替换
-const getData = (length = 10) => {
-  return Array.from({ length }).map(() => {
-    return {
-      id: random(1, 99999),
-      userId: `15136020${random(1, 9)}`,
-      name: ['淘小宝', '淘二宝'][random(0, 1)],
-      level: random(0, 6),
-      balance: random(10000, 100000),
-      accumulative: random(50000, 100000),
-      regdate: `2018-12-1${random(1, 9)}`,
-      birthday: `1992-10-1${random(1, 9)}`,
-      store: ['余杭盒马店', '滨江盒马店', '西湖盒马店'][random(0, 2)],
-    };
-  });
-};
 
 @withRouter
 @DataBinder({
@@ -52,52 +33,53 @@ const getData = (length = 10) => {
 }, {requestClient: api})
 export default class GoodsTable extends Component {
   state = {
-    current: 1,
-    isLoading: false,
-    data: [],
+    value: {
+      pageNo: 1,
+      pageSize: 20,
+      where: {}
+    }
   };
 
   componentDidMount() {
     this.props.updateBindingData('usersTable', {})
   }
-
-  mockApi = (len) => {
+  setStateAsync = (state) => {
     return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(getData(len));
-      }, 600);
+      this.setState(state, resolve)
     });
+  }
+
+  handlePaginationChange = async (pageNo) => {
+    await this.setStateAsync(produce(state => {
+      state.value.pageNo = pageNo
+    }))
+    console.log(this.state.value, pageNo);
+    this.props.updateBindingData('usersTable', { data: this.state.value })
   };
 
-  fetchData = (len) => {
-    this.setState(
-      {
-        isLoading: true,
-      },
-      () => {
-        this.mockApi(len).then((data) => {
-          this.setState({
-            data,
-            isLoading: false,
-          });
-        });
-      }
-    );
+  handlePageSizeChange = async (pageSize) => {
+    await this.setState(produce(state => {
+      state.value.pageSize = pageSize
+    }))
+    console.log(this.state.value, pageSize);
+    this.props.updateBindingData('usersTable', { data: this.state.value })
   };
 
-  handlePaginationChange = (current) => {
-    this.setState(
-      {
-        current,
-      },
-      () => {
-        this.fetchData();
-      }
-    );
+  handleFilterTagChange = async (val) => {
+    await this.setStateAsync(produce(state => {
+      state.value.pageNo = 1
+      state.value.where.level = val
+    }))
+    console.log(this.state.value, val);
+    this.props.updateBindingData('usersTable', { data: this.state.value })
   };
 
-  handleFilterChange = () => {
-    this.fetchData(5);
+  handleFilterFromChange = async (where) => {
+    await this.setStateAsync(produce(state => {
+      state.value.pageNo = 1
+      _.assign(state.value.where, where)
+    }))
+    this.props.updateBindingData('usersTable', { data: this.state.value })
   };
 
   handleDelete = () => {
@@ -105,7 +87,7 @@ export default class GoodsTable extends Component {
       title: '提示',
       content: '确认删除吗',
       onOk: () => {
-        this.fetchData(10);
+
       },
     });
   };
@@ -123,7 +105,7 @@ export default class GoodsTable extends Component {
           trigger={
             <Button
               type="secondary"
-              onClick={this.handleDetail}
+              onClick={() => this.handleDetail(record)}
             >
               <Icon type="account" />
             </Button>}
@@ -155,26 +137,38 @@ export default class GoodsTable extends Component {
   };
   LevelTag = (val) => {
     const level = ['青铜', '白银', '黄金', '铂金', '钻石', '最强王者']
-    // const color = ['','','','','',''] //TODO 后续支持不同颜色展示
+    const color = ['#52c41a','#d9d9d9','#ffc53d','#d3adf7','#adc6ff','#ffec3d']
     return (
       <Tag type="normal" size="small" style={{
-        color: '#1890FF',
-        borderColor: '#1890FF',
-        backgroundColor: '#1890FF0F',
+        color: `${color[val]}`,
+        borderColor: `${color[val]}`,
+        backgroundColor: `${color[val]}0F`,
         fontSize: '14px'
       }}>{level[val] || '未知'}</Tag>
     )
   }
   render() {
-    const { isLoading, data, current } = this.state;
     const { usersTable } = this.props.bindingData;
     return (
       <div style={styles.container}>
         <IceContainer>
-          <FilterTag onChange={this.handleFilterChange} />
-          <FilterForm onChange={this.handleFilterChange} />
+          <FilterTag onChange={this.handleFilterTagChange} />
+          <FilterForm onChange={this.handleFilterFromChange} />
         </IceContainer>
         <IceContainer>
+          <Pagination
+            shape="arrow-only"
+            pageSizeList={[10, 20, 35]}
+            style={styles.paginationTop}
+            total={usersTable.total}
+            pageSize={usersTable.pageSize}
+            totalRender={total => `总数: ${total}`}
+            current={this.state.value.pageNo}
+            onChange={this.handlePaginationChange}
+            onPageSizeChange={this.handlePageSizeChange}
+            pageSizeSelector="filter"
+            useFloatLayout
+          />
           <Table loading={usersTable.__loading} dataSource={usersTable.items} hasBorder={false}>
             <Table.Column title="ID" dataIndex="userId" />
             <Table.Column title="名称" dataIndex="name" />
@@ -192,9 +186,17 @@ export default class GoodsTable extends Component {
             />
           </Table>
           <Pagination
-            style={styles.pagination}
-            current={current}
+            shape="arrow-only"
+            pageSizeList={[10, 20, 35]}
+            style={styles.paginationBottom}
+            total={usersTable.total}
+            pageSize={usersTable.pageSize}
+            totalRender={total => `总数: ${total}`}
+            current={this.state.value.pageNo}
             onChange={this.handlePaginationChange}
+            onPageSizeChange={this.handlePageSizeChange}
+            pageSizeSelector="filter"
+            useFloatLayout
           />
         </IceContainer>
       </div>
@@ -203,7 +205,11 @@ export default class GoodsTable extends Component {
 }
 
 const styles = {
-  pagination: {
+  paginationTop: {
+    marginBottom: '20px',
+    textAlign: 'right',
+  },
+  paginationBottom: {
     marginTop: '20px',
     textAlign: 'right',
   },

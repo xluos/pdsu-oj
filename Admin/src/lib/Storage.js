@@ -9,5 +9,5 @@ export function setUserInfo(user) {
 }
 
 export function getUserInfo() {
-  return JSON.parse(sessionStorage.getItem(PDSUOJ_USER))
+  return JSON.parse(sessionStorage.getItem(PDSUOJ_USER)) || {}
 }

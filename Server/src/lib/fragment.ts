@@ -1,4 +1,5 @@
 export const USER_INFO = '{accepted,coin,createdAt,defaultUserGroup,defaultUserGroupId,desc,email,id,integral,level,name,photo,privilegeBlack,privilegeWhite,problems,solved,status,submit,updatedAt,userId}'
+export const USER_INFO_MINI = '{accepted,coin,createdAt,defaultUserGroup,defaultUserGroupId,desc,email,id,integral,level,name,photo,privilegeBlack,privilegeWhite,problems,solved,status,submit,updatedAt,userId}'
 export const USER_GROUP_INFO = `
 {
   id

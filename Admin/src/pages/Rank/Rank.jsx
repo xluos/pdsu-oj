@@ -2,39 +2,81 @@
 import React, { Component }from 'react';
 import { Breadcrumb, Table, Select, Button } from 'antd';
 import { Link } from 'react-router-dom';
-import './Rank.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import DataBinder from '@icedesign/data-binder';
+import api from '../../api/api';
+import produce from 'immer';
+import './Rank.scss';
 
 const Option = Select.Option;
 
-
-function mock() {
-  let id = parseInt(Math.random() * 1000)
-  return {
-    id,
-    name: id%2 ? '路人甲' : '叮当猫',
-    Motto: '啦啦啦啦啦',
-    ac: 45,
-    wa: 45
+@DataBinder({
+  rankTable: {
+    url: '/user/list',
+    method: 'post',
+    data: {
+    },
+    defaultBindingData: {
+      pageNo: 1,
+      pageSize: 20,
+      pageEnd: 1,
+      total: 0,
+      items: []
+    }
   }
-}
-
-const allMockData = Array.from({length: 10}).map(mock)
-
+}, {requestClient: api})
 export default class Rank extends Component {
-  constructor (props) {
-    super(props);
+  state = {
+    value: {
+      pageNo: 1,
+      pageSize: 20,
+      where: {
+        mini: true,
+        status: true,
+      },
+      sort: "accepted_DESC"
+    }
+  };
+
+  componentDidMount() {
+    this.props.updateBindingData('rankTable', { data: this.state.value })
   }
-  
+
   handleChange = (value) => {
     console.log(`selected ${value}`);
   }
+  handlePaginationChange = async (pageNo) => {
+    await this.setStateAsync(produce(state => {
+      state.value.pageNo = pageNo
+    }))
+    console.log(this.state.value, pageNo);
+    this.props.updateBindingData('rankTable', { data: this.state.value })
+  };
+
+  setStateAsync = (state) => {
+    return new Promise((resolve) => {
+      this.setState(state, resolve)
+    });
+  }
+
+  handlePageSizeChange = async (current, pageSize) => {
+    await this.setState(produce(state => {
+      state.value.pageSize = pageSize
+    }))
+    console.log(this.state.value, pageSize);
+    this.props.updateBindingData('rankTable', { data: this.state.value })
+  };
   render () {
+    const { rankTable } = this.props.bindingData
+    const { pageNo, pageSize } = this.state.value
     const columns = [
       {
-        title: "ID",
+        title: "Rank",
         width: 100,
         dataIndex: 'id',
+        render: (text, record, index) => (
+          index + (pageNo - 1) * pageSize + 1
+        )
       },
       {
         title: '名字',
@@ -46,24 +88,24 @@ export default class Rank extends Component {
       },
       {
         title: '格言',
-        dataIndex: 'Motto',
+        dataIndex: 'desc',
       },
       {
-        title: '通过',
+        title: 'AC',
         width: 100,
-        dataIndex: 'ac',
+        dataIndex: 'accepted',
       },
       {
         title: '提交',
         width: 100,
-        dataIndex: 'wa',
+        dataIndex: 'submit',
       },
       {
         title: '正确率',
         dataIndex: 'index',
         width: 100,
         render: (text, record) => (
-          <span >{record.ac/record.wa}</span>
+          <span >{record.submit ? (record.solved / record.submit * 100).toFixed(2) : 0}%</span>
         )
       },
     ]
@@ -94,7 +136,20 @@ export default class Rank extends Component {
             </Select>
             <Button icon="search" size="large" type="primary">查询</Button>
           </div>
-          <Table rowKey="id" columns={columns}  dataSource={allMockData}/>
+          <Table
+            loading={rankTable.__loading}
+            rowKey="id"
+            columns={columns}
+            dataSource={rankTable.items}
+            pagination={{
+              showQuickJumper: true,
+              showSizeChanger: true,
+              pageSize: rankTable.pageSize,
+              current: rankTable.pageNo,
+              total: rankTable.total,
+              onChange: this.handlePaginationChange,
+              onShowSizeChange: this.handlePageSizeChange,
+            }}/>
         </div>
       </div>
     );

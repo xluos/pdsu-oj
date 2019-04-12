@@ -1,8 +1,9 @@
-import { controller, post, inject, provide, put, del } from 'midway';
-import { IUser, IUserGroup } from '../../interface';
-import { prisma, UserGroupCreateInput, UserGroup, UserWhereUniqueInput } from '../../model/generated/prisma-client';
-import { handlePassword } from "../../lib/utils";
-import { USER_INFO, USER_GROUP_INFO, USER_GROUP_INFO_MINI } from '../../lib/fragment';
+import { controller, post, inject, provide, put, del, get } from 'midway';
+import { IUser, IUserGroup, ILimit } from '../../interface';
+import { prisma, UserGroupCreateInput, UserGroup, UserWhereUniqueInput, User } from '../../model/generated/prisma-client';
+import { handlePassword, parseArgs } from "../../lib/utils";
+import { USER_INFO, USER_GROUP_INFO, USER_GROUP_INFO_MINI, USER_INFO_MINI } from '../../lib/fragment';
+import _ = require('lodash');
 @provide()
 @controller('/user')
 export class UserController {
@@ -11,15 +12,112 @@ export class UserController {
 
   @post('/list')
   async getUserList(ctx): Promise<void> {
-    // const options: IUser = ctx._body;
-    // ctx.validate({
-    //   userId: { type: 'string', min: 9, max: 9 },
-    //   password: { type: 'password', min: 8, max: 16}
-    // }, options);
-    let users: IUser[] = await prisma.users().$fragment(USER_INFO);
-    ctx.body = {
-      items: users
+    const options: ILimit = ctx._body;
+    ctx.validate({
+      pageNo: 'number?',
+      pageSize: 'number?',
+      where: 'object?',
+      sort: 'string?',
+    }, options);
+
+    let where = options.where || {}
+    
+    const andParams = [{
+      type: 'status',
+      value: val => ({ status: val }),
+    }, {
+      type: 'level',
+      value: val => ({ level: val - 1 }),
+    }]
+    const orParams = [{
+      type: 'text',
+      value: val => ([
+        {userId_contains: val},
+        {name_contains: val},
+        {desc_contains: val},
+      ]),
+    }]
+    
+    // 整理所有AND条件
+    let AND = []
+    for (const it of andParams) {
+      if(_.has(where, it.type) && where[it.type]) {
+        AND.push(it.value(where[it.type]))
+      }
     }
+    AND = _.flatten(AND)
+
+    console.log(AND);
+    
+
+    // 整理所有OR条件
+    let OR = []
+    for (const it of orParams) {
+      if(_.has(where, it.type) && where[it.type]) {
+        OR.push(it.value(where[it.type]))
+      }
+    }
+    OR = _.flatten(OR)
+
+    console.log(OR);
+
+    // 整合where
+
+    OR.length && AND.push({OR})
+
+    where = {
+      where: {
+        AND
+      }
+    }
+
+    console.log(where);
+
+
+    let sort = options.sort ? {
+      orderBy: options.sort
+    } : {}
+    
+    let count = await prisma.usersConnection(where).aggregate().count()
+    // 规范参数    
+    let { 
+      pageSize, 
+      pageEnd, 
+      pageNo } = parseArgs(options, count)
+    
+    console.log('skip', (pageNo - 1) * pageSize, (pageNo - 1) , pageSize);
+    
+    let args = Object.assign({
+      skip: (pageNo - 1) * pageSize,
+      first: pageSize
+    }, where, sort )
+
+    let problems: User[] 
+    
+    if (where.mini) {
+      problems = await prisma.users(args).$fragment(USER_INFO_MINI)
+    } else {
+      problems = await prisma.users(args).$fragment(USER_INFO)
+    }
+    ctx.body = {
+      pageNo ,
+      pageSize ,
+      pageEnd ,
+      total: count,
+      items: problems
+    }
+  }
+
+  @get('/info/:id')
+  async getUserInfo(ctx): Promise<void> {
+    const { id } = ctx.params;
+
+    let user = await prisma.user({id}).$fragment(USER_INFO)
+
+    ctx.body = {
+      user
+    };
+
   }
 
   @post('/info')

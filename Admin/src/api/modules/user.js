@@ -1,5 +1,5 @@
 import api from '../api';
-import { get } from '../../lib/Utils';
+import _ from 'lodash';
 
 /**
  * 创建或设置用户信息
@@ -10,7 +10,20 @@ import { get } from '../../lib/Utils';
  */
 export function setUserInfo(params) {
   return api.post('/user/info', params).then(response => {
-    return get(response, 'data', {})
+    return _.get(response, 'data', {})
+  })
+}
+
+/**
+ * 创建或设置用户信息
+ *
+ * @export
+ * @param {*} params 用户信息
+ * @returns 用户信息
+ */
+export function getUserInfo(id) {
+  return api.get(`/user/info/${id}`).then(response => {
+    return _.get(response, 'data', {})
   })
 }
 
@@ -23,7 +36,7 @@ export function setUserInfo(params) {
  */
 export function createUserGroup(params) {
   return api.post('/user/user-group', params).then(response => {
-    return get(response, 'data', {})
+    return _.get(response, 'data', {})
   })
 }
 
@@ -36,6 +49,6 @@ export function createUserGroup(params) {
  */
 export function deleteUserGroupUser(params) {
   return api.delete('/user/user-group', params).then(response => {
-    return get(response, 'data', {})
+    return _.get(response, 'data', {})
   })
 }

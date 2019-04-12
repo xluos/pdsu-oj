@@ -59,11 +59,6 @@ export class FileService implements IFileService {
       const args: ProblemCreateInput = Object.assign(
         element
         , createUserId ? {
-        createUser: {
-          connect: {
-            id: createUserId
-          }
-        }
       } : { } )
       promiseAll.push(prisma.createProblem(
         args

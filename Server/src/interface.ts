@@ -139,4 +139,5 @@ export interface ILimit {
   pageNo: number,
   pageSize: number,
   where: any,
+  sort?: string,
 }
