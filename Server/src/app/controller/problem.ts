@@ -1,6 +1,8 @@
-import { controller, post, provide } from 'midway';
+import { controller, post, provide, get } from 'midway';
 import { prisma, Problem, ProblemCreateInput } from '../../model/generated/prisma-client';
-import { IProblem } from '../../interface';
+import { IProblem, ILimit } from '../../interface';
+import { parseArgs } from '../../lib/utils';
+import { PROBLEM_INFO_MINI } from '../../lib/fragment';
 
 @provide()
 @controller('/problem')
@@ -8,14 +10,71 @@ export class ProblemController {
 
   @post('/list')
   async getProblemList(ctx): Promise<void> {
-    // const options: IUser = ctx._body;
-    // ctx.validate({
-    //   userId: { type: 'string', min: 9, max: 9 },
-    //   password: { type: 'password', min: 8, max: 16}
-    // }, options);
-    let problems: Problem[] = await prisma.problems()
+    const options: ILimit = ctx._body;
+    ctx.validate({
+      pageNo: 'number?',
+      pageSize: 'number?',
+      where: 'object?',
+    }, options);
+
+    let where = options.where || {}
+    where = where.text ? {
+      OR:[
+        {title_contains: where.text},
+        {describe_contains: where.text},
+        {source_contains: where.text},
+      ]
+    } : {}
+
+    where = where.status ? {
+      where: {
+        AND: [
+          { status: where.status },
+          where
+        ]
+      }
+    } : { where }
+    
+    let count = await prisma.problemsConnection(where).aggregate().count()
+    // 规范参数    
+    let { 
+      pageSize, 
+      pageEnd, 
+      pageNo } = parseArgs(options, count)
+    
+    
+    let args = Object.assign({
+      skip: (pageNo - 1) * pageSize,
+      first: pageSize
+    }, where )
+    let problems: Problem[] 
+    if (where.mini) {
+      problems = await prisma.problems(args).$fragment(PROBLEM_INFO_MINI)
+    } else {
+      problems = await prisma.problems(args)
+    }
     ctx.body = {
+      pageNo ,
+      pageSize ,
+      pageEnd ,
+      total: count,
       items: problems
+    }
+  }
+
+  /**
+   * 获取具体题目信息
+   *
+   * @param {*} ctx
+   * @returns {Promise<void>}
+   * @memberof ProblemController
+   */
+  @get('/info/:id')
+  async getProblemInfo(ctx): Promise<void> {
+    const { id } = ctx.params;
+    let problemInfo:Problem = await prisma.problem({id})
+    ctx.body = {
+      problemInfo
     }
   }
 

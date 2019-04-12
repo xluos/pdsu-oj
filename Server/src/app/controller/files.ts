@@ -13,30 +13,43 @@ export class uploadController {
   @post('/problem')
   async uploadProblem(ctx): Promise<void> {
     const options = ctx._body;
+    console.log(options);
+    
     ctx.validate({
       type: /^\d{1,2}$/,
       createUserName: 'string',
       createUserId: 'string',
     }, options);
-    let file = ctx.request.files[0]
-    let result = -1;
-    try {
-      // 处理文件
-      const data = await fs.readFile(file.filepath, 'utf8')
-      switch (options.type) {
-        case '0':
-          result = await this.service.insertPdsuOjData(data, options.createUserId)
-          break;
-        case '1':
-          result = await this.service.insertHustOjData(data, options.createUserId)
-          break;
-        default:
-          break;
+    let result = 0;
+    if (ctx.request.files.length === 0) {
+      ctx.body = {
+        result
       }
-    } finally {
-      // 需要删除临时文件
-      await fs.unlink(file.filepath);
+      return ;
     }
+    console.time('req')
+    for (const file of ctx.request.files) {
+      try {
+        // 处理文件
+        const data = await fs.readFile(file.filepath, 'utf8')
+        switch (options.type) {
+          case '0':
+            console.time('insert')
+            result += await this.service.insertPdsuOjData(data, options.createUserId)
+            console.timeEnd('insert')
+            break;
+          case '1':
+            result += await this.service.insertHustOjData(data, options.createUserId)
+            break;
+          default:
+            break;
+        }
+      } finally {
+        // 需要删除临时文件
+        await fs.unlink(file.filepath);
+      }
+    }
+    console.timeEnd('req')
     ctx.body = {result}
   }
 

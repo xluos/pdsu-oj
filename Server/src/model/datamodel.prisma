@@ -77,6 +77,8 @@ type Problem {
   integral: Int @default(value: "0") # 题目的难度 即 积分
   limitTime: Int!
   limitMemory: Int!
+  submit: Int! @default(value: "0")
+  solved: Int! @default(value: "0")
   createUser: User @relation(name: "ProblemByUser")
   hint: String @default(value: "")
   source: String @default(value: "")  # 来源  本地题目为创建者 其他题目为真实来源

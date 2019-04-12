@@ -16,8 +16,6 @@ let options = {
   maxRedirects: 0 // 不允许重定向
 }
 
-Object.assign
-
 const Api = axios.create(Object.assign(options, localOptions));
 
 Api.interceptors.request.use(function (config) {

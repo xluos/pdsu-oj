@@ -3,7 +3,6 @@ import {
   Table,
   Pagination,
   Button,
-  Dialog,
   Rating,
   Switch,
 } from '@alifd/next';
@@ -11,29 +10,10 @@ import IceContainer from '@icedesign/container';
 import DataBinder from '@icedesign/data-binder';
 import FilterTag from '../FilterTag';
 import FilterForm from '../FilterForm';
+import Operate from '../Operate';
 import api from '../../../../api/api';
 import { withRouter } from 'react-router';
-// Random Numbers
-const random = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
-// MOCK 数据，实际业务按需进行替换
-const getData = (length = 10) => {
-  return Array.from({ length }).map(() => {
-    return {
-      id: random(1, 99999),
-      userId: `15136020${random(1, 9)}`,
-      name: ['淘小宝', '淘二宝'][random(0, 1)],
-      level: random(0, 6),
-      balance: random(10000, 100000),
-      accumulative: random(50000, 100000),
-      regdate: `2018-12-1${random(1, 9)}`,
-      birthday: `1992-10-1${random(1, 9)}`,
-      store: ['余杭盒马店', '滨江盒马店', '西湖盒马店'][random(0, 2)],
-    };
-  });
-};
+import produce from "immer"
 
 @withRouter
 @DataBinder({
@@ -43,58 +23,60 @@ const getData = (length = 10) => {
     data: {
     },
     defaultBindingData: {
+      pageNo: 1,
+      pageSize: 20,
+      pageEnd: 1,
+      total: 0,
       items: []
     }
   }
 }, {requestClient: api})
 export default class GoodsTable extends Component {
   state = {
-    current: 1,
-    isLoading: false,
-    data: [],
+    value: {
+      pageNo: 1,
+      pageSize: 20,
+      where: {}
+    }
   };
 
   componentDidMount() {
-    this.props.updateBindingData('problemTable', {})
+    this.props.updateBindingData('problemTable', { data: this.state.value })
   }
 
-  mockApi = (len) => {
+  setStateAsync = (state) => {
     return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(getData(len));
-      }, 600);
+      this.setState(state, resolve)
     });
+  }
+
+  handlePaginationChange = async (pageNo) => {
+    await this.setStateAsync(produce(state => {
+      state.value.pageNo = pageNo
+    }))
+    console.log(this.state.value, pageNo);
+    this.props.updateBindingData('problemTable', { data: this.state.value })
   };
 
-  fetchData = (len) => {
-    this.setState(
-      {
-        isLoading: true,
-      },
-      () => {
-        this.mockApi(len).then((data) => {
-          this.setState({
-            data,
-            isLoading: false,
-          });
-        });
+  handlePageSizeChange = async (pageSize) => {
+    await this.setState(produce(state => {
+      state.value.pageSize = pageSize
+    }))
+    console.log(this.state.value, pageSize);
+    this.props.updateBindingData('problemTable', { data: this.state.value })
+  };
+
+  handleFilterTagChange = (tag) => {
+  };
+
+  handleFilterTextChange = async (val) => {
+    await this.setStateAsync(produce(state => {
+      state.value.pageNo = 1
+      state.value.where = {
+        text: val
       }
-    );
-  };
-
-  handlePaginationChange = (current) => {
-    this.setState(
-      {
-        current,
-      },
-      () => {
-        this.fetchData();
-      }
-    );
-  };
-
-  handleFilterChange = () => {
-    this.fetchData(5);
+    }))
+    this.props.updateBindingData('problemTable', { data: this.state.value })
   };
 
 
@@ -147,16 +129,29 @@ export default class GoodsTable extends Component {
     );
   };
   render() {
-    const { current } = this.state;
     const { problemTable } = this.props.bindingData;
 
     return (
       <div style={styles.container}>
         <IceContainer>
-          <FilterTag onChange={this.handleFilterChange} />
-          <FilterForm onChange={this.handleFilterChange} />
+          <FilterTag onChange={this.handleFilterTagChange} />
+          <FilterForm onChange={this.handleFilterTextChange} />
+          <Operate />
         </IceContainer>
         <IceContainer>
+          <Pagination
+              shape="arrow-only"
+              pageSizeList={[10, 20, 35]}
+              style={styles.paginationTop}
+              total={problemTable.total}
+              pageSize={problemTable.pageSize}
+              totalRender={total => `总数: ${total}`}
+              current={this.state.value.pageNo}
+              onChange={this.handlePaginationChange}
+              onPageSizeChange={this.handlePageSizeChange}
+              pageSizeSelector="filter"
+              useFloatLayout
+            />
           <Table loading={problemTable.__loading} dataSource={problemTable.items} hasBorder={false}>
             <Table.Column title="ID" dataIndex="id" width={250} />
             <Table.Column title="标题" dataIndex="title" />
@@ -170,9 +165,17 @@ export default class GoodsTable extends Component {
             />
           </Table>
           <Pagination
-            style={styles.pagination}
-            current={current}
+            shape="arrow-only"
+            pageSizeList={[10, 20, 35]}
+            style={styles.paginationBottom}
+            total={problemTable.total}
+            pageSize={problemTable.pageSize}
+            totalRender={total => `总数: ${total}`}
+            current={this.state.value.pageNo}
             onChange={this.handlePaginationChange}
+            onPageSizeChange={this.handlePageSizeChange}
+            pageSizeSelector="filter"
+            useFloatLayout
           />
         </IceContainer>
       </div>
@@ -181,7 +184,11 @@ export default class GoodsTable extends Component {
 }
 
 const styles = {
-  pagination: {
+  paginationTop: {
+    marginBottom: '20px',
+    textAlign: 'right',
+  },
+  paginationBottom: {
     marginTop: '20px',
     textAlign: 'right',
   },

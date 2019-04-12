@@ -1,7 +1,6 @@
 import { provide } from 'midway';
 import { IFileService } from "../interface";
 import { prisma, ProblemCreateInput } from '../model/generated/prisma-client';
-import { PROBLEM_INFO_MINI } from '../lib/fragment';
 import _ = require('lodash');
 const parser = require('fast-xml-parser');
 
@@ -41,7 +40,7 @@ export class FileService implements IFileService {
         } : { } )
         promiseAll.push(prisma.createProblem(
           args
-        ).$fragment(PROBLEM_INFO_MINI))
+        ).$fragment('{id}'))
       });
       result = (await Promise.all(promiseAll)).length
     } else {
@@ -68,9 +67,11 @@ export class FileService implements IFileService {
       } : { } )
       promiseAll.push(prisma.createProblem(
         args
-      ).$fragment(PROBLEM_INFO_MINI))
+      ).$fragment('{id}'))
     });
+    console.time('promiseAll')
     result = (await Promise.all(promiseAll)).length
+    console.timeEnd('promiseAll')
 
     return result
   }

@@ -8,6 +8,8 @@ import {
   Footer
 } from './components/Layout';
 import Nav from './components/Nav';
+import { LocaleProvider } from 'antd';
+import zh_CN from 'antd/lib/locale-provider/zh_CN';
 
 export default class FedLayout extends Routes {
   static displayName = 'FedLayout';
@@ -17,7 +19,9 @@ export default class FedLayout extends Routes {
       <Layout>
         <Header><Nav /></Header>
         <Content>
-          <MainRouters />
+          <LocaleProvider locale={zh_CN}>
+            <MainRouters />
+          </LocaleProvider>
         </Content>
         <Footer>Copyright © 2019 CodeDeer</Footer>
       </Layout>

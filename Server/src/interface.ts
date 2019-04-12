@@ -134,3 +134,9 @@ export interface IFileService {
   insertPdsuOjData: (data: string, createUserName?: string, createUserId?: string ) => Promise<number>,
   insertHustOjData: (data: string, createUserName?: string, createUserId?: string ) => Promise<number>,
 }
+
+export interface ILimit {
+  pageNo: number,
+  pageSize: number,
+  where: any,
+}

@@ -1787,6 +1787,8 @@ type Problem {
   integral: Int
   limitTime: Int!
   limitMemory: Int!
+  submit: Int!
+  solved: Int!
   createUser: User
   hint: String
   source: String
@@ -1815,6 +1817,8 @@ input ProblemCreateInput {
   integral: Int
   limitTime: Int!
   limitMemory: Int!
+  submit: Int
+  solved: Int
   createUser: UserCreateOneWithoutCreateProblmesInput
   hint: String
   source: String
@@ -1847,6 +1851,8 @@ input ProblemCreateWithoutCreateUserInput {
   integral: Int
   limitTime: Int!
   limitMemory: Int!
+  submit: Int
+  solved: Int
   hint: String
   source: String
   sourceId: String
@@ -1892,6 +1898,10 @@ enum ProblemOrderByInput {
   limitTime_DESC
   limitMemory_ASC
   limitMemory_DESC
+  submit_ASC
+  submit_DESC
+  solved_ASC
+  solved_DESC
   hint_ASC
   hint_DESC
   source_ASC
@@ -1919,6 +1929,8 @@ type ProblemPreviousValues {
   integral: Int
   limitTime: Int!
   limitMemory: Int!
+  submit: Int!
+  solved: Int!
   hint: String
   source: String
   sourceId: String
@@ -2088,6 +2100,22 @@ input ProblemScalarWhereInput {
   limitMemory_lte: Int
   limitMemory_gt: Int
   limitMemory_gte: Int
+  submit: Int
+  submit_not: Int
+  submit_in: [Int!]
+  submit_not_in: [Int!]
+  submit_lt: Int
+  submit_lte: Int
+  submit_gt: Int
+  submit_gte: Int
+  solved: Int
+  solved_not: Int
+  solved_in: [Int!]
+  solved_not_in: [Int!]
+  solved_lt: Int
+  solved_lte: Int
+  solved_gt: Int
+  solved_gte: Int
   hint: String
   hint_not: String
   hint_in: [String!]
@@ -2181,6 +2209,8 @@ input ProblemUpdateDataInput {
   integral: Int
   limitTime: Int
   limitMemory: Int
+  submit: Int
+  solved: Int
   createUser: UserUpdateOneWithoutCreateProblmesInput
   hint: String
   source: String
@@ -2203,6 +2233,8 @@ input ProblemUpdateInput {
   integral: Int
   limitTime: Int
   limitMemory: Int
+  submit: Int
+  solved: Int
   createUser: UserUpdateOneWithoutCreateProblmesInput
   hint: String
   source: String
@@ -2225,6 +2257,8 @@ input ProblemUpdateManyDataInput {
   integral: Int
   limitTime: Int
   limitMemory: Int
+  submit: Int
+  solved: Int
   hint: String
   source: String
   sourceId: String
@@ -2245,6 +2279,8 @@ input ProblemUpdateManyMutationInput {
   integral: Int
   limitTime: Int
   limitMemory: Int
+  submit: Int
+  solved: Int
   hint: String
   source: String
   sourceId: String
@@ -2298,6 +2334,8 @@ input ProblemUpdateWithoutCreateUserDataInput {
   integral: Int
   limitTime: Int
   limitMemory: Int
+  submit: Int
+  solved: Int
   hint: String
   source: String
   sourceId: String
@@ -2484,6 +2522,22 @@ input ProblemWhereInput {
   limitMemory_lte: Int
   limitMemory_gt: Int
   limitMemory_gte: Int
+  submit: Int
+  submit_not: Int
+  submit_in: [Int!]
+  submit_not_in: [Int!]
+  submit_lt: Int
+  submit_lte: Int
+  submit_gt: Int
+  submit_gte: Int
+  solved: Int
+  solved_not: Int
+  solved_in: [Int!]
+  solved_not_in: [Int!]
+  solved_lt: Int
+  solved_lte: Int
+  solved_gt: Int
+  solved_gte: Int
   createUser: UserWhereInput
   hint: String
   hint_not: String

@@ -24,5 +24,9 @@ export const PROBLEM_INFO_MINI = `
 {
   id
   title
+  describe
+  submit
+  solved
+  tags
 }
 `

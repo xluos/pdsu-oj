@@ -1,5 +1,6 @@
 import md5 = require("crypto-js/md5");
 
+
 const key = ')(*&^'
 
 export function handlePassword(params:string) {
@@ -7,3 +8,15 @@ export function handlePassword(params:string) {
 }
 
 export const excludePassword  = ({password='', ...rest}) => rest;
+
+export const parseArgs = (options, count) => {
+  let pageSize = (!options.pageSize || options.pageSize < 0) ? 20 : options.pageSize
+  let pageEnd = Math.ceil(count / pageSize)
+  let pageNo = (!options.pageNo || options.pageNo < 1) ? 1 : options.pageNo
+  if (pageNo > pageEnd) { pageNo = pageEnd }
+  return {
+    pageSize,
+    pageEnd,
+    pageNo,
+  }
+}

@@ -32,6 +32,7 @@
     "classnames": "^2.2.5",
     "codemirror": "^5.45.0",
     "enquire-js": "^0.1.2",
+    "immer": "^2.1.5",
     "install": "^0.12.2",
     "js-base64": "^2.5.1",
     "js-cookie": "^2.2.0",
@@ -41,6 +42,7 @@
     "prop-types": "^15.5.8",
     "react": "^16.4.1",
     "react-codemirror2": "^5.1.0",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-document-title": "^2.0.3",
     "react-dom": "^16.4.1",
     "react-loadable": "^5.5.0",
@@ -83,7 +85,9 @@
       },
       {
         "libraryName": "lodash",
-        "libraryDirectory": ""
+        "libraryDirectory": "",
+        "camel2DashComponentName": false,
+        "camel2UnderlineComponentName": false
       }
     ]
   },

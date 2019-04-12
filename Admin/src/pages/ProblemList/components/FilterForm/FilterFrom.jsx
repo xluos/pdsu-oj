@@ -1,46 +1,27 @@
 /* eslint react/no-string-refs:0 */
 import React, { Component } from 'react';
-import { Grid, Input } from '@alifd/next';
-import {
-  FormBinderWrapper as IceFormBinderWrapper,
-  FormBinder as IceFormBinder,
-  FormError as IceFormError,
-} from '@icedesign/form-binder';
-
-const { Row, Col } = Grid;
+import { Input, Button } from '@alifd/next';
 
 export default class Filter extends Component {
   state = {
-    value: {
-      title: ''
-    },
+    value: ''
   };
 
-  formChange = (value) => {
-    this.props.onChange(value);
+  formChange = () => {
+    console.log(this.state.value);
+    this.props.onChange(this.state.value);
   };
 
   render() {
     return (
-      <IceFormBinderWrapper
-        value={this.state.value}
-        onChange={this.formChange}
-        ref="form"
-      >
-        <Row wrap gutter="20" style={styles.formRow}>
-          <Col l="24">
-            <div style={styles.formItem}>
-              <span style={styles.formLabel}>标题：</span>
-              <IceFormBinder triggerType="onBlur" name="title">
-                <Input placeholder="请输入" style={{ width: '200px' }} />
-              </IceFormBinder>
-              <div style={styles.formError}>
-                <IceFormError name="title" />
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </IceFormBinderWrapper>
+      <div style={styles.formItem}>
+        <span style={styles.formLabel}>搜索：</span>
+        <Input
+          placeholder="标题、描述、作者等均可搜索"
+          style={{ width: '300px', marginRight: '20px' }}
+          onChange={(value) => this.setState({value})} />
+        <Button type="primary" onClick={this.formChange}>搜索</Button>
+      </div>
     );
   }
 }
