@@ -33,7 +33,6 @@
     "codemirror": "^5.45.0",
     "enquire-js": "^0.1.2",
     "immer": "^2.1.5",
-    "install": "^0.12.2",
     "js-base64": "^2.5.1",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.11",
