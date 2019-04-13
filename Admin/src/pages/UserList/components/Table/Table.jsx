@@ -5,13 +5,13 @@ import {
   Button,
   Dialog,
   Icon,
-  Balloon,
-  Tag
+  Balloon
 } from '@alifd/next';
 import IceContainer from '@icedesign/container';
 import DataBinder from '@icedesign/data-binder';
 import FilterTag from '../FilterTag';
 import FilterForm from '../FilterForm';
+import LevelTag from '../LevelTag';
 import api from '../../../../api/api';
 import produce from 'immer';
 import { withRouter } from 'react-router';
@@ -135,18 +135,6 @@ export default class GoodsTable extends Component {
       </Button.Group>
     );
   };
-  LevelTag = (val) => {
-    const level = ['青铜', '白银', '黄金', '铂金', '钻石', '最强王者']
-    const color = ['#52c41a','#d9d9d9','#ffc53d','#d3adf7','#adc6ff','#ffec3d']
-    return (
-      <Tag type="normal" size="small" style={{
-        color: `${color[val]}`,
-        borderColor: `${color[val]}`,
-        backgroundColor: `${color[val]}0F`,
-        fontSize: '14px'
-      }}>{level[val] || '未知'}</Tag>
-    )
-  }
   render() {
     const { usersTable } = this.props.bindingData;
     return (
@@ -172,7 +160,7 @@ export default class GoodsTable extends Component {
           <Table loading={usersTable.__loading} dataSource={usersTable.items} hasBorder={false}>
             <Table.Column title="ID" dataIndex="userId" />
             <Table.Column title="名称" dataIndex="name" />
-            <Table.Column title="等级" cell={this.LevelTag} dataIndex="level" />
+            <Table.Column title="等级" cell={LevelTag} dataIndex="level" />
             <Table.Column title="积分" dataIndex="integral" />
             <Table.Column title="OJ币" dataIndex="coin" />
             <Table.Column title="提交数" dataIndex="submit" />

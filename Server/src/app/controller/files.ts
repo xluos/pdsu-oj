@@ -13,7 +13,6 @@ export class uploadController {
   @post('/problem')
   async uploadProblem(ctx): Promise<void> {
     const options = ctx._body;
-    console.log(options);
     
     ctx.validate({
       type: /^\d{1,2}$/,

@@ -24,7 +24,7 @@ export class UserController {
     
     const andParams = [{
       type: 'status',
-      value: val => ({ status: val }),
+      value: val => ({ status: val ? 1 : 0 }),
     }, {
       type: 'level',
       value: val => ({ level: val - 1 }),
@@ -45,10 +45,7 @@ export class UserController {
         AND.push(it.value(where[it.type]))
       }
     }
-    AND = _.flatten(AND)
-
-    console.log(AND);
-    
+    AND = _.flatten(AND)    
 
     // 整理所有OR条件
     let OR = []
@@ -59,20 +56,13 @@ export class UserController {
     }
     OR = _.flatten(OR)
 
-    console.log(OR);
-
     // 整合where
-
     OR.length && AND.push({OR})
-
     where = {
       where: {
         AND
       }
     }
-
-    console.log(where);
-
 
     let sort = options.sort ? {
       orderBy: options.sort
@@ -84,8 +74,6 @@ export class UserController {
       pageSize, 
       pageEnd, 
       pageNo } = parseArgs(options, count)
-    
-    console.log('skip', (pageNo - 1) * pageSize, (pageNo - 1) , pageSize);
     
     let args = Object.assign({
       skip: (pageNo - 1) * pageSize,

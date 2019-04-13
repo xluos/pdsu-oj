@@ -4,9 +4,11 @@ import { Breadcrumb, Table, Select, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import DataBinder from '@icedesign/data-binder';
+import LevelTag from '../UserList/components/LevelTag';
 import api from '../../api/api';
 import produce from 'immer';
 import './Rank.scss';
+import { Message } from '@alifd/next';
 
 const Option = Select.Option;
 
@@ -32,8 +34,10 @@ export default class Rank extends Component {
       pageSize: 20,
       where: {
         mini: true,
-        status: true,
+        // TODO 暂时无状态
+        // status: true,
       },
+      // AC数排序
       sort: "accepted_DESC"
     }
   };
@@ -44,6 +48,7 @@ export default class Rank extends Component {
 
   handleChange = (value) => {
     console.log(`selected ${value}`);
+    Message.notice('暂不支持分组查询')
   }
   handlePaginationChange = async (pageNo) => {
     await this.setStateAsync(produce(state => {
@@ -87,6 +92,12 @@ export default class Rank extends Component {
         )
       },
       {
+        title: '段位',
+        width: 100,
+        dataIndex: 'level',
+        render: (text, record) => LevelTag(record.level)
+      },
+      {
         title: '格言',
         dataIndex: 'desc',
       },
@@ -94,6 +105,11 @@ export default class Rank extends Component {
         title: 'AC',
         width: 100,
         dataIndex: 'accepted',
+      },
+      {
+        title: '通过',
+        width: 100,
+        dataIndex: 'solved',
       },
       {
         title: '提交',
@@ -126,15 +142,14 @@ export default class Rank extends Component {
               allowClear
               mode="multiple"
               placeholder="选择排行分组"
-              onChange={this.handleChange}
               style={{minWidth: "200px"}}
-              defaultValue={['a10', 'c12']}
+              defaultValue={[]}
               size="large"
               suffixIcon={<Button shape="circle" icon="search" />}
             >
               {children}
             </Select>
-            <Button icon="search" size="large" type="primary">查询</Button>
+            <Button icon="search" size="large" type="primary" onClick={this.handleChange}>查询</Button>
           </div>
           <Table
             loading={rankTable.__loading}
