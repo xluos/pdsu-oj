@@ -14,6 +14,6 @@ export default function ProblemContent (props) {
         <ContentBlock {...item} key={index} />
       ))
     }
-    <SubmitPanel/>
+    <SubmitPanel pid={props.id}/>
   </div>
 );}

@@ -19,6 +19,7 @@ function filterData (problem) {
   console.log(problem);
 
   return {
+    id: problem.id,
     title: problem.title,
     info: {
       no: `${problem.problemId}`,
@@ -120,7 +121,7 @@ export default class ProblemPage extends Component {
             footer={null}
             onCancel={() => this.showSubmit(false)}
           >
-            <SunmitPanel/>
+            <SunmitPanel pid={this.state.id}/>
           </Modal>
         </div>
       </div>
