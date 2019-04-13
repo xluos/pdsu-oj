@@ -19,7 +19,7 @@
 #include "logger.h"
 #include "language.h"
 
-//#define JUDGE_DEBUG
+#define JUDGE_DEBUG
 
 namespace judge_conf
 {

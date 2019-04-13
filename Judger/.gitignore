@@ -1,7 +1,7 @@
 /node_modules/
-/judge/Judge
-/judge/Temp/*
-
+/src/core/Judge
+/dist/*
+.vscode
 ~*
 /src/core/temp
 /src/core/testdata
