@@ -2643,7 +2643,7 @@ type Submit {
   createdAt: DateTime!
   updatedAt: DateTime!
   user: User
-  userId: Int!
+  userId: String!
   userName: String!
   problem: Problem!
   problemId: String!
@@ -2667,7 +2667,7 @@ type SubmitConnection {
 
 input SubmitCreateInput {
   user: UserCreateOneWithoutSubmitRecordInput
-  userId: Int!
+  userId: String!
   userName: String!
   problem: ProblemCreateOneInput!
   problemId: String!
@@ -2689,7 +2689,7 @@ input SubmitCreateManyWithoutUserInput {
 }
 
 input SubmitCreateWithoutUserInput {
-  userId: Int!
+  userId: String!
   userName: String!
   problem: ProblemCreateOneInput!
   problemId: String!
@@ -2747,7 +2747,7 @@ type SubmitPreviousValues {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
-  userId: Int!
+  userId: String!
   userName: String!
   problemId: String!
   problemTitle: String!
@@ -2792,14 +2792,20 @@ input SubmitScalarWhereInput {
   updatedAt_lte: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
-  userId: Int
-  userId_not: Int
-  userId_in: [Int!]
-  userId_not_in: [Int!]
-  userId_lt: Int
-  userId_lte: Int
-  userId_gt: Int
-  userId_gte: Int
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
   userName: String
   userName_not: String
   userName_in: [String!]
@@ -2949,7 +2955,7 @@ input SubmitSubscriptionWhereInput {
 
 input SubmitUpdateInput {
   user: UserUpdateOneWithoutSubmitRecordInput
-  userId: Int
+  userId: String
   userName: String
   problem: ProblemUpdateOneRequiredInput
   problemId: String
@@ -2966,7 +2972,7 @@ input SubmitUpdateInput {
 }
 
 input SubmitUpdateManyDataInput {
-  userId: Int
+  userId: String
   userName: String
   problemId: String
   problemTitle: String
@@ -2981,7 +2987,7 @@ input SubmitUpdateManyDataInput {
 }
 
 input SubmitUpdateManyMutationInput {
-  userId: Int
+  userId: String
   userName: String
   problemId: String
   problemTitle: String
@@ -3013,7 +3019,7 @@ input SubmitUpdateManyWithWhereNestedInput {
 }
 
 input SubmitUpdateWithoutUserDataInput {
-  userId: Int
+  userId: String
   userName: String
   problem: ProblemUpdateOneRequiredInput
   problemId: String
@@ -3072,14 +3078,20 @@ input SubmitWhereInput {
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
   user: UserWhereInput
-  userId: Int
-  userId_not: Int
-  userId_in: [Int!]
-  userId_not_in: [Int!]
-  userId_lt: Int
-  userId_lte: Int
-  userId_gt: Int
-  userId_gte: Int
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
   userName: String
   userName_not: String
   userName_in: [String!]

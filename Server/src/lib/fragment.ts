@@ -31,3 +31,22 @@ export const PROBLEM_INFO_MINI = `
   tags
 }
 `
+
+export const SUBMIT_INFO = `
+{
+  createdAt
+  errorInfo
+  id
+  language
+  limitMemory
+  limitTime
+  memory
+  problemId
+  problemTitle
+  result
+  time
+  updatedAt
+  userId
+  userName
+}
+`

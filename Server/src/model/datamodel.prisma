@@ -121,7 +121,7 @@ type Submit {
   createdAt: DateTime! 
   updatedAt: DateTime!
   user: User @relation(name: "SubmitRecordByUser")
-  userId: Int!
+  userId: String!
   userName: String!
   problem: Problem!
   problemId: String!

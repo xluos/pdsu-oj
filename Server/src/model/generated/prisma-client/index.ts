@@ -873,14 +873,20 @@ export interface SubmitWhereInput {
   updatedAt_gt?: DateTimeInput;
   updatedAt_gte?: DateTimeInput;
   user?: UserWhereInput;
-  userId?: Int;
-  userId_not?: Int;
-  userId_in?: Int[] | Int;
-  userId_not_in?: Int[] | Int;
-  userId_lt?: Int;
-  userId_lte?: Int;
-  userId_gt?: Int;
-  userId_gte?: Int;
+  userId?: String;
+  userId_not?: String;
+  userId_in?: String[] | String;
+  userId_not_in?: String[] | String;
+  userId_lt?: String;
+  userId_lte?: String;
+  userId_gt?: String;
+  userId_gte?: String;
+  userId_contains?: String;
+  userId_not_contains?: String;
+  userId_starts_with?: String;
+  userId_not_starts_with?: String;
+  userId_ends_with?: String;
+  userId_not_ends_with?: String;
   userName?: String;
   userName_not?: String;
   userName_in?: String[] | String;
@@ -1780,7 +1786,7 @@ export interface DiscussChilderUpdateManyInput {
 
 export interface SubmitUpdateInput {
   user?: UserUpdateOneWithoutSubmitRecordInput;
-  userId?: Int;
+  userId?: String;
   userName?: String;
   problem?: ProblemUpdateOneRequiredInput;
   problemId?: String;
@@ -1843,7 +1849,7 @@ export interface DiscussChilderUpdateDataInput {
 
 export interface SubmitCreateInput {
   user?: UserCreateOneWithoutSubmitRecordInput;
-  userId: Int;
+  userId: String;
   userName: String;
   problem: ProblemCreateOneInput;
   problemId: String;
@@ -3511,7 +3517,7 @@ export interface ContestProblemSubscriptionWhereInput {
 }
 
 export interface SubmitUpdateWithoutUserDataInput {
-  userId?: Int;
+  userId?: String;
   userName?: String;
   problem?: ProblemUpdateOneRequiredInput;
   problemId?: String;
@@ -3987,14 +3993,20 @@ export interface SubmitScalarWhereInput {
   updatedAt_lte?: DateTimeInput;
   updatedAt_gt?: DateTimeInput;
   updatedAt_gte?: DateTimeInput;
-  userId?: Int;
-  userId_not?: Int;
-  userId_in?: Int[] | Int;
-  userId_not_in?: Int[] | Int;
-  userId_lt?: Int;
-  userId_lte?: Int;
-  userId_gt?: Int;
-  userId_gte?: Int;
+  userId?: String;
+  userId_not?: String;
+  userId_in?: String[] | String;
+  userId_not_in?: String[] | String;
+  userId_lt?: String;
+  userId_lte?: String;
+  userId_gt?: String;
+  userId_gte?: String;
+  userId_contains?: String;
+  userId_not_contains?: String;
+  userId_starts_with?: String;
+  userId_not_starts_with?: String;
+  userId_ends_with?: String;
+  userId_not_ends_with?: String;
   userName?: String;
   userName_not?: String;
   userName_in?: String[] | String;
@@ -4234,7 +4246,7 @@ export interface DiscussWhereInput {
 }
 
 export interface SubmitUpdateManyDataInput {
-  userId?: Int;
+  userId?: String;
   userName?: String;
   problemId?: String;
   problemTitle?: String;
@@ -4271,7 +4283,7 @@ export interface UserUpsertWithoutUserDiscussInput {
 }
 
 export interface SubmitUpdateManyMutationInput {
-  userId?: Int;
+  userId?: String;
   userName?: String;
   problemId?: String;
   problemTitle?: String;
@@ -5205,7 +5217,7 @@ export interface SubmitSubscriptionWhereInput {
 }
 
 export interface SubmitCreateWithoutUserInput {
-  userId: Int;
+  userId: String;
   userName: String;
   problem: ProblemCreateOneInput;
   problemId: String;
@@ -5725,7 +5737,7 @@ export interface SubmitPreviousValues {
   id: ID_Output;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
-  userId: Int;
+  userId: String;
   userName: String;
   problemId: String;
   problemTitle: String;
@@ -5745,7 +5757,7 @@ export interface SubmitPreviousValuesPromise
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
-  userId: () => Promise<Int>;
+  userId: () => Promise<String>;
   userName: () => Promise<String>;
   problemId: () => Promise<String>;
   problemTitle: () => Promise<String>;
@@ -5765,7 +5777,7 @@ export interface SubmitPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  userId: () => Promise<AsyncIterator<Int>>;
+  userId: () => Promise<AsyncIterator<String>>;
   userName: () => Promise<AsyncIterator<String>>;
   problemId: () => Promise<AsyncIterator<String>>;
   problemTitle: () => Promise<AsyncIterator<String>>;
@@ -6387,7 +6399,7 @@ export interface Submit {
   id: ID_Output;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
-  userId: Int;
+  userId: String;
   userName: String;
   problemId: String;
   problemTitle: String;
@@ -6406,7 +6418,7 @@ export interface SubmitPromise extends Promise<Submit>, Fragmentable {
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   user: <T = UserPromise>() => T;
-  userId: () => Promise<Int>;
+  userId: () => Promise<String>;
   userName: () => Promise<String>;
   problem: <T = ProblemPromise>() => T;
   problemId: () => Promise<String>;
@@ -6429,7 +6441,7 @@ export interface SubmitSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   user: <T = UserSubscription>() => T;
-  userId: () => Promise<AsyncIterator<Int>>;
+  userId: () => Promise<AsyncIterator<String>>;
   userName: () => Promise<AsyncIterator<String>>;
   problem: <T = ProblemSubscription>() => T;
   problemId: () => Promise<AsyncIterator<String>>;

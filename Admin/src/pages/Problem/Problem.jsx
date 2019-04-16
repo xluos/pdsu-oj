@@ -3,9 +3,9 @@ import { Breadcrumb, Pagination } from 'antd';
 import { Link } from 'react-router-dom';
 import ProblemItem from './components/ProblemItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import DataBinder from '@icedesign/data-binder';
 import FilterTag from '../ProblemList/components/FilterTag';
 import FilterForm from '../ProblemList/components/FilterForm';
+import DataBinder from '@icedesign/data-binder';
 import api from '../../api/api';
 import './Problem.scss';
 import produce from "immer"

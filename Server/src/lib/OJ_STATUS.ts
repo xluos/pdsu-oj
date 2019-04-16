@@ -1,0 +1,17 @@
+export const OJ_STATUS = ['OJ_WAIT','OJ_RUN','OJ_AC','OJ_PE','OJ_TLE','OJ_MLE','OJ_WA','OJ_OLE','OJ_CE']
+export const OJ_WAIT       = 0;    //Queue
+export const OJ_RUN        = 1;    //RUN
+export const OJ_AC         = 2;    //AC
+export const OJ_PE         = 3;    //PE
+export const OJ_TLE        = 4;    //TLE
+export const OJ_MLE        = 5;    //MLE
+export const OJ_WA         = 6;    //WA
+export const OJ_OLE        = 7;    //OLE
+export const OJ_CE         = 8;    //CE
+export const OJ_RE_SEGV    = 9;    //SEG Violation
+export const OJ_RE_FPU     = 10;   //float.../0
+export const OJ_RE_ABRT    = 11;   //Abort
+export const OJ_RE_UNKNOW  = 12;   //Unknow
+export const OJ_RF         = 13;   //Restricted Function
+export const OJ_SE         = 14;   //System Error
+export const OJ_RE_JAVA    = 15;   //Java Run Time Exception

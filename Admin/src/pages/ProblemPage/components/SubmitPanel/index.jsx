@@ -10,6 +10,8 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 import './index.scss';
 import _ from 'lodash';
+import { Base64 } from "js-base64";
+import { getUserInfo } from '../../../../lib/Storage';
 require('codemirror/mode/javascript/javascript');
 
 @withRouter
@@ -21,7 +23,8 @@ export default class SubmitPanel extends Component {
     this.state = {
       CodeMirrorData: {
         pid: _.get(props, 'match.params.id', ''),
-        type: 0,
+        userInfo: getUserInfo() || {},
+        type: 1,
         value: '',
       },
       options: {
@@ -47,8 +50,19 @@ export default class SubmitPanel extends Component {
   submit = async () => {
     Message.loading('正在提交')
     try {
-      const data = await api.submit.upProblem(this.state.CodeMirrorData)
-      Message.notice(data.data.message)
+      const data = await api.submit.upProblem({
+        ...this.state.CodeMirrorData,
+        value: Base64.encode(this.state.CodeMirrorData.value)
+      })
+      let result = _.get(data, 'data.submit.result', '14') || '14'
+      result = {
+        '1': 'Run',
+        '6': 'WA',
+        '2': 'AC',
+        '8': 'CE',
+        '14': 'SE'
+      }[+result] || 'RE'
+      Message.notice(result || 'ERROR')
     } catch (error) {
       Message.error(error.message)
     }
@@ -63,9 +77,9 @@ export default class SubmitPanel extends Component {
           size="large"
           style={{width: '100%'}}
           onChange={this.onLanguageSelectChange}>
-          <Option value="0">C - GCC 6.4.0</Option>
-          <Option value="1">C++11 - G++ 6.4.0</Option>
-          <Option value="2">Java - OpenJDK 1.7.0</Option>
+          <Option value={1}>C - GCC 6.4.0</Option>
+          <Option value={2}>C++11 - G++ 6.4.0</Option>
+          <Option value={3}>Java - OpenJDK 1.7.0</Option>
         </Select>
         <h4 style={{fontSize: 18}}><FoundationSymbol type="code"/> 提交代码</h4>
         <CodeMirror
