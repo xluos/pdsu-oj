@@ -48,6 +48,10 @@ export default class SubmitPanel extends Component {
     }))
   }
   submit = async () => {
+    if (!this.state.CodeMirrorData.userInfo.userId) {
+      Message.error('请登录后再提交')
+      return ;
+    }
     Message.loading('正在提交')
     try {
       const data = await api.submit.upProblem({

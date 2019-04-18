@@ -39,18 +39,18 @@ const asideMenuConfig = [
         name: '信息管理',
         path: '/admin/user/create',
       },
-      {
-        name: '用户权限',
-        path: '/admin/user/privilege',
-      },
+      // {
+      //   name: '用户权限',
+      //   path: '/admin/user/privilege',
+      // },
       {
         name: '用户组管理',
         path: '/admin/usergroup/manage',
       },
-      {
-        name: '权限组管理',
-        path: '/admin/privilege/manage',
-      },
+      // {
+      //   name: '权限组管理',
+      //   path: '/admin/privilege/manage',
+      // },
     ],
   },
   {
@@ -87,21 +87,21 @@ const asideMenuConfig = [
       },
     ],
   },
-  {
-    name: '通知管理',
-    path: '/admin/notice',
-    icon: 'horn',
-    children: [
-      {
-        name: '通知管理',
-        path: '/admin/notice/list',
-      },
-      {
-        name: '站内信',
-        path: '/admin/notice/message',
-      },
-    ],
-  },
+  // {
+  //   name: '通知管理',
+  //   path: '/admin/notice',
+  //   icon: 'horn',
+  //   children: [
+  //     {
+  //       name: '通知管理',
+  //       path: '/admin/notice/list',
+  //     },
+  //     {
+  //       name: '站内信',
+  //       path: '/admin/notice/message',
+  //     },
+  //   ],
+  // },
 ];
 
 export { headerMenuConfig, asideMenuConfig };

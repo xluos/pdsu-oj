@@ -8,7 +8,9 @@ import LevelTag from '../UserList/components/LevelTag';
 import api from '../../api/api';
 import produce from 'immer';
 import './Rank.scss';
+import _ from 'lodash';
 import { Message } from '@alifd/next';
+import Api from '../../api';
 
 const Option = Select.Option;
 
@@ -30,6 +32,7 @@ const Option = Select.Option;
 export default class Rank extends Component {
   state = {
     value: {
+      groupId: '',
       pageNo: 1,
       pageSize: 20,
       where: {
@@ -39,16 +42,27 @@ export default class Rank extends Component {
       },
       // AC数排序
       sort: "accepted_DESC"
-    }
+    },
+    group: []
   };
 
   componentDidMount() {
     this.props.updateBindingData('rankTable', { data: this.state.value })
+    Api.user.getUserGroupList().then(data => {
+      console.log(data);
+      this.setState(produce(state => {
+        state.group = _.get(data, 'data.items', []) || []
+      }))
+    })
   }
 
-  handleChange = (value) => {
-    console.log(`selected ${value}`);
-    Message.notice('暂不支持分组查询')
+  handleChange = () => {
+    this.props.updateBindingData('rankTable', { data: this.state.value })
+  }
+  onChange = (value) => {
+    this.setState(produce(state => {
+      state.value.groupId = value
+    }))
   }
   handlePaginationChange = async (pageNo) => {
     await this.setStateAsync(produce(state => {
@@ -125,10 +139,7 @@ export default class Rank extends Component {
         )
       },
     ]
-    const children = [];
-    for (let i = 10; i < 36; i++) {
-      children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
-    }
+    const children = this.state.group.map(value => (<Option key={value.id}>{value.name}</Option>));
     return (
       <div className="rank-page page" >
         <Breadcrumb>
@@ -140,12 +151,12 @@ export default class Rank extends Component {
           <div className="group">
             <Select
               allowClear
-              mode="multiple"
+              // mode="multiple"
               placeholder="选择排行分组"
               style={{minWidth: "200px"}}
-              defaultValue={[]}
+              onChange={this.onChange}
               size="large"
-              suffixIcon={<Button shape="circle" icon="search" />}
+              // suffixIcon={<Button shape="circle" icon="search" />}
             >
               {children}
             </Select>

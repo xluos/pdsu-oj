@@ -21,7 +21,8 @@ const Tooltip = Balloon.Tooltip;
     url: '/user/user-group/list',
     method: 'post',
     data: {
-      id: ''
+      id: '',
+      mini: false
     },
     defaultBindingData: {
       createUser: {},
@@ -40,7 +41,8 @@ export default class GoodsTable extends Component {
   componentDidMount() {
     this.props.updateBindingData('userGroupTable', {
       data: {
-        id: this.props.match.params.id
+        id: this.props.match.params.id,
+        mini: false
       }
     })
   }

@@ -11,31 +11,10 @@ import FilterTag from '../FilterTag';
 import FilterForm from '../FilterForm';
 import api from '../../../../api/api';
 import { withRouter } from 'react-router';
+import produce from 'immer';
 
 import moment from 'moment';
 moment.locale('zh-cn');
-
-// Random Numbers
-const random = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
-// MOCK 数据，实际业务按需进行替换
-const getData = (length = 10) => {
-  return Array.from({ length }).map(() => {
-    return {
-      id: random(1, 99999),
-      userId: `15136020${random(1, 9)}`,
-      name: ['淘小宝', '淘二宝'][random(0, 1)],
-      level: random(0, 6),
-      balance: random(10000, 100000),
-      accumulative: random(50000, 100000),
-      regdate: `2018-12-1${random(1, 9)}`,
-      birthday: `1992-10-1${random(1, 9)}`,
-      store: ['余杭盒马店', '滨江盒马店', '西湖盒马店'][random(0, 2)],
-    };
-  });
-};
 
 @withRouter
 @DataBinder({
@@ -45,60 +24,26 @@ const getData = (length = 10) => {
     data: {
     },
     defaultBindingData: {
+      pageEnd: 1,
+      pageNo: 1,
+      pageSize: 20,
+      total: 0,
       items: []
     }
   }
 }, {requestClient: api})
 export default class GoodsTable extends Component {
   state = {
-    current: 1,
-    isLoading: false,
-    data: [],
+    value: {
+      pageNo: 1,
+      pageSize: 20,
+      where: {}
+    }
   };
 
   componentDidMount() {
     this.props.updateBindingData('contestTable', {})
   }
-
-  mockApi = (len) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(getData(len));
-      }, 600);
-    });
-  };
-
-  fetchData = (len) => {
-    this.setState(
-      {
-        isLoading: true,
-      },
-      () => {
-        this.mockApi(len).then((data) => {
-          this.setState({
-            data,
-            isLoading: false,
-          });
-        });
-      }
-    );
-  };
-
-  handlePaginationChange = (current) => {
-    this.setState(
-      {
-        current,
-      },
-      () => {
-        this.fetchData();
-      }
-    );
-  };
-
-  handleFilterChange = () => {
-    this.fetchData(5);
-  };
-
 
   handleDetail = (record) => {
     this.props.history.push(`/contest/${record.id}`)
@@ -126,6 +71,27 @@ export default class GoodsTable extends Component {
     );
   };
 
+  setStateAsync = (state) => {
+    return new Promise((resolve) => {
+      this.setState(state, resolve)
+    });
+  }
+  handlePaginationChange = async (pageNo) => {
+    await this.setStateAsync(produce(state => {
+      state.value.pageNo = pageNo
+    }))
+    console.log(this.state.value, pageNo);
+    this.props.updateBindingData('contestTable', { data: this.state.value })
+  };
+
+  handlePageSizeChange = async (pageSize) => {
+    await this.setState(produce(state => {
+      state.value.pageSize = pageSize
+    }))
+    console.log(this.state.value, pageSize);
+    this.props.updateBindingData('contestTable', { data: this.state.value })
+  };
+
   renderBar = (value, rowIndex, record) => {
     const startTime = new Date(record.startTime).getTime()
     const endTime = new Date(record.endTime).getTime()
@@ -144,16 +110,19 @@ export default class GoodsTable extends Component {
     );
   };
 
+  handleFilterChange = (val) => {
+
+  }
+
   render() {
-    const { current } = this.state;
     const { contestTable } = this.props.bindingData;
 
     return (
       <div style={styles.container}>
-        <IceContainer>
+        {/* <IceContainer>
           <FilterTag onChange={this.handleFilterChange} />
           <FilterForm onChange={this.handleFilterChange} />
-        </IceContainer>
+        </IceContainer> */}
         <IceContainer>
           <Table loading={contestTable.__loading} dataSource={contestTable.items} hasBorder={false}>
             <Table.Column title="ID" dataIndex="id" width={250} />
@@ -167,9 +136,17 @@ export default class GoodsTable extends Component {
             />
           </Table>
           <Pagination
+            shape="arrow-only"
+            pageSizeList={[10, 20, 35]}
             style={styles.pagination}
-            current={current}
+            total={contestTable.total}
+            pageSize={contestTable.pageSize}
+            totalRender={total => `总数: ${total}`}
+            current={this.state.value.pageNo}
             onChange={this.handlePaginationChange}
+            onPageSizeChange={this.handlePageSizeChange}
+            pageSizeSelector="filter"
+            useFloatLayout
           />
         </IceContainer>
       </div>

@@ -29,7 +29,9 @@ export default class SubmitTable extends Component {
         pageSize: 20,
         where: {
           mini: true,
-        }
+          ...props.where
+        },
+        sort: 'createdAt_DESC'
       }
     }
   }
@@ -147,27 +149,37 @@ export default class SubmitTable extends Component {
       {
         title: '结果',
         dataIndex: 'result',
-        render: text => (
-          {
+        render: text => {
+          const res = {
             '1': 'Run',
             '6': 'WA',
             '2': 'AC',
             '8': 'CE',
             '14': 'SE'
-          }[+text] || 'RE'
-        ),
+          }
+          const color = {
+            '1': '#ffc53d',
+            '6': '#f5222d',
+            '2': '#52c41a',
+            '8': '#9254de',
+            '14': '#ffc53d'
+          }
+          return (
+            <span style={{color: color[+text]}}>{res[+text] || 'RE'}</span>
+          )
+        },
       },
-      {
-        title: '',
-        dataIndex: 'submitId',
-        render: text => (
-          <Button
-            type="primary"
-            shape="circle"
-            icon="search"
-            onClick={() => this.showSubmit(text)}
-          />),
-      },
+      // {
+      //   title: '',
+      //   dataIndex: 'submitId',
+      //   render: text => (
+      //     <Button
+      //       type="primary"
+      //       shape="circle"
+      //       icon="search"
+      //       onClick={() => this.showSubmit(text)}
+      //     />),
+      // },
     ]
     return (
       <Table

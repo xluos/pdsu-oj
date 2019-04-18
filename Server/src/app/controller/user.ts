@@ -14,6 +14,7 @@ export class UserController {
   async getUserList(ctx): Promise<void> {
     const options: ILimit = ctx._body;
     ctx.validate({
+      groupId: 'string?',
       pageNo: 'number?',
       pageSize: 'number?',
       where: 'object?',
@@ -21,7 +22,7 @@ export class UserController {
     }, options);
 
     let where = options.where || {}
-    
+
     const andParams = [{
       type: 'status',
       value: val => ({ status: val ? 1 : 0 }),
@@ -32,32 +33,32 @@ export class UserController {
     const orParams = [{
       type: 'text',
       value: val => ([
-        {userId_contains: val},
-        {name_contains: val},
-        {desc_contains: val},
+        { userId_contains: val },
+        { name_contains: val },
+        { desc_contains: val },
       ]),
     }]
-    
+
     // 整理所有AND条件
     let AND = []
     for (const it of andParams) {
-      if(_.has(where, it.type) && where[it.type]) {
+      if (_.has(where, it.type) && where[it.type]) {
         AND.push(it.value(where[it.type]))
       }
     }
-    AND = _.flatten(AND)    
+    AND = _.flatten(AND)
 
     // 整理所有OR条件
     let OR = []
     for (const it of orParams) {
-      if(_.has(where, it.type) && where[it.type]) {
+      if (_.has(where, it.type) && where[it.type]) {
         OR.push(it.value(where[it.type]))
       }
     }
     OR = _.flatten(OR)
 
     // 整合where
-    OR.length && AND.push({OR})
+    OR.length && AND.push({ OR })
     where = {
       where: {
         AND
@@ -67,30 +68,45 @@ export class UserController {
     let sort = options.sort ? {
       orderBy: options.sort
     } : {}
-    
-    let count = await prisma.usersConnection(where).aggregate().count()
+
+
+    let count;
+    if (!options.groupId) {
+      count = await prisma.usersConnection(where).aggregate().count()
+    } else {
+      count = (await prisma.userGroup({id: options.groupId}).users(where)).length
+    }
     // 规范参数    
-    let { 
-      pageSize, 
-      pageEnd, 
+    let {
+      pageSize,
+      pageEnd,
       pageNo } = parseArgs(options, count)
-    
+
     let args = Object.assign({
       skip: (pageNo - 1) * pageSize,
       first: pageSize
-    }, where, sort )
+    }, where, sort)
 
-    let problems: User[] 
-    
+    let problems: User[]
+
     if (where.mini) {
-      problems = await prisma.users(args).$fragment(USER_INFO_MINI)
+      if (options.groupId) {
+        
+        problems = await prisma.userGroup({id: options.groupId}).users(args).$fragment(USER_INFO_MINI)
+      } else {
+        problems = await prisma.users(args).$fragment(USER_INFO_MINI)
+      }
     } else {
-      problems = await prisma.users(args).$fragment(USER_INFO)
+      if (options.groupId) {
+        problems = await prisma.userGroup({id: options.groupId}).users(args).$fragment(USER_INFO)
+      } else {
+        problems = await prisma.users(args).$fragment(USER_INFO)
+      }
     }
     ctx.body = {
-      pageNo ,
-      pageSize ,
-      pageEnd ,
+      pageNo,
+      pageSize,
+      pageEnd,
       total: count,
       items: problems
     }
@@ -100,7 +116,7 @@ export class UserController {
   async getUserInfo(ctx): Promise<void> {
     const { id } = ctx.params;
 
-    let user = await prisma.user({id}).$fragment(USER_INFO)
+    let user = await prisma.user({ id }).$fragment(USER_INFO)
 
     ctx.body = {
       user
@@ -115,19 +131,19 @@ export class UserController {
       id: 'string?',
       name: 'string',
       userId: /^\d{9}$/,
-      photo: {type: 'url', required: false, allowEmpty: true},
+      photo: { type: 'url', required: false, allowEmpty: true },
       submit: { type: 'integer?', min: 0 },
       solved: { type: 'integer?', min: 0 },
       accepted: { type: 'integer?', min: 0 },
       coin: { type: 'integer?', min: 0 },
       integral: { type: 'integer?', min: 0 },
       level: { type: 'integer?', min: 0, max: 6 },
-      email: {type: 'email', required: false, allowEmpty: true},
+      email: { type: 'email', required: false, allowEmpty: true },
       desc: 'string?',
       userGroup: 'string?',
       status: 'integer?',
     }, options.password ? {
-      password: { type: 'password', min: 8, max: 16, compare: 'repassword'},
+      password: { type: 'password', min: 8, max: 16, compare: 'repassword' },
     } : {}), options);
 
     const args = {
@@ -153,7 +169,7 @@ export class UserController {
     // 有ID更新  无Id创建
     if (!options.id) {
       user = await prisma.createUser(args)
-      .$fragment(USER_INFO)
+        .$fragment(USER_INFO)
     } else {
       user = await prisma.updateUser({
         data: args,
@@ -179,11 +195,11 @@ export class UserController {
       let userGroups: UserGroup[] = await prisma.userGroups()
       ctx.body = { items: userGroups }
     } else {
-      let userGroups: UserGroup = await prisma.userGroup({id}).$fragment(mini ? USER_GROUP_INFO_MINI : USER_GROUP_INFO)
+      let userGroups: UserGroup = await prisma.userGroup({ id }).$fragment(mini ? USER_GROUP_INFO_MINI : USER_GROUP_INFO)
       ctx.body = userGroups
     }
   }
-  
+
   @post('/user-group/search')
   async searchUserGroup(ctx): Promise<void> {
     const name: string = ctx._body.name;
@@ -191,18 +207,18 @@ export class UserController {
     ctx.validate({
       name: 'string?'
     }, ctx._body)
-  
+
     let userGroups: UserGroup[] = await prisma.userGroups({
       where: {
         OR: [
-          {name_contains: name},
-          {desc_contains: name},
-          {createUserName_contains: name},
+          { name_contains: name },
+          { desc_contains: name },
+          { createUserName_contains: name },
         ],
       }
     })
     ctx.body = { items: userGroups }
-    
+
   }
 
   @post('/user-group')
@@ -242,7 +258,7 @@ export class UserController {
     // 有ID更新  无Id创建
     if (!options.id) {
       user = await prisma.createUserGroup(args)
-    } 
+    }
     ctx.body = user;
 
   }
@@ -261,10 +277,10 @@ export class UserController {
       data: {
         count: options.count,
         privilege: {
-          connect: options.privilegeUserUUID.map((id: string): UserWhereUniqueInput => {return {id}})
+          connect: options.privilegeUserUUID.map((id: string): UserWhereUniqueInput => { return { id } })
         },
         users: {
-          connect: options.usersUUID.map((id: string): UserWhereUniqueInput => {return {id}})
+          connect: options.usersUUID.map((id: string): UserWhereUniqueInput => { return { id } })
         }
       },
       where: {
@@ -273,9 +289,9 @@ export class UserController {
     }
 
     let user: UserGroup;
-   
-    user = await prisma.updateUserGroup(args) 
-    
+
+    user = await prisma.updateUserGroup(args)
+
     ctx.body = user;
 
   }
@@ -293,10 +309,10 @@ export class UserController {
       data: {
         count: options.count,
         privilege: {
-          delete: options.usersUUID.map((id: string): UserWhereUniqueInput => {return {id}})
+          delete: options.usersUUID.map((id: string): UserWhereUniqueInput => { return { id } })
         },
         users: {
-          delete: options.usersUUID.map((id: string): UserWhereUniqueInput => {return {id}})
+          delete: options.usersUUID.map((id: string): UserWhereUniqueInput => { return { id } })
         }
       },
       where: {
@@ -305,9 +321,9 @@ export class UserController {
     }
 
     let user: UserGroup;
-   
-    user = await prisma.updateUserGroup(args) 
-    
+
+    user = await prisma.updateUserGroup(args)
+
     ctx.body = user;
 
   }

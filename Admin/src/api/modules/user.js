@@ -39,6 +39,21 @@ export function createUserGroup(params) {
     return _.get(response, 'data', {})
   })
 }
+/**
+ * 获取用户组信息
+ *
+ * @export
+ * @param {*} params 用户信息
+ * @returns 用户信息
+ */
+export function getUserGroupList(params) {
+  return api.post('/user/user-group/list', {
+    id: 'all',
+    mini: false
+  }).then(response => {
+    return _.get(response, 'data', {})
+  })
+}
 
 /**
  * 删除用户组用户

@@ -140,4 +140,5 @@ export interface ILimit {
   pageSize: number,
   where: any,
   sort?: string,
+  groupId?: string,
 }

@@ -16,8 +16,13 @@ import NoticeMessage from './pages/NoticeMessage';
 import ProblemList from './pages/ProblemList';
 import ProblemTestData from './pages/ProblemTestData';
 import ProblemCreate from './pages/ProblemCreate';
+import AdminLayout from './layouts/AdminLayout';
 
 const routerConfig = [
+  {
+    path: '/admin',
+    component: AdminLayout,
+  },
   {
     path: '/admin/dashboard/monitor',
     component: Dashboard,

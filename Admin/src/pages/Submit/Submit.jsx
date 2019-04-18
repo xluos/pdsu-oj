@@ -5,12 +5,15 @@ import { Link } from 'react-router-dom';
 import './Submit.scss';
 import SubmitTable from '../../components/SubmitTable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import { getUserInfo } from "../../lib/Storage";
 
 const TabPane = Tabs.TabPane;
 
 
 export default class Submit extends Component {
+  state = {
+    userInfo: getUserInfo() || {}
+  }
   callback = (index) => {
     console.log(index)
   }
@@ -33,8 +36,11 @@ export default class Submit extends Component {
             <TabPane tab="全部提交" key="1">
               <SubmitTable />
             </TabPane>
-            <TabPane tab="我的提交" key="2">
-              <SubmitTable />
+            <TabPane tab="我的提交" disabled={this.state.userInfo.userId ? false : true} key="2">
+              <SubmitTable
+                where={{
+                  userId: this.state.userInfo.userId
+                }} />
             </TabPane>
           </Tabs>
         </div>

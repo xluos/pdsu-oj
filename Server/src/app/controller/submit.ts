@@ -80,20 +80,13 @@ export class SubmitController {
     let where = options.where || {}
     
     const andParams = [{
-      type: 'status',
-      value: val => ({ status: val ? 1 : 0 }),
+      type: 'userId',
+      value: val => ({ userId: val }),
     }, {
-      type: 'level',
-      value: val => ({ level: val - 1 }),
+      type: 'problemId',
+      value: val => ({ problemId: val }),
     }]
-    const orParams = [{
-      type: 'text',
-      value: val => ([
-        {userId_contains: val},
-        {name_contains: val},
-        {desc_contains: val},
-      ]),
-    }]
+    const orParams = []
     
     // 整理所有AND条件
     let AND = []

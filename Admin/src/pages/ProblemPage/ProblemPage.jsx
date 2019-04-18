@@ -12,6 +12,7 @@ import CodeBlock from './components/CodeBlock';
 import _ from 'lodash';
 import DataBinder from '@icedesign/data-binder';
 import api from '../../api/api';
+import { getUserInfo } from '../../lib/Storage';
 
 const TabPane = Tabs.TabPane;
 
@@ -68,7 +69,8 @@ export default class ProblemPage extends Component {
     super(props);
     this.state = {
       showSubmitModal: false,
-      id: _.get(props, 'match.params.id', '')
+      id: _.get(props, 'match.params.id', ''),
+      userInfo: getUserInfo() || {}
     }
   }
   componentDidMount () {
@@ -99,15 +101,22 @@ export default class ProblemPage extends Component {
             <TabPane tab="题目" key="1">
               <ProblemContent {...problemInfo}/>
             </TabPane>
-            <TabPane tab="我的提交" key="2">
-              <SubmitTable/>
+            <TabPane tab="我的提交" disabled={this.state.userInfo.userId ? false : true} key="2">
+              <SubmitTable
+                where={{
+                  problemId: this.state.id,
+                  userId: this.state.userInfo.userId
+                }} />
             </TabPane>
             <TabPane tab="所有提交" key="3">
-              <SubmitTable/>
+              <SubmitTable
+                where={{
+                  problemId: this.state.id
+                }} />
             </TabPane>
-            <TabPane tab="题目信息" key="4">
+            {/* <TabPane tab="题目信息" key="4">
               <Placeholder content="题目信息"/>
-            </TabPane>
+            </TabPane> */}
           </Tabs>
           <Modal
             title="提交"
