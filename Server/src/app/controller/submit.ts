@@ -41,7 +41,8 @@ export class SubmitController {
       memory: 0
     })
 
-    let data = await ctx.curl('http://localhost:7767', {
+    // let data = await ctx.curl('http://localhost:7767', {
+    let data = await ctx.curl('http://192.168.137.58:7767', {
       method: 'post',
       data: {
         "runId": submit.id,

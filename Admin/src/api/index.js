@@ -3,6 +3,7 @@ import * as base from './modules/base';
 import * as problem from './modules/problem';
 import * as contest from './modules/contest';
 import * as submit from './modules/submit';
+import * as discuss from './modules/discuss';
 
 export default {
   base,
@@ -10,4 +11,5 @@ export default {
   problem,
   contest,
   submit,
+  discuss,
 }

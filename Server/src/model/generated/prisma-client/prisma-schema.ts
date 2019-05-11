@@ -657,13 +657,14 @@ input ContestWhereUniqueInput {
 scalar DateTime
 
 type Discuss {
+  problemId: String
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
   contentRaw: String!
   content: String!
   user: User
-  userId: Int!
+  userId: String!
   userName: String!
   children(where: DiscussChilderWhereInput, orderBy: DiscussChilderOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DiscussChilder!]
 }
@@ -1098,10 +1099,11 @@ type DiscussConnection {
 }
 
 input DiscussCreateInput {
+  problemId: String
   contentRaw: String!
   content: String!
   user: UserCreateOneWithoutUserDiscussInput
-  userId: Int!
+  userId: String!
   userName: String!
   children: DiscussChilderCreateManyInput
 }
@@ -1117,9 +1119,10 @@ input DiscussCreateManyWithoutUserInput {
 }
 
 input DiscussCreateWithoutUserInput {
+  problemId: String
   contentRaw: String!
   content: String!
-  userId: Int!
+  userId: String!
   userName: String!
   children: DiscussChilderCreateManyInput
 }
@@ -1130,6 +1133,8 @@ type DiscussEdge {
 }
 
 enum DiscussOrderByInput {
+  problemId_ASC
+  problemId_DESC
   id_ASC
   id_DESC
   createdAt_ASC
@@ -1147,16 +1152,31 @@ enum DiscussOrderByInput {
 }
 
 type DiscussPreviousValues {
+  problemId: String
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
   contentRaw: String!
   content: String!
-  userId: Int!
+  userId: String!
   userName: String!
 }
 
 input DiscussScalarWhereInput {
+  problemId: String
+  problemId_not: String
+  problemId_in: [String!]
+  problemId_not_in: [String!]
+  problemId_lt: String
+  problemId_lte: String
+  problemId_gt: String
+  problemId_gte: String
+  problemId_contains: String
+  problemId_not_contains: String
+  problemId_starts_with: String
+  problemId_not_starts_with: String
+  problemId_ends_with: String
+  problemId_not_ends_with: String
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -1215,14 +1235,20 @@ input DiscussScalarWhereInput {
   content_not_starts_with: String
   content_ends_with: String
   content_not_ends_with: String
-  userId: Int
-  userId_not: Int
-  userId_in: [Int!]
-  userId_not_in: [Int!]
-  userId_lt: Int
-  userId_lte: Int
-  userId_gt: Int
-  userId_gte: Int
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
   userName: String
   userName_not: String
   userName_in: [String!]
@@ -1261,27 +1287,30 @@ input DiscussSubscriptionWhereInput {
 }
 
 input DiscussUpdateDataInput {
+  problemId: String
   contentRaw: String
   content: String
   user: UserUpdateOneWithoutUserDiscussInput
-  userId: Int
+  userId: String
   userName: String
   children: DiscussChilderUpdateManyInput
 }
 
 input DiscussUpdateInput {
+  problemId: String
   contentRaw: String
   content: String
   user: UserUpdateOneWithoutUserDiscussInput
-  userId: Int
+  userId: String
   userName: String
   children: DiscussChilderUpdateManyInput
 }
 
 input DiscussUpdateManyDataInput {
+  problemId: String
   contentRaw: String
   content: String
-  userId: Int
+  userId: String
   userName: String
 }
 
@@ -1298,9 +1327,10 @@ input DiscussUpdateManyInput {
 }
 
 input DiscussUpdateManyMutationInput {
+  problemId: String
   contentRaw: String
   content: String
-  userId: Int
+  userId: String
   userName: String
 }
 
@@ -1322,9 +1352,10 @@ input DiscussUpdateManyWithWhereNestedInput {
 }
 
 input DiscussUpdateWithoutUserDataInput {
+  problemId: String
   contentRaw: String
   content: String
-  userId: Int
+  userId: String
   userName: String
   children: DiscussChilderUpdateManyInput
 }
@@ -1352,6 +1383,20 @@ input DiscussUpsertWithWhereUniqueWithoutUserInput {
 }
 
 input DiscussWhereInput {
+  problemId: String
+  problemId_not: String
+  problemId_in: [String!]
+  problemId_not_in: [String!]
+  problemId_lt: String
+  problemId_lte: String
+  problemId_gt: String
+  problemId_gte: String
+  problemId_contains: String
+  problemId_not_contains: String
+  problemId_starts_with: String
+  problemId_not_starts_with: String
+  problemId_ends_with: String
+  problemId_not_ends_with: String
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -1411,14 +1456,20 @@ input DiscussWhereInput {
   content_ends_with: String
   content_not_ends_with: String
   user: UserWhereInput
-  userId: Int
-  userId_not: Int
-  userId_in: [Int!]
-  userId_not_in: [Int!]
-  userId_lt: Int
-  userId_lte: Int
-  userId_gt: Int
-  userId_gte: Int
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
   userName: String
   userName_not: String
   userName_in: [String!]

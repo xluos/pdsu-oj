@@ -89,13 +89,14 @@ type Problem {
 
 # 讨论
 type Discuss {
+  problemId: String
   id: ID! @unique 
   createdAt: DateTime! 
   updatedAt: DateTime!
   contentRaw: String!
   content: String!
   user: User @relation(name: "DiscussByUser")
-  userId: Int!
+  userId: String!
   userName: String!
   # 评论回复 楼中楼形式
   children: [DiscussChilder!]! @relation(name: "DiscussByChildren" onDelete: CASCADE)

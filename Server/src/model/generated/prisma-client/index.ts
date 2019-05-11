@@ -613,6 +613,8 @@ export type UserOrderByInput =
   | "accepted_DESC";
 
 export type DiscussOrderByInput =
+  | "problemId_ASC"
+  | "problemId_DESC"
   | "id_ASC"
   | "id_DESC"
   | "createdAt_ASC"
@@ -1725,9 +1727,10 @@ export interface UserUpsertWithoutSubmitRecordInput {
 }
 
 export interface DiscussUpdateWithoutUserDataInput {
+  problemId?: String;
   contentRaw?: String;
   content?: String;
-  userId?: Int;
+  userId?: String;
   userName?: String;
   children?: DiscussChilderUpdateManyInput;
 }
@@ -2139,10 +2142,11 @@ export interface DiscussChilderUpdateWithWhereUniqueWithoutUserInput {
 }
 
 export interface DiscussUpdateInput {
+  problemId?: String;
   contentRaw?: String;
   content?: String;
   user?: UserUpdateOneWithoutUserDiscussInput;
-  userId?: Int;
+  userId?: String;
   userName?: String;
   children?: DiscussChilderUpdateManyInput;
 }
@@ -2661,9 +2665,10 @@ export interface UserGroupUpdateWithWhereUniqueWithoutCreateUserInput {
 }
 
 export interface DiscussCreateWithoutUserInput {
+  problemId?: String;
   contentRaw: String;
   content: String;
-  userId: Int;
+  userId: String;
   userName: String;
   children?: DiscussChilderCreateManyInput;
 }
@@ -3181,10 +3186,11 @@ export interface ContestProblemCreateInput {
 }
 
 export interface DiscussUpdateDataInput {
+  problemId?: String;
   contentRaw?: String;
   content?: String;
   user?: UserUpdateOneWithoutUserDiscussInput;
-  userId?: Int;
+  userId?: String;
   userName?: String;
   children?: DiscussChilderUpdateManyInput;
 }
@@ -4156,6 +4162,20 @@ export interface SubmitUpdateManyWithWhereNestedInput {
 }
 
 export interface DiscussWhereInput {
+  problemId?: String;
+  problemId_not?: String;
+  problemId_in?: String[] | String;
+  problemId_not_in?: String[] | String;
+  problemId_lt?: String;
+  problemId_lte?: String;
+  problemId_gt?: String;
+  problemId_gte?: String;
+  problemId_contains?: String;
+  problemId_not_contains?: String;
+  problemId_starts_with?: String;
+  problemId_not_starts_with?: String;
+  problemId_ends_with?: String;
+  problemId_not_ends_with?: String;
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -4215,14 +4235,20 @@ export interface DiscussWhereInput {
   content_ends_with?: String;
   content_not_ends_with?: String;
   user?: UserWhereInput;
-  userId?: Int;
-  userId_not?: Int;
-  userId_in?: Int[] | Int;
-  userId_not_in?: Int[] | Int;
-  userId_lt?: Int;
-  userId_lte?: Int;
-  userId_gt?: Int;
-  userId_gte?: Int;
+  userId?: String;
+  userId_not?: String;
+  userId_in?: String[] | String;
+  userId_not_in?: String[] | String;
+  userId_lt?: String;
+  userId_lte?: String;
+  userId_gt?: String;
+  userId_gte?: String;
+  userId_contains?: String;
+  userId_not_contains?: String;
+  userId_starts_with?: String;
+  userId_not_starts_with?: String;
+  userId_ends_with?: String;
+  userId_not_ends_with?: String;
   userName?: String;
   userName_not?: String;
   userName_in?: String[] | String;
@@ -4309,6 +4335,20 @@ export interface UserCreateOneWithoutSubmitRecordInput {
 }
 
 export interface DiscussScalarWhereInput {
+  problemId?: String;
+  problemId_not?: String;
+  problemId_in?: String[] | String;
+  problemId_not_in?: String[] | String;
+  problemId_lt?: String;
+  problemId_lte?: String;
+  problemId_gt?: String;
+  problemId_gte?: String;
+  problemId_contains?: String;
+  problemId_not_contains?: String;
+  problemId_starts_with?: String;
+  problemId_not_starts_with?: String;
+  problemId_ends_with?: String;
+  problemId_not_ends_with?: String;
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -4367,14 +4407,20 @@ export interface DiscussScalarWhereInput {
   content_not_starts_with?: String;
   content_ends_with?: String;
   content_not_ends_with?: String;
-  userId?: Int;
-  userId_not?: Int;
-  userId_in?: Int[] | Int;
-  userId_not_in?: Int[] | Int;
-  userId_lt?: Int;
-  userId_lte?: Int;
-  userId_gt?: Int;
-  userId_gte?: Int;
+  userId?: String;
+  userId_not?: String;
+  userId_in?: String[] | String;
+  userId_not_in?: String[] | String;
+  userId_lt?: String;
+  userId_lte?: String;
+  userId_gt?: String;
+  userId_gte?: String;
+  userId_contains?: String;
+  userId_not_contains?: String;
+  userId_starts_with?: String;
+  userId_not_starts_with?: String;
+  userId_ends_with?: String;
+  userId_not_ends_with?: String;
   userName?: String;
   userName_not?: String;
   userName_in?: String[] | String;
@@ -4436,9 +4482,10 @@ export interface PrivilegeGroupCreateInput {
 }
 
 export interface DiscussUpdateManyDataInput {
+  problemId?: String;
   contentRaw?: String;
   content?: String;
-  userId?: Int;
+  userId?: String;
   userName?: String;
 }
 
@@ -4743,10 +4790,11 @@ export interface ProblemUpdateManyDataInput {
 }
 
 export interface DiscussCreateInput {
+  problemId?: String;
   contentRaw: String;
   content: String;
   user?: UserCreateOneWithoutUserDiscussInput;
-  userId: Int;
+  userId: String;
   userName: String;
   children?: DiscussChilderCreateManyInput;
 }
@@ -5100,9 +5148,10 @@ export interface UserUpdateManyWithoutApplyUserGroupInput {
 }
 
 export interface DiscussUpdateManyMutationInput {
+  problemId?: String;
   contentRaw?: String;
   content?: String;
-  userId?: Int;
+  userId?: String;
   userName?: String;
 }
 
@@ -6520,36 +6569,39 @@ export interface ContestProblemConnectionSubscription
 }
 
 export interface DiscussPreviousValues {
+  problemId?: String;
   id: ID_Output;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   contentRaw: String;
   content: String;
-  userId: Int;
+  userId: String;
   userName: String;
 }
 
 export interface DiscussPreviousValuesPromise
   extends Promise<DiscussPreviousValues>,
     Fragmentable {
+  problemId: () => Promise<String>;
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   contentRaw: () => Promise<String>;
   content: () => Promise<String>;
-  userId: () => Promise<Int>;
+  userId: () => Promise<String>;
   userName: () => Promise<String>;
 }
 
 export interface DiscussPreviousValuesSubscription
   extends Promise<AsyncIterator<DiscussPreviousValues>>,
     Fragmentable {
+  problemId: () => Promise<AsyncIterator<String>>;
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   contentRaw: () => Promise<AsyncIterator<String>>;
   content: () => Promise<AsyncIterator<String>>;
-  userId: () => Promise<AsyncIterator<Int>>;
+  userId: () => Promise<AsyncIterator<String>>;
   userName: () => Promise<AsyncIterator<String>>;
 }
 
@@ -6925,23 +6977,25 @@ export interface AggregateContestSubscription
 }
 
 export interface Discuss {
+  problemId?: String;
   id: ID_Output;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   contentRaw: String;
   content: String;
-  userId: Int;
+  userId: String;
   userName: String;
 }
 
 export interface DiscussPromise extends Promise<Discuss>, Fragmentable {
+  problemId: () => Promise<String>;
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   contentRaw: () => Promise<String>;
   content: () => Promise<String>;
   user: <T = UserPromise>() => T;
-  userId: () => Promise<Int>;
+  userId: () => Promise<String>;
   userName: () => Promise<String>;
   children: <T = FragmentableArray<DiscussChilder>>(
     args?: {
@@ -6959,13 +7013,14 @@ export interface DiscussPromise extends Promise<Discuss>, Fragmentable {
 export interface DiscussSubscription
   extends Promise<AsyncIterator<Discuss>>,
     Fragmentable {
+  problemId: () => Promise<AsyncIterator<String>>;
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   contentRaw: () => Promise<AsyncIterator<String>>;
   content: () => Promise<AsyncIterator<String>>;
   user: <T = UserSubscription>() => T;
-  userId: () => Promise<AsyncIterator<Int>>;
+  userId: () => Promise<AsyncIterator<String>>;
   userName: () => Promise<AsyncIterator<String>>;
   children: <T = Promise<AsyncIterator<DiscussChilderSubscription>>>(
     args?: {
