@@ -1,0 +1,59 @@
+version: '3'
+services:
+  fed:
+    build: ./FED
+    ports:
+      - "80:80"
+    depends_on:
+      - service
+    networks: 
+      app_net:
+  service:
+    build: ./Server
+    depends_on:
+      - prisma
+      - judge
+    environment:
+      JUDGE_HOST: http://judge.pdsuojservice:7767
+    networks: 
+      app_net:
+        aliases:
+          - api.pdsuojservice
+  judge:
+    build: ./Judger
+    cap_add:
+      - SYS_PTRACE
+    networks: 
+      app_net:
+        aliases:
+          - judge.pdsuojservice
+  postgres:
+    image: postgres:11
+    env_file: .env
+    volumes:
+      - database:/var/lib/postgresql/data
+    networks:
+      - app_net
+  prisma:
+    image: prismagraphql/prisma:1.30
+    container_name: prisma
+    depends_on:
+      - postgres
+    env_file: .env
+    # environment:
+    #   PRISMA_CONFIG: |
+    #     port: 4466
+    #     databases:
+    #       postgres:
+    #         connector: postgres
+    #         host: postgres
+    #         port: 5432
+    #         user: xluos
+    #         password: xluos
+    #         migrations: true
+    networks:
+      - app_net      
+volumes:
+  database: {}
+networks: 
+  app_net:

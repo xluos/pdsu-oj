@@ -66,8 +66,11 @@ function judge (body) {
   const { language, limitMemory, limitTime, runId } = body;
 
   shell.cd(__dirname)
+  console.log(__dirname)
   console.time('judge')
+  console.log('1')
   shell.exec(`./Judge -l ${language} -D ./testdata -d ./temp -t ${limitTime} -m ${limitMemory} -o 81920`)
+  console.log('2')
   console.timeEnd('judge')
 
   // 查看编译信息，是否错误之类的

@@ -1,22 +1,19 @@
 import axios from 'axios';
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
+import { serviceHost } from '../../config';
 
-const BASEURL = '/ojapi';
+const BASEURL = serviceHost;
 const TIMEOUT = 8000;
 const TOKEN_KEY = 'pdoj_token'
-
-const localOptions = {
-  baseURL: 'http://localhost:7001/',
-  withCredentials: true
-}
 
 let options = {
   baseURL: BASEURL,
   timeout: TIMEOUT,
-  maxRedirects: 0 // 不允许重定向
+  maxRedirects: 0, // 不允许重定向
+  withCredentials: true,
 }
 
-const Api = axios.create(Object.assign(options, localOptions));
+const Api = axios.create(options);
 
 Api.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么

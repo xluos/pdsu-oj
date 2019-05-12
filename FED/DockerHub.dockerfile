@@ -1,14 +1,12 @@
-FROM node:10.15 as build
+FROM node:alpine as build
 
 WORKDIR /app
 
-COPY package.json .npmrc ./
+COPY package.json ./
 
 RUN npm install
 
 COPY . .
-
-ENV NODE_ENV=production
 
 RUN npm run build
 

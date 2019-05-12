@@ -6,6 +6,8 @@ import _ = require('lodash');
 import { ILimit } from '../../interface';
 import { SUBMIT_INFO } from '../../lib/fragment';
 
+const judgeHost = process.env.JUDGE_HOST || 'http://localhost:7767'
+
 @provide()
 @controller('/submit')
 export class SubmitController {
@@ -42,7 +44,7 @@ export class SubmitController {
     })
 
     // let data = await ctx.curl('http://localhost:7767', {
-    let data = await ctx.curl('http://192.168.137.58:7767', {
+    let data = await ctx.curl(judgeHost, {
       method: 'post',
       data: {
         "runId": submit.id,
