@@ -51,7 +51,7 @@
       margin: 7px 0;
       font-size: 14px;
       color: rgba(0,2,13,.6);
-      line-height: 1;
+      // line-height: 1;
       @include fn_ellipsis
     }
     .tags span {

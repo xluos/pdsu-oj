@@ -1,29 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
-  BrowserRouter as Router,
-  withRouter
-} from 'react-router-dom';
-// import { withRouter } from 'react-router';
+  Switch
+} from 'react-router-dom'
+import { RootRoute as RootRouteData } from '../../router.fed';
+import Routes from "../FedLayout/Routes";
 
-import RootRouters from './RootRoutes';
 
-@withRouter
-class ScrollToTop extends Component {
-  componentDidUpdate(prevProps) {
-    if (this.props.location !== prevProps.location) {
-      window.scrollTo(0, 0);
-    }
-  }
+export default class BasicLayout extends Routes {
+  static displayName = 'BasicLayout';
+
   render() {
-    return this.props.children;
+    return (
+      <Switch>
+        {RootRouteData.map(this.renderNormalRoute)}
+      </Switch>
+    );
   }
 }
-
-const BasicLayout = () => (
-  <Router>
-    <ScrollToTop>
-      <RootRouters/>
-    </ScrollToTop>
-  </Router>
-);
-export default BasicLayout;

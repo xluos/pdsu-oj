@@ -43,7 +43,7 @@ export default function Home () { return (
             </div>
           </div>
         </Link>
-        <Link to="/competition">
+        <Link to="/contest">
           <div className="competition-link">
             <img src={require('./images/contest-icon.png')} alt=""/>
             <div className="content">

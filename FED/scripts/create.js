@@ -16,6 +16,7 @@ export default ${arg};
 const jsxContent = `
 import React from 'react';
 import './${arg}.scss';
+import './${arg}.scss';
 
 export default function ${arg} () { return (
   <div className="${arg}-page" >

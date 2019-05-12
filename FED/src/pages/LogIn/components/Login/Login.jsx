@@ -33,7 +33,6 @@ export default class Login extends Component {
       value,
     });
   };
-
   handleSubmit = async (values, errors) => {
     if (errors) {
       Message.error('提交错误！请检查参数');
@@ -46,11 +45,11 @@ export default class Login extends Component {
         throw Error(user.massage)
       }
       Message.success('登录成功');
-      setUserInfo(user.data)
+      setUserInfo(get(user, 'data.userInfo', {}))
       setTimeout(()=>{
         this.props.history.replace(get(this.props, 'location.state.backUrl', '/'));
       }, 1000)
-      
+
     } catch (error) {
       Message.error(error.message || '系统异常');
       console.error(error);
@@ -110,11 +109,11 @@ export default class Login extends Component {
             </Row>
 
             <Row className="tips" style={styles.tips}>
-              <Link to="/signup" style={styles.link}>
+              <Link to="/base/signup" style={styles.link}>
                 立即注册
               </Link>
               <span style={styles.line}>|</span>
-              <Link to="/signup" style={styles.link}>
+              <Link to="/base/signup" style={styles.link}>
                 忘记密码
               </Link>
             </Row>

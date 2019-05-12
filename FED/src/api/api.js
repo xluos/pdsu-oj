@@ -1,11 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie'
 
-if (window) {
-  console.log('window');
-  window.ccc = Cookies
-}
-
 const BASEURL = '/ojapi';
 const TIMEOUT = 8000;
 const TOKEN_KEY = 'pdoj_token'
@@ -20,8 +15,6 @@ let options = {
   timeout: TIMEOUT,
   maxRedirects: 0 // 不允许重定向
 }
-
-Object.assign
 
 const Api = axios.create(Object.assign(options, localOptions));
 

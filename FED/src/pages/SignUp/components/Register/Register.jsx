@@ -73,7 +73,7 @@ export default class Register extends Component {
       setTimeout(()=>{
         this.props.history.replace(get(this.props, 'location.state.backUrl', '/'));
       }, 1000)
-      
+
     } catch (error) {
       Message.error(error.message || '系统异常');
       console.error(error);
@@ -173,7 +173,7 @@ export default class Register extends Component {
               </Row>
 
               <Row style={styles.tips}>
-                <Link to="/login" style={styles.link}>
+                <Link to="/base/login" style={styles.link}>
                   使用已有账户登录
                 </Link>
               </Row>
