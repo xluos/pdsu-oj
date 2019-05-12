@@ -1,28 +1,28 @@
 // 以下文件格式为描述路由的协议格式
 // 你可以调整 routerConfig 里的内容
 // 变量名 routerConfig 为 iceworks 检测关键字，请不要修改名称
-import UserList from './pages/UserList';
-import UserCreate from './pages/UserCreate';
-import UserPrivilege from './pages/UserPrivilege';
-import UserGroupManage from './pages/UserGroupManage';
-import UserGroupDetails from './pages/UserGroupDetails';
-import UserGroupCreate from './pages/UserGroupCreate';
-import PrivilegeManage from './pages/PrivilegeManage';
-import Dashboard from './pages/Dashboard';
-import ContestCreate from './pages/ContestCreate';
-import ContestList from './pages/ContestList';
-import NoticeList from './pages/NoticeList';
-import NoticeMessage from './pages/NoticeMessage';
-import ProblemList from './pages/ProblemList';
-import ProblemTestData from './pages/ProblemTestData';
-import ProblemCreate from './pages/ProblemCreate';
-import AdminLayout from './layouts/AdminLayout';
+
+// import AdminLayout from './layouts/AdminLayout';
+import { Component } from './lib/Loadable'
+
+
+const UserList = Component(() => import(/* webpackChunkName: "UserList" */  './pages/UserList'));
+const UserCreate = Component(() => import(/* webpackChunkName: "UserCreate" */  './pages/UserCreate'));
+const UserPrivilege = Component(() => import(/* webpackChunkName: "UserPrivilege" */  './pages/UserPrivilege'));
+const UserGroupManage = Component(() => import(/* webpackChunkName: "UserGroupManage" */  './pages/UserGroupManage'));
+const UserGroupDetails = Component(() => import(/* webpackChunkName: "UserGroupDetails" */  './pages/UserGroupDetails'));
+const UserGroupCreate = Component(() => import(/* webpackChunkName: "UserGroupCreate" */  './pages/UserGroupCreate'));
+const PrivilegeManage = Component(() => import(/* webpackChunkName: "PrivilegeManage" */  './pages/PrivilegeManage'));
+const Dashboard = Component(() => import(/* webpackChunkName: "Dashboard" */  './pages/Dashboard'));
+const ContestCreate = Component(() => import(/* webpackChunkName: "ContestCreate" */  './pages/ContestCreate'));
+const ContestList = Component(() => import(/* webpackChunkName: "ContestList" */  './pages/ContestList'));
+const NoticeList = Component(() => import(/* webpackChunkName: "NoticeList" */  './pages/NoticeList'));
+const NoticeMessage = Component(() => import(/* webpackChunkName: "NoticeMessage" */  './pages/NoticeMessage'));
+const ProblemList = Component(() => import(/* webpackChunkName: "ProblemList" */  './pages/ProblemList'));
+const ProblemTestData = Component(() => import(/* webpackChunkName: "ProblemTestData" */  './pages/ProblemTestData'));
+const ProblemCreate = Component(() => import(/* webpackChunkName: "ProblemCreate" */  './pages/ProblemCreate'));
 
 const routerConfig = [
-  {
-    path: '/admin',
-    component: AdminLayout,
-  },
   {
     path: '/admin/dashboard/monitor',
     component: Dashboard,

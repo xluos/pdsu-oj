@@ -1,17 +1,11 @@
-import Loadable from 'react-loadable';
-import Loading from './components/Loading';
-import BaseLayout from './layouts/BasicLayout';
-import FedLayout from './layouts/FedLayout';
+import { Component } from './lib/Loadable'
+// import BaseLayout from './layouts/BasicLayout';
+// import FedLayout from './layouts/FedLayout';
 // import Problem from './pages/Problem';
 // import ProblemPage from './pages/ProblemPage';
-import Contest from './pages/Contest';
+// import Contest from './pages/Contest';
 
-const Component = (Component) => Loadable({
-  loader: Component,
-  loading: Loading,
-  delay: 300,
-  timeout: 10000,
-});
+
 
 const Home = Component(() => import(/* webpackChunkName: "Home" */ './pages/Home'));
 const About = Component(() => import(/* webpackChunkName: "About" */ './pages/About'));
@@ -20,7 +14,7 @@ const Rank = Component(() => import(/* webpackChunkName: "Rank" */ './pages/Rank
 const FAQ = Component(() => import(/* webpackChunkName: "FAQ" */ './pages/FAQ'));
 const Problem = Component(() => import(/* webpackChunkName: "Problem" */ './pages/Problem'));
 const ProblemPage = Component(() => import(/* webpackChunkName: "ProblemPage" */ './pages/ProblemPage'));
-// const Contest = Component(() => import(/* webpackChunkName: "Competition" */ './pages/Contest'));
+const Contest = Component(() => import(/* webpackChunkName: "Competition" */ './pages/Contest'));
 const NotFound = Component(() => import(/* webpackChunkName: "Error404" */ './pages/Error404'));
 const LogIn = Component(() => import(/* webpackChunkName: "Login" */ './pages/LogIn'));
 const SignUp = Component(() => import(/* webpackChunkName: "Login" */ './pages/SignUp'));
@@ -86,20 +80,20 @@ export default [
     component: User,
     exact: true,
   },
-  // {
-  //   name: 'About',
-  //   isNav: true,
-  //   path: '/about',
-  //   component: About,
-  //   exact: true,
-  // },
-  // {
-  //   name: 'FAQ',
-  //   isNav: true,
-  //   path: '/faq',
-  //   component: FAQ,
-  //   exact: true,
-  // },
+  {
+    name: 'About',
+    isNav: true,
+    path: '/about',
+    component: About,
+    exact: true,
+  },
+  {
+    name: 'FAQ',
+    isNav: true,
+    path: '/faq',
+    component: FAQ,
+    exact: true,
+  },
   {
     name: '404',
     path: '',
@@ -108,11 +102,6 @@ export default [
 ]
 
 export const RootRoute = [
-  {
-    name: 'base',
-    path: '/base',
-    component: BaseLayout,
-  },
   {
     name: 'signup',
     path: '/base/signup',

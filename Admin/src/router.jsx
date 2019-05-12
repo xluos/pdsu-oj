@@ -17,8 +17,8 @@ export default class Router extends Component {
   render () {
     return (
       <Switch>
-        <Route path="/admin" component={AdminLayout} />
-        <Route path="/base" component={BasicLayout} />
+        <Route path="/admin/" component={AdminLayout} />
+        <Route path="/base/" component={BasicLayout} />
         <Route path="/" component={FedLayout} />
       </Switch>
     );

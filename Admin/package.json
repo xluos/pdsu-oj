@@ -1,7 +1,7 @@
 {
-  "name": "@icedesign/lite-scaffold",
-  "version": "1.0.0",
-  "description": "该模板适用于从 0 到 1 开始搭建项目，内置基础的页面，路由和菜单展示",
+  "name": "pdsuoj_fed",
+  "version": "0.0.1",
+  "description": "PDSUOJ 前端项目",
   "files": [
     "src/",
     "build/",
@@ -74,7 +74,7 @@
     "entry": "src/index.js",
     "localization": true,
     "output": {
-      "publicPath": "./"
+      "publicPath": "/"
     },
     "babelPluginImportConfig": [
       {
@@ -92,15 +92,15 @@
   },
   "scaffoldConfig": {
     "builder": "ice-scripts",
-    "name": "ice-design-lite",
-    "title": "ICE Design Lite",
+    "name": "PDSUOJ",
+    "title": "PDSUOJ",
     "categories": [
-      "基础模板"
+      "PDSUOJ"
     ],
-    "screenshot": "https://img.alicdn.com/tfs/TB1CjPVw4naK1RjSZFBXXcW7VXa-2872-1580.png"
+    "screenshot": ""
   },
   "engines": {
     "node": ">=8.0.0"
   },
-  "title": "PDSUOJ_Admin"
+  "title": "PDSUOJ_FED"
 }
