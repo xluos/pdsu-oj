@@ -35,6 +35,7 @@
     "start": "egg-scripts start --daemon --title=egg-server-pdsuoj_server --framework=midway",
     "stop": "egg-scripts stop --title=egg-server-pdsuoj_server",
     "start_build": "npm run build && NODE_ENV=development midway-bin dev",
+    "start_dev": "midway-bin dev --ts",
     "dev": "set NODE_ENV=local && midway-bin dev --ts",
     "debug": "set NODE_ENV=local && midway-bin debug --ts",
     "test": "npm run lint && midway-bin test --ts",

@@ -5,4 +5,4 @@ fi
 
 cd /app
 
-npm run start
+npm run start_dev
