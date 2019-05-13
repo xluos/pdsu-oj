@@ -12,4 +12,4 @@ COPY . .
 
 # RUN npm run build
 
-CMD [ "sh", "scripts/start.sh"]
+CMD [ "scripts/wait-for.sh", "prisma:4466", "--", "scripts/start.sh"]
