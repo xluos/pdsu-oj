@@ -41,18 +41,17 @@ services:
     container_name: prisma
     depends_on:
       - postgres
-    env_file: .env
-    # environment:
-    #   PRISMA_CONFIG: |
-    #     port: 4466
-    #     databases:
-    #       postgres:
-    #         connector: postgres
-    #         host: postgres
-    #         port: 5432
-    #         user: xluos
-    #         password: xluos
-    #         migrations: true
+    environment:
+      PRISMA_CONFIG: |
+        port: 4466
+        databases:
+          postgres:
+            connector: postgres
+            host: postgres
+            port: 5432
+            user: postgrestest
+            password: postgrestest
+            migrations: true
     networks:
       - app_net      
 volumes:

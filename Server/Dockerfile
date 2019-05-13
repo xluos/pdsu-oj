@@ -10,4 +10,6 @@ RUN npm install --production --registry=https://registry.npm.taobao.org && \
 
 COPY . .
 
+RUN npm run build
+
 CMD [ "sh", "scripts/start.sh"]
