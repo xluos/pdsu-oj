@@ -1,5 +1,6 @@
 import { controller, post, provide, get } from 'midway';
-import { prisma, Problem, ProblemCreateInput } from '../../model/generated/prisma-client';
+import { Problem, ProblemCreateInput } from '../../model/generated/prisma-client';
+import { prisma } from "../../model";
 import { IProblem, ILimit } from '../../interface';
 import { parseArgs } from '../../lib/utils';
 import { PROBLEM_INFO_MINI } from '../../lib/fragment';

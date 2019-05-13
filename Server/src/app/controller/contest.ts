@@ -1,10 +1,10 @@
 import { controller, post, provide } from 'midway';
-import { 
-  prisma, 
+import {
   Contest, 
   UserGroupWhereUniqueInput, 
   ContestProblemWhereUniqueInput,
 } from '../../model/generated/prisma-client';
+import { prisma } from "../../model";
 import { IContest, ILimit } from '../../interface';
 import _ = require('lodash');
 import { parseArgs } from '../../lib/utils';
