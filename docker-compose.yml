@@ -20,7 +20,7 @@ services:
         aliases:
           - api.pdsuojservice
   judge:
-    iamge: xluos/pdsuoj-judger:0.0.2
+    image: xluos/pdsuoj-judger:0.0.2
     cap_add:
       - SYS_PTRACE
     networks: 
