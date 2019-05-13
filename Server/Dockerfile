@@ -4,11 +4,12 @@ WORKDIR /app
 
 COPY package.json .
 
-RUN npm install --production --registry=https://registry.npm.taobao.org && \
-    npm install -g prisma && \
-    cd src/model && \
-    prisma deploy
+RUN npm install --production --registry=https://registry.npm.taobao.org
 
 COPY . .
+
+RUN npm install -g prisma --registry=https://registry.npm.taobao.org && \
+    cd src/model && \
+    prisma deploy
 
 CMD [ "npm", "run", "start"]
