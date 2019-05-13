@@ -1,7 +1,7 @@
 import { provide } from 'midway';
 import { IFileService } from "../interface";
 import { ProblemCreateInput } from '../model/generated/prisma-client';
-import { prisma } from "../../model";
+import { prisma } from "../model";
 import _ = require('lodash');
 const parser = require('fast-xml-parser');
 
