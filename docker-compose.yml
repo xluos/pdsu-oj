@@ -4,6 +4,8 @@ services:
     build: ./FED
     ports:
       - "80:80"
+    volumes:
+      - ./FED/config/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - service
     networks: 
