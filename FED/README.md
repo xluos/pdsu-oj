@@ -18,3 +18,12 @@
 - 通用组件: `src/components`
 - 页面文件: `src/pages`
 
+```
+按需加载lodash文件配置
+{
+  "libraryName": "lodash",
+  "libraryDirectory": "",
+  "camel2DashComponentName": false,
+  "camel2UnderlineComponentName": false
+}
+```
