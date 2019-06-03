@@ -86,6 +86,25 @@ export class ContestController {
     }
   }
 
+  @post('/details')
+  async getContestDetails(ctx): Promise<void> {
+    const options:{id: string} = ctx._body
+    ctx.validate({
+      id: 'string',
+    }, options);
+    const [ info, problemList ] = await Promise.all([
+      prisma.contest(options),
+      prisma.contest(options).contestProblem()
+    ])
+    console.log(problemList);
+    
+    ctx.body = {
+      info,
+      problemList,
+      problemDetails: []
+    }
+  }
+
 
   /**
    * 创建或更新题目

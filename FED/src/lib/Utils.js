@@ -22,6 +22,7 @@ export function mixin(Obj, newObj) {
 // 验证登录状态
 
 export function verifyLoginStatus () {
+  return true
   let token = Cookies.get('pdoj_token')
   if (token) {
     try {

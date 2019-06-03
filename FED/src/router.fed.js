@@ -15,6 +15,7 @@ const FAQ = Component(() => import(/* webpackChunkName: "FAQ" */ './pages/FAQ'))
 const Problem = Component(() => import(/* webpackChunkName: "Problem" */ './pages/Problem'));
 const ProblemPage = Component(() => import(/* webpackChunkName: "ProblemPage" */ './pages/ProblemPage'));
 const Contest = Component(() => import(/* webpackChunkName: "Competition" */ './pages/Contest'));
+const ContestPage = Component(() => import(/* webpackChunkName: "Competition" */ './pages/ContestPage'));
 const NotFound = Component(() => import(/* webpackChunkName: "Error404" */ './pages/Error404'));
 const LogIn = Component(() => import(/* webpackChunkName: "Login" */ './pages/LogIn'));
 const SignUp = Component(() => import(/* webpackChunkName: "Login" */ './pages/SignUp'));
@@ -72,6 +73,13 @@ export default [
     path: '/contest',
     component: Contest,
     exact: true,
+    children: [
+      {
+        name: 'ContestPage',
+        path: '/:id',
+        component: ContestPage,
+      }
+    ]
   },
   {
     name: 'User',

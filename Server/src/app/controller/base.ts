@@ -1,4 +1,4 @@
-import { controller, post, inject, provide, plugin, get } from 'midway';
+import { controller, post, inject, provide, get } from 'midway';
 import { IUser } from '../../interface';
 import { handlePassword, excludePassword } from "../../lib/utils";
 
@@ -7,9 +7,6 @@ import { handlePassword, excludePassword } from "../../lib/utils";
 export class BaseController {
   @inject('userService')
   service;
-
-  @plugin()
-  jwt;
 
   @post('/signup')
   async signupUser(ctx): Promise<void> {
@@ -36,7 +33,7 @@ export class BaseController {
     console.log(user, handlePassword(options.password));
     
     if (user.password === handlePassword(options.password)){
-      ctx.cookies.set('pdoj_token', this.jwt.sign(excludePassword(user), { expiresIn: 3600 }), {signed: true, httpOnly: false})
+      ctx.cookies.set('pdoj_token', '')
       ctx.body = {userInfo: excludePassword(user)};
     } else {
       throw Error('登录错误');   
@@ -45,11 +42,11 @@ export class BaseController {
 
   @get('/gettoken')
   async gettoken(ctx): Promise<void> {
-    ctx.cookies.set('pdoj_token', this.jwt.sign({ok: true}, { expiresIn: 3600 }), {signed: true, httpOnly: false})
+    ctx.cookies.set('pdoj_token', '')
     ctx.body = 'ok';
   }
 
-  @get('/testlogin', {middleware: ['jwtMiddleware']})
+  @get('/testlogin', {middleware: ['jwt']})
   async testlogin(ctx): Promise<void> {
     ctx.body = 'ok';
   }
