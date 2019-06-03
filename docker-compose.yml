@@ -16,8 +16,7 @@ services:
     depends_on:
       - prisma
       - judge
-    environment:
-      JUDGE_HOST: http://judge.pdsuojservice:7767
+    env_file: .env
     networks: 
       app_net:
         aliases:

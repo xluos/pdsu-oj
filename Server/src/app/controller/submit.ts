@@ -1,5 +1,6 @@
 import { controller, post, provide } from 'midway';
-import { Problem, prisma, Submit } from '../../model/generated/prisma-client';
+import { Problem, Submit } from '../../model/generated/prisma-client';
+import { prisma } from "../../model";
 import { OJ_RUN } from '../../lib/OJ_STATUS';
 import { parseArgs } from '../../lib/utils';
 import _ = require('lodash');

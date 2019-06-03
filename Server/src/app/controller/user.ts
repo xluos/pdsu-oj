@@ -1,6 +1,7 @@
 import { controller, post, inject, provide, put, del, get } from 'midway';
 import { IUser, IUserGroup, ILimit } from '../../interface';
-import { prisma, UserGroupCreateInput, UserGroup, UserWhereUniqueInput, User } from '../../model/generated/prisma-client';
+import { UserGroupCreateInput, UserGroup, UserWhereUniqueInput, User } from '../../model/generated/prisma-client';
+import { prisma } from "../../model";
 import { handlePassword, parseArgs } from "../../lib/utils";
 import { USER_INFO, USER_GROUP_INFO, USER_GROUP_INFO_MINI, USER_INFO_MINI } from '../../lib/fragment';
 import _ = require('lodash');

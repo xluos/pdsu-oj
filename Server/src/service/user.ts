@@ -1,6 +1,6 @@
 import { provide } from 'midway';
 import { IUser } from "../interface";
-import { prisma } from '../model/generated/prisma-client';
+import { prisma } from "../model";
 
 @provide('userService')
 export class UserService {
