@@ -76,7 +76,9 @@ export default class ContestPage extends Component {
       <Progress percent={percent > 100 ? 100 : percent} size="large" color={color}/>
     );
   };
-
+  renderRatio = (value, rowIndex, record) => {
+    return `${record.ac}/${record.wa} ${(record.wa + record.ac) ? (record.ac/(record.wa + record.ac) * 100).toFixed(2) : 0}%`
+  }
   render () {
     const { contestDetails } = this.props.bindingData;
     const {
@@ -103,9 +105,9 @@ export default class ContestPage extends Component {
           <Tab>
             <Tab.Item title="Overviewt" key="1">
               <Table dataSource={contestDetails.problemList}>
-                <Table.Column title="Id" dataIndex="id"/>
-                <Table.Column title="Title" dataIndex="name" />
-                <Table.Column title="Ratio" dataIndex="Ratio"/>
+                <Table.Column title="Id" dataIndex="problemId"/>
+                <Table.Column title="Title" dataIndex="problemTitle" />
+                <Table.Column title="Ratio" cell={this.renderRatio}/>
               </Table>
             </Tab.Item>
             <Tab.Item title="Problem" key="2">

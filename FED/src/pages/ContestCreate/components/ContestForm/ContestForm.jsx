@@ -14,10 +14,13 @@ import {
   FormBinder as IceFormBinder,
   FormError as IceFormError,
 } from '@icedesign/form-binder';
+import DataBinder from '@icedesign/data-binder';
 import api from "../../../../api";
+import requestClient from '../../../../api/api'
 import { mixin } from '../../../../lib/Utils';
 import { getUserInfo } from '../../../../lib/Storage';
 import { withRouter } from "react-router-dom";
+import { debounce } from 'lodash'
 
 import moment from 'moment';
 moment.locale('zh-cn');
@@ -26,6 +29,18 @@ const { Row, Col } = Grid;
 const { RangePicker } = DatePicker;
 
 @withRouter
+@DataBinder({
+  problemSearch: {
+    url: '/problem/search',
+    method: 'post',
+    data: {
+      key: ''
+    },
+    defaultBindingData: {
+      list: []
+    }
+  }
+}, {requestClient})
 export default class ContestFrom extends Component {
   static displayName = 'ContestFrom';
 
@@ -43,7 +58,8 @@ export default class ContestFrom extends Component {
       type: 0,
       contestTime: [nowTime,nowTime],
       hint: '',
-      userGroup: [],
+      userGroup: [
+      ],
       contestProblem: [],
       createUserName: this.userInfo.name,
       createUserId: this.userInfo.userId,
@@ -52,20 +68,11 @@ export default class ContestFrom extends Component {
       value: mixin({ ...this.defaultValue}, props.contestInfo),
       isCreate: props.problemInfo ? false : true,
       postLoading: false,
-      userGroupDate: [ // TODO 完善后改为远程获取
-        {label:'公开组1', value:'12212'},
-        {label:'公开组2', value:'123123'},
-        {label:'公开组3', value:'123'},
-        {label:'公开组4', value:'12323'},
-        {label:'公开组5', value:'11113'},
-      ],
-      contestProblemDate: [ // TODO 完善后改为远程获取
-        {label:'题目1', value:'12212'},
-        {label:'题目2', value:'123123'},
-        {label:'题目3', value:'123'},
-        {label:'题目4', value:'12323'},
-        {label:'题目5', value:'11113'},
-      ]
+      userGroupDate: [
+        {label: "test", value: 1},
+        {label: "test", value: 1},
+        {label: "test", value: 1},
+        {label: "test", value: 1},]
     };
   }
 
@@ -80,7 +87,9 @@ export default class ContestFrom extends Component {
       value,
     });
   };
-
+  onSearch = debounce((val) => {
+    this.props.updateBindingData('problemSearch', {data: {key: val}})
+  }, 500)
   validateAllFormField = () => {
     this.refs.form.validateAll(async (errors, values) => {
       if (errors) {
@@ -92,8 +101,9 @@ export default class ContestFrom extends Component {
       if(this.state.isCreate) {
         values.createUserId = this.userInfo.id
       }
+      let data
       try {
-        const data = await api.contest.setContest(values)
+        data = await api.contest.setContest(values)
         if (data.code) {
           throw Error(data.message)
         }
@@ -105,15 +115,24 @@ export default class ContestFrom extends Component {
         this.setState({
           postLoading: false,
         })
-        // if (!this.state.isCreate) {
-          this.props.history.push('/admin/contest')
-        // }
+      }
+      console.log(data)
+      if (!data.code) {
+        this.props.history.push('/admin/contest')
       }
     });
   };
 
   render() {
-    const { userGroupDate, contestProblemDate } = this.state;
+    const { userGroupDate } = this.state;
+    const { problemSearch } = this.props.bindingData;
+    const contestProblemDate = problemSearch.list.map(it => ({
+      label: it.title,
+      value: {
+        id: it.id,
+        title: it.title
+      }
+    }))
     return (
       <div className="user-form">
         <IceContainer>
@@ -198,7 +217,9 @@ export default class ContestFrom extends Component {
                     <Select
                       aria-label="题目标签"
                       mode="tag"
+                      onSearch={this.onSearch}
                       dataSource={contestProblemDate}
+                      filterLocal={false}
                       style={{width: '100%', fontSize: 14}} />
                   </IceFormBinder>
                 </Col>

@@ -154,4 +154,53 @@ export class ProblemController {
     }
   }
 
+  /**
+   * 搜索题目列表
+   *
+   * @param {*} ctx
+   * @returns {Promise<void>}
+   * @memberof ProblemController
+   */
+  @post('/search')
+  async searchProblem(ctx): Promise<void> {
+    const options: {
+      number?: number,
+      key: string,
+      isAll?: boolean
+    } = ctx._body
+
+    ctx.validate({
+      number: 'number?',
+      key: 'string?',
+      isAll: 'boolean?'
+    }, options)
+
+    if (!options.key) {
+      ctx.body = {
+        list: []
+      }
+      return ;
+    }
+
+    // let keys = options.key.split(' ').filter(it => it)
+    let problem = null
+    let query = prisma.problems({
+      where: {
+        OR: [
+          { title_contains: options.key },
+          { describe_contains: options.key }
+        ]
+      },
+      first: options.number ? options.number > 20 ? 20 : options.number : 10
+    })
+
+    if (options.isAll) {
+      problem = await query
+    } else {
+      problem = await query.$fragment(PROBLEM_INFO_MINI)
+    }
+    ctx.body = {
+      list: problem
+    }
+  }
 }

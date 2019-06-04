@@ -119,7 +119,7 @@ export interface IContest {
   startTime: string
   endTime: string
   userGroup: string[]
-  contestProblem: string[] 
+  contestProblem: {id: string, title: string}[] 
 }
 
 export interface IContestProblem {

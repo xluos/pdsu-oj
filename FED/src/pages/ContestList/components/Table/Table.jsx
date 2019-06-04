@@ -56,7 +56,7 @@ export default class GoodsTable extends Component {
       <Button.Group>
             <Button
               type="secondary"
-              onClick={this.handleDetail}
+              onClick={() => this.handleDetail(record)}
             >
               详情
             </Button>

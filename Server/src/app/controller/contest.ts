@@ -1,8 +1,7 @@
 import { controller, post, provide } from 'midway';
 import {
   Contest, 
-  UserGroupWhereUniqueInput, 
-  ContestProblemWhereUniqueInput,
+  UserGroupWhereUniqueInput,
 } from '../../model/generated/prisma-client';
 import { prisma } from "../../model";
 import { IContest, ILimit } from '../../interface';
@@ -107,7 +106,7 @@ export class ContestController {
 
 
   /**
-   * 创建或更新题目
+   * 创建或更新比赛
    *
    * @param {*} ctx
    * @returns {Promise<void>}
@@ -123,7 +122,7 @@ export class ContestController {
       contestTime: {type: 'array', itemType: 'string'},
       hint: 'string?',
       userGroup: {type: 'array', itemType: 'string'},
-      contestProblem: {type: 'array', itemType: 'string'},
+      contestProblem: {type: 'array', itemType: 'object'},
       createUserName: 'string',
       createUserId: 'string',
     }, options);
@@ -138,7 +137,15 @@ export class ContestController {
         connect: options.userGroup.map((id:string):UserGroupWhereUniqueInput => {return {id}} )
       },
       contestProblem: {
-        connect: options.userGroup.map((id:string):ContestProblemWhereUniqueInput => {return {id}})
+        create: options.contestProblem.map(({id, title}) => {return {
+          problemId: id,
+          problemTitle: title,
+          problem: {
+            connect: {
+              id
+            }
+          }
+        }})
       },
       createUserName: options.createUserName,
       createUserId: options.createUserId,
