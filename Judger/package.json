@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "fs-extra": "^7.0.1",
     "js-base64": "^2.5.1",
     "koa": "^2.7.0",
